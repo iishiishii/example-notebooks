@@ -19,13 +19,25 @@ jobs:
     container:
       image: vnmd/neurodesktop:latest  # replace <your-docker-image> with your Docker image
       options: --user root
+      volumes:
+        - /neurodesktop-storage:/neurodesktop-storage
     
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Run notebooks
+      - name: Install dependencies
         shell: bash
         run: |
             pip install nbmake pytest-xdist
-            chmod +x test_notebook.sh
-            ./test_notebook.sh
+      - name: Run qsmxt_example
+        shell: bash
+        run: |
+            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest --nbmake qsmxt_example.ipynb
+      - name: Run sct_toolbox_example
+        shell: bash
+        run: |
+            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest --nbmake sct_toolbox_example.ipynb
+      - name: Run sct_toolbox_example
+        shell: bash
+        run: |
+            cd /home/jovyan/example-notebooks/functional_imaging && python -m pytest --nbmake nipype_fsl_all_levels_flanker.ipynb
