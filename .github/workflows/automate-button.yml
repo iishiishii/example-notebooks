@@ -32,12 +32,12 @@ jobs:
       - name: Run qsmxt_example
         shell: bash
         run: |
-            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest --nbmake qsmxt_example.ipynb
+            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest -srP -vv --nbmake qsmxt_example.ipynb
       - name: Run sct_toolbox_example
         shell: bash
         run: |
-            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest --nbmake sct_toolbox_example.ipynb
+            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest -srP -vv --nbmake sct_toolbox_example.ipynb
       - name: Run sct_toolbox_example
         shell: bash
         run: |
-            cd /home/jovyan/example-notebooks/functional_imaging && python -m pytest --nbmake nipype_fsl_all_levels_flanker.ipynb
+            cd /home/jovyan/example-notebooks/functional_imaging && python -m pytest -srP -vv --nbmake nipype_fsl_all_levels_flanker.ipynb
