@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: 
           chmod +x cvmfs.sh
-          /bin/bash cvmfs.sh
+          ./cvmfs.sh
       - uses: yaananth/run-notebook@v2
         env:
           RUNNER: ${{ toJson(runner) }}
