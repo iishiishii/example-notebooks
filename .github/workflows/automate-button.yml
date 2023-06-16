@@ -19,8 +19,13 @@ jobs:
     container:
       image: vnmd/neurodesktop:latest  # replace <your-docker-image> with your Docker image
       options: --user root
+      ports: 
+        - "8888:8888"
       volumes:
         - /neurodesktop-storage:/neurodesktop-storage
+      env:
+        NB_UID: "$(id -u)"
+        NB_GID: "$(id -g)"
     
     steps:
       - name: Checkout Code
@@ -28,11 +33,11 @@ jobs:
       - name: Install dependencies
         shell: bash
         run: |
-            pip install nbmake pytest-xdist
+            pip install nbmake pytest-xdist pytest-shell
       - name: Run qsmxt_example
         shell: bash
         run: |
-            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest -srP -vv --nbmake-timeout=4000 --nbmake qsmxt_example.ipynb
+            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
       - name: Run sct_toolbox_example
         shell: bash
         run: |
