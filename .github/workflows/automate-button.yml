@@ -30,8 +30,18 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v3
+      - uses: yaananth/run-notebook@v2
+        env:
+          RUNNER: ${{ toJson(runner) }}
+          SECRETS: ${{ toJson(secrets) }}
+          GITHUB: ${{ toJson(github) }}
         with:
-          ref: test_notebook
+          notebook: "structural_imaging/qsmxt_example.ipynb"
+          isReport: False
+          poll: True
+
       - name: Install dependencies
         shell: bash
         run: |
@@ -39,7 +49,7 @@ jobs:
       - name: Run qsmxt_example
         shell: bash
         run: |
-            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
+            cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest --pdb -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
       - name: Run sct_toolbox_example
         shell: bash
         run: |

@@ -30,6 +30,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
       - name: Test singularity and curl before pushing to neurocommand
+        shell: bash
         run: 
           chmod +x cvmfs.sh
           /bin/bash cvmfs.sh
