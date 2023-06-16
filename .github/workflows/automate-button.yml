@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+        with:
+          ref: test_notebook
       - name: Install dependencies
         shell: bash
         run: |
