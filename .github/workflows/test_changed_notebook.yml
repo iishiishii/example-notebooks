@@ -31,6 +31,8 @@ jobs:
       run: 
         /bin/bash .github/workflows/test_singularity_cvmfs.sh
         export SINGULARITY_BINDPATH='/cvmfs,/mnt,/home'
+        export LMOD_CMD="/usr/share/lmod/lmod/libexec/lmod"
+        export MPLCONFIGDIR = "/content/matplotlib-mpldir"
 
     - name: Install dependencies
       shell: bash
