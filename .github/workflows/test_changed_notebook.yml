@@ -20,20 +20,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  test_notebooks:
-
+  test_singularity_cvmfs:
     runs-on: ubuntu-20.04
-
-    steps:  
-      - name: Checkout Code
-        uses: actions/checkout@v2       
-      - name: Set up Python
-        uses: actions/setup-python@v2
-      - name: Test singularity and curl before pushing to neurocommand
-        shell: bash
-        run: 
-          chmod +x cvmfs.sh
-          ./cvmfs.sh
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test singularity and cvmfs before pushing to neurocommand
+      run: /bin/bash .github/workflows/cvmfs.sh
+  run_notebook:
+    needs: test_singularity_cvmfs
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
       - uses: yaananth/run-notebook@v2
         env:
           RUNNER: ${{ toJson(runner) }}
