@@ -35,4 +35,4 @@ jobs:
     - name: Run qsmxt_example
       shell: bash
       run: |
-          cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
+          cd structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
