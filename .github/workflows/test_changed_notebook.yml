@@ -24,8 +24,14 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        repository: NeuroDesk/transparent-singularity
+        path: transparent-singularity
+
     - name: Test singularity and cvmfs before pushing to neurocommand
-      run: /bin/bash .github/workflows/cvmfs.sh
+      working-directory: transparent-singularity
+      run: /bin/bash .github/workflows/test_singularity_cvmfs.sh
   run_notebook:
     needs: test_singularity_cvmfs
     runs-on: ubuntu-20.04
