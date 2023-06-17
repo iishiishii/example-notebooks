@@ -26,6 +26,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         repository: NeuroDesk/transparent-singularity
+        path: transparent-singularity
     - name: Test singularity and cvmfs before pushing to neurocommand
       run: /bin/bash .github/workflows/test_singularity_cvmfs.sh
   run_notebook:
