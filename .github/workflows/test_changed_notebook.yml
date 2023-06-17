@@ -26,7 +26,9 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Test singularity and cvmfs before pushing to neurocommand
-      run: /bin/bash .github/workflows/test_singularity_cvmfs.sh
+      run: 
+        /bin/bash .github/workflows/test_singularity_cvmfs.sh
+        export SINGULARITY_BINDPATH='/cvmfs,/mnt,/home'
 
     - name: Install dependencies
       shell: bash
