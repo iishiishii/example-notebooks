@@ -210,6 +210,7 @@ fi
 
 echo "checking which executables exist inside container"
 echo "executing: singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh"
+chmod +x $_base/ts_binaryFinder.sh
 singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh
 
 echo "create singularity executable for each regular executable in commands.txt"
