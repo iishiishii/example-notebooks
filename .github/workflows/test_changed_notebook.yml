@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
 
     - name: Test singularity and cvmfs before pushing to neurocommand
       run: 
@@ -33,7 +35,8 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-          pip install nbmake pytest
+        pip install nbmake pytest-xdist pytest-shell
+
     - name: Run qsmxt_example
       shell: bash
       run: |
