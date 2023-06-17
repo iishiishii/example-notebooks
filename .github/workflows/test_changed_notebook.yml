@@ -27,17 +27,12 @@ jobs:
 
     - name: Test singularity and cvmfs before pushing to neurocommand
       run: /bin/bash .github/workflows/test_singularity_cvmfs.sh
-  run_notebook:
-    needs: test_singularity_cvmfs
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: yaananth/run-notebook@v2
-        env:
-          RUNNER: ${{ toJson(runner) }}
-          SECRETS: ${{ toJson(secrets) }}
-          GITHUB: ${{ toJson(github) }}
-        with:
-          notebook: "structural_imaging/qsmxt_example.ipynb"
-          isReport: False
-          poll: True
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+          pip install nbmake
+    - name: Run qsmxt_example
+      shell: bash
+      run: |
+          cd /home/jovyan/example-notebooks/structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
