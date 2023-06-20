@@ -22,6 +22,9 @@ chmod +x /usr/bin/singularity_test
 mv /usr/bin/singularity /usr/bin/singularity_backup
 mv /usr/bin/singularity_test /usr/bin/singularity
 
+ls -lah /usr/bin/fusermount
+ls -ll /bin/fusermount 
+
 #setup cvmfs
 mkdir -p /etc/cvmfs/keys/ardc.edu.au/
 echo "-----BEGIN PUBLIC KEY-----" | sudo tee /etc/cvmfs/keys/ardc.edu.au/neurodesk.ardc.edu.au.pub
@@ -39,6 +42,8 @@ echo 'CVMFS_KEYS_DIR="/etc/cvmfs/keys/ardc.edu.au/"' | sudo tee -a /etc/cvmfs/co
 echo "CVMFS_HTTP_PROXY=DIRECT" | sudo tee  /etc/cvmfs/default.local
 echo "CVMFS_QUOTA_LIMIT=5000" | sudo tee -a  /etc/cvmfs/default.local
 sudo cvmfs_config setup
+
+id cvmfs
 
 # Disabling autofs is needed, otherwise autofs is not fast enough to mount CVMFS and it will complain about it with "too many symbolic errors"
 sudo cvmfs_config umount
