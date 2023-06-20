@@ -28,11 +28,8 @@ jobs:
       uses: actions/setup-python@v3
 
     - name: Test singularity and cvmfs before pushing to neurocommand
-      shell: bash
       run: 
-        curl -J -O https://raw.githubusercontent.com/NeuroDesk/neurocommand/main/googlecolab_setup.sh
-        chmod +x googlecolab_setup.sh
-        ./googlecolab_setup.sh
+        /bin/bash .github/workflows/setup-cvmfs.sh
 
     - name: Install dependencies
       shell: bash
