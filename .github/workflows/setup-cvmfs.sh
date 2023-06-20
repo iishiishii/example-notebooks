@@ -46,8 +46,7 @@ sudo cvmfs_config setup
 id cvmfs
 
 # Disabling autofs is needed, otherwise autofs is not fast enough to mount CVMFS and it will complain about it with "too many symbolic errors"
-sudo mkdir /cvmfs
-sudo mkdir /cvmfs/neurodesk.ardc.edu.au
+sudo mkdir -p /cvmfs/neurodesk.ardc.edu.au
 sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au
 
 sudo cvmfs_config chksetup
