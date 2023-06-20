@@ -13,7 +13,11 @@ sudo apt-get update --allow-unauthenticated
 echo "[DEBUG]: apt-get install cvmfs"
 sudo apt-get install cvmfs --allow-unauthenticated
 
-sudo apt install -y datalad lmod
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:apptainer/ppa
+sudo apt update
+sudo apt install -y apptainer datalad apptainer-suid lmod
+sudo apptainer config fakeroot --add root
 pip install jupyterlmod
 
 sudo mkdir -p /etc/cvmfs/keys/ardc.edu.au/
