@@ -39,9 +39,9 @@ jobs:
     - name: Run qsmxt_example
       shell: bash
       run: |
-        export APPTAINER_BINDPATH=/home
+        export APPTAINER_BINDPATH=/home/runner/work
         export LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod
-        export MPLCONFIGDIR=/content/matplotlib-mpldir
+        export MPLCONFIGDIR=/home/runner/work/matplotlib-mpldir
         export MODULEPATH=$(find /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/ -maxdepth 1 -mindepth 1 -type d -exec realpath {} \; | tr '\n' ':')
         export SINGULARITY_BINDPATH=/data,/neurodesktop-storage,/tmp,/cvmfs
         cd structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
