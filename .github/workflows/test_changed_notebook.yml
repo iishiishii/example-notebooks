@@ -39,7 +39,7 @@ jobs:
     - name: Run qsmxt_example
       shell: bash
       run: |
-        export SINGULARITY_BINDPATH='/cvmfs,/mnt,/home'
-        export LMOD_CMD="/usr/share/lmod/lmod/libexec/lmod"
-        export MPLCONFIGDIR = "/content/matplotlib-mpldir"
+        export SINGULARITY_BINDPATH=/cvmfs,/mnt,/home
+        export LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod
+        export MPLCONFIGDIR=/content/matplotlib-mpldir
         cd structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
