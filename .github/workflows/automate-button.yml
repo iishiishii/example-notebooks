@@ -15,7 +15,7 @@ name: Build
 jobs:
   build:
     name: Notebook Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
       image: vnmd/neurodesktop:latest  # replace <your-docker-image> with your Docker image
       options: --user root
@@ -35,9 +35,8 @@ jobs:
 
 
       - name: Install dependencies
-        shell: bash
         run: |
-            pip install nbmake pytest-xdist pytest-shell
+            python -m pip install nbmake pytest-xdist pytest-shell
       - name: Run qsmxt_example
         shell: bash
         run: |
