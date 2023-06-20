@@ -41,18 +41,16 @@ echo "CVMFS_QUOTA_LIMIT=5000" | sudo tee -a  /etc/cvmfs/default.local
 
 sudo cvmfs_config setup
 
-ls /cvmfs/neurodesk.ardc.edu.au/containers
-
-cvmfs_config stat -v neurodesk.ardc.edu.au
-
 id cvmfs
 
 # Disabling autofs is needed, otherwise autofs is not fast enough to mount CVMFS and it will complain about it with "too many symbolic errors"
 sudo cvmfs_config umount
 sudo service autofs stop
 sudo mkdir -p /cvmfs/neurodesk.ardc.edu.au
+echo "Mounting CVMFS"
 sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au
 
+echo "checking if CVMFS part works"
 sudo cvmfs_config chksetup
 cvmfs_config probe neurodesk.ardc.edu.au
 ls /cvmfs/neurodesk.ardc.edu.au/
