@@ -30,9 +30,6 @@ jobs:
     - name: Test singularity and cvmfs before pushing to neurocommand
       run: 
         /bin/bash .github/workflows/test_singularity_cvmfs.sh
-        export SINGULARITY_BINDPATH='/cvmfs,/mnt,/home'
-        export LMOD_CMD="/usr/share/lmod/lmod/libexec/lmod"
-        export MPLCONFIGDIR = "/content/matplotlib-mpldir"
 
     - name: Install dependencies
       shell: bash
@@ -42,4 +39,7 @@ jobs:
     - name: Run qsmxt_example
       shell: bash
       run: |
-          cd structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
+        export SINGULARITY_BINDPATH='/cvmfs,/mnt,/home'
+        export LMOD_CMD="/usr/share/lmod/lmod/libexec/lmod"
+        export MPLCONFIGDIR = "/content/matplotlib-mpldir"
+        cd structural_imaging && python -m pytest -srP -vv --nbmake-timeout=100000 --nbmake qsmxt_example.ipynb
