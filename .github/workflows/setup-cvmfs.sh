@@ -55,5 +55,3 @@ sudo cvmfs_config chksetup
 cvmfs_config probe neurodesk.ardc.edu.au
 ls /cvmfs/neurodesk.ardc.edu.au/
 cvmfs_config stat -v neurodesk.ardc.edu.au
-cvmfs_talk -i neurodesk.ardc.edu.au host probe
-cvmfs_talk -i neurodesk.ardc.edu.au host info
