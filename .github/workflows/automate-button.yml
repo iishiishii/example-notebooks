@@ -35,8 +35,9 @@ jobs:
 
 
       - name: Install dependencies
+        shell: bash
         run: |
-            python -m pip install nbmake pytest-xdist pytest-shell
+          pip install nbmake pytest-xdist pytest-shell
       - name: Run qsmxt_example
         shell: bash
         run: |
