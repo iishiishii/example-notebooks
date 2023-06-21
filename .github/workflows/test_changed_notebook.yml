@@ -20,8 +20,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  test_cvmfs:
+  test_notebooks:
     runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        notebooks: ["structural_imaging/qsmxt_example.ipynb", "structural_imaging/sct_toolbox_example.ipynb", "structural_imaging/nipype_module_example.ipynb"]
     steps:
     - uses: actions/checkout@v3
 
@@ -34,14 +38,6 @@ jobs:
       run: |
         pip install nbmake pytest-xdist pytest-shell
 
-  test_notebooks:
-    runs-on: ubuntu-20.04
-    needs: test_cvmfs
-    strategy:
-      fail-fast: false
-      matrix:
-        notebooks: ["structural_imaging/qsmxt_example.ipynb", "structural_imaging/sct_toolbox_example.ipynb", "structural_imaging/nipype_module_example.ipynb"]
-    steps:
     - name: Run ${{ matrix.notebooks }}
       shell: bash
       run: |
