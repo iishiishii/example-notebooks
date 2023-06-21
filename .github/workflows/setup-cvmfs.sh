@@ -18,7 +18,7 @@ sudo add-apt-repository -y ppa:apptainer/ppa
 sudo apt update
 sudo apt install -y apptainer datalad apptainer-suid lmod
 sudo apptainer config fakeroot --add root
-pip install jupyterlmod
+pip install jupyterlmod pandas nilearn matplotlib nipype 
 
 sudo mkdir -p /etc/cvmfs/keys/ardc.edu.au/
 
