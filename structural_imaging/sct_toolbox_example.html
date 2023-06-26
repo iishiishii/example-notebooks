@@ -482,7 +482,7 @@ if IN_COLAB:
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: GenuineIntel
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model name	: Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model name	: Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
 </pre></div>
 </div>
 </div>
@@ -569,9 +569,8 @@ Spinal Cord Toolbox (5.8)
 
 sct_download_data -d sct_example_data -o ./sct_example_data
 --
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">Removing existing destination folder &#39;sct_example_data&#39;</span>
+
+<span class=" -Color -Color-Yellow">Removing existing destination folder &#39;sct_example_data&#39;</span>
 Trying URL: https://github.com/spinalcordtoolbox/sct_example_data/releases/download/r20180525/20180525_sct_example_data.zip
 </pre></div>
 </div>
@@ -581,24 +580,15 @@ Trying URL: https://github.com/spinalcordtoolbox/sct_example_data/releases/downl
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:   0%|                                       | 0.00/44.3M [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  23%|███████▎                       | 10.4M/44.3M [00:00&lt;00:00, 104MB/s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  40%|████████████▎                  | 17.6M/44.3M [00:00&lt;00:00, 176MB/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  47%|██████████████                | 20.8M/44.3M [00:00&lt;00:00, 71.0MB/s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  88%|███████████████████████████▎   | 39.1M/44.3M [00:00&lt;00:00, 199MB/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  64%|███████████████████▎          | 28.5M/44.3M [00:00&lt;00:00, 67.2MB/s]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  80%|████████████████████████      | 35.5M/44.3M [00:00&lt;00:00, 62.0MB/s]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  94%|████████████████████████████▎ | 41.9M/44.3M [00:00&lt;00:00, 62.5MB/s]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status: 100%|██████████████████████████████| 44.3M/44.3M [00:00&lt;00:00, 64.8MB/s]
-Creating temporary folder (/tmp/sct-20230626061558.092106-qbu1kk5y)
-Unzip data to: /tmp/sct-20230626061558.092106-qbu1kk5y
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status: 100%|███████████████████████████████| 44.3M/44.3M [00:00&lt;00:00, 201MB/s]
+Creating temporary folder (/tmp/sct-20230626120235.175678-v42murne)
+Unzip data to: /tmp/sct-20230626120235.175678-v42murne
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Copying data to: sct_example_data
@@ -663,25 +653,23 @@ sct_deepseg_sc -i t1w.nii.gz -c t1 -qc /home/runner/work/example-notebooks/examp
   Kernel dimension: 2d
   Contrast: t1
   Threshold: 0.15
-Creating temporary folder (/tmp/sct-20230626061725.965845-dwz0y9ns)
+Creating temporary folder (/tmp/sct-20230626120246.140408-jllpaca1)
 Reorient the image to RPI, if necessary...
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finding the spinal cord centerline...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating temporary folder (/tmp/sct-20230626061726.829573-k0gphe7u)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating temporary folder (/tmp/sct-20230626120246.887644-e8z4jfj7)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Remove temporary files...
-rm -rf /tmp/sct-20230626061726.829573-k0gphe7u
+rm -rf /tmp/sct-20230626120246.887644-e8z4jfj7
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cropping the image around the spinal cord...
 Normalizing the intensity...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Segmenting the spinal cord using deep learning on 2D patches...
+Segmenting the spinal cord using deep learning on 2D patches...
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reassembling the image...
@@ -697,17 +685,14 @@ Resampling the segmentation to the native image resolution using linear interpol
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compute shape analysis:   0%|                          | 0/17 [00:00&lt;?, ?iter/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compute shape analysis:   6%|#                 | 1/17 [00:02&lt;00:37,  2.36s/iter]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compute shape analysis: 100%|#################| 17/17 [00:02&lt;00:00,  7.07iter/s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compute shape analysis:   6%|#                 | 1/17 [00:00&lt;00:04,  3.30iter/s]
+Compute shape analysis: 100%|#################| 17/17 [00:00&lt;00:00, 49.43iter/s]
 Remove temporary files...
-rm -rf /tmp/sct-20230626061725.965845-dwz0y9ns
-
-*** Generate Quality Control (QC) html report ***
+rm -rf /tmp/sct-20230626120246.140408-jllpaca1
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resample images to 0.6x0.6 mm
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*** Generate Quality Control (QC) html report ***
+Resample images to 0.6x0.6 mm
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">Image header specifies datatype &#39;uint8&#39;, but array is of type &#39;int64&#39;. Header metadata will be overwritten to use &#39;int64&#39;.</span>
@@ -717,88 +702,44 @@ Compute center of mass at each slice
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/python/envs/venv_sct/lib/python3.8/site-packages/scipy/ndimage/_measurements.py:1407: RuntimeWarning: invalid value encountered in double_scalars
   results = [sum(input * grids[dir].astype(float), labels, index) / normalizer
-/home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/structural_imaging/sct_example_data/mt/sct_deepseg_sc/2023_06_26_061733.301723/bkg_img.png
+/home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/structural_imaging/sct_example_data/mt/sct_deepseg_sc/2023_06_26_120249.254099/bkg_img.png
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/bootstrap-table.min.css /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/bootstrap.min.css /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/bootstrap.min.css /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/bootstrap-theme.min.css /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/style.css /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/select2.min.css /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/bootstrap.min.css.map /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/yaml.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/bootstrap-table.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/style.css /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/select2.min.css /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/css/bootstrap.min.css.map /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/css
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/yaml.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/bootstrap-table.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/animation.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/bootstrap.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/select2.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/main.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/jquery-3.1.0.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/filesaver.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/axial.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/sct_logo.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/bootstrap.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/select2.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/main.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/jquery-3.1.0.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/js/filesaver.min.js /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/js
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/axial.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/sct_logo.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/f-icon.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/keyright.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/keydown.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/keyup.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/sagittal.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.woff2 /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.eot /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/keyright.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/keydown.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/keyup.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/imgs/sagittal.png /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/imgs
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.woff2 /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.eot /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.svg /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.woff /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.ttf /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully generated the QC results in /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_json/qc_2023_06_26_061733.301723.json
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.woff /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
+cp /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/reports/assets/_assets/fonts/glyphicons-halflings-regular.ttf /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_assets/fonts
+Successfully generated the QC results in /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_json/qc_2023_06_26_120249.254099.json
 
 To see the results in a browser, type:
 xdg-open /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/index.html
@@ -861,15 +802,13 @@ sct_create_mask -i t1w.nii.gz -p centerline,t1w_seg.nii.gz -size 35mm -o t1w_mas
 --
 
   OK: t1w_seg.nii.gz
-Creating temporary folder (/tmp/sct-20230626061825.724068-create_mask-ayjofewl)
+Creating temporary folder (/tmp/sct-20230626120257.605682-create_mask-di9p_i2b)
 
 Orientation:
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  LPI
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+
 Dimensions:
 (192, 192, 22, 1, 0.8958333, 0.8958333, 5.000001, 1)
 
@@ -888,7 +827,9 @@ Please use the ``img.header`` property instead.
 /opt/spinalcordtoolbox-5.8/spinalcordtoolbox/scripts/sct_create_mask.py:245: DeprecationWarning: Please use `center_of_mass` from the `scipy.ndimage` namespace, the `scipy.ndimage.measurements` namespace is deprecated.
   cx[iz], cy[iz] = ndimage.measurements.center_of_mass(np.array(data_centerline[:, :, iz]))
 <span class=" -Color -Color-Yellow">Image header specifies datatype &#39;uint8&#39;, but array is of type &#39;int64&#39;. Header metadata will be overwritten to use &#39;int64&#39;.</span>
-<span class=" -Color -Color-Yellow">Image header specifies datatype &#39;uint8&#39;, but array is of type &#39;int64&#39;. Header metadata will be overwritten to use &#39;int64&#39;.</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">Image header specifies datatype &#39;uint8&#39;, but array is of type &#39;int64&#39;. Header metadata will be overwritten to use &#39;int64&#39;.</span>
 <span class=" -Color -Color-Yellow">Image header specifies datatype &#39;uint8&#39;, but array is of type &#39;int64&#39;. Header metadata will be overwritten to use &#39;int64&#39;.</span>
 <span class=" -Color -Color-Yellow">Image header specifies datatype &#39;uint8&#39;, but array is of type &#39;int64&#39;. Header metadata will be overwritten to use &#39;int64&#39;.</span>
 <span class=" -Color -Color-Yellow">Image header specifies datatype &#39;uint8&#39;, but array is of type &#39;int64&#39;. Header metadata will be overwritten to use &#39;int64&#39;.</span>
@@ -912,7 +853,7 @@ Please use the ``img.header`` property instead.
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Remove temporary files...
-rm -rf /tmp/sct-20230626061825.724068-create_mask-ayjofewl
+rm -rf /tmp/sct-20230626120257.605682-create_mask-di9p_i2b
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--
@@ -952,7 +893,9 @@ sct_register_multimodal -i mt0.nii.gz -d t1w_crop.nii.gz -param step=1,type=im,a
 
 
 Input parameters:
-  Source .............. mt0.nii.gz (192, 192, 22)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Source .............. mt0.nii.gz (192, 192, 22)
   Destination ......... t1w_crop.nii.gz (45, 43, 17)
   Init transfo ........ 
   Mask ................ 
@@ -961,7 +904,7 @@ Input parameters:
   Verbose ............. 1
 
 Check if input data are 3D...
-Creating temporary folder (/tmp/sct-20230626061918.082882-register-rlnu8cy9)
+Creating temporary folder (/tmp/sct-20230626120307.869489-register-vuhegz69)
 
 Copying input data to tmp folder and convert to nii...
 </pre></div>
@@ -990,7 +933,7 @@ Registration parameters:
   rot_method ..... pca
 
 Estimate transformation
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 3 --transform &#39;syn[0.5,3,0]&#39; --metric &#39;MI[dest_RPI.nii,src.nii,1,32]&#39; --convergence 0 --shrink-factors 1 --smoothing-sigmas 0mm --restrict-deformation 1x1x0 --output &#39;[step0,src_regStep0.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061918.082882-register-rlnu8cy9
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 3 --transform &#39;syn[0.5,3,0]&#39; --metric &#39;MI[dest_RPI.nii,src.nii,1,32]&#39; --convergence 0 --shrink-factors 1 --smoothing-sigmas 0mm --restrict-deformation 1x1x0 --output &#39;[step0,src_regStep0.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120307.869489-register-vuhegz69
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1000,7 +943,7 @@ ESTIMATE TRANSFORMATION FOR STEP #1
 Apply transformation from previous step
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_forward_0.nii.gz -r dest_RPI.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061918.082882-register-rlnu8cy9
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_forward_0.nii.gz -r dest_RPI.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120307.869489-register-vuhegz69
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registration parameters:
@@ -1022,7 +965,7 @@ Apply transformation from previous step
   dof ............ Tx_Ty_Tz_Rx_Ry_Rz
   smoothWarpXY ... 2
   rot_method ..... pca
-Creating temporary folder (/tmp/sct-20230626061921.637650-register-ts3sm_5j)
+Creating temporary folder (/tmp/sct-20230626120308.741083-register-eeh1wt7k)
 
 Copy input data to temp folder...
 
@@ -1037,234 +980,238 @@ Split input volume...
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 0/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0000.nii,src_Z0000.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0000,src_Z0000_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0000.nii,src_Z0000.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0000,src_Z0000_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0000.nii,src_Z0000.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0000.nii,src_Z0000.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00000Warp.nii.gz -R dest_Z0000.nii warp2d_null0Warp.nii.gz warp2d_00000GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00000Warp.nii.gz -R dest_Z0000.nii warp2d_null0Warp.nii.gz warp2d_00000GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00000InverseWarp.nii.gz -R src_Z0000.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00000GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00000InverseWarp.nii.gz -R src_Z0000.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00000GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 Registering slice 1/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0001.nii,src_Z0001.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0001,src_Z0001_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0001.nii,src_Z0001.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0001,src_Z0001_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0001.nii,src_Z0001.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0001.nii,src_Z0001.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00010Warp.nii.gz -R dest_Z0001.nii warp2d_null0Warp.nii.gz warp2d_00010GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00010InverseWarp.nii.gz -R src_Z0001.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00010GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00010Warp.nii.gz -R dest_Z0001.nii warp2d_null0Warp.nii.gz warp2d_00010GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00010InverseWarp.nii.gz -R src_Z0001.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00010GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 2/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0002.nii,src_Z0002.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0002,src_Z0002_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0002.nii,src_Z0002.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0002,src_Z0002_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0002.nii,src_Z0002.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00020Warp.nii.gz -R dest_Z0002.nii warp2d_null0Warp.nii.gz warp2d_00020GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0002.nii,src_Z0002.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00020InverseWarp.nii.gz -R src_Z0002.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00020GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00020Warp.nii.gz -R dest_Z0002.nii warp2d_null0Warp.nii.gz warp2d_00020GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00020InverseWarp.nii.gz -R src_Z0002.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00020GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 3/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0003.nii,src_Z0003.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0003,src_Z0003_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0003.nii,src_Z0003.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0003,src_Z0003_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0003.nii,src_Z0003.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0003.nii,src_Z0003.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00030Warp.nii.gz -R dest_Z0003.nii warp2d_null0Warp.nii.gz warp2d_00030GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00030Warp.nii.gz -R dest_Z0003.nii warp2d_null0Warp.nii.gz warp2d_00030GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00030InverseWarp.nii.gz -R src_Z0003.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00030GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00030InverseWarp.nii.gz -R src_Z0003.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00030GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 4/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0004.nii,src_Z0004.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0004,src_Z0004_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0004.nii,src_Z0004.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0004,src_Z0004_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0004.nii,src_Z0004.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00040Warp.nii.gz -R dest_Z0004.nii warp2d_null0Warp.nii.gz warp2d_00040GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0004.nii,src_Z0004.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00040Warp.nii.gz -R dest_Z0004.nii warp2d_null0Warp.nii.gz warp2d_00040GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00040InverseWarp.nii.gz -R src_Z0004.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00040GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00040InverseWarp.nii.gz -R src_Z0004.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00040GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 5/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0005.nii,src_Z0005.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0005,src_Z0005_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0005.nii,src_Z0005.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0005,src_Z0005_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0005.nii,src_Z0005.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0005.nii,src_Z0005.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00050Warp.nii.gz -R dest_Z0005.nii warp2d_null0Warp.nii.gz warp2d_00050GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00050Warp.nii.gz -R dest_Z0005.nii warp2d_null0Warp.nii.gz warp2d_00050GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00050InverseWarp.nii.gz -R src_Z0005.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00050GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00050InverseWarp.nii.gz -R src_Z0005.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00050GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 Registering slice 6/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0006.nii,src_Z0006.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0006,src_Z0006_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0006.nii,src_Z0006.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0006,src_Z0006_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0006.nii,src_Z0006.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0006.nii,src_Z0006.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00060Warp.nii.gz -R dest_Z0006.nii warp2d_null0Warp.nii.gz warp2d_00060GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00060Warp.nii.gz -R dest_Z0006.nii warp2d_null0Warp.nii.gz warp2d_00060GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00060InverseWarp.nii.gz -R src_Z0006.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00060GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-Registering slice 7/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0007.nii,src_Z0007.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0007,src_Z0007_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00060InverseWarp.nii.gz -R src_Z0006.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00060GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0007.nii,src_Z0007.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 7/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0007.nii,src_Z0007.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0007,src_Z0007_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00070Warp.nii.gz -R dest_Z0007.nii warp2d_null0Warp.nii.gz warp2d_00070GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0007.nii,src_Z0007.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00070Warp.nii.gz -R dest_Z0007.nii warp2d_null0Warp.nii.gz warp2d_00070GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00070InverseWarp.nii.gz -R src_Z0007.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00070GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-Registering slice 8/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0008.nii,src_Z0008.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0008,src_Z0008_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00070InverseWarp.nii.gz -R src_Z0007.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00070GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0008.nii,src_Z0008.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 8/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0008.nii,src_Z0008.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0008,src_Z0008_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00080Warp.nii.gz -R dest_Z0008.nii warp2d_null0Warp.nii.gz warp2d_00080GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00080InverseWarp.nii.gz -R src_Z0008.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00080GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0008.nii,src_Z0008.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00080Warp.nii.gz -R dest_Z0008.nii warp2d_null0Warp.nii.gz warp2d_00080GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00080InverseWarp.nii.gz -R src_Z0008.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00080GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 9/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0009.nii,src_Z0009.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0009,src_Z0009_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0009.nii,src_Z0009.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0009,src_Z0009_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0009.nii,src_Z0009.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0009.nii,src_Z0009.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00090Warp.nii.gz -R dest_Z0009.nii warp2d_null0Warp.nii.gz warp2d_00090GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00090InverseWarp.nii.gz -R src_Z0009.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00090GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00090Warp.nii.gz -R dest_Z0009.nii warp2d_null0Warp.nii.gz warp2d_00090GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 10/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0010.nii,src_Z0010.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0010,src_Z0010_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00090InverseWarp.nii.gz -R src_Z0009.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00090GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+Registering slice 10/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0010.nii,src_Z0010.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0010,src_Z0010_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0010.nii,src_Z0010.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0010.nii,src_Z0010.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00100Warp.nii.gz -R dest_Z0010.nii warp2d_null0Warp.nii.gz warp2d_00100GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00100Warp.nii.gz -R dest_Z0010.nii warp2d_null0Warp.nii.gz warp2d_00100GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00100InverseWarp.nii.gz -R src_Z0010.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00100GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00100InverseWarp.nii.gz -R src_Z0010.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00100GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 11/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0011.nii,src_Z0011.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0011,src_Z0011_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0011.nii,src_Z0011.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0011,src_Z0011_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0011.nii,src_Z0011.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0011.nii,src_Z0011.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00110Warp.nii.gz -R dest_Z0011.nii warp2d_null0Warp.nii.gz warp2d_00110GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00110Warp.nii.gz -R dest_Z0011.nii warp2d_null0Warp.nii.gz warp2d_00110GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00110InverseWarp.nii.gz -R src_Z0011.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00110GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00110InverseWarp.nii.gz -R src_Z0011.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00110GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 Registering slice 12/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0012.nii,src_Z0012.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0012,src_Z0012_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0012.nii,src_Z0012.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0012,src_Z0012_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0012.nii,src_Z0012.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0012.nii,src_Z0012.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00120Warp.nii.gz -R dest_Z0012.nii warp2d_null0Warp.nii.gz warp2d_00120GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00120Warp.nii.gz -R dest_Z0012.nii warp2d_null0Warp.nii.gz warp2d_00120GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00120InverseWarp.nii.gz -R src_Z0012.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00120GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00120InverseWarp.nii.gz -R src_Z0012.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00120GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 13/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0013.nii,src_Z0013.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0013,src_Z0013_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0013.nii,src_Z0013.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0013,src_Z0013_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0013.nii,src_Z0013.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00130Warp.nii.gz -R dest_Z0013.nii warp2d_null0Warp.nii.gz warp2d_00130GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0013.nii,src_Z0013.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00130InverseWarp.nii.gz -R src_Z0013.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00130GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00130Warp.nii.gz -R dest_Z0013.nii warp2d_null0Warp.nii.gz warp2d_00130GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00130InverseWarp.nii.gz -R src_Z0013.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00130GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 14/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0014.nii,src_Z0014.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0014,src_Z0014_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0014.nii,src_Z0014.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0014,src_Z0014_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0014.nii,src_Z0014.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00140Warp.nii.gz -R dest_Z0014.nii warp2d_null0Warp.nii.gz warp2d_00140GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0014.nii,src_Z0014.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00140Warp.nii.gz -R dest_Z0014.nii warp2d_null0Warp.nii.gz warp2d_00140GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00140InverseWarp.nii.gz -R src_Z0014.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00140GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00140InverseWarp.nii.gz -R src_Z0014.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00140GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 15/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0015.nii,src_Z0015.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0015,src_Z0015_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0015.nii,src_Z0015.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0015,src_Z0015_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0015.nii,src_Z0015.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00150Warp.nii.gz -R dest_Z0015.nii warp2d_null0Warp.nii.gz warp2d_00150GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0015.nii,src_Z0015.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00150InverseWarp.nii.gz -R src_Z0015.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00150GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00150Warp.nii.gz -R dest_Z0015.nii warp2d_null0Warp.nii.gz warp2d_00150GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 16/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0016.nii,src_Z0016.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0016,src_Z0016_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00150InverseWarp.nii.gz -R src_Z0015.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00150GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+Registering slice 16/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0016.nii,src_Z0016.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0016,src_Z0016_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0016.nii,src_Z0016.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0016.nii,src_Z0016.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00160Warp.nii.gz -R dest_Z0016.nii warp2d_null0Warp.nii.gz warp2d_00160GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00160Warp.nii.gz -R dest_Z0016.nii warp2d_null0Warp.nii.gz warp2d_00160GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00160InverseWarp.nii.gz -R src_Z0016.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00160GenericAffine.mat # in /tmp/sct-20230626061921.637650-register-ts3sm_5j
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00160InverseWarp.nii.gz -R src_Z0016.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00160GenericAffine.mat # in /tmp/sct-20230626120308.741083-register-eeh1wt7k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Merge warping fields along z...
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Move warping fields...
-cp step1Warp.nii.gz /tmp/sct-20230626061918.082882-register-rlnu8cy9
-cp step1InverseWarp.nii.gz /tmp/sct-20230626061918.082882-register-rlnu8cy9
-rm -rf /tmp/sct-20230626061921.637650-register-ts3sm_5j
+cp step1Warp.nii.gz /tmp/sct-20230626120307.869489-register-vuhegz69
+cp step1InverseWarp.nii.gz /tmp/sct-20230626120307.869489-register-vuhegz69
+rm -rf /tmp/sct-20230626120308.741083-register-eeh1wt7k
 
 Concatenate transformations...
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_src2dest.nii.gz -R dest.nii warp_forward_1.nii.gz warp_forward_0.nii.gz # in /tmp/sct-20230626061918.082882-register-rlnu8cy9
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_src2dest.nii.gz -R dest.nii warp_forward_1.nii.gz warp_forward_0.nii.gz # in /tmp/sct-20230626120307.869489-register-vuhegz69
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_dest2src.nii.gz -R src.nii warp_inverse_0.nii.gz warp_inverse_1.nii.gz # in /tmp/sct-20230626061918.082882-register-rlnu8cy9
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_dest2src.nii.gz -R src.nii warp_inverse_0.nii.gz warp_inverse_1.nii.gz # in /tmp/sct-20230626120307.869489-register-vuhegz69
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Apply transfo source --&gt; dest...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_src2dest.nii.gz -r dest.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061918.082882-register-rlnu8cy9
+/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_src2dest.nii.gz -r dest.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120307.869489-register-vuhegz69
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Apply transfo dest --&gt; source...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i dest.nii -o dest_reg.nii -t warp_dest2src.nii.gz -r src.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061918.082882-register-rlnu8cy9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i dest.nii -o dest_reg.nii -t warp_dest2src.nii.gz -r src.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120307.869489-register-vuhegz69
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Generate output files...
 File created: mt0_reg.nii.gz
-mv /tmp/sct-20230626061918.082882-register-rlnu8cy9/warp_src2dest.nii.gz warp_mt02t1w_crop.nii.gz
+mv /tmp/sct-20230626120307.869489-register-vuhegz69/warp_src2dest.nii.gz warp_mt02t1w_crop.nii.gz
 File created: warp_mt02t1w_crop.nii.gz
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File created: t1w_crop_reg.nii.gz
-mv /tmp/sct-20230626061918.082882-register-rlnu8cy9/warp_dest2src.nii.gz warp_t1w_crop2mt0.nii.gz
+mv /tmp/sct-20230626120307.869489-register-vuhegz69/warp_dest2src.nii.gz warp_t1w_crop2mt0.nii.gz
 File created: warp_t1w_crop2mt0.nii.gz
 
 Remove temporary files...
-rm -rf /tmp/sct-20230626061918.082882-register-rlnu8cy9
+rm -rf /tmp/sct-20230626120307.869489-register-vuhegz69
 
-Finished! Elapsed time: 11s
+Finished! Elapsed time: 7s
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--
@@ -1275,9 +1222,7 @@ sct_register_multimodal -i mt1.nii.gz -d t1w_crop.nii.gz -param step=1,type=im,a
 
 
 Input parameters:
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Source .............. mt1.nii.gz (192, 192, 22)
+  Source .............. mt1.nii.gz (192, 192, 22)
   Destination ......... t1w_crop.nii.gz (45, 43, 17)
   Init transfo ........ 
   Mask ................ 
@@ -1286,7 +1231,7 @@ Input parameters:
   Verbose ............. 1
 
 Check if input data are 3D...
-Creating temporary folder (/tmp/sct-20230626061933.218014-register-bawhlbhr)
+Creating temporary folder (/tmp/sct-20230626120318.672668-register-rfdjepq9)
 
 Copying input data to tmp folder and convert to nii...
 </pre></div>
@@ -1315,7 +1260,7 @@ Registration parameters:
   rot_method ..... pca
 
 Estimate transformation
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 3 --transform &#39;syn[0.5,3,0]&#39; --metric &#39;MI[dest_RPI.nii,src.nii,1,32]&#39; --convergence 0 --shrink-factors 1 --smoothing-sigmas 0mm --restrict-deformation 1x1x0 --output &#39;[step0,src_regStep0.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.218014-register-bawhlbhr
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 3 --transform &#39;syn[0.5,3,0]&#39; --metric &#39;MI[dest_RPI.nii,src.nii,1,32]&#39; --convergence 0 --shrink-factors 1 --smoothing-sigmas 0mm --restrict-deformation 1x1x0 --output &#39;[step0,src_regStep0.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.672668-register-rfdjepq9
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1323,7 +1268,7 @@ Estimate transformation
 ESTIMATE TRANSFORMATION FOR STEP #1
 
 Apply transformation from previous step
-/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_forward_0.nii.gz -r dest_RPI.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061933.218014-register-bawhlbhr
+/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_forward_0.nii.gz -r dest_RPI.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120318.672668-register-rfdjepq9
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registration parameters:
@@ -1345,7 +1290,7 @@ Apply transformation from previous step
   dof ............ Tx_Ty_Tz_Rx_Ry_Rz
   smoothWarpXY ... 2
   rot_method ..... pca
-Creating temporary folder (/tmp/sct-20230626061933.593044-register-1i61kllp)
+Creating temporary folder (/tmp/sct-20230626120318.993598-register-rrr1amyb)
 
 Copy input data to temp folder...
 
@@ -1357,241 +1302,244 @@ Split input volume...
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Split destination volume...
+Registering slice 0/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0000.nii,src_Z0000.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0000,src_Z0000_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 0/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0000.nii,src_Z0000.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0000,src_Z0000_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0000.nii,src_Z0000.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00000Warp.nii.gz -R dest_Z0000.nii warp2d_null0Warp.nii.gz warp2d_00000GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0000.nii,src_Z0000.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00000InverseWarp.nii.gz -R src_Z0000.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00000GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00000Warp.nii.gz -R dest_Z0000.nii warp2d_null0Warp.nii.gz warp2d_00000GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 1/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0001.nii,src_Z0001.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0001,src_Z0001_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00000InverseWarp.nii.gz -R src_Z0000.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00000GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-Registering slice 1/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0001.nii,src_Z0001.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0001,src_Z0001_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0001.nii,src_Z0001.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0001.nii,src_Z0001.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00010Warp.nii.gz -R dest_Z0001.nii warp2d_null0Warp.nii.gz warp2d_00010GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00010InverseWarp.nii.gz -R src_Z0001.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00010GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00010Warp.nii.gz -R dest_Z0001.nii warp2d_null0Warp.nii.gz warp2d_00010GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00010InverseWarp.nii.gz -R src_Z0001.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00010GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 2/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0002.nii,src_Z0002.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0002,src_Z0002_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0002.nii,src_Z0002.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0002,src_Z0002_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0002.nii,src_Z0002.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00020Warp.nii.gz -R dest_Z0002.nii warp2d_null0Warp.nii.gz warp2d_00020GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0002.nii,src_Z0002.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00020InverseWarp.nii.gz -R src_Z0002.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00020GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00020Warp.nii.gz -R dest_Z0002.nii warp2d_null0Warp.nii.gz warp2d_00020GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00020InverseWarp.nii.gz -R src_Z0002.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00020GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 3/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0003.nii,src_Z0003.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0003,src_Z0003_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0003.nii,src_Z0003.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0003,src_Z0003_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0003.nii,src_Z0003.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0003.nii,src_Z0003.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00030Warp.nii.gz -R dest_Z0003.nii warp2d_null0Warp.nii.gz warp2d_00030GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00030Warp.nii.gz -R dest_Z0003.nii warp2d_null0Warp.nii.gz warp2d_00030GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00030InverseWarp.nii.gz -R src_Z0003.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00030GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00030InverseWarp.nii.gz -R src_Z0003.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00030GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 4/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0004.nii,src_Z0004.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0004,src_Z0004_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0004.nii,src_Z0004.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0004,src_Z0004_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0004.nii,src_Z0004.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00040Warp.nii.gz -R dest_Z0004.nii warp2d_null0Warp.nii.gz warp2d_00040GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0004.nii,src_Z0004.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00040Warp.nii.gz -R dest_Z0004.nii warp2d_null0Warp.nii.gz warp2d_00040GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00040InverseWarp.nii.gz -R src_Z0004.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00040GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00040InverseWarp.nii.gz -R src_Z0004.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00040GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 5/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0005.nii,src_Z0005.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0005,src_Z0005_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0005.nii,src_Z0005.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0005,src_Z0005_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0005.nii,src_Z0005.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0005.nii,src_Z0005.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00050Warp.nii.gz -R dest_Z0005.nii warp2d_null0Warp.nii.gz warp2d_00050GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00050InverseWarp.nii.gz -R src_Z0005.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00050GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00050Warp.nii.gz -R dest_Z0005.nii warp2d_null0Warp.nii.gz warp2d_00050GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00050InverseWarp.nii.gz -R src_Z0005.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00050GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 6/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0006.nii,src_Z0006.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0006,src_Z0006_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0006.nii,src_Z0006.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0006,src_Z0006_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0006.nii,src_Z0006.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00060Warp.nii.gz -R dest_Z0006.nii warp2d_null0Warp.nii.gz warp2d_00060GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0006.nii,src_Z0006.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00060InverseWarp.nii.gz -R src_Z0006.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00060GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00060Warp.nii.gz -R dest_Z0006.nii warp2d_null0Warp.nii.gz warp2d_00060GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00060InverseWarp.nii.gz -R src_Z0006.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00060GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 7/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0007.nii,src_Z0007.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0007,src_Z0007_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0007.nii,src_Z0007.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0007,src_Z0007_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0007.nii,src_Z0007.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0007.nii,src_Z0007.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00070Warp.nii.gz -R dest_Z0007.nii warp2d_null0Warp.nii.gz warp2d_00070GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00070InverseWarp.nii.gz -R src_Z0007.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00070GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00070Warp.nii.gz -R dest_Z0007.nii warp2d_null0Warp.nii.gz warp2d_00070GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 8/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0008.nii,src_Z0008.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0008,src_Z0008_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00070InverseWarp.nii.gz -R src_Z0007.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00070GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+Registering slice 8/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0008.nii,src_Z0008.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0008,src_Z0008_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0008.nii,src_Z0008.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00080Warp.nii.gz -R dest_Z0008.nii warp2d_null0Warp.nii.gz warp2d_00080GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0008.nii,src_Z0008.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00080Warp.nii.gz -R dest_Z0008.nii warp2d_null0Warp.nii.gz warp2d_00080GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00080InverseWarp.nii.gz -R src_Z0008.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00080GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00080InverseWarp.nii.gz -R src_Z0008.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00080GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 9/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0009.nii,src_Z0009.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0009,src_Z0009_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0009.nii,src_Z0009.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0009,src_Z0009_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0009.nii,src_Z0009.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0009.nii,src_Z0009.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00090Warp.nii.gz -R dest_Z0009.nii warp2d_null0Warp.nii.gz warp2d_00090GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00090Warp.nii.gz -R dest_Z0009.nii warp2d_null0Warp.nii.gz warp2d_00090GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00090InverseWarp.nii.gz -R src_Z0009.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00090GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00090InverseWarp.nii.gz -R src_Z0009.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00090GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-Registering slice 10/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0010.nii,src_Z0010.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0010,src_Z0010_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 10/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0010.nii,src_Z0010.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0010,src_Z0010_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0010.nii,src_Z0010.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0010.nii,src_Z0010.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00100Warp.nii.gz -R dest_Z0010.nii warp2d_null0Warp.nii.gz warp2d_00100GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00100InverseWarp.nii.gz -R src_Z0010.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00100GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00100Warp.nii.gz -R dest_Z0010.nii warp2d_null0Warp.nii.gz warp2d_00100GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00100InverseWarp.nii.gz -R src_Z0010.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00100GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 11/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0011.nii,src_Z0011.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0011,src_Z0011_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0011.nii,src_Z0011.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0011,src_Z0011_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0011.nii,src_Z0011.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0011.nii,src_Z0011.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00110Warp.nii.gz -R dest_Z0011.nii warp2d_null0Warp.nii.gz warp2d_00110GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00110Warp.nii.gz -R dest_Z0011.nii warp2d_null0Warp.nii.gz warp2d_00110GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00110InverseWarp.nii.gz -R src_Z0011.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00110GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00110InverseWarp.nii.gz -R src_Z0011.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00110GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 12/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0012.nii,src_Z0012.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0012,src_Z0012_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0012.nii,src_Z0012.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0012,src_Z0012_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0012.nii,src_Z0012.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0012.nii,src_Z0012.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00120Warp.nii.gz -R dest_Z0012.nii warp2d_null0Warp.nii.gz warp2d_00120GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00120Warp.nii.gz -R dest_Z0012.nii warp2d_null0Warp.nii.gz warp2d_00120GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00120InverseWarp.nii.gz -R src_Z0012.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00120GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00120InverseWarp.nii.gz -R src_Z0012.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00120GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-Registering slice 13/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0013.nii,src_Z0013.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0013,src_Z0013_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 13/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0013.nii,src_Z0013.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0013,src_Z0013_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0013.nii,src_Z0013.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00130Warp.nii.gz -R dest_Z0013.nii warp2d_null0Warp.nii.gz warp2d_00130GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0013.nii,src_Z0013.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00130InverseWarp.nii.gz -R src_Z0013.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00130GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00130Warp.nii.gz -R dest_Z0013.nii warp2d_null0Warp.nii.gz warp2d_00130GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 14/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0014.nii,src_Z0014.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0014,src_Z0014_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00130InverseWarp.nii.gz -R src_Z0013.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00130GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+Registering slice 14/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0014.nii,src_Z0014.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0014,src_Z0014_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0014.nii,src_Z0014.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0014.nii,src_Z0014.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00140Warp.nii.gz -R dest_Z0014.nii warp2d_null0Warp.nii.gz warp2d_00140GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00140Warp.nii.gz -R dest_Z0014.nii warp2d_null0Warp.nii.gz warp2d_00140GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00140InverseWarp.nii.gz -R src_Z0014.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00140GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00140InverseWarp.nii.gz -R src_Z0014.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00140GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 Registering slice 15/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0015.nii,src_Z0015.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0015,src_Z0015_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0015.nii,src_Z0015.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0015,src_Z0015_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0015.nii,src_Z0015.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0015.nii,src_Z0015.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00150Warp.nii.gz -R dest_Z0015.nii warp2d_null0Warp.nii.gz warp2d_00150GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00150Warp.nii.gz -R dest_Z0015.nii warp2d_null0Warp.nii.gz warp2d_00150GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00150InverseWarp.nii.gz -R src_Z0015.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00150GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00150InverseWarp.nii.gz -R src_Z0015.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00150GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
-Registering slice 16/16...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0016.nii,src_Z0016.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0016,src_Z0016_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registering slice 16/16...
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 2 --transform &#39;Rigid[0.5]&#39; --metric &#39;CC[dest_Z0016.nii,src_Z0016.nii,1,4]&#39; --convergence 10 --shrink-factors 1 --smoothing-sigmas 0mm --output &#39;[warp2d_0016,src_Z0016_reg.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0016.nii,src_Z0016.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration -d 2 -t &#39;SyN[1,1,1]&#39; -c 0 -m &#39;MI[dest_Z0016.nii,src_Z0016.nii,1,32]&#39; -o warp2d_null -f 1 -s 0 # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00160Warp.nii.gz -R dest_Z0016.nii warp2d_null0Warp.nii.gz warp2d_00160GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00160Warp.nii.gz -R dest_Z0016.nii warp2d_null0Warp.nii.gz warp2d_00160GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00160InverseWarp.nii.gz -R src_Z0016.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00160GenericAffine.mat # in /tmp/sct-20230626061933.593044-register-1i61kllp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 2 warp2d_00160InverseWarp.nii.gz -R src_Z0016.nii warp2d_null0InverseWarp.nii.gz -i warp2d_00160GenericAffine.mat # in /tmp/sct-20230626120318.993598-register-rrr1amyb
 
 Merge warping fields along z...
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Move warping fields...
-cp step1Warp.nii.gz /tmp/sct-20230626061933.218014-register-bawhlbhr
-cp step1InverseWarp.nii.gz /tmp/sct-20230626061933.218014-register-bawhlbhr
-rm -rf /tmp/sct-20230626061933.593044-register-1i61kllp
+cp step1Warp.nii.gz /tmp/sct-20230626120318.672668-register-rfdjepq9
+cp step1InverseWarp.nii.gz /tmp/sct-20230626120318.672668-register-rfdjepq9
+rm -rf /tmp/sct-20230626120318.993598-register-rrr1amyb
 
 Concatenate transformations...
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_src2dest.nii.gz -R dest.nii warp_forward_1.nii.gz warp_forward_0.nii.gz # in /tmp/sct-20230626061933.218014-register-bawhlbhr
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_src2dest.nii.gz -R dest.nii warp_forward_1.nii.gz warp_forward_0.nii.gz # in /tmp/sct-20230626120318.672668-register-rfdjepq9
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_dest2src.nii.gz -R src.nii warp_inverse_0.nii.gz warp_inverse_1.nii.gz # in /tmp/sct-20230626061933.218014-register-bawhlbhr
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_dest2src.nii.gz -R src.nii warp_inverse_0.nii.gz warp_inverse_1.nii.gz # in /tmp/sct-20230626120318.672668-register-rfdjepq9
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Apply transfo source --&gt; dest...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_src2dest.nii.gz -r dest.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061933.218014-register-bawhlbhr
+/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_src2dest.nii.gz -r dest.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120318.672668-register-rfdjepq9
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Apply transfo dest --&gt; source...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i dest.nii -o dest_reg.nii -t warp_dest2src.nii.gz -r src.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061933.218014-register-bawhlbhr
+/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i dest.nii -o dest_reg.nii -t warp_dest2src.nii.gz -r src.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120318.672668-register-rfdjepq9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Generate output files...
-File created: mt1_reg.nii.gz
-mv /tmp/sct-20230626061933.218014-register-bawhlbhr/warp_src2dest.nii.gz warp_mt12t1w_crop.nii.gz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File created: mt1_reg.nii.gz
+mv /tmp/sct-20230626120318.672668-register-rfdjepq9/warp_src2dest.nii.gz warp_mt12t1w_crop.nii.gz
 File created: warp_mt12t1w_crop.nii.gz
 <span class=" -Color -Color-Yellow">File t1w_crop_reg.nii.gz already exists. Deleting it..</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File created: t1w_crop_reg.nii.gz
-mv /tmp/sct-20230626061933.218014-register-bawhlbhr/warp_dest2src.nii.gz warp_t1w_crop2mt1.nii.gz
+mv /tmp/sct-20230626120318.672668-register-rfdjepq9/warp_dest2src.nii.gz warp_t1w_crop2mt1.nii.gz
 File created: warp_t1w_crop2mt1.nii.gz
 
 Remove temporary files...
-rm -rf /tmp/sct-20230626061933.218014-register-bawhlbhr
+rm -rf /tmp/sct-20230626120318.672668-register-rfdjepq9
 
-Finished! Elapsed time: 7s
+Finished! Elapsed time: 6s
 </pre></div>
 </div>
 </div>
@@ -1625,9 +1573,8 @@ Spinal Cord Toolbox (5.8)
 
 sct_register_to_template -i t1w_crop.nii.gz -s t1w_seg.nii.gz -ldisc label_c3c4.nii.gz -ref subject -c t1 -param step=1,type=seg,algo=slicereg,metric=MeanSquares,smooth=2:step=2,type=im,algo=bsplinesyn,metric=MeanSquares,iter=5,gradStep=0.5 -qc /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc
 --
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+
+
 Check template files...
   OK: /opt/spinalcordtoolbox-5.8/data/PAM50/template/PAM50_t1.nii.gz
   OK: /opt/spinalcordtoolbox-5.8/data/PAM50/template/PAM50_label_disc.nii.gz
@@ -1641,7 +1588,7 @@ Check parameters:
   Remove temp files:    1
 
 Check input labels...
-Creating temporary folder (/tmp/sct-20230626061946.164255-register_to_template-puqvhe72)
+Creating temporary folder (/tmp/sct-20230626120329.929870-register_to_template-e08nf1u7)
 
 Copying input data to tmp folder and convert to nii...
 </pre></div>
@@ -1651,11 +1598,11 @@ Check if provided labels are available in the template
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">WARNING: Only one label is present. Forcing initial transformation to: Tx_Ty_Tz</span>
-
-Binarize segmentation
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+Binarize segmentation
+
 Change orientation of input images to RPI...
 
 Remove unused label on template. Keep only label present in the input label image...
@@ -1664,13 +1611,13 @@ Remove unused label on template. Keep only label present in the input label imag
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">File template_label.nii.gz already exists. Will overwrite it.</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">File /tmp/sct-20230626061946.164255-register_to_template-puqvhe72/label_projected_rpi.nii.gz already exists. Will overwrite it.</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">File /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7/label_projected_rpi.nii.gz already exists. Will overwrite it.</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">File /tmp/sct-20230626061946.164255-register_to_template-puqvhe72/template_label.nii.gz already exists. Will overwrite it.</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">File /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7/template_label.nii.gz already exists. Will overwrite it.</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating temporary folder (/tmp/sct-20230626061953.542716-register-pwt078i3)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating temporary folder (/tmp/sct-20230626120333.603078-register-sotcgkqa)
 
 Copying input data to tmp folder and convert to nii...
 </pre></div>
@@ -1722,7 +1669,7 @@ Translation:
 ESTIMATE TRANSFORMATION FOR STEP #1
 
 Apply transformation from previous step
-/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src_seg.nii -o src_seg_reg.nii -t warp_forward_0.txt -r dest_seg_RPI.nii -n NearestNeighbor # in /tmp/sct-20230626061953.542716-register-pwt078i3
+/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src_seg.nii -o src_seg_reg.nii -t warp_forward_0.txt -r dest_seg_RPI.nii -n NearestNeighbor # in /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registration parameters:
@@ -1739,14 +1686,14 @@ Apply transformation from previous step
   gradStep ....... 0.5
   deformation .... 1x1x0
   init ........... 
-  poly ........... 5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  poly ........... 5
   filter_size .... 5
   dof ............ Tx_Ty_Tz_Rx_Ry_Rz
   smoothWarpXY ... 2
   rot_method ..... pca
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsSliceRegularizedRegistration -t &#39;Translation[0.5]&#39; -m &#39;MeanSquares[dest_seg_RPI_crop.nii,src_seg_reg_crop.nii,1,4,None,0.2]&#39; -p 5 -i 10 -f 1 -s 2 -v 1 -o &#39;[step1,src_seg_reg_crop_regStep1.nii]&#39; # in /tmp/sct-20230626061953.542716-register-pwt078i3
+/opt/spinalcordtoolbox-5.8/bin/isct_antsSliceRegularizedRegistration -t &#39;Translation[0.5]&#39; -m &#39;MeanSquares[dest_seg_RPI_crop.nii,src_seg_reg_crop.nii,1,4,None,0.2]&#39; -p 5 -i 10 -f 1 -s 2 -v 1 -o &#39;[step1,src_seg_reg_crop_regStep1.nii]&#39; # in /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1756,7 +1703,7 @@ ESTIMATE TRANSFORMATION FOR STEP #2
 Apply transformation from previous step
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_forward_1.nii.gz warp_forward_0.txt -r dest_RPI.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061953.542716-register-pwt078i3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_forward_1.nii.gz warp_forward_0.txt -r dest_RPI.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registration parameters:
@@ -1778,80 +1725,83 @@ Apply transformation from previous step
   dof ............ Tx_Ty_Tz_Rx_Ry_Rz
   smoothWarpXY ... 2
   rot_method ..... pca
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimate transformation
-/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 3 --transform &#39;bsplinesyn[0.5,1,3]&#39; --metric &#39;MeanSquares[dest_RPI_pad.nii,src_reg.nii,1,4]&#39; --convergence 5 --shrink-factors 1 --smoothing-sigmas 0mm --restrict-deformation 1x1x0 --output &#39;[step2,src_reg_regStep2.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626061953.542716-register-pwt078i3
+
+Estimate transformation
+/opt/spinalcordtoolbox-5.8/bin/isct_antsRegistration --dimensionality 3 --transform &#39;bsplinesyn[0.5,1,3]&#39; --metric &#39;MeanSquares[dest_RPI_pad.nii,src_reg.nii,1,4]&#39; --convergence 5 --shrink-factors 1 --smoothing-sigmas 0mm --restrict-deformation 1x1x0 --output &#39;[step2,src_reg_regStep2.nii]&#39; --interpolation &#39;BSpline[3]&#39; --verbose 1 # in /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Concatenate transformations...
-/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_src2dest.nii.gz -R dest.nii warp_forward_2.nii.gz warp_forward_1.nii.gz warp_forward_0.txt # in /tmp/sct-20230626061953.542716-register-pwt078i3
+/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_src2dest.nii.gz -R dest.nii warp_forward_2.nii.gz warp_forward_1.nii.gz warp_forward_0.txt # in /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_dest2src.nii.gz -R src.nii -i warp_forward_0.txt warp_inverse_1.nii.gz warp_inverse_2.nii.gz # in /tmp/sct-20230626061953.542716-register-pwt078i3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_ComposeMultiTransform 3 warp_dest2src.nii.gz -R src.nii -i warp_forward_0.txt warp_inverse_1.nii.gz warp_inverse_2.nii.gz # in /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Apply transfo source --&gt; dest...
-/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_src2dest.nii.gz -r dest.nii -n Linear # in /tmp/sct-20230626061953.542716-register-pwt078i3
+/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i src.nii -o src_reg.nii -t warp_src2dest.nii.gz -r dest.nii -n Linear # in /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Apply transfo dest --&gt; source...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i dest.nii -o dest_reg.nii -t warp_dest2src.nii.gz -r src.nii -n Linear # in /tmp/sct-20230626061953.542716-register-pwt078i3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i dest.nii -o dest_reg.nii -t warp_dest2src.nii.gz -r src.nii -n Linear # in /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Generate output files...
-mv /tmp/sct-20230626061953.542716-register-pwt078i3/src_reg.nii template_reg.nii
+mv /tmp/sct-20230626120333.603078-register-sotcgkqa/src_reg.nii template_reg.nii
 File created: template_reg.nii
-mv /tmp/sct-20230626061953.542716-register-pwt078i3/warp_src2dest.nii.gz warp_template2data_rpi.nii.gz
+mv /tmp/sct-20230626120333.603078-register-sotcgkqa/warp_src2dest.nii.gz warp_template2data_rpi.nii.gz
 File created: warp_template2data_rpi.nii.gz
-mv /tmp/sct-20230626061953.542716-register-pwt078i3/dest_reg.nii data_rpi_reg.nii
+mv /tmp/sct-20230626120333.603078-register-sotcgkqa/dest_reg.nii data_rpi_reg.nii
 File created: data_rpi_reg.nii
-mv /tmp/sct-20230626061953.542716-register-pwt078i3/warp_dest2src.nii.gz warp_data_rpi2template.nii.gz
+mv /tmp/sct-20230626120333.603078-register-sotcgkqa/warp_dest2src.nii.gz warp_data_rpi2template.nii.gz
 File created: warp_data_rpi2template.nii.gz
 
 Remove temporary files...
-rm -rf /tmp/sct-20230626061953.542716-register-pwt078i3
-/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i template.nii -o template2anat.nii.gz -t warp_template2anat.nii.gz -r data.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061946.164255-register_to_template-puqvhe72
+rm -rf /tmp/sct-20230626120333.603078-register-sotcgkqa
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i data.nii -o anat2template.nii.gz -t warp_anat2template.nii.gz -r template.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626061946.164255-register_to_template-puqvhe72
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i template.nii -o template2anat.nii.gz -t warp_template2anat.nii.gz -r data.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/spinalcordtoolbox-5.8/bin/isct_antsApplyTransforms -d 3 -i data.nii -o anat2template.nii.gz -t warp_anat2template.nii.gz -r template.nii -n &#39;BSpline[3]&#39; # in /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 Generate output files...
-mv /tmp/sct-20230626061946.164255-register_to_template-puqvhe72/warp_template2anat.nii.gz warp_template2anat.nii.gz
+mv /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7/warp_template2anat.nii.gz warp_template2anat.nii.gz
 File created: warp_template2anat.nii.gz
-mv /tmp/sct-20230626061946.164255-register_to_template-puqvhe72/warp_anat2template.nii.gz warp_anat2template.nii.gz
-File created: warp_anat2template.nii.gz
-mv /tmp/sct-20230626061946.164255-register_to_template-puqvhe72/template2anat.nii.gz template2anat.nii.gz
+mv /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7/warp_anat2template.nii.gz warp_anat2template.nii.gz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File created: warp_anat2template.nii.gz
+mv /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7/template2anat.nii.gz template2anat.nii.gz
 File created: template2anat.nii.gz
-mv /tmp/sct-20230626061946.164255-register_to_template-puqvhe72/anat2template.nii.gz anat2template.nii.gz
+mv /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7/anat2template.nii.gz anat2template.nii.gz
 File created: anat2template.nii.gz
 
 Delete temporary files...
-rm -rf /tmp/sct-20230626061946.164255-register_to_template-puqvhe72
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-Finished! Elapsed time: 64s
+rm -rf /tmp/sct-20230626120329.929870-register_to_template-e08nf1u7
+
+Finished! Elapsed time: 52s
 
 *** Generate Quality Control (QC) html report ***
-Resample images to 0.6x0.6 mm
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resample images to 0.6x0.6 mm
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">Image header specifies datatype &#39;uint8&#39;, but array is of type &#39;int64&#39;. Header metadata will be overwritten to use &#39;int64&#39;.</span>
 QcImage: layout with Axial slice
 Compute center of mass at each slice
-/home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/structural_imaging/sct_example_data/mt/sct_register_to_template/2023_06_26_062050.149257/bkg_img.png
+/home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/structural_imaging/sct_example_data/mt/sct_register_to_template/2023_06_26_120421.673738/bkg_img.png
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully generated the QC results in /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_json/qc_2023_06_26_062050.149257.json
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully generated the QC results in /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_json/qc_2023_06_26_120421.673738.json
 
 To see the results in a browser, type:
 xdg-open /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/index.html
@@ -2061,10 +2011,10 @@ Resample images to 0.6x0.6 mm
 Compute center of mass at each slice
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/structural_imaging/sct_example_data/mt/sct_warp_template/2023_06_26_062142.149590/bkg_img.png
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/structural_imaging/sct_example_data/mt/sct_warp_template/2023_06_26_120457.418952/bkg_img.png
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully generated the QC results in /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_json/qc_2023_06_26_062142.149590.json
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully generated the QC results in /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/_json/qc_2023_06_26_120457.418952.json
 
 To see the results in a browser, type:
 xdg-open /home/runner/work/example-notebooks/example-notebooks/structural_imaging/qc/index.html
@@ -2126,9 +2076,7 @@ sct_compute_mtr -mt1 mt1_reg.nii.gz -mt0 mt0_reg.nii.gz
 
 
 Compute MTR...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 0 voxels with value=0. These will be replaced by nan.
+Found 0 voxels with value=0. These will be replaced by nan.
 Threshold to clip values: +/- 100
 </pre></div>
 </div>
@@ -2139,9 +2087,7 @@ sct_compute_mtsat -mt mt1_reg.nii.gz -pd mt0_reg.nii.gz -t1 t1w_crop.nii.gz -trm
 --
 
 Load data...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compute T1 map...
+Compute T1 map...
 <span class=" -Color -Color-Yellow">R1 values were found to be lower than 0.01. They will be set to inf, producing T1=0 for these voxels.</span>
 Compute A...
 Compute MTsat...
