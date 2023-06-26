@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Setup Neurodesk &#8212; Neurodesk</title>
+    <title>Basic Nipype Example &#8212; Neurodesk</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://iishiishii.github.io/example-notebooks/structural_imaging/nipype_module_example.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setup Neurodesk" href="qsmxt_example.html" />
+    <link rel="next" title="QSMxT Example" href="qsmxt_example.html" />
     <link rel="prev" title="Structural imaging" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -145,28 +145,33 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Structural Imaging</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setup Neurodesk</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="qsmxt_example.html">Setup Neurodesk</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Basic Nipype Example</a></li>
 
 
-
+<li class="toctree-l2"><a class="reference internal" href="qsmxt_example.html">QSMxT Example</a></li>
 
 
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="sct_toolbox_example.html">Setup Neurodesk</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="sct_toolbox_example.html">SCT Toolbox Example</a></li>
+
 
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../functional_imaging/intro.html">Functional Imaging</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../functional_imaging/nipype_fsl_all_levels_flanker.html">Setup Neurodesk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functional_imaging/nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="../functional_imaging/fmriprep_example.html">Setup Neurodesk</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../functional_imaging/fmriprep_example.html">Fmriprep Example</a></li>
+
 
 </ul>
 </li>
@@ -419,7 +424,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setup Neurodesk</h1>
+    <h1>Basic Nipype Example</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -429,7 +434,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup Neurodesk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic Nipype Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrating-the-module-system-in-python-and-nipype">Demonstrating the module system in Python and Nipype</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-afni-as-well">Load afni as well</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-test-data">download test data</a></li>
@@ -450,7 +456,10 @@ document.write(`
                   
   <p><a href="https://play-sydney.neurodesk.org/v2/gh/neurodesk/example-notebooks/main?labpath=structural_imaging%2Fnipype_module_example.ipynb" target="_parent"><img src="https://img.shields.io/badge/launch-binder-579aca.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADUElEQVR4nCyTzUtkRxfGn6pTtz/FtvsVp32NKBgF6QiBCU505xBpBdsJiMkyi2SRxSSEZPI3JKuEbGYREgaCi0zMENBeSCSCqwzRCCIzSBtHuqEl9ihif9zbfe+tqnCaqdXh1q1znuec31EAkM/nEYlEcH5+jmw2K5VSwvM8rVT3GmEYIh6PUxiGtlKpmNHRUQRBgK2tLdDi4iLOzs4wMjKCaDRKxhijlLIRx0kmk8lhIkoHQeArpTpaa5vJZCgej9vj42NMT09DVSoVXF5ewm21SAihAbwJ4HM/CO42ms2slJIT/wvgD2vtN9baQ8/zqFqtaiKCYIlLS0uklNJBEHwspfyu2WpF+lIpTIyPo9Fs4sXZGYzWiMVinTAMPyWi7621VCwWtSgUCuxNSynfl1L+zDLvzs3pd+/do/8PDsJrt1EqlfDL+rp+9vw5xWIxobV+T2u97jgOScdxjLU2o5R66LquffvOHfPJ/fuqL5USFxcXgs9bt2+LLx88UIPZrAmCwBLRQwBpfistayFaBZCBELqvr4+01uAJOI6DiOPg5uYG2Vu3MDc3R51ORwsh+olopft2cnISxpgvhBBvdNptWyqVZOnkBP/LZPD6xARe1mqonp+jVqvh1ydPcHV1ZdiGtbZORL91m7i8vLzt+/47+Xxe53I5+vPpU9xcX+O14WEcHBygv78fuVwOPP/t7W19eHhI0Wj0942NjbxaXV1Fu91uEhFb6c52fn4ejUYD+/v73XhsbIxBQrlcxs7ODqSUFkBjZWUFMpPJwFq7z/Stra1ZrthqtdgWewZb9DyPi6BYLHIC+2oSf/f29kIODQ1Ba/2YIerp6RG+79tkMgm+dF23i3E6nWYGGF/L/xhjQmvt41QqBbm3t8cQ/QPgaykllUqlIAgCI4RAIpFgCsFxo1E35XI5UEoRgK+klC9OT09JLCwsCMdx5NHRkZmamnqktf5gYGAAMzMzmJ2dNaxid3dXsrV6vQ4ierS5uflhoVCQYRgawcsEQLDsRCJhr6+vP/J9/7NOp5Nj2dwL3rxYLPZMKfVtOp3+0XVdwX0CYBXL44ArWWsZrB9yudxP1Wp12vO88VfLdNLTk/yrVnvpu64rm82m4e98/gsAAP//Lbmu802E+U4AAAAASUVORK5CYII=" alt="Open In Binder"/>  </a>
 <a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/structural_imaging/nipype_module_example.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>   </a></p>
+<section id="basic-nipype-example">
+<h1>Basic Nipype Example<a class="headerlink" href="#basic-nipype-example" title="Permalink to this heading">#</a></h1>
 <p>Author: Steffen Bollmann</p>
+</section>
 <section id="setup-neurodesk">
 <h1>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
@@ -486,7 +495,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: GenuineIntel
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model name	: Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model name	: Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHz
 </pre></div>
 </div>
 </div>
@@ -657,12 +666,15 @@ Please use &quot;module use ...&quot; to change MODULEPATH instead.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-06-26 11:54:52--  https://objectstorage.us-ashburn-1.oraclecloud.com/n/idrvm4tkz2a8/b/TOMCAT/o/TOMCAT_DIB/sub-01/ses-01_7T/anat/sub-01_ses-01_7T_T1w_defaced.nii.gz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-06-26 15:02:51--  https://objectstorage.us-ashburn-1.oraclecloud.com/n/idrvm4tkz2a8/b/TOMCAT/o/TOMCAT_DIB/sub-01/ses-01_7T/anat/sub-01_ses-01_7T_T1w_defaced.nii.gz
 Resolving objectstorage.us-ashburn-1.oraclecloud.com (objectstorage.us-ashburn-1.oraclecloud.com)... 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>134.70.32.1, 134.70.24.1, 134.70.28.1
-Connecting to objectstorage.us-ashburn-1.oraclecloud.com (objectstorage.us-ashburn-1.oraclecloud.com)|134.70.32.1|:443... connected.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>134.70.24.1, 134.70.28.1, 134.70.32.1
+Connecting to objectstorage.us-ashburn-1.oraclecloud.com (objectstorage.us-ashburn-1.oraclecloud.com)|134.70.24.1|:443... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>connected.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 
@@ -676,18 +688,36 @@ Saving to: ‘./sub-01_ses-01_7T_T1w_defaced.nii.gz’
           ./sub-01_   0%[                    ]       0  --.-KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         ./sub-01_s  24%[===&gt;                ]  17.12M  85.6MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         ./sub-01_s   0%[                    ] 200.00K   920KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        ./sub-01_se  51%[=========&gt;          ]  35.91M  89.8MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        ./sub-01_se   2%[                    ]   1.71M  3.93MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       ./sub-01_ses  79%[==============&gt;     ]  55.32M  91.9MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       ./sub-01_ses  13%[=&gt;                  ]   9.15M  14.0MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./sub-01_ses-01_7T_ 100%[===================&gt;]  69.32M  93.0MB/s    in 0.7s    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      ./sub-01_ses-  25%[====&gt;               ]  18.01M  20.7MB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ./sub-01_ses-0  38%[======&gt;             ]  26.71M  24.5MB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    ./sub-01_ses-01  51%[=========&gt;          ]  35.48M  27.1MB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ./sub-01_ses-01_  63%[===========&gt;        ]  44.16M  28.9MB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ./sub-01_ses-01_7  76%[==============&gt;     ]  52.85M  30.3MB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ./sub-01_ses-01_7T  88%[================&gt;   ]  61.66M  31.4MB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./sub-01_ses-01_7T_ 100%[===================&gt;]  69.32M  32.4MB/s    in 2.1s    
 
-2023-06-26 11:54:53 (93.0 MB/s) - ‘./sub-01_ses-01_7T_T1w_defaced.nii.gz’ saved [72682635/72682635]
+2023-06-26 15:02:54 (32.4 MB/s) - ‘./sub-01_ses-01_7T_T1w_defaced.nii.gz’ saved [72682635/72682635]
 </pre></div>
 </div>
 </div>
@@ -737,56 +767,56 @@ qsmxt_example.ipynb
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:54:58,200 nipype.interface WARNING:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:02:58,886 nipype.interface WARNING:
 	 FSLOUTPUTTYPE environment variable is not set. Setting FSLOUTPUTTYPE=NIFTI
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,558 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.558365:++ 3dedge3: AFNI version=AFNI_22.3.06 (Nov 15 2022) [64-bit]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,407 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.407243:++ 3dedge3: AFNI version=AFNI_22.3.06 (Nov 15 2022) [64-bit]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,563 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.563064:** AFNI converts NIFTI_datatype=4 (INT16) in file /home/runner/work/example-notebooks/example-notebooks/structural_imaging/sub-01_ses-01_7T_T1w_defaced.nii to FLOAT32
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,412 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.412377:** AFNI converts NIFTI_datatype=4 (INT16) in file /home/runner/work/example-notebooks/example-notebooks/structural_imaging/sub-01_ses-01_7T_T1w_defaced.nii to FLOAT32
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,563 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.563064:     Warnings of this type will be muted for this session.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,413 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.412377:     Warnings of this type will be muted for this session.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,565 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.563064:     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,414 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.412377:     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,568 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.568179:*+ WARNING:   If you are performing spatial transformations on an oblique dset,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,417 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.417883:*+ WARNING:   If you are performing spatial transformations on an oblique dset,
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,568 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.568179:  such as /home/runner/work/example-notebooks/example-notebooks/structural_imaging/sub-01_ses-01_7T_T1w_defaced.nii,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,418 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.417883:  such as /home/runner/work/example-notebooks/example-notebooks/structural_imaging/sub-01_ses-01_7T_T1w_defaced.nii,
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,571 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.568179:  or viewing/combining it with volumes of differing obliquity,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,419 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.417883:  or viewing/combining it with volumes of differing obliquity,
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,572 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.568179:  you should consider running: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,419 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.417883:  you should consider running: 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,573 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.568179:     3dWarp -deoblique 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,420 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.417883:     3dWarp -deoblique 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,574 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.568179:  on this and  other oblique datasets in the same session.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,421 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.417883:  on this and  other oblique datasets in the same session.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,574 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.568179: See 3dWarp -help for details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,422 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.417883: See 3dWarp -help for details.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-11:55:08,575 nipype.interface INFO:
-	 stderr 2023-06-26T11:55:08.568179:++ Oblique dataset:/home/runner/work/example-notebooks/example-notebooks/structural_imaging/sub-01_ses-01_7T_T1w_defaced.nii is 1.253358 degrees from plumb.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230626-15:03:14,422 nipype.interface INFO:
+	 stderr 2023-06-26T15:03:14.417883:++ Oblique dataset:/home/runner/work/example-notebooks/example-notebooks/structural_imaging/sub-01_ses-01_7T_T1w_defaced.nii is 1.253358 degrees from plumb.
 </pre></div>
 </div>
 </div>
@@ -943,7 +973,7 @@ sct_toolbox_example.ipynb
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Setup Neurodesk</p>
+        <p class="prev-next-title">QSMxT Example</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -965,7 +995,8 @@ sct_toolbox_example.ipynb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup Neurodesk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic Nipype Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrating-the-module-system-in-python-and-nipype">Demonstrating the module system in Python and Nipype</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-afni-as-well">Load afni as well</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-test-data">download test data</a></li>
