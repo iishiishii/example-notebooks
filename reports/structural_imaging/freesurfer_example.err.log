@@ -30,6 +30,7 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-!export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=2 && export MPLCONFIGDIR=~/matplotlib-mpldir && fmriprep ds000102/ content/ participant --fs-license-file ~/.license --output-spaces T1w MNI152NLin2009cAsym fsaverage fsnative --participant-label 08 --nprocs $ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS --mem 10000 --skip_bids_validation -v
+!mkdir ./freesurfer_output
+!recon-all -subject subjectname -i mp2rage.nii -all -sd ./freesurfer_output
 -------------------
 
