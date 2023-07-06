@@ -26,10 +26,12 @@ Traceback (most recent call last):
     error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
   File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 852, in _async_handle_timeout
     raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 6000 seconds.
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 5 seconds.
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-!export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=2 && export MPLCONFIGDIR=~/matplotlib-mpldir && fmriprep ds000102/ content/ participant --fs-license-file ~/.license --output-spaces T1w MNI152NLin2009cAsym fsaverage fsnative --participant-label 08 --nprocs $ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS --mem 10000 --skip_bids_validation -v
+# download data
+!datalad install https://github.com/OpenNeuroDatasets/ds000102.git
+!cd ds000102 && datalad get sub-08
 -------------------
 
