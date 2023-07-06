@@ -486,7 +486,7 @@ if IN_COLAB:
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: GenuineIntel
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model name	: Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model name	: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz
 </pre></div>
 </div>
 </div>
@@ -619,9 +619,7 @@ There are 1216 unsorted DICOMs in ./dicoms-unsorted/
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Running QSMxT v1.3.5 (commit date: Sat Feb 25 22:06:42 2023 +1000)
 INFO: Command: /opt/QSMxT/run_0_dicomSort.py dicoms-unsorted dicoms-sorted
 INFO: Python interpreter: /opt/miniconda-4.7.12.1/bin/python3
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Reading file list...
+INFO: Reading file list...
 WARNING: No .IMA or .dcm files found! Checking all files for valid DICOM headers...
 </pre></div>
 </div>
@@ -629,7 +627,9 @@ WARNING: No .IMA or .dcm files found! Checking all files for valid DICOM headers
 INFO: Sorting DICOMs in /home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/dicoms-sorted...
 INFO: Identified subject: 1
 INFO: Identified session: 1 #1 20170705
-INFO: Identified session: 2 #1 20170705
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Identified session: 2 #1 20170705
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Warnings occurred!
@@ -647,8 +647,8 @@ INFO: Finished
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Blue">dicoms-sorted</span>
-├── log_2023-07-06_12-57-10306158.txt
-├── log_2023-07-06_13-10-25829223.txt
+├── log_2023-07-06_13-41-20355255.txt
+├── log_2023-07-06_13-48-15677977.txt
 ├── references.txt
 ├── <span class=" -Color -Color-Bold -Color-Bold-Blue">sub-1</span>
 │   └── <span class=" -Color -Color-Bold -Color-Bold-Blue">ses-1</span>
@@ -710,8 +710,8 @@ INFO: Finished
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Blue">bids</span>
 ├── README
 ├── dataset_description.json
-├── log_2023-07-06_12-58-11085052.txt
-├── log_2023-07-06_13-10-34747432.txt
+├── log_2023-07-06_13-41-33956472.txt
+├── log_2023-07-06_13-48-22870608.txt
 ├── references.txt
 ├── <span class=" -Color -Color-Bold -Color-Bold-Blue">sub-1</span>
 │   └── <span class=" -Color -Color-Bold -Color-Bold-Blue">ses-1</span>
@@ -818,9 +818,7 @@ INFO: Finished
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Running QSMxT v1.3.5 (commit date: Sat Feb 25 22:06:42 2023 +1000)
 INFO: Parsing arguments...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Premade pipelines ===
+=== Premade pipelines ===
 default: Default QSMxT settings (GRE)
 gre: Applies suggested settings for 3D-GRE images
 epi: Applies suggested settings for 3D-EPI images (assumes human brain)
@@ -844,7 +842,9 @@ INFO: Finished
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Running QSMxT v1.3.5 (commit date: Sat Feb 25 22:06:42 2023 +1000)
 INFO: Parsing arguments...
 INFO: Starting log file: /home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/qsm/qsmxt_log.log
-INFO: Running QSMxT v1.3.5 (commit date: Sat Feb 25 22:06:42 2023 +1000)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Running QSMxT v1.3.5 (commit date: Sat Feb 25 22:06:42 2023 +1000)
 INFO: Python interpreter: /opt/miniconda-4.7.12.1/bin/python3
 INFO: Command: run_2_qsm.py /home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/bids /home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/qsm --premade &#39;fast&#39; --auto_yes
 </pre></div>
@@ -853,147 +853,139 @@ INFO: Command: run_2_qsm.py /home/runner/work/example-notebooks/example-notebook
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Creating nipype workflow for sub-1/ses-1/run-01...
-230706-13:10:42,500 nipype.workflow INFO:
+230706-13:48:28,503 nipype.workflow INFO:
 	 Workflow workflow_qsm settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:42,520 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:28,521 nipype.workflow INFO:
 	 Running in parallel.
-230706-13:10:42,523 nipype.workflow INFO:
+230706-13:48:28,524 nipype.workflow INFO:
 	 [MultiProc] Running 0 tasks, and 8 jobs ready. Free memory (GB): 6.09/6.09, Free processors: 2/2.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:42,576 nipype.workflow INFO:
+230706-13:48:28,557 nipype.workflow INFO:
 	 [Job 0] Cached (workflow_qsm.sub-2.ses-1.run-01.func_read-json-me).
-230706-13:10:42,578 nipype.workflow INFO:
+230706-13:48:28,559 nipype.workflow INFO:
 	 [Job 1] Cached (workflow_qsm.sub-2.ses-1.run-01.func_read-json-se).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:44,525 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:30,526 nipype.workflow INFO:
 	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 6.09/6.09, Free processors: 2/2.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:44,579 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:30,568 nipype.workflow INFO:
 	 [Job 2] Cached (workflow_qsm.sub-2.ses-1.run-01.nibabel_read-nii).
-230706-13:10:44,581 nipype.workflow INFO:
+230706-13:48:30,570 nipype.workflow INFO:
 	 [Job 3] Cached (workflow_qsm.sub-2.ses-1.run-01.nibabel_numpy_scale-phase).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:46,528 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:32,528 nipype.workflow INFO:
 	 [MultiProc] Running 0 tasks, and 5 jobs ready. Free memory (GB): 6.09/6.09, Free processors: 2/2.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:46,588 nipype.workflow INFO:
+230706-13:48:32,561 nipype.workflow INFO:
 	 [Job 4] Cached (workflow_qsm.sub-1.ses-1.run-01.func_read-json-me).
-230706-13:10:46,589 nipype.workflow INFO:
+230706-13:48:32,562 nipype.workflow INFO:
 	 [Job 5] Cached (workflow_qsm.sub-1.ses-1.run-01.func_read-json-se).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:48,529 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:34,530 nipype.workflow INFO:
 	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 6.09/6.09, Free processors: 2/2.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:48,583 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:34,577 nipype.workflow INFO:
 	 [Job 6] Cached (workflow_qsm.sub-1.ses-1.run-01.nibabel_read-nii).
-230706-13:10:48,585 nipype.workflow INFO:
+230706-13:48:34,579 nipype.workflow INFO:
 	 [Job 7] Cached (workflow_qsm.sub-1.ses-1.run-01.nibabel_numpy_scale-phase).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:50,532 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:36,532 nipype.workflow INFO:
 	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 6.09/6.09, Free processors: 2/2.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:50,583 nipype.workflow INFO:
+230706-13:48:36,567 nipype.workflow INFO:
 	 [Job 8] Cached (workflow_qsm.sub-2.ses-1.run-01.nibabel_as-canonical).
-230706-13:10:50,586 nipype.workflow INFO:
+230706-13:48:36,569 nipype.workflow INFO:
 	 [Job 9] Cached (workflow_qsm.sub-1.ses-1.run-01.nibabel_as-canonical).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:52,586 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:38,579 nipype.workflow INFO:
 	 [Job 10] Cached (workflow_qsm.sub-2.ses-1.run-01.nibabel_numpy_nilearn_axial-resampling).
-230706-13:10:52,589 nipype.workflow INFO:
+230706-13:48:38,582 nipype.workflow INFO:
 	 [Job 11] Cached (workflow_qsm.sub-1.ses-1.run-01.nibabel_numpy_nilearn_axial-resampling).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:54,592 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:40,570 nipype.workflow INFO:
 	 [Job 12] Cached (workflow_qsm.sub-2.ses-1.run-01.mrt_romeo_combine).
-230706-13:10:54,595 nipype.workflow INFO:
+230706-13:48:40,573 nipype.workflow INFO:
 	 [Job 13] Cached (workflow_qsm.sub-1.ses-1.run-01.mrt_romeo_combine).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:56,588 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:42,583 nipype.workflow INFO:
 	 [Job 14] Cached (workflow_qsm.sub-2.ses-1.run-01.mask_workflow.fsl-bet).
-230706-13:10:56,591 nipype.workflow INFO:
+230706-13:48:42,586 nipype.workflow INFO:
 	 [Job 15] Cached (workflow_qsm.sub-1.ses-1.run-01.mask_workflow.fsl-bet).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:10:58,592 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:44,574 nipype.workflow INFO:
 	 [Job 16] Cached (workflow_qsm.sub-2.ses-1.run-01.mask_workflow.scipy_numpy_nibabel_bet_erode).
-230706-13:10:58,595 nipype.workflow INFO:
+230706-13:48:44,577 nipype.workflow INFO:
 	 [Job 17] Cached (workflow_qsm.sub-1.ses-1.run-01.mask_workflow.scipy_numpy_nibabel_bet_erode).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:00,601 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:46,593 nipype.workflow INFO:
 	 [Job 18] Cached (workflow_qsm.sub-2.ses-1.run-01.qsm_workflow.qsmjl_laplacian-unwrapping).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:02,596 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:48,581 nipype.workflow INFO:
 	 [Job 19] Cached (workflow_qsm.sub-1.ses-1.run-01.qsm_workflow.qsmjl_laplacian-unwrapping).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:04,598 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:50,583 nipype.workflow INFO:
 	 [Job 20] Cached (workflow_qsm.sub-2.ses-1.run-01.qsm_workflow.qsmjl_phase-to-freq).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:06,597 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:52,586 nipype.workflow INFO:
 	 [Job 21] Cached (workflow_qsm.sub-1.ses-1.run-01.qsm_workflow.qsmjl_phase-to-freq).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:08,602 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:54,597 nipype.workflow INFO:
 	 [Job 22] Cached (workflow_qsm.sub-2.ses-1.run-01.qsm_workflow.qsmjl_vsharp).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:10,605 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:56,589 nipype.workflow INFO:
 	 [Job 23] Cached (workflow_qsm.sub-1.ses-1.run-01.qsm_workflow.qsmjl_vsharp).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:12,608 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:48:58,591 nipype.workflow INFO:
 	 [Job 24] Cached (workflow_qsm.sub-2.ses-1.run-01.qsm_workflow.qsmjl_rts).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:14,609 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:49:00,603 nipype.workflow INFO:
 	 [Job 25] Cached (workflow_qsm.sub-1.ses-1.run-01.qsm_workflow.qsmjl_rts).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:16,616 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:49:02,597 nipype.workflow INFO:
 	 [Job 26] Cached (workflow_qsm.sub-2.ses-1.run-01.nibabel_numpy_qsm-average).
-230706-13:11:16,619 nipype.workflow INFO:
+230706-13:49:02,599 nipype.workflow INFO:
 	 [Job 27] Cached (workflow_qsm.sub-1.ses-1.run-01.nibabel_numpy_qsm-average).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:18,634 nipype.workflow INFO:
-	 [Node] Setting-up &quot;workflow_qsm.sub-1.ses-1.run-01.nipype_datasink&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/qsm/workflow_qsm/sub-1/ses-1/run-01/nipype_datasink&quot;.
-230706-13:11:18,639 nipype.workflow INFO:
-	 [Node] Executing &quot;nipype_datasink&quot; &lt;nipype.interfaces.io.DataSink&gt;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:18,680 nipype.workflow INFO:
-	 [Node] Finished &quot;nipype_datasink&quot;, elapsed time 0.00081s.
-230706-13:11:18,634 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:49:04,615 nipype.workflow INFO:
 	 [Node] Setting-up &quot;workflow_qsm.sub-2.ses-1.run-01.nipype_datasink&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/qsm/workflow_qsm/sub-2/ses-1/run-01/nipype_datasink&quot;.
-230706-13:11:18,689 nipype.workflow INFO:
+230706-13:49:04,619 nipype.workflow INFO:
+	 [Node] Executing &quot;nipype_datasink&quot; &lt;nipype.interfaces.io.DataSink&gt;
+230706-13:49:04,620 nipype.workflow INFO:
+	 [Node] Setting-up &quot;workflow_qsm.sub-1.ses-1.run-01.nipype_datasink&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/qsm/workflow_qsm/sub-1/ses-1/run-01/nipype_datasink&quot;.
+230706-13:49:04,624 nipype.workflow INFO:
 	 [Node] Executing &quot;nipype_datasink&quot; &lt;nipype.interfaces.io.DataSink&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:18,723 nipype.workflow INFO:
-	 [Node] Finished &quot;nipype_datasink&quot;, elapsed time 0.000837s.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:49:04,650 nipype.workflow INFO:
+	 [Node] Finished &quot;nipype_datasink&quot;, elapsed time 0.000661s.
+230706-13:49:04,651 nipype.workflow INFO:
+	 [Node] Finished &quot;nipype_datasink&quot;, elapsed time 0.00062s.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:20,565 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:49:06,564 nipype.workflow INFO:
 	 [Job 28] Completed (workflow_qsm.sub-2.ses-1.run-01.nipype_datasink).
-230706-13:11:20,567 nipype.workflow INFO:
+230706-13:49:06,565 nipype.workflow INFO:
 	 [Job 29] Completed (workflow_qsm.sub-1.ses-1.run-01.nipype_datasink).
-230706-13:11:20,569 nipype.workflow INFO:
+230706-13:49:06,566 nipype.workflow INFO:
 	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 6.09/6.09, Free processors: 2/2.
 </pre></div>
 </div>
@@ -1097,16 +1089,14 @@ INFO: Command: run_2_qsm.py /home/runner/work/example-notebooks/example-notebook
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Running QSMxT v1.3.5 (commit date: Sat Feb 25 22:06:42 2023 +1000)
 INFO: Command: /opt/QSMxT/run_3_segment.py bids segmentations
 INFO: Python interpreter: /opt/miniconda-4.7.12.1/bin/python3
+INFO: Running with 2 processors.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Running with 2 processors.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:11:25,207 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230706-13:49:10,614 nipype.workflow INFO:
 	 Workflow workflow_segmentation settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
-230706-13:11:25,215 nipype.workflow INFO:
+230706-13:49:10,620 nipype.workflow INFO:
 	 Running in parallel.
-230706-13:11:25,215 nipype.workflow WARNING:
+230706-13:49:10,620 nipype.workflow WARNING:
 	 Some nodes exceed the total amount of memory available (6.09GB).
 Traceback (most recent call last):
   File &quot;/opt/QSMxT/run_3_segment.py&quot;, line 335, in &lt;module&gt;
@@ -1134,8 +1124,8 @@ RuntimeError: Insufficient resources available for job
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Blue">segmentations</span>
 ├── <span class=" -Color -Color-Bold -Color-Bold-Blue">workflow_segmentation</span>
-├── log_2023-07-06_13-09-28008801.txt
-├── log_2023-07-06_13-11-24229591.txt
+├── log_2023-07-06_13-47-32835670.txt
+├── log_2023-07-06_13-49-09929090.txt
 └── references.txt
 
 1 directory, 3 files
