@@ -47,8 +47,8 @@ Runtime info
 
 
 * cmdline : /opt/QSMxT/scripts/qsmjl_vsharp.jl --frequency /home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/qsm/workflow_qsm/sub-2/ses-1/run-01/qsm_workflow/qsmjl_phase-to-freq/mapflow/_qsmjl_phase-to-freq0/sub-2_ses-1_run-01_part-phase_T2starw_scaled_romeo-combined_to-phase-wrapped_unwrapped-laplacian_freq.nii --mask /home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/qsm/workflow_qsm/sub-2/ses-1/run-01/mask_workflow/scipy_numpy_nibabel_bet_erode/mapflow/_scipy_numpy_nibabel_bet_erode0/sub-2_ses-1_run-01_part-mag_T2starw_bet-mask_ero.nii --vsz "(1.0,1.0,1.0)" --tissue-frequency-out sub-2_ses-1_run-01_part-phase_T2starw_scaled_romeo-combined_to-phase-wrapped_unwrapped-laplacian_freq_vsharp.nii --vsharp-mask-out sub-2_ses-1_run-01_part-mag_T2starw_bet-mask_ero_vsharp-mask.nii
-* duration : 23.324494
-* hostname : fv-az359-22
+* duration : 23.597013
+* hostname : fv-az398-631
 * prev_wd : /home/runner/work/example-notebooks/example-notebooks/books/structural_imaging
 * working_dir : /home/runner/work/example-notebooks/example-notebooks/books/structural_imaging/qsm/workflow_qsm/sub-2/ses-1/run-01/qsm_workflow/qsmjl_vsharp/mapflow/_qsmjl_vsharp0
 
@@ -124,14 +124,14 @@ Environment
 * GITHUB_ACTOR_ID : 59903692
 * GITHUB_API_URL : https://api.github.com
 * GITHUB_BASE_REF : 
-* GITHUB_ENV : /home/runner/work/_temp/_runner_file_commands/set_env_c167bc6b-148a-4ae4-88c6-7fa10422fe6d
+* GITHUB_ENV : /home/runner/work/_temp/_runner_file_commands/set_env_634e8ff1-e8ca-41e2-83ff-a49969439f97
 * GITHUB_EVENT_NAME : workflow_dispatch
 * GITHUB_EVENT_PATH : /home/runner/work/_temp/_github_workflow/event.json
 * GITHUB_GRAPHQL_URL : https://api.github.com/graphql
 * GITHUB_HEAD_REF : 
 * GITHUB_JOB : test-notebooks
-* GITHUB_OUTPUT : /home/runner/work/_temp/_runner_file_commands/set_output_c167bc6b-148a-4ae4-88c6-7fa10422fe6d
-* GITHUB_PATH : /home/runner/work/_temp/_runner_file_commands/add_path_c167bc6b-148a-4ae4-88c6-7fa10422fe6d
+* GITHUB_OUTPUT : /home/runner/work/_temp/_runner_file_commands/set_output_634e8ff1-e8ca-41e2-83ff-a49969439f97
+* GITHUB_PATH : /home/runner/work/_temp/_runner_file_commands/add_path_634e8ff1-e8ca-41e2-83ff-a49969439f97
 * GITHUB_REF : refs/heads/overwrite
 * GITHUB_REF_NAME : overwrite
 * GITHUB_REF_PROTECTED : false
@@ -142,16 +142,16 @@ Environment
 * GITHUB_REPOSITORY_OWNER_ID : 59903692
 * GITHUB_RETENTION_DAYS : 90
 * GITHUB_RUN_ATTEMPT : 1
-* GITHUB_RUN_ID : 5476142260
-* GITHUB_RUN_NUMBER : 161
+* GITHUB_RUN_ID : 5481707592
+* GITHUB_RUN_NUMBER : 162
 * GITHUB_SERVER_URL : https://github.com
-* GITHUB_SHA : e9a3e659e83f3132d5cd174f0f5046a1fd6d7348
-* GITHUB_STATE : /home/runner/work/_temp/_runner_file_commands/save_state_c167bc6b-148a-4ae4-88c6-7fa10422fe6d
-* GITHUB_STEP_SUMMARY : /home/runner/work/_temp/_runner_file_commands/step_summary_c167bc6b-148a-4ae4-88c6-7fa10422fe6d
+* GITHUB_SHA : 02ac19d682000db50fc1ff2246db56bce49c5c4a
+* GITHUB_STATE : /home/runner/work/_temp/_runner_file_commands/save_state_634e8ff1-e8ca-41e2-83ff-a49969439f97
+* GITHUB_STEP_SUMMARY : /home/runner/work/_temp/_runner_file_commands/step_summary_634e8ff1-e8ca-41e2-83ff-a49969439f97
 * GITHUB_TRIGGERING_ACTOR : iishiishii
 * GITHUB_WORKFLOW : test_changed_notebooks
 * GITHUB_WORKFLOW_REF : iishiishii/example-notebooks/.github/workflows/test_changed_notebook.yml@refs/heads/overwrite
-* GITHUB_WORKFLOW_SHA : e9a3e659e83f3132d5cd174f0f5046a1fd6d7348
+* GITHUB_WORKFLOW_SHA : 02ac19d682000db50fc1ff2246db56bce49c5c4a
 * GITHUB_WORKSPACE : /home/runner/work/example-notebooks/example-notebooks
 * GIT_PAGER : cat
 * GOROOT_1_18_X64 : /opt/hostedtoolcache/go/1.18.10/x64
@@ -161,15 +161,15 @@ Environment
 * HOME : /home/runner
 * HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS : 3650
 * HOMEBREW_NO_AUTO_UPDATE : 1
-* INVOCATION_ID : a8a2705e572740408f7baced7bf4c949
+* INVOCATION_ID : b296248c3acf49e389db9836e79c54de
 * ImageOS : ubuntu22
 * ImageVersion : 20230702.1.0
 * JAVA_HOME : /usr/lib/jvm/temurin-11-jdk-amd64
 * JAVA_HOME_11_X64 : /usr/lib/jvm/temurin-11-jdk-amd64
 * JAVA_HOME_17_X64 : /usr/lib/jvm/temurin-17-jdk-amd64
 * JAVA_HOME_8_X64 : /usr/lib/jvm/temurin-8-jdk-amd64
-* JOURNAL_STREAM : 8:16346
-* JPY_PARENT_PID : 9269
+* JOURNAL_STREAM : 8:16850
+* JPY_PARENT_PID : 9158
 * JULIA_CPU_THREADS : 2
 * JULIA_DEPOT_PATH : ~/.julia:/opt/julia_depot
 * JULIA_NUM_THREADS : 2
@@ -207,7 +207,7 @@ Environment
 * RUNNER_PERFLOG : /home/runner/perflog
 * RUNNER_TEMP : /home/runner/work/_temp
 * RUNNER_TOOL_CACHE : /opt/hostedtoolcache
-* RUNNER_TRACKING_ID : github_6b2c9d82-0987-4e6c-af81-cb5202f45c03
+* RUNNER_TRACKING_ID : github_3fee9050-a7ca-484d-b868-3025dec90d07
 * RUNNER_USER : runner
 * RUNNER_WORKSPACE : /home/runner/work/example-notebooks
 * SELENIUM_JAR_PATH : /usr/share/java/selenium-server.jar
@@ -227,7 +227,7 @@ Environment
 * STATS_VMD : true
 * SUBJECTS_DIR : /tmp
 * SWIFT_PATH : /usr/share/swift/usr/bin
-* SYSTEMD_EXEC_PID : 673
+* SYSTEMD_EXEC_PID : 661
 * TERM : xterm-color
 * USER : runner
 * USER_PATH : /cvmfs/neurodesk.ardc.edu.au/containers/qsmxt_1.3.5_20230227:/home/runner/.local/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/snap/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
