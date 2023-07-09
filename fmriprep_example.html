@@ -1,0 +1,2288 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Fmriprep Example &#8212; Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fmriprep_example';</script>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/fmriprep_example.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Neurodesk</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play-ashburn.neurodesk.org/v2/gh/neurodesk/example-notebooks/v2/gh/neurodesk/example-notebooks/master?urlpath=tree/fmriprep_example.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/neurodesk/example-notebooks/blob/master/fmriprep_example.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/neurodesk/example-notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/neurodesk/example-notebooks/edit/main/fmriprep_example.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/neurodesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Ffmriprep_example.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/fmriprep_example.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fmriprep Example</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fmriprep Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a href="https://play-ashburn.neurodesk.org/v2/gh/neurodesk/example-notebooks/main?labpath=/home/jovyan/examples/example-notebooks/functional_imaging/fmriprep_example.ipynb" target="_parent"><img src="https://img.shields.io/badge/launch-binder-579aca.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADUElEQVR4nCyTzUtkRxfGn6pTtz/FtvsVp32NKBgF6QiBCU505xBpBdsJiMkyi2SRxSSEZPI3JKuEbGYREgaCi0zMENBeSCSCqwzRCCIzSBtHuqEl9ihif9zbfe+tqnCaqdXh1q1znuec31EAkM/nEYlEcH5+jmw2K5VSwvM8rVT3GmEYIh6PUxiGtlKpmNHRUQRBgK2tLdDi4iLOzs4wMjKCaDRKxhijlLIRx0kmk8lhIkoHQeArpTpaa5vJZCgej9vj42NMT09DVSoVXF5ewm21SAihAbwJ4HM/CO42ms2slJIT/wvgD2vtN9baQ8/zqFqtaiKCYIlLS0uklNJBEHwspfyu2WpF+lIpTIyPo9Fs4sXZGYzWiMVinTAMPyWi7621VCwWtSgUCuxNSynfl1L+zDLvzs3pd+/do/8PDsJrt1EqlfDL+rp+9vw5xWIxobV+T2u97jgOScdxjLU2o5R66LquffvOHfPJ/fuqL5USFxcXgs9bt2+LLx88UIPZrAmCwBLRQwBpfistayFaBZCBELqvr4+01uAJOI6DiOPg5uYG2Vu3MDc3R51ORwsh+olopft2cnISxpgvhBBvdNptWyqVZOnkBP/LZPD6xARe1mqonp+jVqvh1ydPcHV1ZdiGtbZORL91m7i8vLzt+/47+Xxe53I5+vPpU9xcX+O14WEcHBygv78fuVwOPP/t7W19eHhI0Wj0942NjbxaXV1Fu91uEhFb6c52fn4ejUYD+/v73XhsbIxBQrlcxs7ODqSUFkBjZWUFMpPJwFq7z/Stra1ZrthqtdgWewZb9DyPi6BYLHIC+2oSf/f29kIODQ1Ba/2YIerp6RG+79tkMgm+dF23i3E6nWYGGF/L/xhjQmvt41QqBbm3t8cQ/QPgaykllUqlIAgCI4RAIpFgCsFxo1E35XI5UEoRgK+klC9OT09JLCwsCMdx5NHRkZmamnqktf5gYGAAMzMzmJ2dNaxid3dXsrV6vQ4ierS5uflhoVCQYRgawcsEQLDsRCJhr6+vP/J9/7NOp5Nj2dwL3rxYLPZMKfVtOp3+0XVdwX0CYBXL44ArWWsZrB9yudxP1Wp12vO88VfLdNLTk/yrVnvpu64rm82m4e98/gsAAP//Lbmu802E+U4AAAAASUVORK5CYII=" alt="Open In Binder"/>  </a>
+<a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/functional_imaging/fmriprep_example.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>  </a></p>
+<section id="fmriprep-example">
+<h1>Fmriprep Example<a class="headerlink" href="#fmriprep-example" title="Permalink to this heading">#</a></h1>
+<p>Author: Steffen Bollmann</p>
+</section>
+<section id="setup-neurodesk">
+<h1>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%capture
+import os
+import sys
+IN_COLAB = &#39;google.colab&#39; in sys.modules
+
+if IN_COLAB:
+  os.environ[&quot;LD_PRELOAD&quot;] = &quot;&quot;;
+  os.environ[&quot;APPTAINER_BINDPATH&quot;] = &quot;/content,/tmp,/cvmfs&quot;
+  os.environ[&quot;MPLCONFIGDIR&quot;] = &quot;/content/matplotlib-mpldir&quot;
+  os.environ[&quot;LMOD_CMD&quot;] = &quot;/usr/share/lmod/lmod/libexec/lmod&quot;
+
+  !curl -J -O https://raw.githubusercontent.com/NeuroDesk/neurocommand/main/googlecolab_setup.sh
+  !chmod +x googlecolab_setup.sh
+  !./googlecolab_setup.sh
+
+  os.environ[&quot;MODULEPATH&quot;] = &#39;:&#39;.join(map(str, list(map(lambda x: os.path.join(os.path.abspath(&#39;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/&#39;), x),os.listdir(&#39;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/&#39;)))))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output CPU information:</span>
+<span class="o">!</span>cat /proc/cpuinfo <span class="p">|</span> grep <span class="s1">&#39;vendor&#39;</span> <span class="p">|</span> uniq
+<span class="o">!</span>cat /proc/cpuinfo <span class="p">|</span> grep <span class="s1">&#39;model name&#39;</span> <span class="p">|</span> uniq
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: GenuineIntel
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model name	: Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHz
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example">
+<h1>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load fmriprep</span>
+<span class="kn">import</span> <span class="nn">lmod</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;fmriprep/22.1.1&#39;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Lmod&#39;,
+ &#39;Warning:&#39;,
+ &#39;The&#39;,
+ &#39;environment&#39;,
+ &#39;MODULEPATH&#39;,
+ &#39;has&#39;,
+ &#39;been&#39;,
+ &#39;changed&#39;,
+ &#39;in&#39;,
+ &#39;unexpected&#39;,
+ &#39;ways.&#39;,
+ &#39;Lmod&#39;,
+ &#39;is&#39;,
+ &#39;unable&#39;,
+ &#39;to&#39;,
+ &#39;use&#39;,
+ &#39;given&#39;,
+ &#39;MODULEPATH.&#39;,
+ &#39;It&#39;,
+ &#39;is&#39;,
+ &#39;using:&#39;,
+ &#39;&quot;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/functional_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/rodent_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/image_registration:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/structural_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/image_segmentation:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/quantitative_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/workflows:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/hippocampus:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/image_reconstruction:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/data_organisation:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/electrophysiology:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/phase_processing:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/programming:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/machine_learning:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/diffusion_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/body:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/visualization:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/spectroscopy:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/quality_control:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/statistics:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/shape_analysis:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/spine:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/molecular_biology:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/bids_apps::&quot;.&#39;,
+ &#39;Please&#39;,
+ &#39;use&#39;,
+ &#39;&quot;module&#39;,
+ &#39;use&#39;,
+ &#39;to&#39;,
+ &#39;change&#39;,
+ &#39;MODULEPATH&#39;,
+ &#39;instead.&#39;,
+ &#39;fmriprep/22.1.1&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Request a freesurfer license and store it in your homedirectory. This is just an exampe - please replace with your license id:</span>
+<span class="o">!</span><span class="nb">echo</span> <span class="s2">&quot;Steffen.Bollmann@cai.uq.edu.au&quot;</span> &gt; ~/.license
+<span class="o">!</span><span class="nb">echo</span> <span class="s2">&quot;21029&quot;</span> &gt;&gt; ~/.license
+<span class="o">!</span><span class="nb">echo</span> <span class="s2">&quot;*Cqyn12sqTCxo&quot;</span> &gt;&gt; ~/.license
+<span class="o">!</span><span class="nb">echo</span> <span class="s2">&quot;FSxgcvGkNR59Y&quot;</span> &gt;&gt; ~/.license
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># download data</span>
+<span class="o">!</span>datalad install https://github.com/OpenNeuroDatasets/ds000102.git
+<span class="o">!</span><span class="nb">cd</span> ds000102 <span class="o">&amp;&amp;</span> datalad get sub-08
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clone attempt:   0%|              | 0.00/2.00 [00:00&lt;?, ? Candidate locations/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Enumerating: 0.00 Objects [00:00, ? Objects/s]
+
+                                              
+
+Counting:   0%|                               | 0.00/27.0 [00:00&lt;?, ? Objects/s]
+
+                                                                                
+
+Compressing:   0%|                            | 0.00/23.0 [00:00&lt;?, ? Objects/s]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Receiving:   0%|                             | 0.00/2.15k [00:00&lt;?, ? Objects/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+
+Resolving:   0%|                                | 0.00/537 [00:00&lt;?, ? Deltas/s]
+
+                                                                                
+                                                                                
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO   ] Author identity unknown 
+[INFO   ] *** Please tell me who you are.
+| 
+| Run
+| 
+|   git config --global user.email &quot;you@example.com&quot;
+|   git config --global user.name &quot;Your Name&quot;
+| 
+| to set your account&#39;s default identity.
+| Omit --global to set the identity only in this repository. 
+[INFO   ] fatal: empty ident name (for &lt;runner@fv-az621-157.hgz2n3xr2b2uteg1gmg5rpevog.jx.internal.cloudapp.net&gt;) not allowed 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO   ] scanning for unlocked files (this may take some time) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO   ] Remote origin not usable by git-annex; setting annex-ignore 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO   ] access to 1 dataset sibling s3-PRIVATE not auto-enabled, enable with:
+| 		datalad siblings -d &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/ds000102&quot; enable -s s3-PRIVATE 
+<span class=" -Color -Color-Bold">install</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/ds000102 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">dataset</span>)
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total:   0%|                                   | 0.00/67.8M [00:00&lt;?, ? Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/a .. 8_T1w.nii.gz:   0%|            | 0.00/10.6M [00:00&lt;?, ? Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/a .. 8_T1w.nii.gz:   1%|    | 138k/10.6M [00:00&lt;00:09, 1.14M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/a .. 8_T1w.nii.gz:   8%|▎   | 869k/10.6M [00:00&lt;00:02, 4.02M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/a .. 8_T1w.nii.gz:  27%|▊  | 2.85M/10.6M [00:00&lt;00:00, 10.5M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/a .. 8_T1w.nii.gz:  46%|█▍ | 4.88M/10.6M [00:00&lt;00:00, 14.1M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/a .. 8_T1w.nii.gz:  66%|█▉ | 6.94M/10.6M [00:00&lt;00:00, 16.3M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/a .. 8_T1w.nii.gz:  86%|██▌| 9.07M/10.6M [00:00&lt;00:00, 17.9M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+Total:  16%|████                      | 10.6M/67.8M [00:01&lt;00:06, 9.16M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:   0%|            | 0.00/28.6M [00:00&lt;?, ? Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  13%|▍  | 3.76M/28.6M [00:00&lt;00:01, 18.8M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  28%|▊  | 8.04M/28.6M [00:00&lt;00:01, 20.3M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  36%|█  | 10.3M/28.6M [00:00&lt;00:00, 20.9M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  44%|█▎ | 12.5M/28.6M [00:00&lt;00:00, 21.3M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  51%|█▌ | 14.7M/28.6M [00:00&lt;00:00, 21.5M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  59%|█▊ | 16.9M/28.6M [00:00&lt;00:00, 21.7M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  67%|██ | 19.2M/28.6M [00:00&lt;00:00, 21.8M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  75%|██▏| 21.4M/28.6M [00:01&lt;00:00, 22.0M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  90%|██▋| 25.7M/28.6M [00:01&lt;00:00, 21.7M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total:  58%|███████████████           | 39.2M/67.8M [00:02&lt;00:01, 14.7M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:   0%|            | 0.00/28.6M [00:00&lt;?, ? Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  15%|▍  | 4.24M/28.6M [00:00&lt;00:01, 21.2M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  22%|▋  | 6.39M/28.6M [00:00&lt;00:01, 21.3M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  30%|▉  | 8.56M/28.6M [00:00&lt;00:00, 21.4M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  38%|█▏ | 10.8M/28.6M [00:00&lt;00:00, 21.6M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  45%|█▎ | 12.9M/28.6M [00:00&lt;00:00, 21.7M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  60%|█▊ | 17.3M/28.6M [00:00&lt;00:00, 21.6M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  69%|██ | 19.7M/28.6M [00:00&lt;00:00, 21.5M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  83%|██▍| 23.7M/28.6M [00:01&lt;00:00, 21.6M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  91%|██▋| 25.9M/28.6M [00:01&lt;00:00, 21.6M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get sub-08/f .. _bold.nii.gz:  98%|██▉| 28.2M/28.6M [00:01&lt;00:00, 21.7M Bytes/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-08/anat/sub-08_T1w.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-08/func/sub-08_task-flanker_run-1_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-08/func/sub-08_task-flanker_run-2_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-08 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
+action summary:
+  get (ok: 4)
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">export</span> <span class="nv">ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS</span><span class="o">=</span><span class="m">2</span> <span class="o">&amp;&amp;</span> <span class="nb">export</span> <span class="nv">MPLCONFIGDIR</span><span class="o">=</span>~/matplotlib-mpldir <span class="o">&amp;&amp;</span> fmriprep ds000102/ content/ participant --fs-license-file ~/.license --output-spaces T1w MNI152NLin2009cAsym fsaverage fsnative --participant-label <span class="m">08</span> --nprocs <span class="nv">$ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS</span> --mem <span class="m">10000</span> --skip_bids_validation -v
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>You are using fMRIPrep-22.1.1, and a newer version of fMRIPrep is available: 23.1.3.
+Please check out our documentation about how and when to upgrade:
+https://fmriprep.readthedocs.io/en/latest/faq.html#upgrading
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--topup-max-vols input is no longer used and the flag will be removed in a future release.
+230709-23:05:08,411 cli INFO:
+	 Telemetry system to collect crashes and errors is enabled - thanks for your feedback!. Use option ``--notrack`` to opt out.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fontconfig error: No writable cache directories
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib is building the font cache; this may take a moment.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fontconfig error: No writable cache directories
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fontconfig error: No writable cache directories
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fontconfig error: No writable cache directories
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fontconfig error: No writable cache directories
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:06:38,677 nipype.workflow IMPORTANT:
+	 Running fMRIPrep version 22.1.1
+
+         License NOTICE ##################################################
+         fMRIPrep 22.1.1
+         Copyright 2022 The NiPreps Developers.
+         
+         This product includes software developed by
+         the NiPreps Community (https://nipreps.org/).
+         
+         Portions of this software were developed at the Department of
+         Psychology at Stanford University, Stanford, CA, US.
+         
+         This software redistributes the versioneer Python package, which is
+         Public domain source code.
+         
+         This software is also distributed as a Docker container image.
+         The bootstraping file for the image (&quot;Dockerfile&quot;) is licensed
+         under the MIT License.
+         
+         This software may be distributed through an add-on package called
+         &quot;Docker Wrapper&quot; that is under the BSD 3-clause License.
+         #################################################################
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:06:38,908 nipype.workflow IMPORTANT:
+	 Building fMRIPrep&#39;s workflow:
+           * BIDS dataset path: /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/ds000102.
+           * Participant list: [&#39;08&#39;].
+           * Run identifier: 20230709-230458_11d19245-c5ad-442a-8b75-89298da1179d.
+           * Output spaces: T1w MNI152NLin2009cAsym:res-native fsaverage:den-164k fsnative.
+           * Pre-run FreeSurfer&#39;s SUBJECTS_DIR: /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/content/sourcedata/freesurfer.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:07:23,900 nipype.workflow INFO:
+	 No single-band-reference found for sub-08_task-flanker_run-1_bold.nii.gz.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:07:25,54 nipype.workflow INFO:
+	 No single-band-reference found for sub-08_task-flanker_run-2_bold.nii.gz.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:07:30,591 nipype.workflow INFO:
+	 fMRIPrep workflow graph with 619 nodes built successfully.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:07:53,456 nipype.workflow IMPORTANT:
+	 fMRIPrep started!
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:07:55,36 nipype.workflow INFO:
+	 Workflow fmriprep_22_1_wf settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:07:55,652 nipype.workflow INFO:
+	 Running in parallel.
+230709-23:07:55,655 nipype.workflow WARNING:
+	 Some nodes exceed the total amount of memory available (10.00GB).
+230709-23:07:55,664 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 23 jobs ready. Free memory (GB): 10.00/10.00, Free processors: 2/2.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:07:55,792 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.fsdir_run_20230709_230458_11d19245_c5ad_442a_8b75_89298da1179d&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/fsdir_run_20230709_230458_11d19245_c5ad_442a_8b75_89298da1179d&quot;.
+230709-23:07:55,794 nipype.workflow INFO:
+	 [Node] Executing &quot;fsdir_run_20230709_230458_11d19245_c5ad_442a_8b75_89298da1179d&quot; &lt;niworkflows.interfaces.bids.BIDSFreeSurferDir&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:36,839 nipype.workflow INFO:
+	 [Node] Finished &quot;fsdir_run_20230709_230458_11d19245_c5ad_442a_8b75_89298da1179d&quot;, elapsed time 41.032389s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:36,844 nipype.workflow INFO:
+	 [Job 0] Completed (fmriprep_22_1_wf.fsdir_run_20230709_230458_11d19245_c5ad_442a_8b75_89298da1179d).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:36,992 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.about&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/about&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:36,994 nipype.workflow INFO:
+	 [Node] Executing &quot;about&quot; &lt;fmriprep.interfaces.reports.AboutSummary&gt;
+230709-23:08:36,996 nipype.workflow INFO:
+	 [Node] Finished &quot;about&quot;, elapsed time 0.000297s.
+230709-23:08:36,998 nipype.workflow INFO:
+	 [Job 2] Completed (fmriprep_22_1_wf.single_subject_08_wf.about).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:37,128 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 19 jobs ready. Free memory (GB): 9.60/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.res_tmpl
+                       * fmriprep_22_1_wf.single_subject_08_wf.bidssrc
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:41,761 nipype.workflow INFO:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.res_tmpl&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/brain_extraction_wf/res_tmpl&quot;.
+230709-23:08:41,765 nipype.workflow INFO:
+	 [Node] Executing &quot;res_tmpl&quot; &lt;niworkflows.interfaces.nibabel.RegridToZooms&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:43,516 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.bidssrc&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/bidssrc&quot;.
+230709-23:08:43,518 nipype.workflow INFO:
+	 [Node] Executing &quot;bidssrc&quot; &lt;niworkflows.interfaces.bids.BIDSDataGrabber&gt;
+230709-23:08:43,526 nipype.interface INFO:
+	 No &quot;t2w&quot; images found for sub-08
+230709-23:08:43,526 nipype.interface INFO:
+	 No &quot;flair&quot; images found for sub-08
+230709-23:08:43,526 nipype.interface INFO:
+	 No &quot;fmap&quot; images found for sub-08
+230709-23:08:43,526 nipype.interface INFO:
+	 No &quot;sbref&quot; images found for sub-08
+230709-23:08:43,526 nipype.interface INFO:
+	 No &quot;roi&quot; images found for sub-08
+230709-23:08:43,527 nipype.workflow INFO:
+	 [Node] Finished &quot;bidssrc&quot;, elapsed time 0.001207s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:45,134 nipype.workflow INFO:
+	 [Job 1] Completed (fmriprep_22_1_wf.single_subject_08_wf.bidssrc).
+230709-23:08:45,137 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 22 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.res_tmpl
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:45,258 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.full_wm&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/brain_extraction_wf/full_wm&quot;.
+230709-23:08:45,260 nipype.workflow INFO:
+	 [Node] Executing &quot;full_wm&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:46,577 nipype.workflow INFO:
+	 [Node] Finished &quot;full_wm&quot;, elapsed time 1.315006s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:46,931 nipype.workflow INFO:
+	 [Node] Finished &quot;res_tmpl&quot;, elapsed time 5.155595s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:47,137 nipype.workflow INFO:
+	 [Job 3] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.res_tmpl).
+230709-23:08:47,139 nipype.workflow INFO:
+	 [Job 4] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.full_wm).
+230709-23:08:47,143 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 21 jobs ready. Free memory (GB): 10.00/10.00, Free processors: 2/2.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:47,258 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_source&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_source&quot;.
+230709-23:08:47,261 nipype.workflow INFO:
+	 [Node] Executing &quot;bold_source&quot; &lt;nipype.interfaces.utility.base.Select&gt;
+230709-23:08:47,263 nipype.workflow INFO:
+	 [Node] Finished &quot;bold_source&quot;, elapsed time 0.000519s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:47,291 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.lap_tmpl&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/brain_extraction_wf/lap_tmpl&quot;.
+230709-23:08:47,293 nipype.workflow INFO:
+	 [Node] Executing &quot;lap_tmpl&quot; &lt;nipype.interfaces.ants.utils.ImageMath&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:49,139 nipype.workflow INFO:
+	 [Job 6] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_source).
+230709-23:08:49,142 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 19 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.lap_tmpl
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:49,275 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.func_derivatives_wf.raw_sources&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/func_derivatives_wf/raw_sources&quot;.
+230709-23:08:49,277 nipype.workflow INFO:
+	 [Node] Executing &quot;raw_sources&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:08:49,278 nipype.workflow INFO:
+	 [Node] Finished &quot;raw_sources&quot;, elapsed time 0.000532s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:51,140 nipype.workflow INFO:
+	 [Job 7] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.func_derivatives_wf.raw_sources).
+230709-23:08:51,142 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 18 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.lap_tmpl
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:51,401 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_val_bold0&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/val_bold/mapflow/_val_bold0&quot;.
+230709-23:08:51,403 nipype.workflow INFO:
+	 [Node] Executing &quot;_val_bold0&quot; &lt;niworkflows.interfaces.header.ValidateImage&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:51,495 nipype.workflow INFO:
+	 [Node] Finished &quot;_val_bold0&quot;, elapsed time 0.091341s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:53,142 nipype.workflow INFO:
+	 [Job 8] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.val_bold).
+230709-23:08:53,146 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 19 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.lap_tmpl
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:53,274 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.get_dummy&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/get_dummy&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:53,311 nipype.workflow INFO:
+	 [Node] Executing &quot;get_dummy&quot; &lt;niworkflows.interfaces.bold.NonsteadyStatesDetector&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:53,935 nipype.workflow INFO:
+	 [Node] Finished &quot;get_dummy&quot;, elapsed time 0.622971s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:55,144 nipype.workflow INFO:
+	 [Job 9] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.get_dummy).
+230709-23:08:55,147 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 20 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.lap_tmpl
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:55,301 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_source&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_source&quot;.
+230709-23:08:55,302 nipype.workflow INFO:
+	 [Node] Executing &quot;bold_source&quot; &lt;nipype.interfaces.utility.base.Select&gt;
+230709-23:08:55,304 nipype.workflow INFO:
+	 [Node] Finished &quot;bold_source&quot;, elapsed time 0.000242s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:57,146 nipype.workflow INFO:
+	 [Job 10] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_source).
+230709-23:08:57,148 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 19 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.lap_tmpl
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:57,266 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.func_derivatives_wf.raw_sources&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/func_derivatives_wf/raw_sources&quot;.
+230709-23:08:57,268 nipype.workflow INFO:
+	 [Node] Executing &quot;raw_sources&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:08:57,270 nipype.workflow INFO:
+	 [Node] Finished &quot;raw_sources&quot;, elapsed time 0.000594s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:58,893 nipype.workflow INFO:
+	 [Node] Finished &quot;lap_tmpl&quot;, elapsed time 11.05333s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:59,149 nipype.workflow INFO:
+	 [Job 5] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.lap_tmpl).
+230709-23:08:59,151 nipype.workflow INFO:
+	 [Job 11] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.func_derivatives_wf.raw_sources).
+230709-23:08:59,153 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 19 jobs ready. Free memory (GB): 10.00/10.00, Free processors: 2/2.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:59,273 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_val_bold0&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/val_bold/mapflow/_val_bold0&quot;.
+230709-23:08:59,276 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.get_dummy&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/get_dummy&quot;.
+230709-23:08:59,276 nipype.workflow INFO:
+	 [Node] Executing &quot;_val_bold0&quot; &lt;niworkflows.interfaces.header.ValidateImage&gt;
+230709-23:08:59,277 nipype.workflow INFO:
+	 [Node] Executing &quot;get_dummy&quot; &lt;niworkflows.interfaces.bold.NonsteadyStatesDetector&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:59,357 nipype.workflow INFO:
+	 [Node] Finished &quot;_val_bold0&quot;, elapsed time 0.079953s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:08:59,919 nipype.workflow INFO:
+	 [Node] Finished &quot;get_dummy&quot;, elapsed time 0.640578s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:01,151 nipype.workflow INFO:
+	 [Job 12] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.val_bold).
+230709-23:09:01,153 nipype.workflow INFO:
+	 [Job 13] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.get_dummy).
+230709-23:09:01,156 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 21 jobs ready. Free memory (GB): 10.00/10.00, Free processors: 2/2.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:01,273 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_norm_wf.split_desc&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_norm_wf/_template_MNI152NLin2009cAsym/split_desc&quot;.
+230709-23:09:01,275 nipype.workflow INFO:
+	 [Node] Executing &quot;split_desc&quot; &lt;smriprep.interfaces.templateflow.TemplateDesc&gt;
+230709-23:09:01,276 nipype.workflow INFO:
+	 [Node] Finished &quot;split_desc&quot;, elapsed time 0.000147s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:01,278 nipype.workflow INFO:
+	 [Job 14] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_norm_wf.split_desc).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:01,395 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_reports_wf.tf_select&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_reports_wf/_template_MNI152NLin2009cAsym/tf_select&quot;.
+230709-23:09:01,397 nipype.workflow INFO:
+	 [Node] Executing &quot;tf_select&quot; &lt;smriprep.interfaces.templateflow.TemplateFlowSelect&gt;
+230709-23:09:01,428 nipype.workflow INFO:
+	 [Node] Finished &quot;tf_select&quot;, elapsed time 0.030034s.
+230709-23:09:01,431 nipype.workflow INFO:
+	 [Job 15] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_reports_wf.tf_select).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:01,551 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_std_trans_wf.select_tpl&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_std_trans_wf/_std_target_MNI152NLin2009cAsym.resnative/select_tpl&quot;.
+230709-23:09:01,552 nipype.workflow INFO:
+	 [Node] Executing &quot;select_tpl&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:01,567 nipype.workflow INFO:
+	 [Node] Finished &quot;select_tpl&quot;, elapsed time 0.013393s.
+230709-23:09:01,569 nipype.workflow INFO:
+	 [Job 16] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_std_trans_wf.select_tpl).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:01,685 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_std_trans_wf.split_target&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_std_trans_wf/_std_target_MNI152NLin2009cAsym.resnative/split_target&quot;.
+230709-23:09:01,687 nipype.workflow INFO:
+	 [Node] Executing &quot;split_target&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:01,688 nipype.workflow INFO:
+	 [Node] Finished &quot;split_target&quot;, elapsed time 0.000458s.
+230709-23:09:01,690 nipype.workflow INFO:
+	 [Job 17] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_std_trans_wf.split_target).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:01,801 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.func_derivatives_wf.spacesource&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/func_derivatives_wf/_in_tuple_MNI152NLin2009cAsym.resnative/spacesource&quot;.
+230709-23:09:01,803 nipype.workflow INFO:
+	 [Node] Executing &quot;spacesource&quot; &lt;niworkflows.interfaces.space.SpaceDataSource&gt;
+230709-23:09:01,804 nipype.workflow INFO:
+	 [Node] Finished &quot;spacesource&quot;, elapsed time 0.000164s.
+230709-23:09:01,806 nipype.workflow INFO:
+	 [Job 18] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.func_derivatives_wf.spacesource).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:01,922 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_std_trans_wf.split_target&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_std_trans_wf/_std_target_MNI152NLin2009cAsym.resnative/split_target&quot;.
+230709-23:09:01,924 nipype.workflow INFO:
+	 [Node] Executing &quot;split_target&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:01,925 nipype.workflow INFO:
+	 [Node] Finished &quot;split_target&quot;, elapsed time 0.000479s.
+230709-23:09:01,928 nipype.workflow INFO:
+	 [Job 19] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_std_trans_wf.split_target).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:02,45 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_std_trans_wf.select_tpl&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_std_trans_wf/_std_target_MNI152NLin2009cAsym.resnative/select_tpl&quot;.
+230709-23:09:02,47 nipype.workflow INFO:
+	 [Node] Executing &quot;select_tpl&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:02,61 nipype.workflow INFO:
+	 [Node] Finished &quot;select_tpl&quot;, elapsed time 0.01284s.
+230709-23:09:02,63 nipype.workflow INFO:
+	 [Job 20] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_std_trans_wf.select_tpl).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:02,184 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.func_derivatives_wf.spacesource&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/func_derivatives_wf/_in_tuple_MNI152NLin2009cAsym.resnative/spacesource&quot;.
+230709-23:09:02,186 nipype.workflow INFO:
+	 [Node] Executing &quot;spacesource&quot; &lt;niworkflows.interfaces.space.SpaceDataSource&gt;
+230709-23:09:02,187 nipype.workflow INFO:
+	 [Node] Finished &quot;spacesource&quot;, elapsed time 0.000154s.
+230709-23:09:02,189 nipype.workflow INFO:
+	 [Job 21] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.func_derivatives_wf.spacesource).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:02,305 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_derivatives_wf.spacesource&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_derivatives_wf/_in_tuple_MNI152NLin2009cAsym.resnative/spacesource&quot;.
+230709-23:09:02,307 nipype.workflow INFO:
+	 [Node] Executing &quot;spacesource&quot; &lt;niworkflows.interfaces.space.SpaceDataSource&gt;
+230709-23:09:02,308 nipype.workflow INFO:
+	 [Node] Finished &quot;spacesource&quot;, elapsed time 0.000156s.
+230709-23:09:02,310 nipype.workflow INFO:
+	 [Job 22] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_derivatives_wf.spacesource).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:02,432 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_template_wf.t1w_ref_dimensions&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_template_wf/t1w_ref_dimensions&quot;.
+230709-23:09:02,435 nipype.workflow INFO:
+	 [Node] Executing &quot;t1w_ref_dimensions&quot; &lt;niworkflows.interfaces.images.TemplateDimensions&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:02,843 nipype.workflow INFO:
+	 [Node] Finished &quot;t1w_ref_dimensions&quot;, elapsed time 0.40713s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:03,151 nipype.workflow INFO:
+	 [Job 24] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_template_wf.t1w_ref_dimensions).
+230709-23:09:03,155 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 16 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.bids_info
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:03,288 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.ds_report_about&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/ds_report_about&quot;.
+230709-23:09:03,294 nipype.workflow INFO:
+	 [Node] Executing &quot;ds_report_about&quot; &lt;fmriprep.interfaces.DerivativesDataSink&gt;
+230709-23:09:03,303 nipype.workflow INFO:
+	 [Node] Finished &quot;ds_report_about&quot;, elapsed time 0.007575s.
+230709-23:09:03,306 nipype.workflow INFO:
+	 [Job 25] Completed (fmriprep_22_1_wf.single_subject_08_wf.ds_report_about).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:03,443 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.mrg_tmpl&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/brain_extraction_wf/mrg_tmpl&quot;.
+230709-23:09:03,446 nipype.workflow INFO:
+	 [Node] Executing &quot;mrg_tmpl&quot; &lt;nipype.interfaces.utility.base.Merge&gt;
+230709-23:09:03,448 nipype.workflow INFO:
+	 [Node] Finished &quot;mrg_tmpl&quot;, elapsed time 0.000214s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:04,138 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.bids_info&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/bids_info&quot;.
+230709-23:09:04,141 nipype.workflow INFO:
+	 [Node] Executing &quot;bids_info&quot; &lt;niworkflows.interfaces.bids.BIDSInfo&gt;
+230709-23:09:04,148 nipype.workflow INFO:
+	 [Node] Finished &quot;bids_info&quot;, elapsed time 0.006405s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:05,154 nipype.workflow INFO:
+	 [Job 23] Completed (fmriprep_22_1_wf.single_subject_08_wf.bids_info).
+230709-23:09:05,156 nipype.workflow INFO:
+	 [Job 26] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.mrg_tmpl).
+230709-23:09:05,160 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 16 jobs ready. Free memory (GB): 10.00/10.00, Free processors: 2/2.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:05,278 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.ds_report_validation&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/ds_report_validation&quot;.
+230709-23:09:05,279 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.select_bold&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/select_bold&quot;.
+230709-23:09:05,283 nipype.workflow INFO:
+	 [Node] Executing &quot;ds_report_validation&quot; &lt;fmriprep.interfaces.DerivativesDataSink&gt;
+230709-23:09:05,288 nipype.workflow INFO:
+	 [Node] Executing &quot;select_bold&quot; &lt;nipype.interfaces.utility.base.Select&gt;
+230709-23:09:05,289 nipype.workflow INFO:
+	 [Node] Finished &quot;select_bold&quot;, elapsed time 0.000253s.
+230709-23:09:05,291 nipype.workflow INFO:
+	 [Node] Finished &quot;ds_report_validation&quot;, elapsed time 0.006898s.
+230709-23:09:05,294 nipype.workflow INFO:
+	 [Job 28] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.ds_report_validation).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:05,409 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.calc_dummy_scans&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/calc_dummy_scans&quot;.
+230709-23:09:05,412 nipype.workflow INFO:
+	 [Node] Executing &quot;calc_dummy_scans&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:05,413 nipype.workflow INFO:
+	 [Node] Finished &quot;calc_dummy_scans&quot;, elapsed time 0.000361s.
+230709-23:09:05,415 nipype.workflow INFO:
+	 [Job 29] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.calc_dummy_scans).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:05,531 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.gen_avg&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/gen_avg&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:05,538 nipype.workflow INFO:
+	 [Node] Executing &quot;gen_avg&quot; &lt;niworkflows.interfaces.images.RobustAverage&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:07,154 nipype.workflow INFO:
+	 [Job 27] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.select_bold).
+230709-23:09:07,158 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 13 jobs ready. Free memory (GB): 9.00/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.gen_avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:07,277 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.select_bold&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/select_bold&quot;.
+230709-23:09:07,279 nipype.workflow INFO:
+	 [Node] Executing &quot;select_bold&quot; &lt;nipype.interfaces.utility.base.Select&gt;
+230709-23:09:07,280 nipype.workflow INFO:
+	 [Node] Finished &quot;select_bold&quot;, elapsed time 0.000223s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:07,980 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:07.980333:++ 3dvolreg: AFNI version=AFNI_22.3.06 (Nov 15 2022) [64-bit]
+230709-23:09:07,980 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:07.980333:++ Authored by: RW Cox
+230709-23:09:07,982 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:07.982345:** AFNI converts NIFTI_datatype=4 (INT16) in file /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/gen_avg/sub-08_task-flanker_run-1_bold_sliced.nii.gz to FLOAT32
+230709-23:09:07,982 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:07.982345:     Warnings of this type will be muted for this session.
+230709-23:09:07,982 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:07.982345:     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+230709-23:09:07,983 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:07.983873:++ Coarse del was 10, replaced with 4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:09,155 nipype.workflow INFO:
+	 [Job 31] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.select_bold).
+230709-23:09:09,160 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 13 jobs ready. Free memory (GB): 9.00/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.gen_avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:09,283 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.ds_report_validation&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/ds_report_validation&quot;.
+230709-23:09:09,288 nipype.workflow INFO:
+	 [Node] Executing &quot;ds_report_validation&quot; &lt;fmriprep.interfaces.DerivativesDataSink&gt;
+230709-23:09:09,295 nipype.workflow INFO:
+	 [Node] Finished &quot;ds_report_validation&quot;, elapsed time 0.005872s.
+230709-23:09:09,298 nipype.workflow INFO:
+	 [Job 32] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.ds_report_validation).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:09,420 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.calc_dummy_scans&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/calc_dummy_scans&quot;.
+230709-23:09:09,424 nipype.workflow INFO:
+	 [Node] Executing &quot;calc_dummy_scans&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:09,426 nipype.workflow INFO:
+	 [Node] Finished &quot;calc_dummy_scans&quot;, elapsed time 0.000425s.
+230709-23:09:09,428 nipype.workflow INFO:
+	 [Job 33] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.calc_dummy_scans).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:09,555 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.gen_avg&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/gen_avg&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:09,561 nipype.workflow INFO:
+	 [Node] Executing &quot;gen_avg&quot; &lt;niworkflows.interfaces.images.RobustAverage&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:10,594 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:10.594387:++ 3dvolreg: AFNI version=AFNI_22.3.06 (Nov 15 2022) [64-bit]
+230709-23:09:10,594 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:10.594827:++ Authored by: RW Cox
+230709-23:09:10,595 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:10.595462:** AFNI converts NIFTI_datatype=4 (INT16) in file /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/gen_avg/sub-08_task-flanker_run-2_bold_sliced.nii.gz to FLOAT32
+230709-23:09:10,595 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:10.595606:     Warnings of this type will be muted for this session.
+230709-23:09:10,595 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:10.595606:     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+230709-23:09:10,596 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:10.596022:++ Coarse del was 10, replaced with 4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:11,157 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 10 jobs ready. Free memory (GB): 8.00/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.gen_avg
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.gen_avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:29,126 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:29.126051:++ Max displacement in automask = 0.12 (mm) at sub-brick 18
+230709-23:09:29,126 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:29.126051:++ Max delta displ  in automask = 0.10 (mm) at sub-brick 5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:30,456 nipype.workflow INFO:
+	 [Node] Finished &quot;gen_avg&quot;, elapsed time 24.916603s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:31,175 nipype.workflow INFO:
+	 [Job 30] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.gen_avg).
+230709-23:09:31,179 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 12 jobs ready. Free memory (GB): 9.00/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.gen_avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:31,299 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_norm_wf.tf_select&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_norm_wf/_template_MNI152NLin2009cAsym/tf_select&quot;.
+230709-23:09:31,302 nipype.workflow INFO:
+	 [Node] Executing &quot;tf_select&quot; &lt;smriprep.interfaces.templateflow.TemplateFlowSelect&gt;
+230709-23:09:31,325 nipype.workflow INFO:
+	 [Node] Finished &quot;tf_select&quot;, elapsed time 0.022073s.
+230709-23:09:31,328 nipype.workflow INFO:
+	 [Job 35] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_norm_wf.tf_select).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:31,450 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_derivatives_wf.gen_tplid&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_derivatives_wf/_in_tuple_MNI152NLin2009cAsym.resnative/gen_tplid&quot;.
+230709-23:09:31,453 nipype.workflow INFO:
+	 [Node] Executing &quot;gen_tplid&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:31,455 nipype.workflow INFO:
+	 [Node] Finished &quot;gen_tplid&quot;, elapsed time 0.000401s.
+230709-23:09:31,457 nipype.workflow INFO:
+	 [Job 36] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_derivatives_wf.gen_tplid).
+230709-23:09:31,481 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:31.480974:++ Max displacement in automask = 1.01 (mm) at sub-brick 17
+230709-23:09:31,481 nipype.interface INFO:
+	 stderr 2023-07-09T23:09:31.480974:++ Max delta displ  in automask = 0.39 (mm) at sub-brick 17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:31,575 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_derivatives_wf.select_tpl&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_derivatives_wf/_in_tuple_MNI152NLin2009cAsym.resnative/select_tpl&quot;.
+230709-23:09:31,578 nipype.workflow INFO:
+	 [Node] Executing &quot;select_tpl&quot; &lt;smriprep.interfaces.templateflow.TemplateFlowSelect&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:31,608 nipype.workflow INFO:
+	 [Node] Finished &quot;select_tpl&quot;, elapsed time 0.028883s.
+230709-23:09:31,610 nipype.workflow INFO:
+	 [Job 37] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_derivatives_wf.select_tpl).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:31,732 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.summary&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/summary&quot;.
+230709-23:09:31,737 nipype.workflow INFO:
+	 [Node] Executing &quot;summary&quot; &lt;fmriprep.interfaces.reports.SubjectSummary&gt;
+230709-23:09:31,741 nipype.workflow INFO:
+	 [Node] Finished &quot;summary&quot;, elapsed time 0.002591s.
+230709-23:09:31,744 nipype.workflow INFO:
+	 [Job 38] Completed (fmriprep_22_1_wf.single_subject_08_wf.summary).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:31,861 nipype.workflow INFO:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.fs_isrunning&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/fs_isrunning&quot;.
+230709-23:09:31,867 nipype.workflow INFO:
+	 [Node] Executing &quot;fs_isrunning&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:31,869 nipype.workflow INFO:
+	 [Node] Finished &quot;fs_isrunning&quot;, elapsed time 0.000678s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:32,761 nipype.workflow INFO:
+	 [Node] Finished &quot;gen_avg&quot;, elapsed time 23.198997s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:33,176 nipype.workflow INFO:
+	 [Job 34] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.gen_avg).
+230709-23:09:33,178 nipype.workflow INFO:
+	 [Job 39] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.fs_isrunning).
+230709-23:09:33,181 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 10.00/10.00, Free processors: 2/2.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:33,300 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_reports_wf.t1w_conform_check&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_reports_wf/t1w_conform_check&quot;.
+230709-23:09:33,304 nipype.workflow INFO:
+	 [Node] Executing &quot;t1w_conform_check&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:33,305 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_t1w_conform0&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_template_wf/t1w_conform/mapflow/_t1w_conform0&quot;.
+230709-23:09:33,306 nipype.workflow INFO:
+	 [Node] Finished &quot;t1w_conform_check&quot;, elapsed time 0.00039s.
+230709-23:09:33,307 nipype.workflow INFO:
+	 [Node] Executing &quot;_t1w_conform0&quot; &lt;niworkflows.interfaces.images.Conform&gt;
+230709-23:09:33,308 nipype.workflow INFO:
+	 [Job 41] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_reports_wf.t1w_conform_check).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:33,429 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_derivatives_wf.raw_sources&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_derivatives_wf/raw_sources&quot;.
+230709-23:09:33,432 nipype.workflow INFO:
+	 [Node] Executing &quot;raw_sources&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+230709-23:09:33,434 nipype.workflow INFO:
+	 [Node] Finished &quot;raw_sources&quot;, elapsed time 0.001384s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:34,49 nipype.workflow INFO:
+	 [Node] Finished &quot;_t1w_conform0&quot;, elapsed time 0.740831s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:35,178 nipype.workflow INFO:
+	 [Job 40] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_template_wf.t1w_conform).
+230709-23:09:35,180 nipype.workflow INFO:
+	 [Job 42] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_derivatives_wf.raw_sources).
+230709-23:09:35,182 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 9 jobs ready. Free memory (GB): 10.00/10.00, Free processors: 2/2.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:35,339 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/init_aff&quot;.
+230709-23:09:35,343 nipype.workflow INFO:
+	 [Node] Executing &quot;init_aff&quot; &lt;nipype.interfaces.ants.utils.AI&gt;
+230709-23:09:35,383 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_split&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_split&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:35,386 nipype.workflow INFO:
+	 [Node] Executing &quot;bold_split&quot; &lt;nipype.interfaces.fsl.utils.Split&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:37,179 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 7 jobs ready. Free memory (GB): 9.27/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_split
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:40,901 nipype.workflow INFO:
+	 [Node] Finished &quot;bold_split&quot;, elapsed time 5.514258s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:41,182 nipype.workflow INFO:
+	 [Job 43] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_split).
+230709-23:09:41,185 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 8 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:41,318 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.mcflirt&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_hmc_wf/mcflirt&quot;.
+230709-23:09:41,322 nipype.workflow INFO:
+	 [Node] Executing &quot;mcflirt&quot; &lt;nipype.interfaces.fsl.preprocess.MCFLIRT&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:09:43,185 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 7 jobs ready. Free memory (GB): 9.27/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.mcflirt
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:10:21,244 nipype.workflow INFO:
+	 [Node] Finished &quot;mcflirt&quot;, elapsed time 39.920425s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:10:23,224 nipype.workflow INFO:
+	 [Job 45] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.mcflirt).
+230709-23:10:23,227 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 10 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:10:23,365 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_split&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_split&quot;.
+230709-23:10:23,368 nipype.workflow INFO:
+	 [Node] Executing &quot;bold_split&quot; &lt;nipype.interfaces.fsl.utils.Split&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:10:25,227 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 9 jobs ready. Free memory (GB): 9.27/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_split
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:10:27,411 nipype.workflow INFO:
+	 [Node] Finished &quot;bold_split&quot;, elapsed time 4.042396s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:10:29,230 nipype.workflow INFO:
+	 [Job 46] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_split).
+230709-23:10:29,233 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 10 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:10:29,353 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/init_aff&quot;.
+230709-23:10:29,357 nipype.workflow INFO:
+	 [Node] Executing &quot;init_aff&quot; &lt;nipype.interfaces.ants.utils.AI&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:10:31,233 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 9 jobs ready. Free memory (GB): 9.60/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:13:49,659 nipype.workflow INFO:
+	 [Node] Finished &quot;init_aff&quot;, elapsed time 254.185651s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:13:51,432 nipype.workflow INFO:
+	 [Job 44] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff).
+230709-23:13:51,435 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 10 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:13:51,651 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.mcflirt&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_hmc_wf/mcflirt&quot;.
+230709-23:13:51,657 nipype.workflow INFO:
+	 [Node] Executing &quot;mcflirt&quot; &lt;nipype.interfaces.fsl.preprocess.MCFLIRT&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:13:53,436 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 9 jobs ready. Free memory (GB): 9.27/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.mcflirt
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:28,973 nipype.workflow INFO:
+	 [Node] Finished &quot;mcflirt&quot;, elapsed time 37.314325s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:29,471 nipype.workflow INFO:
+	 [Job 48] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.mcflirt).
+230709-23:14:29,474 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 12 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:29,645 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.ds_report_summary&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/ds_report_summary&quot;.
+230709-23:14:29,659 nipype.workflow INFO:
+	 [Node] Executing &quot;ds_report_summary&quot; &lt;fmriprep.interfaces.DerivativesDataSink&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:29,677 nipype.workflow INFO:
+	 [Node] Finished &quot;ds_report_summary&quot;, elapsed time 0.011472s.
+230709-23:14:29,682 nipype.workflow INFO:
+	 [Job 49] Completed (fmriprep_22_1_wf.single_subject_08_wf.ds_report_summary).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:29,808 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_template_wf.get1st&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_template_wf/get1st&quot;.
+230709-23:14:29,811 nipype.workflow INFO:
+	 [Node] Executing &quot;get1st&quot; &lt;nipype.interfaces.utility.base.Select&gt;
+230709-23:14:29,812 nipype.workflow INFO:
+	 [Node] Finished &quot;get1st&quot;, elapsed time 0.000257s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:31,473 nipype.workflow INFO:
+	 [Job 50] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_template_wf.get1st).
+230709-23:14:31,476 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 11 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:31,633 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_reports_wf.ds_t1w_conform_report&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_reports_wf/ds_t1w_conform_report&quot;.
+230709-23:14:31,638 nipype.workflow INFO:
+	 [Node] Executing &quot;ds_t1w_conform_report&quot; &lt;smriprep.interfaces.DerivativesDataSink&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:31,664 nipype.workflow INFO:
+	 [Node] Finished &quot;ds_t1w_conform_report&quot;, elapsed time 0.020338s.
+230709-23:14:31,667 nipype.workflow INFO:
+	 [Job 51] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_reports_wf.ds_t1w_conform_report).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:31,815 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_std_trans_wf.gen_ref&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_std_trans_wf/_std_target_MNI152NLin2009cAsym.resnative/gen_ref&quot;.
+230709-23:14:31,839 nipype.workflow INFO:
+	 [Node] Executing &quot;gen_ref&quot; &lt;niworkflows.interfaces.nibabel.GenerateSamplingReference&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:33,476 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 9 jobs ready. Free memory (GB): 9.50/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_std_trans_wf.gen_ref
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:43,337 nipype.workflow INFO:
+	 [Node] Finished &quot;init_aff&quot;, elapsed time 253.978757s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:43,482 nipype.workflow INFO:
+	 [Job 47] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.init_aff).
+230709-23:14:43,486 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 10 jobs ready. Free memory (GB): 9.70/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_std_trans_wf.gen_ref
+230709-23:14:43,491 nipype.workflow INFO:
+	 [Node] Finished &quot;gen_ref&quot;, elapsed time 11.650689s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:43,614 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.norm&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/norm&quot;.
+230709-23:14:43,620 nipype.workflow INFO:
+	 [Node] Executing &quot;norm&quot; &lt;niworkflows.interfaces.fixes.FixHeaderRegistration&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:45,151 nipype.workflow INFO:
+	 [Node] Finished &quot;norm&quot;, elapsed time 1.529353s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:45,484 nipype.workflow INFO:
+	 [Job 52] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_std_trans_wf.gen_ref).
+230709-23:14:45,486 nipype.workflow INFO:
+	 [Job 53] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.norm).
+230709-23:14:45,491 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 10.00/10.00, Free processors: 2/2.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:45,621 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.fsl2itk&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_hmc_wf/fsl2itk&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:45,653 nipype.workflow INFO:
+	 [Node] Executing &quot;fsl2itk&quot; &lt;niworkflows.interfaces.itk.MCFLIRT2ITK&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:45,989 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.normalize_motion&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_hmc_wf/normalize_motion&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:46,0 nipype.workflow INFO:
+	 [Node] Executing &quot;normalize_motion&quot; &lt;niworkflows.interfaces.confounds.NormalizeMotionParams&gt;
+230709-23:14:46,4 nipype.workflow INFO:
+	 [Node] Finished &quot;normalize_motion&quot;, elapsed time 0.003283s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:47,486 nipype.workflow INFO:
+	 [Job 55] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.normalize_motion).
+230709-23:14:47,490 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 10 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:47,618 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_confounds_wf.add_rmsd_header&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_confounds_wf/add_rmsd_header&quot;.
+230709-23:14:47,629 nipype.workflow INFO:
+	 [Node] Executing &quot;add_rmsd_header&quot; &lt;niworkflows.interfaces.utility.AddTSVHeader&gt;
+230709-23:14:47,632 nipype.workflow INFO:
+	 [Node] Finished &quot;add_rmsd_header&quot;, elapsed time 0.001474s.
+230709-23:14:47,635 nipype.workflow INFO:
+	 [Job 56] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_confounds_wf.add_rmsd_header).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:47,764 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_std_trans_wf.gen_ref&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_std_trans_wf/_std_target_MNI152NLin2009cAsym.resnative/gen_ref&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:47,778 nipype.workflow INFO:
+	 [Node] Executing &quot;gen_ref&quot; &lt;niworkflows.interfaces.nibabel.GenerateSamplingReference&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:48,541 nipype.workflow INFO:
+	 [Node] Finished &quot;gen_ref&quot;, elapsed time 0.761756s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:49,488 nipype.workflow INFO:
+	 [Job 57] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_std_trans_wf.gen_ref).
+230709-23:14:49,491 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 8 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:49,631 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.norm&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/norm&quot;.
+230709-23:14:49,637 nipype.workflow INFO:
+	 [Node] Executing &quot;norm&quot; &lt;niworkflows.interfaces.fixes.FixHeaderRegistration&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:14:51,491 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 7 jobs ready. Free memory (GB): 9.75/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.norm
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:04,509 nipype.workflow INFO:
+	 [Node] Finished &quot;norm&quot;, elapsed time 14.869642s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:05,504 nipype.workflow INFO:
+	 [Job 58] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.norm).
+230709-23:15:05,508 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 8 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:05,645 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_hmc_wf/fsl2itk&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:05,678 nipype.workflow INFO:
+	 [Node] Executing &quot;fsl2itk&quot; &lt;niworkflows.interfaces.itk.MCFLIRT2ITK&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:07,507 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 7 jobs ready. Free memory (GB): 9.90/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:15,10 nipype.workflow INFO:
+	 [Node] Finished &quot;fsl2itk&quot;, elapsed time 29.355074s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:15,514 nipype.workflow INFO:
+	 [Job 54] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_hmc_wf.fsl2itk).
+230709-23:15:15,517 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 9 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:15,653 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.normalize_motion&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_hmc_wf/normalize_motion&quot;.
+230709-23:15:15,664 nipype.workflow INFO:
+	 [Node] Executing &quot;normalize_motion&quot; &lt;niworkflows.interfaces.confounds.NormalizeMotionParams&gt;
+230709-23:15:15,669 nipype.workflow INFO:
+	 [Node] Finished &quot;normalize_motion&quot;, elapsed time 0.003211s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:17,516 nipype.workflow INFO:
+	 [Job 60] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.normalize_motion).
+230709-23:15:17,520 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 10 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:17,650 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_confounds_wf.add_rmsd_header&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_confounds_wf/add_rmsd_header&quot;.
+230709-23:15:17,662 nipype.workflow INFO:
+	 [Node] Executing &quot;add_rmsd_header&quot; &lt;niworkflows.interfaces.utility.AddTSVHeader&gt;
+230709-23:15:17,665 nipype.workflow INFO:
+	 [Node] Finished &quot;add_rmsd_header&quot;, elapsed time 0.001504s.
+230709-23:15:17,667 nipype.workflow INFO:
+	 [Job 61] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_confounds_wf.add_rmsd_header).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:17,797 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_validate&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/anat_validate&quot;.
+230709-23:15:17,799 nipype.workflow INFO:
+	 [Node] Executing &quot;anat_validate&quot; &lt;niworkflows.interfaces.header.ValidateImage&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:18,508 nipype.workflow INFO:
+	 [Node] Finished &quot;anat_validate&quot;, elapsed time 0.707384s.
+230709-23:15:18,511 nipype.workflow INFO:
+	 [Job 62] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.anat_validate).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:18,639 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.map_brainmask&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/map_brainmask&quot;.
+230709-23:15:18,644 nipype.workflow INFO:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	 [Node] Executing &quot;map_brainmask&quot; &lt;niworkflows.interfaces.fixes.FixHeaderApplyTransforms&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:19,518 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 10 jobs ready. Free memory (GB): 9.75/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.map_brainmask
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:20,99 nipype.workflow INFO:
+	 [Node] Finished &quot;map_brainmask&quot;, elapsed time 1.45093s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:21,519 nipype.workflow INFO:
+	 [Job 63] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.map_brainmask).
+230709-23:15:21,523 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 11 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:21,651 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_bold_trans_wf.merge_xforms&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_bold_trans_wf/merge_xforms&quot;.
+230709-23:15:21,654 nipype.workflow INFO:
+	 [Node] Executing &quot;merge_xforms&quot; &lt;nipype.interfaces.utility.base.Merge&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:21,658 nipype.workflow INFO:
+	 [Node] Finished &quot;merge_xforms&quot;, elapsed time 0.000253s.
+230709-23:15:21,660 nipype.workflow INFO:
+	 [Job 64] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_bold_trans_wf.merge_xforms).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:21,786 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.func_derivatives_wf.ds_bold_hmc_xfm&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/func_derivatives_wf/ds_bold_hmc_xfm&quot;.
+230709-23:15:21,792 nipype.workflow INFO:
+	 [Node] Executing &quot;ds_bold_hmc_xfm&quot; &lt;fmriprep.interfaces.DerivativesDataSink&gt;
+230709-23:15:21,798 nipype.workflow INFO:
+	 [Node] Finished &quot;ds_bold_hmc_xfm&quot;, elapsed time 0.004158s.
+230709-23:15:21,800 nipype.workflow INFO:
+	 [Job 65] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.func_derivatives_wf.ds_bold_hmc_xfm).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:21,928 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_confounds_wf.fdisp&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_confounds_wf/fdisp&quot;.
+230709-23:15:21,931 nipype.workflow INFO:
+	 [Node] Executing &quot;fdisp&quot; &lt;nipype.algorithms.confounds.FramewiseDisplacement&gt;
+230709-23:15:21,936 nipype.workflow INFO:
+	 [Node] Finished &quot;fdisp&quot;, elapsed time 0.00266s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:23,521 nipype.workflow INFO:
+	 [Job 66] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_confounds_wf.fdisp).
+230709-23:15:23,524 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 9 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:23,655 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_confounds_wf.add_motion_headers&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_confounds_wf/add_motion_headers&quot;.
+230709-23:15:23,658 nipype.workflow INFO:
+	 [Node] Executing &quot;add_motion_headers&quot; &lt;niworkflows.interfaces.utility.AddTSVHeader&gt;
+230709-23:15:23,663 nipype.workflow INFO:
+	 [Node] Finished &quot;add_motion_headers&quot;, elapsed time 0.00288s.
+230709-23:15:23,665 nipype.workflow INFO:
+	 [Job 67] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_confounds_wf.add_motion_headers).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:23,803 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.map_brainmask&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/map_brainmask&quot;.
+230709-23:15:23,810 nipype.workflow INFO:
+	 [Node] Executing &quot;map_brainmask&quot; &lt;niworkflows.interfaces.fixes.FixHeaderApplyTransforms&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:24,228 nipype.workflow INFO:
+	 [Node] Finished &quot;map_brainmask&quot;, elapsed time 0.416995s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:25,524 nipype.workflow INFO:
+	 [Job 68] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.map_brainmask).
+230709-23:15:25,527 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 8 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:25,661 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_confounds_wf.fdisp&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_confounds_wf/fdisp&quot;.
+230709-23:15:25,664 nipype.workflow INFO:
+	 [Node] Executing &quot;fdisp&quot; &lt;nipype.algorithms.confounds.FramewiseDisplacement&gt;
+230709-23:15:25,668 nipype.workflow INFO:
+	 [Node] Finished &quot;fdisp&quot;, elapsed time 0.002734s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:27,524 nipype.workflow INFO:
+	 [Job 71] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_confounds_wf.fdisp).
+230709-23:15:27,527 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 7 jobs ready. Free memory (GB): 9.95/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:27,657 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_confounds_wf.add_motion_headers&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_confounds_wf/add_motion_headers&quot;.
+230709-23:15:27,660 nipype.workflow INFO:
+	 [Node] Executing &quot;add_motion_headers&quot; &lt;niworkflows.interfaces.utility.AddTSVHeader&gt;
+230709-23:15:27,665 nipype.workflow INFO:
+	 [Node] Finished &quot;add_motion_headers&quot;, elapsed time 0.003617s.
+230709-23:15:27,668 nipype.workflow INFO:
+	 [Job 72] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_confounds_wf.add_motion_headers).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:27,800 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_truncate_images0&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/brain_extraction_wf/truncate_images/mapflow/_truncate_images0&quot;.
+230709-23:15:27,802 nipype.workflow INFO:
+	 [Node] Executing &quot;_truncate_images0&quot; &lt;nipype.interfaces.ants.utils.ImageMath&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:29,527 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 5 jobs ready. Free memory (GB): 9.75/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.truncate_images
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:31,475 nipype.workflow INFO:
+	 [Node] Finished &quot;fsl2itk&quot;, elapsed time 25.79558s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:31,527 nipype.workflow INFO:
+	 [Job 59] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_hmc_wf.fsl2itk).
+230709-23:15:31,530 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 7 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.truncate_images
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:31,651 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_bold_trans_wf.merge_xforms&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_bold_trans_wf/merge_xforms&quot;.
+230709-23:15:31,654 nipype.workflow INFO:
+	 [Node] Executing &quot;merge_xforms&quot; &lt;nipype.interfaces.utility.base.Merge&gt;
+230709-23:15:31,655 nipype.workflow INFO:
+	 [Node] Finished &quot;merge_xforms&quot;, elapsed time 0.000211s.
+230709-23:15:31,658 nipype.workflow INFO:
+	 [Job 69] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_bold_trans_wf.merge_xforms).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:31,773 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.func_derivatives_wf.ds_bold_hmc_xfm&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/func_derivatives_wf/ds_bold_hmc_xfm&quot;.
+230709-23:15:31,778 nipype.workflow INFO:
+	 [Node] Executing &quot;ds_bold_hmc_xfm&quot; &lt;fmriprep.interfaces.DerivativesDataSink&gt;
+230709-23:15:31,783 nipype.workflow INFO:
+	 [Node] Finished &quot;ds_bold_hmc_xfm&quot;, elapsed time 0.00429s.
+230709-23:15:31,786 nipype.workflow INFO:
+	 [Job 70] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.func_derivatives_wf.ds_bold_hmc_xfm).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:32,540 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.recon_config&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/surface_recon_wf/recon_config&quot;.
+230709-23:15:32,544 nipype.workflow INFO:
+	 [Node] Executing &quot;recon_config&quot; &lt;niworkflows.interfaces.freesurfer.FSDetectInputs&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:32,599 nipype.workflow INFO:
+	 [Node] Finished &quot;recon_config&quot;, elapsed time 0.053393s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:33,529 nipype.workflow INFO:
+	 [Job 74] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.recon_config).
+230709-23:15:33,532 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 5 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.truncate_images
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:33,656 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.fov_check&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/surface_recon_wf/fov_check&quot;.
+230709-23:15:33,658 nipype.workflow INFO:
+	 [Node] Executing &quot;fov_check&quot; &lt;nipype.interfaces.utility.wrappers.Function&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:34,43 nipype.workflow INFO:
+	 [Node] Finished &quot;fov_check&quot;, elapsed time 0.383407s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:35,542 nipype.workflow INFO:
+	 [Job 75] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.fov_check).
+230709-23:15:35,546 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 5 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.truncate_images
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:35,665 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.check_hdr&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/check_hdr&quot;.
+230709-23:15:35,668 nipype.workflow INFO:
+	 [Node] Executing &quot;check_hdr&quot; &lt;niworkflows.interfaces.header.MatchHeader&gt;
+230709-23:15:35,706 nipype.workflow INFO:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	 [Node] Finished &quot;check_hdr&quot;, elapsed time 0.036569s.
+230709-23:15:35,711 nipype.workflow INFO:
+	 [Job 76] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.check_hdr).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:35,837 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_bold_trans_wf.bold_transform&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/bold_bold_trans_wf/bold_transform&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:35,867 nipype.workflow INFO:
+	 [Node] Executing &quot;bold_transform&quot; &lt;niworkflows.interfaces.itk.MultiApplyTransforms&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:37,553 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 4 jobs ready. Free memory (GB): 7.66/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_bold_trans_wf.bold_transform
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.truncate_images
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:37,880 nipype.workflow INFO:
+	 [Node] Finished &quot;_truncate_images0&quot;, elapsed time 10.076441s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:39,554 nipype.workflow INFO:
+	 [Job 73] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.truncate_images).
+230709-23:15:39,557 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 5 jobs ready. Free memory (GB): 7.86/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_bold_trans_wf.bold_transform
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:39,680 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.check_hdr&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/check_hdr&quot;.
+230709-23:15:39,684 nipype.workflow INFO:
+	 [Node] Executing &quot;check_hdr&quot; &lt;niworkflows.interfaces.header.MatchHeader&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:39,726 nipype.workflow INFO:
+	 [Node] Finished &quot;check_hdr&quot;, elapsed time 0.041189s.
+230709-23:15:39,729 nipype.workflow INFO:
+	 [Job 78] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.check_hdr).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:39,855 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_bold_trans_wf.bold_transform&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/bold_bold_trans_wf/bold_transform&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:39,882 nipype.workflow INFO:
+	 [Node] Executing &quot;bold_transform&quot; &lt;niworkflows.interfaces.itk.MultiApplyTransforms&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:15:41,557 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 4 jobs ready. Free memory (GB): 5.72/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_bold_trans_wf.bold_transform
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_bold_trans_wf.bold_transform
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:18:46,73 nipype.workflow INFO:
+	 [Node] Finished &quot;bold_transform&quot;, elapsed time 190.204712s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:18:47,742 nipype.workflow INFO:
+	 [Job 77] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.bold_bold_trans_wf.bold_transform).
+230709-23:18:47,746 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 5 jobs ready. Free memory (GB): 7.86/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_bold_trans_wf.bold_transform
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:18:47,880 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_inu_n40&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/brain_extraction_wf/inu_n4/mapflow/_inu_n40&quot;.
+230709-23:18:47,882 nipype.workflow INFO:
+	 [Node] Executing &quot;_inu_n40&quot; &lt;nipype.interfaces.ants.segmentation.N4BiasFieldCorrection&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:18:49,78 nipype.workflow INFO:
+	 [Node] Finished &quot;bold_transform&quot;, elapsed time 189.194929s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:18:49,746 nipype.workflow INFO:
+	 [Job 79] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.bold_bold_trans_wf.bold_transform).
+230709-23:18:49,749 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 150 jobs ready. Free memory (GB): 9.80/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.inu_n4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:18:50,151 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.autorecon1&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/surface_recon_wf/autorecon1&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:18:51,41 nipype.workflow INFO:
+	 [Node] Executing &quot;autorecon1&quot; &lt;smriprep.interfaces.freesurfer.ReconAll&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:18:51,748 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 294 jobs ready. Free memory (GB): 4.80/10.00, Free processors: 0/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.autorecon1
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.inu_n4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:39,136 nipype.workflow INFO:
+	 [Node] Finished &quot;_inu_n40&quot;, elapsed time 111.238118s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:39,852 nipype.workflow INFO:
+	 [Job 80] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.inu_n4).
+230709-23:20:39,856 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 296 jobs ready. Free memory (GB): 5.00/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.autorecon1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:39,998 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.n4_correct&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/n4_correct&quot;.
+230709-23:20:40,2 nipype.workflow INFO:
+	 [Node] Executing &quot;n4_correct&quot; &lt;niworkflows.interfaces.fixes.FixN4BiasFieldCorrection&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:41,232 nipype.workflow INFO:
+	 [Node] Finished &quot;n4_correct&quot;, elapsed time 1.228235s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:41,865 nipype.workflow INFO:
+	 [Job 82] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_1_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.n4_correct).
+230709-23:20:41,870 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 296 jobs ready. Free memory (GB): 5.00/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.autorecon1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:41,995 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.n4_correct&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_2_wf/initial_boldref_wf/enhance_and_skullstrip_bold_wf/n4_correct&quot;.
+230709-23:20:41,999 nipype.workflow INFO:
+	 [Node] Executing &quot;n4_correct&quot; &lt;niworkflows.interfaces.fixes.FixN4BiasFieldCorrection&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:43,254 nipype.workflow INFO:
+	 [Node] Finished &quot;n4_correct&quot;, elapsed time 1.254489s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:43,879 nipype.workflow INFO:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	 [Job 84] Completed (fmriprep_22_1_wf.single_subject_08_wf.func_preproc_task_flanker_run_2_wf.initial_boldref_wf.enhance_and_skullstrip_bold_wf.n4_correct).
+230709-23:20:43,885 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 296 jobs ready. Free memory (GB): 5.00/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.autorecon1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:44,11 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.res_target&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/brain_extraction_wf/res_target&quot;.
+230709-23:20:44,14 nipype.workflow INFO:
+	 [Node] Executing &quot;res_target&quot; &lt;niworkflows.interfaces.nibabel.RegridToZooms&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:45,533 nipype.workflow INFO:
+	 [Node] Finished &quot;res_target&quot;, elapsed time 1.51739s.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:45,892 nipype.workflow INFO:
+	 [Job 86] Completed (fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.res_target).
+230709-23:20:45,897 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 296 jobs ready. Free memory (GB): 5.00/10.00, Free processors: 1/2.
+                     Currently running:
+                       * fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.surface_recon_wf.autorecon1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230709-23:20:46,28 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fmriprep_22_1_wf.single_subject_08_wf.anat_preproc_wf.brain_extraction_wf.lap_target&quot; in &quot;/home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/anat_preproc_wf/brain_extraction_wf/lap_target&quot;.
+230709-23:20:46,34 nipype.workflow INFO:
+	 [Node] Executing &quot;lap_target&quot; &lt;nipype.interfaces.ants.utils.ImageMath&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fmriprep Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
