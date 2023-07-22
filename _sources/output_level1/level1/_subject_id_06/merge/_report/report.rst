@@ -39,8 +39,8 @@ Runtime info
 ------------
 
 
-* duration : 0.000376
-* hostname : fv-az403-12
+* duration : 0.000172
+* hostname : fv-az436-650
 * prev_wd : /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging
 * working_dir : /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/output_level1/level1/_subject_id_06/merge
 
@@ -86,14 +86,14 @@ Environment
 * GITHUB_ACTOR_ID : 59903692
 * GITHUB_API_URL : https://api.github.com
 * GITHUB_BASE_REF : 
-* GITHUB_ENV : /home/runner/work/_temp/_runner_file_commands/set_env_6aafb1d0-5f6b-4b30-801e-b4cb5fbe6905
+* GITHUB_ENV : /home/runner/work/_temp/_runner_file_commands/set_env_e00f5f65-9476-4d7c-b6be-ef637236b49b
 * GITHUB_EVENT_NAME : workflow_dispatch
 * GITHUB_EVENT_PATH : /home/runner/work/_temp/_github_workflow/event.json
 * GITHUB_GRAPHQL_URL : https://api.github.com/graphql
 * GITHUB_HEAD_REF : 
 * GITHUB_JOB : test-notebooks
-* GITHUB_OUTPUT : /home/runner/work/_temp/_runner_file_commands/set_output_6aafb1d0-5f6b-4b30-801e-b4cb5fbe6905
-* GITHUB_PATH : /home/runner/work/_temp/_runner_file_commands/add_path_6aafb1d0-5f6b-4b30-801e-b4cb5fbe6905
+* GITHUB_OUTPUT : /home/runner/work/_temp/_runner_file_commands/set_output_e00f5f65-9476-4d7c-b6be-ef637236b49b
+* GITHUB_PATH : /home/runner/work/_temp/_runner_file_commands/add_path_e00f5f65-9476-4d7c-b6be-ef637236b49b
 * GITHUB_REF : refs/heads/overwrite
 * GITHUB_REF_NAME : overwrite
 * GITHUB_REF_PROTECTED : false
@@ -104,34 +104,34 @@ Environment
 * GITHUB_REPOSITORY_OWNER_ID : 59903692
 * GITHUB_RETENTION_DAYS : 90
 * GITHUB_RUN_ATTEMPT : 1
-* GITHUB_RUN_ID : 5502369115
-* GITHUB_RUN_NUMBER : 170
+* GITHUB_RUN_ID : 5631788674
+* GITHUB_RUN_NUMBER : 171
 * GITHUB_SERVER_URL : https://github.com
-* GITHUB_SHA : e13137a29d4c3b1bcc8240768c6e5b959a89d283
-* GITHUB_STATE : /home/runner/work/_temp/_runner_file_commands/save_state_6aafb1d0-5f6b-4b30-801e-b4cb5fbe6905
-* GITHUB_STEP_SUMMARY : /home/runner/work/_temp/_runner_file_commands/step_summary_6aafb1d0-5f6b-4b30-801e-b4cb5fbe6905
+* GITHUB_SHA : 655ad41dd2cd463c30db3a9be51a0f9fb6667fe8
+* GITHUB_STATE : /home/runner/work/_temp/_runner_file_commands/save_state_e00f5f65-9476-4d7c-b6be-ef637236b49b
+* GITHUB_STEP_SUMMARY : /home/runner/work/_temp/_runner_file_commands/step_summary_e00f5f65-9476-4d7c-b6be-ef637236b49b
 * GITHUB_TRIGGERING_ACTOR : iishiishii
 * GITHUB_WORKFLOW : test_changed_notebooks
 * GITHUB_WORKFLOW_REF : iishiishii/example-notebooks/.github/workflows/test_changed_notebook.yml@refs/heads/overwrite
-* GITHUB_WORKFLOW_SHA : e13137a29d4c3b1bcc8240768c6e5b959a89d283
+* GITHUB_WORKFLOW_SHA : 655ad41dd2cd463c30db3a9be51a0f9fb6667fe8
 * GITHUB_WORKSPACE : /home/runner/work/example-notebooks/example-notebooks
 * GIT_PAGER : cat
 * GOROOT_1_18_X64 : /opt/hostedtoolcache/go/1.18.10/x64
-* GOROOT_1_19_X64 : /opt/hostedtoolcache/go/1.19.10/x64
-* GOROOT_1_20_X64 : /opt/hostedtoolcache/go/1.20.5/x64
-* GRADLE_HOME : /usr/share/gradle-8.2
+* GOROOT_1_19_X64 : /opt/hostedtoolcache/go/1.19.11/x64
+* GOROOT_1_20_X64 : /opt/hostedtoolcache/go/1.20.6/x64
+* GRADLE_HOME : /usr/share/gradle-8.2.1
 * HOME : /home/runner
 * HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS : 3650
 * HOMEBREW_NO_AUTO_UPDATE : 1
-* INVOCATION_ID : 668d957bf9b749e79f108d586f25d21a
+* INVOCATION_ID : 632e96a296704971bde7fd7b76067448
 * ImageOS : ubuntu22
-* ImageVersion : 20230702.1.0
+* ImageVersion : 20230716.1.0
 * JAVA_HOME : /usr/lib/jvm/temurin-11-jdk-amd64
 * JAVA_HOME_11_X64 : /usr/lib/jvm/temurin-11-jdk-amd64
 * JAVA_HOME_17_X64 : /usr/lib/jvm/temurin-17-jdk-amd64
 * JAVA_HOME_8_X64 : /usr/lib/jvm/temurin-8-jdk-amd64
-* JOURNAL_STREAM : 8:17240
-* JPY_PARENT_PID : 9239
+* JOURNAL_STREAM : 8:17106
+* JPY_PARENT_PID : 9199
 * KMP_DUPLICATE_LIB_OK : True
 * KMP_INIT_AT_FORK : FALSE
 * LANG : C.UTF-8
@@ -161,7 +161,7 @@ Environment
 * RUNNER_PERFLOG : /home/runner/perflog
 * RUNNER_TEMP : /home/runner/work/_temp
 * RUNNER_TOOL_CACHE : /opt/hostedtoolcache
-* RUNNER_TRACKING_ID : github_e881fc2f-3554-4cb1-932c-1c37ca05a1d9
+* RUNNER_TRACKING_ID : github_60d1c811-c22c-4060-979b-908bac097eca
 * RUNNER_USER : runner
 * RUNNER_WORKSPACE : /home/runner/work/example-notebooks
 * SELENIUM_JAR_PATH : /usr/share/java/selenium-server.jar
@@ -169,7 +169,7 @@ Environment
 * SHLVL : 1
 * SINGULARITY_BINDPATH : /data,/neurodesktop-storage,/tmp,/cvmfs
 * STATS_EXT : true
-* STATS_EXTP : https://provjobdsettingscdn.blob.core.windows.net/settings/provjobdsettings-0.5.146+9/provjobd.data
+* STATS_EXTP : https://provjobdsettingscdn.blob.core.windows.net/settings/provjobdsettings-0.5.154/provjobd.data
 * STATS_NM : true
 * STATS_RDCL : true
 * STATS_TIS : mining
@@ -177,7 +177,7 @@ Environment
 * STATS_V3PS : true
 * STATS_VMD : true
 * SWIFT_PATH : /usr/share/swift/usr/bin
-* SYSTEMD_EXEC_PID : 663
+* SYSTEMD_EXEC_PID : 660
 * TERM : xterm-color
 * USER : runner
 * VCPKG_INSTALLATION_ROOT : /usr/local/share/vcpkg
