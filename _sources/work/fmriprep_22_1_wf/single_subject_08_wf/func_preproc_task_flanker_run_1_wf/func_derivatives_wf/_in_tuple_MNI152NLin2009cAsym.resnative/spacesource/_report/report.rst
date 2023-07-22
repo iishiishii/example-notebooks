@@ -35,8 +35,8 @@ Runtime info
 ------------
 
 
-* duration : 0.000154
-* hostname : fv-az621-157
+* duration : 0.000228
+* hostname : fv-az262-580
 * prev_wd : /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging
 * working_dir : /home/runner/work/example-notebooks/example-notebooks/books/functional_imaging/work/fmriprep_22_1_wf/single_subject_08_wf/func_preproc_task_flanker_run_1_wf/func_derivatives_wf/_in_tuple_MNI152NLin2009cAsym.resnative/spacesource
 
@@ -56,7 +56,7 @@ Environment
 * ANDROID_NDK_ROOT : /usr/local/lib/android/sdk/ndk/25.2.9519653
 * ANDROID_SDK_ROOT : /usr/local/lib/android/sdk
 * ANTSPATH : /opt/ants
-* ANTS_RANDOM_SEED : 35869
+* ANTS_RANDOM_SEED : 19974
 * ANT_HOME : /usr/share/ant
 * APPTAINER_APPNAME : 
 * APPTAINER_BIND : /home/runner/work/example-notebooks/example-notebooks,/cvmfs
@@ -104,14 +104,14 @@ Environment
 * GITHUB_ACTOR_ID : 59903692
 * GITHUB_API_URL : https://api.github.com
 * GITHUB_BASE_REF : 
-* GITHUB_ENV : /home/runner/work/_temp/_runner_file_commands/set_env_92801595-8ca0-4a58-b939-660372c3ecf3
+* GITHUB_ENV : /home/runner/work/_temp/_runner_file_commands/set_env_a46f7216-90d9-4a06-9483-9f74fb226695
 * GITHUB_EVENT_NAME : workflow_dispatch
 * GITHUB_EVENT_PATH : /home/runner/work/_temp/_github_workflow/event.json
 * GITHUB_GRAPHQL_URL : https://api.github.com/graphql
 * GITHUB_HEAD_REF : 
 * GITHUB_JOB : test-notebooks
-* GITHUB_OUTPUT : /home/runner/work/_temp/_runner_file_commands/set_output_92801595-8ca0-4a58-b939-660372c3ecf3
-* GITHUB_PATH : /home/runner/work/_temp/_runner_file_commands/add_path_92801595-8ca0-4a58-b939-660372c3ecf3
+* GITHUB_OUTPUT : /home/runner/work/_temp/_runner_file_commands/set_output_a46f7216-90d9-4a06-9483-9f74fb226695
+* GITHUB_PATH : /home/runner/work/_temp/_runner_file_commands/add_path_a46f7216-90d9-4a06-9483-9f74fb226695
 * GITHUB_REF : refs/heads/overwrite
 * GITHUB_REF_NAME : overwrite
 * GITHUB_REF_PROTECTED : false
@@ -122,36 +122,36 @@ Environment
 * GITHUB_REPOSITORY_OWNER_ID : 59903692
 * GITHUB_RETENTION_DAYS : 90
 * GITHUB_RUN_ATTEMPT : 1
-* GITHUB_RUN_ID : 5502369115
-* GITHUB_RUN_NUMBER : 170
+* GITHUB_RUN_ID : 5631788674
+* GITHUB_RUN_NUMBER : 171
 * GITHUB_SERVER_URL : https://github.com
-* GITHUB_SHA : e13137a29d4c3b1bcc8240768c6e5b959a89d283
-* GITHUB_STATE : /home/runner/work/_temp/_runner_file_commands/save_state_92801595-8ca0-4a58-b939-660372c3ecf3
-* GITHUB_STEP_SUMMARY : /home/runner/work/_temp/_runner_file_commands/step_summary_92801595-8ca0-4a58-b939-660372c3ecf3
+* GITHUB_SHA : 655ad41dd2cd463c30db3a9be51a0f9fb6667fe8
+* GITHUB_STATE : /home/runner/work/_temp/_runner_file_commands/save_state_a46f7216-90d9-4a06-9483-9f74fb226695
+* GITHUB_STEP_SUMMARY : /home/runner/work/_temp/_runner_file_commands/step_summary_a46f7216-90d9-4a06-9483-9f74fb226695
 * GITHUB_TRIGGERING_ACTOR : iishiishii
 * GITHUB_WORKFLOW : test_changed_notebooks
 * GITHUB_WORKFLOW_REF : iishiishii/example-notebooks/.github/workflows/test_changed_notebook.yml@refs/heads/overwrite
-* GITHUB_WORKFLOW_SHA : e13137a29d4c3b1bcc8240768c6e5b959a89d283
+* GITHUB_WORKFLOW_SHA : 655ad41dd2cd463c30db3a9be51a0f9fb6667fe8
 * GITHUB_WORKSPACE : /home/runner/work/example-notebooks/example-notebooks
 * GIT_PAGER : cat
 * GOROOT_1_18_X64 : /opt/hostedtoolcache/go/1.18.10/x64
-* GOROOT_1_19_X64 : /opt/hostedtoolcache/go/1.19.10/x64
-* GOROOT_1_20_X64 : /opt/hostedtoolcache/go/1.20.5/x64
-* GRADLE_HOME : /usr/share/gradle-8.2
+* GOROOT_1_19_X64 : /opt/hostedtoolcache/go/1.19.11/x64
+* GOROOT_1_20_X64 : /opt/hostedtoolcache/go/1.20.6/x64
+* GRADLE_HOME : /usr/share/gradle-8.2.1
 * HOME : /home/fmriprep
 * HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS : 3650
 * HOMEBREW_NO_AUTO_UPDATE : 1
-* INVOCATION_ID : ccfd33345d594a26b0eda2b0ee86a473
+* INVOCATION_ID : 187ac01dfd2a4e7eb6cda1e5b2123c9f
 * IS_DOCKER_8395080871 : 1
 * ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS : 2
 * ImageOS : ubuntu22
-* ImageVersion : 20230702.1.0
+* ImageVersion : 20230716.1.0
 * JAVA_HOME : /usr/lib/jvm/temurin-11-jdk-amd64
 * JAVA_HOME_11_X64 : /usr/lib/jvm/temurin-11-jdk-amd64
 * JAVA_HOME_17_X64 : /usr/lib/jvm/temurin-17-jdk-amd64
 * JAVA_HOME_8_X64 : /usr/lib/jvm/temurin-8-jdk-amd64
-* JOURNAL_STREAM : 8:16931
-* JPY_PARENT_PID : 9264
+* JOURNAL_STREAM : 8:16156
+* JPY_PARENT_PID : 9268
 * KMP_DUPLICATE_LIB_OK : True
 * KMP_INIT_AT_FORK : FALSE
 * LANG : C.UTF-8
@@ -198,7 +198,7 @@ Environment
 * RUNNER_PERFLOG : /home/runner/perflog
 * RUNNER_TEMP : /home/runner/work/_temp
 * RUNNER_TOOL_CACHE : /opt/hostedtoolcache
-* RUNNER_TRACKING_ID : github_8892412d-b2e8-431c-922e-c95ed3ec641f
+* RUNNER_TRACKING_ID : github_ba945bab-5665-4961-afa3-e689dc54e93c
 * RUNNER_USER : runner
 * RUNNER_WORKSPACE : /home/runner/work/example-notebooks
 * SELENIUM_JAR_PATH : /usr/share/java/selenium-server.jar
@@ -209,7 +209,7 @@ Environment
 * SINGULARITY_ENVIRONMENT : /.singularity.d/env/91-environment.sh
 * SINGULARITY_NAME : fmriprep_22.1.1_20230218.simg
 * STATS_EXT : true
-* STATS_EXTP : https://provjobdsettingscdn.blob.core.windows.net/settings/provjobdsettings-0.5.146+9/provjobd.data
+* STATS_EXTP : https://provjobdsettingscdn.blob.core.windows.net/settings/provjobdsettings-0.5.154/provjobd.data
 * STATS_NM : true
 * STATS_RDCL : true
 * STATS_TIS : mining
@@ -218,7 +218,7 @@ Environment
 * STATS_VMD : true
 * SUBJECTS_DIR : /opt/freesurfer/subjects
 * SWIFT_PATH : /usr/share/swift/usr/bin
-* SYSTEMD_EXEC_PID : 657
+* SYSTEMD_EXEC_PID : 662
 * TERM : xterm-color
 * USER : runner
 * USER_PATH : /cvmfs/neurodesk.ardc.edu.au/containers/fmriprep_22.1.1_20230218:/home/runner/.local/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/snap/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
