@@ -1,0 +1,1198 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>BIDS &#8212; Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'workflows/bids_conversion';</script>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/workflows/bids_conversion.html" />
+    <link rel="icon" href="../_static/neurodesk_logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nipype on Neurodesk" href="nipype_full.html" />
+    <link rel="prev" title="Neurodesk environment" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home"/>
+    <img src="../_static/neurodesk_logo.svg" class="logo__image only-dark pst-js-only" alt="Neurodesk - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neurodesk environment
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">BIDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nipype_short.html">Basic Nipype Example</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow of a Jupyter Notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">Freesurfer</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain extraction with different software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">Freesurfer + DeepRetinotopy example</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep Example</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/workflows/bids_conversion.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/workflows/bids_conversion.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Fworkflows/bids_conversion.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/workflows/bids_conversion.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BIDS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-dicoms-to-bids-formatted-nifti">Convert DICOMS to BIDS-formatted NIFTI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-dcm2niix-manual-workflow">1.1. Using dcm2niix (manual workflow)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-bidscoin-automated-workflow">1.2. Using bidscoin (automated workflow)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-heudiconv-automated-workflow">1.3. Using HeuDiConv (automated workflow)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-data">Process data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-extraction-using-fsl-bet">Brain extraction using FSL BET</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deface">Deface</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#share-your-data-to-openneuro">Share your data to OpenNeuro</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/bids_conversion.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg" />   </a></p>
+<section id="bids">
+<h1>BIDS<a class="headerlink" href="#bids" title="Link to this heading">#</a></h1>
+<p>Author: Thuy Dao</p>
+<p>Citation:</p>
+<ul class="simple">
+<li><p>dcm2niix: https://github.com/rordenlab/dcm2niix/</p></li>
+<li><p>bidscoin: https://doi.org/10.3389/fninf.2021.770608</p></li>
+<li><p>heudiconv: https://doi.org/10.5281/zenodo.1012598</p></li>
+</ul>
+<section id="setup-neurodesk">
+<h2>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LD_PRELOAD&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;APPTAINER_BINDPATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content,/tmp,/cvmfs&quot;</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MPLCONFIGDIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/matplotlib-mpldir&quot;</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LMOD_CMD&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/usr/share/lmod/lmod/libexec/lmod&quot;</span>
+
+  <span class="err">!</span><span class="n">curl</span> <span class="o">-</span><span class="n">J</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">NeuroDesk</span><span class="o">/</span><span class="n">neurocommand</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
+  <span class="err">!</span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
+  <span class="err">!</span><span class="o">./</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
+
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MODULEPATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/&#39;</span><span class="p">),</span> <span class="n">x</span><span class="p">),</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/&#39;</span><span class="p">)))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output CPU information:</span>
+<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;vendor&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;model name&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: AuthenticAMD
+model name	: AMD EPYC 7742 64-Core Processor
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-preparation">
+<h2>Data preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
+<p>Download DICOM data from OSF</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>osfclient
+<span class="o">!</span>osf<span class="w"> </span>-p<span class="w"> </span>ru43c<span class="w"> </span>clone<span class="w"> </span>.<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="o">!</span>tar<span class="w"> </span>xf<span class="w"> </span>osfstorage/dicoms-unsorted.tar
+<span class="o">!</span>rm<span class="w"> </span>-rf<span class="w"> </span>osfstorage/
+<span class="o">!</span>tree<span class="w"> </span>dicoms-unsorted<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;...\nThere are `ls dicoms-unsorted | wc -l` unsorted DICOMs in ./dicoms-unsorted/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: osfclient in /opt/conda/lib/python3.11/site-packages (0.0.5)
+Requirement already satisfied: requests in /opt/conda/lib/python3.11/site-packages (from osfclient) (2.31.0)
+Requirement already satisfied: tqdm in /opt/conda/lib/python3.11/site-packages (from osfclient) (4.66.1)
+Requirement already satisfied: six in /opt/conda/lib/python3.11/site-packages (from osfclient) (1.16.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /opt/conda/lib/python3.11/site-packages (from requests-&gt;osfclient) (3.3.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/conda/lib/python3.11/site-packages (from requests-&gt;osfclient) (3.4)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /opt/conda/lib/python3.11/site-packages (from requests-&gt;osfclient) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/conda/lib/python3.11/site-packages (from requests-&gt;osfclient) (2024.2.2)
+<span class=" -Color -Color-Bold -Color-Bold-Blue">dicoms-unsorted</span>
+├── MR.1.1.dcm
+├── MR.1.10.dcm
+├── MR.1.100.dcm
+├── MR.1.101.dcm
+├── MR.1.102.dcm
+├── MR.1.103.dcm
+├── MR.1.104.dcm
+├── MR.1.105.dcm
+├── MR.1.106.dcm
+...
+There are 1216 unsorted DICOMs in ./dicoms-unsorted/
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>datalad<span class="w"> </span>install<span class="w"> </span>https://datasets.datalad.org/repronim/heudiconv-tutorial-example
+<span class="o">!</span><span class="nb">cd</span><span class="w"> </span>heudiconv-tutorial-example/MRIS/dicom/219/itbs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>datalad<span class="w"> </span>get<span class="w"> </span>Bzero_verify_PA_17
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cloning: 100%|██████████████████████| 2.00/2.00 [00:01&lt;00:00, 1.46 candidates/s]
+Enumerating: 0.00 Objects [00:00, ? Objects/s]
+                                              
+Counting:   0%|                              | 0.00/25.9k [00:00&lt;?, ? Objects/s]
+Counting:  39%|████████▌             | 10.1k/25.9k [00:00&lt;00:00, 101k Objects/s]
+                                                                                
+Compressing:   0%|                           | 0.00/13.6k [00:00&lt;?, ? Objects/s]
+Compressing:  61%|██████████▉       | 8.29k/13.6k [00:00&lt;00:00, 75.9k Objects/s]
+                                                                                
+Receiving:   0%|                             | 0.00/25.9k [00:00&lt;?, ? Objects/s]
+Receiving:   1%|▏                     | 259/25.9k [00:00&lt;00:23, 1.10k Objects/s]
+Receiving:   3%|▋                     | 776/25.9k [00:00&lt;00:09, 2.60k Objects/s]
+Receiving:   5%|█                   | 1.29k/25.9k [00:00&lt;00:07, 3.36k Objects/s]
+Receiving:   8%|█▌                  | 2.07k/25.9k [00:00&lt;00:05, 4.69k Objects/s]
+Receiving:  13%|██▌                 | 3.36k/25.9k [00:00&lt;00:03, 7.00k Objects/s]
+Receiving:  19%|███▊                | 4.91k/25.9k [00:00&lt;00:02, 9.27k Objects/s]
+Receiving:  28%|█████▌              | 7.24k/25.9k [00:00&lt;00:01, 11.8k Objects/s]
+Receiving:  48%|█████████▌          | 12.4k/25.9k [00:01&lt;00:00, 22.5k Objects/s]
+Receiving:  63%|████████████▌       | 16.3k/25.9k [00:02&lt;00:01, 6.14k Objects/s]
+Receiving:  74%|██████████████▊     | 19.1k/25.9k [00:02&lt;00:00, 7.99k Objects/s]
+Receiving:  92%|██████████████████▍ | 23.8k/25.9k [00:02&lt;00:00, 12.0k Objects/s]
+                                                                                
+Resolving:   0%|                              | 0.00/6.87k [00:00&lt;?, ? Deltas/s]
+Resolving:  34%|███████▏             | 2.33k/6.87k [00:00&lt;00:00, 22.6k Deltas/s]
+Resolving:  67%|██████████████       | 4.60k/6.87k [00:00&lt;00:00, 20.7k Deltas/s]
+Resolving: 100%|█████████████████████| 6.87k/6.87k [00:00&lt;00:00, 21.4k Deltas/s]
+[INFO   ] scanning for unlocked files (this may take some time)                 
+<span class=" -Color -Color-Bold">install</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): /data/books/workflows/heudiconv-tutorial-example (<span class=" -Color -Color-Bold -Color-Bold-Magenta">dataset</span>)
+Total:   0%|                                   | 0.00/29.6M [00:00&lt;?, ? Bytes/s]
+Get MRIS/dic .. 005-0001.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:   1%|▏                          | 200k/29.6M [00:20&lt;49:00, 10.0k Bytes/s]
+Get MRIS/dic .. 005-0002.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:   1%|▎                          | 400k/29.6M [00:21&lt;26:02, 18.7k Bytes/s]
+Get MRIS/dic .. 005-0003.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:   2%|▌                          | 601k/29.6M [00:23&lt;19:17, 25.1k Bytes/s]
+Get MRIS/dic .. 005-0004.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:   3%|▋                          | 801k/29.6M [00:25&lt;15:22, 31.2k Bytes/s]
+Get MRIS/dic .. 005-0005.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:   4%|█                         | 1.20M/29.6M [00:45&lt;18:00, 26.3k Bytes/s]
+Get MRIS/dic .. 005-0007.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:   5%|█▏                        | 1.40M/29.6M [00:47&lt;15:59, 29.4k Bytes/s]
+Get MRIS/dic .. 005-0008.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:   5%|█▍                        | 1.60M/29.6M [00:49&lt;14:22, 32.5k Bytes/s]
+Get MRIS/dic .. 005-0009.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:   7%|█▊                        | 2.00M/29.6M [00:52&lt;12:10, 37.8k Bytes/s]
+Get MRIS/dic .. 005-0011.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0012.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Get MRIS/dic .. 005-0012.dcm:  40%|█▉   | 79.9k/200k [00:00&lt;00:00, 160k Bytes/s]
+Total:   8%|██                        | 2.40M/29.6M [00:59&lt;11:14, 40.4k Bytes/s]
+Get MRIS/dic .. 005-0013.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0014.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0015.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  10%|██▋                       | 3.00M/29.6M [01:04&lt;09:35, 46.3k Bytes/s]
+Get MRIS/dic .. 005-0016.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0017.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0018.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0019.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  13%|███▎                      | 3.80M/29.6M [01:11&lt;08:08, 52.9k Bytes/s]
+Get MRIS/dic .. 005-0021.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0022.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0023.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0024.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  16%|████▏                     | 4.80M/29.6M [01:21&lt;07:00, 59.1k Bytes/s]
+Get MRIS/dic .. 005-0025.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0027.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0029.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0030.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  20%|█████▎                    | 6.01M/29.6M [01:35&lt;06:15, 62.9k Bytes/s]
+Get MRIS/dic .. 005-0031.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  21%|█████▍                    | 6.21M/29.6M [01:37&lt;06:07, 63.8k Bytes/s]
+Get MRIS/dic .. 005-0032.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  22%|█████▊                    | 6.61M/29.6M [01:41&lt;05:53, 65.1k Bytes/s]
+Get MRIS/dic .. 005-0034.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  23%|█████▉                    | 6.81M/29.6M [01:43&lt;05:45, 66.0k Bytes/s]
+Get MRIS/dic .. 005-0035.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0036.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  25%|██████▍                   | 7.41M/29.6M [02:00&lt;06:00, 61.7k Bytes/s]
+Get MRIS/dic .. 005-0038.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  26%|██████▋                   | 7.61M/29.6M [02:02&lt;05:54, 62.1k Bytes/s]
+Get MRIS/dic .. 005-0039.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  26%|██████▊                   | 7.81M/29.6M [02:05&lt;05:49, 62.4k Bytes/s]
+Get MRIS/dic .. 005-0040.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  27%|███████                   | 8.01M/29.6M [02:06&lt;05:42, 63.1k Bytes/s]
+Get MRIS/dic .. 005-0041.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  28%|███████▍                  | 8.41M/29.6M [02:18&lt;05:50, 60.5k Bytes/s]
+Get MRIS/dic .. 005-0043.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  29%|███████▌                  | 8.61M/29.6M [02:21&lt;05:45, 60.9k Bytes/s]
+Get MRIS/dic .. 005-0044.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  30%|███████▋                  | 8.81M/29.6M [02:23&lt;05:38, 61.5k Bytes/s]
+Get MRIS/dic .. 005-0046.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  31%|████████                  | 9.21M/29.6M [02:30&lt;05:32, 61.3k Bytes/s]
+Get MRIS/dic .. 005-0047.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0048.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  32%|████████▍                 | 9.61M/29.6M [02:34&lt;05:21, 62.3k Bytes/s]
+Get MRIS/dic .. 005-0049.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0050.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  34%|████████▊                 | 10.0M/29.6M [02:38&lt;05:10, 63.1k Bytes/s]
+Get MRIS/dic .. 005-0051.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0052.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0053.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  36%|█████████▎                | 10.6M/29.6M [02:43&lt;04:53, 64.8k Bytes/s]
+Get MRIS/dic .. 005-0054.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0055.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0056.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  38%|█████████▊                | 11.2M/29.6M [02:49&lt;04:39, 66.0k Bytes/s]
+Get MRIS/dic .. 005-0057.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0058.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0059.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  41%|██████████▌               | 12.0M/29.6M [03:10&lt;04:38, 63.2k Bytes/s]
+Get MRIS/dic .. 005-0061.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  41%|██████████▋               | 12.2M/29.6M [03:10&lt;04:31, 64.1k Bytes/s]
+Get MRIS/dic .. 005-0062.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  42%|██████████▉               | 12.4M/29.6M [03:12&lt;04:26, 64.5k Bytes/s]
+Get MRIS/dic .. 005-0063.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  43%|███████████               | 12.6M/29.6M [03:14&lt;04:21, 65.0k Bytes/s]
+Get MRIS/dic .. 005-0064.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0065.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  44%|███████████▍              | 13.0M/29.6M [03:18&lt;04:13, 65.6k Bytes/s]
+Get MRIS/dic .. 005-0066.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0067.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  45%|███████████▊              | 13.4M/29.6M [03:21&lt;04:03, 66.5k Bytes/s]
+Get MRIS/dic .. 005-0069.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0070.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  47%|████████████▎             | 14.0M/29.6M [03:39&lt;04:04, 63.8k Bytes/s]
+Get MRIS/dic .. 005-0071.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  48%|████████████▍             | 14.2M/29.6M [03:42&lt;04:01, 63.9k Bytes/s]
+Get MRIS/dic .. 005-0072.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0073.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  49%|████████████▊             | 14.6M/29.6M [03:46&lt;03:52, 64.5k Bytes/s]
+Get MRIS/dic .. 005-0075.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  51%|█████████████▏            | 15.0M/29.6M [03:53&lt;03:47, 64.3k Bytes/s]
+Get MRIS/dic .. 005-0076.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0077.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0078.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  53%|█████████████▋            | 15.6M/29.6M [04:08&lt;03:42, 63.0k Bytes/s]
+Get MRIS/dic .. 005-0079.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  53%|█████████████▉            | 15.8M/29.6M [04:10&lt;03:38, 63.2k Bytes/s]
+Get MRIS/dic .. 005-0080.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  54%|██████████████            | 16.0M/29.6M [04:12&lt;03:34, 63.5k Bytes/s]
+Get MRIS/dic .. 005-0081.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  55%|██████████████▏           | 16.2M/29.6M [04:14&lt;03:30, 63.6k Bytes/s]
+Get MRIS/dic .. 005-0082.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  55%|██████████████▍           | 16.4M/29.6M [04:16&lt;03:26, 64.0k Bytes/s]
+Get MRIS/dic .. 005-0083.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  56%|██████████████▌           | 16.6M/29.6M [04:18&lt;03:22, 64.3k Bytes/s]
+Get MRIS/dic .. 005-0084.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  57%|██████████████▊           | 16.8M/29.6M [04:20&lt;03:18, 64.6k Bytes/s]
+Get MRIS/dic .. 005-0085.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  57%|██████████████▉           | 17.0M/29.6M [04:22&lt;03:14, 64.8k Bytes/s]
+Get MRIS/dic .. 005-0086.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  59%|███████████████▎          | 17.4M/29.6M [04:26&lt;03:07, 65.3k Bytes/s]
+Get MRIS/dic .. 005-0088.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  60%|███████████████▋          | 17.8M/29.6M [04:31&lt;03:00, 65.5k Bytes/s]
+Get MRIS/dic .. 005-0090.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Get MRIS/dic .. 005-0090.dcm:  92%|█████▌| 184k/200k [00:00&lt;00:00, 366k Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0091.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  61%|███████████████▉          | 18.2M/29.6M [04:36&lt;02:53, 65.8k Bytes/s]
+Get MRIS/dic .. 005-0092.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0093.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0094.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  64%|████████████████▌         | 18.8M/29.6M [04:41&lt;02:41, 66.8k Bytes/s]
+Get MRIS/dic .. 005-0095.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  65%|████████████████▊         | 19.2M/29.6M [05:00&lt;02:42, 64.1k Bytes/s]
+Get MRIS/dic .. 005-0097.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  66%|█████████████████         | 19.4M/29.6M [05:02&lt;02:39, 64.1k Bytes/s]
+Get MRIS/dic .. 005-0098.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  66%|█████████████████▏        | 19.6M/29.6M [05:20&lt;02:43, 61.3k Bytes/s]
+Get MRIS/dic .. 005-0099.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  67%|█████████████████▍        | 19.8M/29.6M [05:50&lt;02:53, 56.6k Bytes/s]
+Get MRIS/dic .. 005-0100.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  68%|█████████████████▌        | 20.0M/29.6M [05:52&lt;02:49, 56.8k Bytes/s]
+Get MRIS/dic .. 005-0101.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  68%|█████████████████▋        | 20.2M/29.6M [05:54&lt;02:45, 57.0k Bytes/s]
+Get MRIS/dic .. 005-0102.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  69%|█████████████████▉        | 20.4M/29.6M [05:56&lt;02:40, 57.3k Bytes/s]
+Get MRIS/dic .. 005-0103.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0104.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  70%|██████████████████▎       | 20.8M/29.6M [06:20&lt;02:40, 54.8k Bytes/s]
+Get MRIS/dic .. 005-0105.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  71%|██████████████████▍       | 21.0M/29.6M [07:03&lt;02:53, 49.6k Bytes/s]
+Get MRIS/dic .. 005-0106.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  72%|██████████████████▌       | 21.2M/29.6M [07:05&lt;02:48, 49.9k Bytes/s]
+Get MRIS/dic .. 005-0107.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  72%|██████████████████▊       | 21.4M/29.6M [07:07&lt;02:43, 50.1k Bytes/s]
+Get MRIS/dic .. 005-0108.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  73%|██████████████████▉       | 21.6M/29.6M [07:09&lt;02:38, 50.4k Bytes/s]
+Get MRIS/dic .. 005-0109.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0110.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  74%|███████████████████▎      | 22.0M/29.6M [07:18&lt;02:31, 50.2k Bytes/s]
+Get MRIS/dic .. 005-0111.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  76%|███████████████████▋      | 22.4M/29.6M [07:25&lt;02:23, 50.4k Bytes/s]
+Get MRIS/dic .. 005-0113.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0114.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  77%|████████████████████      | 22.8M/29.6M [07:28&lt;02:13, 50.8k Bytes/s]
+Get MRIS/dic .. 005-0115.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0116.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  79%|████████████████████▌     | 23.4M/29.6M [07:36&lt;02:01, 51.3k Bytes/s]
+Get MRIS/dic .. 005-0118.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0119.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  81%|█████████████████████     | 24.0M/29.6M [07:48&lt;01:49, 51.2k Bytes/s]
+Get MRIS/dic .. 005-0121.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  82%|█████████████████████▎    | 24.2M/29.6M [07:50&lt;01:45, 51.5k Bytes/s]
+Get MRIS/dic .. 005-0122.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  82%|█████████████████████▍    | 24.4M/29.6M [07:52&lt;01:40, 51.7k Bytes/s]
+Get MRIS/dic .. 005-0123.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  83%|█████████████████████▌    | 24.6M/29.6M [07:54&lt;01:36, 51.9k Bytes/s]
+Get MRIS/dic .. 005-0124.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  84%|█████████████████████▊    | 24.8M/29.6M [07:56&lt;01:32, 52.1k Bytes/s]
+Get MRIS/dic .. 005-0125.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  84%|█████████████████████▉    | 25.0M/29.6M [07:57&lt;01:27, 52.4k Bytes/s]
+Get MRIS/dic .. 005-0126.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0127.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  86%|██████████████████████▎   | 25.4M/29.6M [08:01&lt;01:19, 52.8k Bytes/s]
+Get MRIS/dic .. 005-0128.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0129.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  87%|██████████████████████▋   | 25.8M/29.6M [08:04&lt;01:11, 53.3k Bytes/s]
+Get MRIS/dic .. 005-0130.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0131.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  89%|███████████████████████   | 26.2M/29.6M [08:08&lt;01:03, 53.6k Bytes/s]
+Get MRIS/dic .. 005-0132.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0133.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  90%|███████████████████████▎  | 26.6M/29.6M [08:12&lt;00:55, 54.1k Bytes/s]
+Get MRIS/dic .. 005-0135.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0136.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  92%|███████████████████████▉  | 27.2M/29.6M [08:17&lt;00:43, 54.7k Bytes/s]
+Get MRIS/dic .. 005-0137.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0139.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  94%|████████████████████████▍ | 27.8M/29.6M [08:23&lt;00:32, 55.2k Bytes/s]
+Get MRIS/dic .. 005-0140.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0141.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0142.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0143.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  97%|█████████████████████████ | 28.6M/29.6M [08:31&lt;00:17, 55.9k Bytes/s]
+Get MRIS/dic .. 005-0144.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Get MRIS/dic .. 005-0144.dcm:  40%|█▉   | 79.9k/200k [00:00&lt;00:00, 159k Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0145.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+                                                                                
+Get MRIS/dic .. 005-0147.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+Total:  99%|█████████████████████████▊| 29.4M/29.6M [08:50&lt;00:03, 55.5k Bytes/s]
+Get MRIS/dic .. 005-0148.dcm:   0%|             | 0.00/200k [00:00&lt;?, ? Bytes/s]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0001.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0002.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0003.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0004.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0005.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0006.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0007.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0008.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0009.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17/IM-0005-0010.dcm (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
+  [138 similar messages have been suppressed; disable with datalad.ui.suppress-similar-results=off]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): MRIS/dicom/219/itbs/Bzero_verify_PA_17 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
+action summary:
+  get (ok: 149)
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipyniivue</span> <span class="kn">import</span> <span class="n">AnyNiivue</span>
+<span class="n">nv</span> <span class="o">=</span> <span class="n">AnyNiivue</span><span class="p">()</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">load_volumes</span><span class="p">([{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;./ds000102/sub-08/anat/sub-08_T1w.nii.gz&quot;</span><span class="p">}])</span>
+<span class="n">nv</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="convert-dicoms-to-bids-formatted-nifti">
+<h2>Convert DICOMS to BIDS-formatted NIFTI<a class="headerlink" href="#convert-dicoms-to-bids-formatted-nifti" title="Link to this heading">#</a></h2>
+<section id="using-dcm2niix-manual-workflow">
+<h3>1.1. Using dcm2niix (manual workflow)<a class="headerlink" href="#using-dcm2niix-manual-workflow" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lmod</span>
+<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;dcm2niix/v1.0.20240202&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>dcm2niix_bids
+<span class="o">!</span>dcm2niix<span class="w"> </span>n<span class="w"> </span>-o<span class="w"> </span>./dcm2niix_bids<span class="w"> </span>./heudiconv-tutorial-example/MRIS/dicom/219/itbs/Bzero_verify_PA_17
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘dcm2niix_bids’: File exists
+Chris Rorden&#39;s dcm2niiX version v1.0.20240202  (JP2:OpenJPEG) (JP-LS:CharLS) GCC8.4.0 x86-64 (64-bit Linux)
+Found 148 DICOM file(s)
+Convert 148 DICOM as ./dcm2niix_bids/Bzero_verify_PA_17_Bzero_verify_P-A_20180706110327_17 (128x128x74x2)
+Conversion required 5.090344 seconds (0.370856 for core code).
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-bidscoin-automated-workflow">
+<h3>1.2. Using bidscoin (automated workflow)<a class="headerlink" href="#using-bidscoin-automated-workflow" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;bidscoin/4.3.3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>dicomsort<span class="w"> </span>./dicoms-unsorted
+<span class="o">!</span>bidsmapper<span class="w"> </span>./dicoms-unsorted<span class="w"> </span>./bidscoin_bidsmap<span class="w">    </span>#<span class="w"> </span>Scans<span class="w"> </span>your<span class="w"> </span>data<span class="w"> </span>and<span class="w"> </span>creates<span class="w"> </span>a<span class="w"> </span>study<span class="w"> </span>bidsmap
+<span class="o">!</span>bidscoiner<span class="w"> </span>./bidscoin_bidsmap<span class="w"> </span>./bidscoin_bids<span class="w">    </span>#<span class="w"> </span>Converts<span class="w"> </span>your<span class="w"> </span>data<span class="w"> </span>to<span class="w"> </span>BIDS<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>study<span class="w"> </span>bidsmap
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | 
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | -------------- START BIDSmapper ------------
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | &gt;&gt;&gt; bidsmapper sourcefolder=/data/books/workflows/dicoms-unsorted bidsfolder=/data/books/workflows/bidscoin_bidsmap bidsmap=bidsmap.yaml template=/home/jovyan/.bidscoin/4.3.3+qt5/templates/bidsmap_dccn.yaml plugins=[] subprefix=None sesprefix=None store=False force=False
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | No existing bidsmap file found: /data/books/workflows/bidscoin_bidsmap/code/bidscoin/bidsmap.yaml
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | Reading: /home/jovyan/.bidscoin/4.3.3+qt5/templates/bidsmap_dccn.yaml
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | Checking the bidsmap run-items:
+<span class=" -Color -Color-Bold -Color-Bold-Black">SUCCESS</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">All datatypes and options in the template bidsmap are valid</span>
+<span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> | <span class=" -Color -Color-Yellow">No subjects found in: /data/books/workflows/dicoms-unsorted/sub-*</span>
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | Opening the bidseditor
+qt.qpa.xcb: could not connect to display 
+qt.qpa.plugin: Could not load the Qt platform plugin &quot;xcb&quot; in &quot;&quot; even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, webgl, xcb.
+
+/cvmfs/neurodesk.ardc.edu.au/containers/bidscoin_4.3.3_20240716/bidsmapper: line 3: 26538 Aborted                 (core dumped) singularity --silent exec --cleanenv --env DISPLAY=$DISPLAY $neurodesk_singularity_opts --pwd &quot;$PWD&quot; /cvmfs/neurodesk.ardc.edu.au/containers/bidscoin_4.3.3_20240716/bidscoin_4.3.3_20240716.simg bidsmapper &quot;$@&quot;
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | 
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | -------------- START BIDScoiner 4.3.3+qt5: BIDS 1.9.0 ------------
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | &gt;&gt;&gt; bidscoiner sourcefolder=/data/books/workflows/bidscoin_bidsmap bidsfolder=/data/books/workflows/bidscoin_bids participant=None force=False bidsmap=bidsmap.yaml
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | Creating dataset description file: /data/books/workflows/bidscoin_bids/dataset_description.json
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | Creating a template README file (adjust it to your needs): /data/books/workflows/bidscoin_bids/README
+<span class=" -Color -Color-Bold -Color-Bold-Black">INFO</span> | No existing bidsmap file found: /data/books/workflows/bidscoin_bids/code/bidscoin/bidsmap.yaml
+<span class=" -Color -Color-Bold -Color-Bold-Black">ERROR</span> | <span class=" -Color -Color-Red">No bidsmap file found in /data/books/workflows/bidscoin_bids. Please run the bidsmapper first and/or use the correct bidsfolder</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-heudiconv-automated-workflow">
+<h3>1.3. Using HeuDiConv (automated workflow)<a class="headerlink" href="#using-heudiconv-automated-workflow" title="Link to this heading">#</a></h3>
+<p>heudiconv provides over 10 pre-created heuristics, which can be seen here .</p>
+<p>These heuristic files are documented in their code comments. Some of them, like convertall or ReproIn could be immediately reused and represent two ends of the spectrum in heuristics:- `</p>
+<p>conver<code class="docutils literal notranslate"><span class="pre">tall</span> <span class="pre">is</span> <span class="pre">very</span> <span class="pre">simple</span> <span class="pre">and</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">automate</span> <span class="pre">anything</span> <span class="pre">–</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">user</span> <span class="pre">to</span> <span class="pre">modify</span> <span class="pre">filenames</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">prepared</span> <span class="pre">conversion</span> <span class="pre">table,</span> <span class="pre">and</span> <span class="pre">then</span> <span class="pre">rerun</span> <span class="pre">with</span> <span class="pre">-c</span> <span class="pre">dcm2nii-</span> </code>x.</p>
+<p>r`eproin can be used fully automated, if original sequences were named according to its ReproIn convention.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;heudiconv/1.3.1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>heudiconv<span class="w"> </span>-f<span class="w"> </span>convertall<span class="w"> </span>-s<span class="w"> </span><span class="m">219</span><span class="w"> </span>-c<span class="w"> </span>dcm2niix<span class="w"> </span>-b<span class="w"> </span>-o<span class="w"> </span>./heudiconv_bids<span class="w"> </span>--files<span class="w"> </span>./heudiconv-tutorial-example/MRIS/dicom/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Running heudiconv version 1.3.1 latest 1.3.2
+INFO: Analyzing 1716 dicoms
+Traceback (most recent call last):
+  File &quot;/opt/miniconda-py39_4.12.0/bin/heudiconv&quot;, line 8, in &lt;module&gt;
+    sys.exit(main())
+  File &quot;/src/heudiconv/heudiconv/cli/run.py&quot;, line 30, in main
+    workflow(**kwargs)
+  File &quot;/src/heudiconv/heudiconv/main.py&quot;, line 410, in workflow
+    study_sessions = get_study_sessions(
+  File &quot;/src/heudiconv/heudiconv/parser.py&quot;, line 221, in get_study_sessions
+    seqinfo_dict = group_dicoms_into_seqinfos(
+  File &quot;/src/heudiconv/heudiconv/dicoms.py&quot;, line 338, in group_dicoms_into_seqinfos
+    mwinfo = validate_dicom(filename, dcmfilter)
+  File &quot;/src/heudiconv/heudiconv/dicoms.py&quot;, line 171, in validate_dicom
+    mw = dw.wrapper_from_file(fl, force=True, stop_before_pixels=True)
+  File &quot;/opt/miniconda-py39_4.12.0/lib/python3.9/site-packages/nibabel/nicom/dicomwrappers.py&quot;, line 59, in wrapper_from_file
+    with ImageOpener(file_like) as fobj:
+  File &quot;/opt/miniconda-py39_4.12.0/lib/python3.9/site-packages/nibabel/openers.py&quot;, line 181, in __init__
+    self.fobj = opener(fileish, *args, **kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: &#39;./heudiconv-tutorial-example/MRIS/dicom/219/itbs/DTI_30_DIRs_AP_15/IM-0003-0001.dcm&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="process-data">
+<h2>Process data<a class="headerlink" href="#process-data" title="Link to this heading">#</a></h2>
+<section id="brain-extraction-using-fsl-bet">
+<h3>Brain extraction using FSL BET<a class="headerlink" href="#brain-extraction-using-fsl-bet" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;fsl/6.0.7.4&#39;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span> <span class="n">bash</span>
+
+<span class="n">declare</span> <span class="o">-</span><span class="n">a</span> <span class="n">niifile</span><span class="o">=</span><span class="p">(</span><span class="err">$</span><span class="p">(</span><span class="n">find</span> <span class="s2">&quot;$PWD&quot;</span> <span class="o">-</span><span class="nb">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">iname</span> <span class="s2">&quot;*.nii&quot;</span><span class="p">));</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="s2">&quot;$</span><span class="si">{niifile[@]}</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="n">do</span> 
+        <span class="n">echo</span> <span class="err">$</span><span class="p">{</span><span class="n">filename</span><span class="p">}</span>
+        <span class="n">echo</span> <span class="s2">&quot;running BET&quot;</span>
+        <span class="n">bet</span> <span class="err">$</span><span class="p">{</span><span class="n">filename</span><span class="p">}</span><span class="o">.</span><span class="n">nii</span> <span class="err">$</span><span class="p">{</span><span class="n">filename</span><span class="o">%.*</span><span class="p">}</span><span class="n">_brain</span>
+    <span class="n">done</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="deface">
+<h3>Deface<a class="headerlink" href="#deface" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="share-your-data-to-openneuro">
+<h2>Share your data to OpenNeuro<a class="headerlink" href="#share-your-data-to-openneuro" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./workflows"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Neurodesk environment</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nipype_full.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Nipype on Neurodesk</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-dicoms-to-bids-formatted-nifti">Convert DICOMS to BIDS-formatted NIFTI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-dcm2niix-manual-workflow">1.1. Using dcm2niix (manual workflow)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-bidscoin-automated-workflow">1.2. Using bidscoin (automated workflow)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-heudiconv-automated-workflow">1.3. Using HeuDiConv (automated workflow)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-data">Process data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-extraction-using-fsl-bet">Brain extraction using FSL BET</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deface">Deface</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#share-your-data-to-openneuro">Share your data to OpenNeuro</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
