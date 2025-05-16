@@ -16,33 +16,32 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/algolia.css?v=6923f26e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -73,16 +72,19 @@
                 gtag('config', 'G-4Z9774J59Y');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'workflows/nipype_full';</script>
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3/dist/umd/index.js"></script>
+    <script src="../_static/algolia.js?v=b553005c"></script>
     <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/workflows/nipype_full.html" />
     <link rel="icon" href="../_static/neurodesk_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic Nipype Example" href="nipype_short.html" />
-    <link rel="prev" title="BIDS" href="bids_conversion.html" />
+    <link rel="next" title="Basic Nipype" href="nipype_short.html" />
+    <link rel="prev" title="BIDS conversion" href="bids_conversion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -98,8 +100,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -107,6 +120,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +128,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,8 +145,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -162,17 +175,21 @@
     
     
     <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home"/>
-    <img src="../_static/neurodesk_logo.svg" class="logo__image only-dark pst-js-only" alt="Neurodesk - Home"/>
+    <script>document.write(`<img src="../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -185,23 +202,22 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="bids_conversion.html">BIDS</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nipype on Neurodesk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nipype_short.html">Basic Nipype Example</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="MRIQC.html">MRIQC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow of a Jupyter Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nipype on Neurodesk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nipype_short.html">Basic Nipype</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="pyBIDS.html">pyBIDS - a Python API for working with BIDS datasets</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain extraction with different software packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">Freesurfer</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain extraction with different software packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
 
 
@@ -211,26 +227,35 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_CSD.html">Diffusion Analysis with MRtrix: Part 2 - Constrained Spherical Deconvolution and Tissue estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_CoReg_Streamline.html">Diffusion Analysis with MRtrix: Part 3 - Registration and Streamline Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_Preprocessing.html">Diffusion Analysis with MRtrix: Part 1 - Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_and_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">Freesurfer + DeepRetinotopy example</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep Example</a></li>
 </ul>
 
     </div>
@@ -433,16 +458,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -519,7 +552,7 @@
                   
   <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/workflows/nipype_full.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg" />   </a></p>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<section id="nipype-on-neurodesk">
+<section class="tex2jax_ignore mathjax_ignore" id="nipype-on-neurodesk">
 <h1>Nipype on Neurodesk<a class="headerlink" href="#nipype-on-neurodesk" title="Link to this heading">#</a></h1>
 <section id="an-interactive-rise-slideshow">
 <h2>An interactive RISE slideshow<a class="headerlink" href="#an-interactive-rise-slideshow" title="Link to this heading">#</a></h2>
@@ -532,8 +565,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
 
 <span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
@@ -598,12 +631,13 @@ model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
 <li><p>Facilitates seamless interaction between these packages</p></li>
 <li><p>Its flexibility has made it a preferred basis for widely used pre-processing tools such as fMRIPrep</p></li>
 </ul>
-<p>$\rightarrow$ A primary goal driving Nipype is to simplify the integration of various analysis packages, allowing for the utilization of algorithms that are most appropriate for specific problems.</p>
+<p><span class="math notranslate nohighlight">\(\rightarrow\)</span> A primary goal driving Nipype is to simplify the integration of various analysis packages, allowing for the utilization of algorithms that are most appropriate for specific problems.</p>
 <img src="https://miykael.github.io/nipype_tutorial/static/images/nipype_example_graph.png" style="float: right; margin: 0 auto; padding: 5px;" width="50%" height="50%"> 
 <figcaption style="text-align: right;"><b>Figure 1:</b> Example Workflow</figcaption></section>
 <section id="nipype-in-jupyter-notebooks-on-neurodesk">
 <h2>2. Nipype in Jupyter Notebooks on Neurodesk<a class="headerlink" href="#nipype-in-jupyter-notebooks-on-neurodesk" title="Link to this heading">#</a></h2>
-<a class="reference internal image-reference" href="https://www.neurodesk.org/static/favicons/neurodesk_logo.svg"><img alt="https://www.neurodesk.org/static/favicons/neurodesk_logo.svg" src="https://www.neurodesk.org/static/favicons/neurodesk_logo.svg" style="width: 20%;" /></a>
+<a class="reference internal image-reference" href="https://www.neurodesk.org/static/logos/neurodesk.org_horizontal.png"><img alt="https://www.neurodesk.org/static/logos/neurodesk.org_horizontal.png" src="https://www.neurodesk.org/static/logos/neurodesk.org_horizontal.png" style="width: 20%;" />
+</a>
 <p>Neurodesk project enables the use of all neuroimaging applications inside computational notebooks</p>
 <p><strong>Demonstration of the module system in Python and Nipype:</strong></p>
 <p>We will use the software tool <code class="docutils literal notranslate"><span class="pre">lmod</span></code> to manage and load different software packages and libraires. It simplifies the process of accessing and utilizing various software applications and allows users to easily switch between different versions of software packages, manage dependencies, and ensure compatibility with their computing environment.</p>
@@ -613,7 +647,7 @@ model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
 <span class="c1"># Or press Ctrl-Enter to run a command without direclty moving to the next cell.</span>
 
 <span class="c1"># Use lmod to load any software tool with a specific version</span>
-<span class="kn">import</span> <span class="nn">lmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lmod</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;fsl/6.0.7.4&#39;</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
@@ -627,7 +661,7 @@ model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FSLOUTPUTTYPE&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;NIFTI_GZ&quot;</span> <span class="c1"># Default is NIFTI</span>
 </pre></div>
 </div>
@@ -635,7 +669,7 @@ model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl.base</span> <span class="kn">import</span> <span class="n">Info</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nipype.interfaces.fsl.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Info</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">Info</span><span class="o">.</span><span class="n">version</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">Info</span><span class="o">.</span><span class="n">output_type</span><span class="p">())</span>
 <span class="c1"># If the FSL version is changed using lmod above, the kernel of the notebook needs to be restarted!</span>
@@ -690,7 +724,7 @@ NIFTI_GZ
 </ul>
 <section id="preparation-download-of-opensource-data-installations-and-imports">
 <h3><strong>Preparation: Download of opensource data, installations and imports</strong><a class="headerlink" href="#preparation-download-of-opensource-data-installations-and-imports" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download 2 subjects of the Flanker Dataset</span>
 <span class="n">PATTERN</span> <span class="o">=</span> <span class="s2">&quot;sub-0[1-2]&quot;</span>
@@ -795,7 +829,8 @@ action summary:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>nilearn
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">nilearn</span>
 </pre></div>
 </div>
 </div>
@@ -825,16 +860,16 @@ Requirement already satisfied: six&gt;=1.5 in /opt/conda/lib/python3.11/site-pac
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Workflow</span><span class="p">,</span> <span class="n">DataGrabber</span><span class="p">,</span> <span class="n">DataSink</span>
-<span class="kn">from</span> <span class="nn">nipype.interfaces.utility</span> <span class="kn">import</span> <span class="n">IdentityInterface</span>
-<span class="kn">from</span> <span class="nn">nipype.interfaces</span> <span class="kn">import</span> <span class="n">fsl</span>
-<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span> 
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">opj</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nipype</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Workflow</span><span class="p">,</span> <span class="n">DataGrabber</span><span class="p">,</span> <span class="n">DataSink</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nipype.interfaces.utility</span><span class="w"> </span><span class="kn">import</span> <span class="n">IdentityInterface</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nipype.interfaces</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotting</span> 
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">opj</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span> 
 
 <span class="c1"># Create directory for all the outputs (if it doesn&#39;t exist yet)</span>
 <span class="o">!</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span>output<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>output
@@ -862,7 +897,7 @@ Requirement already satisfied: six&gt;=1.5 in /opt/conda/lib/python3.11/site-pac
 <p>In the Nipype framework we can get an information page on an interface class by using the <code class="docutils literal notranslate"><span class="pre">help()</span></code> function.</p>
 <section id="example-interface-for-fsl-s-brain-extraction-tool-bet">
 <h4><strong>Example: Interface for FSL’s Brain Extraction Tool <em>BET</em></strong><a class="headerlink" href="#example-interface-for-fsl-s-brain-extraction-tool-bet" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># help() function to get a general explanation of the class as well as a list of possible (mandatory and optional) input and output parameters </span>
 <span class="n">fsl</span><span class="o">.</span><span class="n">BET</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
@@ -1072,7 +1107,7 @@ skull_mask_file = &lt;undefined&gt;
 <li><p>A node is an object that executes a certain function: Nipype interface, a user-specified function or an external script.</p></li>
 </ul>
 <p>Each node consists of a name, an interface category and at least one input field, and at least one output field.</p>
-<p>$\rightarrow$ Nodes expose inputs and outputs of the Interface as its own and add additional functionality allowing to connect Nodes into a Workflow (directed graph):</p>
+<p><span class="math notranslate nohighlight">\(\rightarrow\)</span> Nodes expose inputs and outputs of the Interface as its own and add additional functionality allowing to connect Nodes into a Workflow (directed graph):</p>
 <img src="https://miykael.github.io/nipype_tutorial/static/images/node_two_nodes.png" style="display: block; margin: 0 auto; padding: 30px;" width="50%" height="50%">
 <figcaption><b>Figure 3:</b> Nipype Nodes</figcaption></section>
 <section id="mapnode">
@@ -1266,7 +1301,7 @@ skull_mask_file = &lt;undefined&gt;
 <li><p>method called <code class="docutils literal notranslate"><span class="pre">connect</span></code> that is going to do most of the work</p></li>
 <li><p>checks if inputs and outputs are actually provided by the nodes that are being connected</p></li>
 </ul>
-<p>$\rightarrow$ There are two different ways to call connect:</p>
+<p><span class="math notranslate nohighlight">\(\rightarrow\)</span> There are two different ways to call connect:</p>
 <p>Establish one connection at a time:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">wf</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">source</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;source_output&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">dest</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dest_input&quot;</span><span class="p">)</span><span class="w"> </span>
 </pre></div>
@@ -1323,7 +1358,7 @@ skull_mask_file = &lt;undefined&gt;
 <img alt="../_images/633f4e5b88aaaf63d098dc5fa40c770829b503750804aa1f285e463f6566e4f4.png" src="../_images/633f4e5b88aaaf63d098dc5fa40c770829b503750804aa1f285e463f6566e4f4.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute the workflow (running serially here)</span>
 <span class="n">wf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -1393,7 +1428,7 @@ skull_mask_file = &lt;undefined&gt;
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Helper function to plot 3D NIfTI images</span>
-<span class="k">def</span> <span class="nf">plot_slice</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_slice</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
 
     <span class="c1"># Load the image</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
@@ -1503,7 +1538,7 @@ skull_mask_file = &lt;undefined&gt;
 <section id="example-datagrabber">
 <h4><strong>Example: DataGrabber</strong><a class="headerlink" href="#example-datagrabber" title="Link to this heading">#</a></h4>
 <p>Let’s assume we want to grab the anatomical and functional images of certain subjects of the Flanker dataset:</p>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree<span class="w"> </span>-L<span class="w"> </span><span class="m">4</span><span class="w"> </span>ds000102/<span class="w"> </span>-I<span class="w"> </span><span class="s1">&#39;*csv|*pdf&#39;</span>
 </pre></div>
@@ -2010,7 +2045,7 @@ skull_mask_file = &lt;undefined&gt;
 <img alt="../_images/6684b0d309ede89a63ecb4e1a3b6c1a7349f9b5fbbf5f521832c1e69ac05369a.png" src="../_images/6684b0d309ede89a63ecb4e1a3b6c1a7349f9b5fbbf5f521832c1e69ac05369a.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run workflow with distributed processing</span>
 <span class="n">wf_preproc</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">)</span>
@@ -2101,7 +2136,7 @@ skull_mask_file = &lt;undefined&gt;
 <ul>
 DataSink offers the substitution input field to rename output files.
 For example, to get rid of the string 'bold' and to adapt the file ending of the motion parameter file:
-</ul><div class="cell docutils container">
+</ul><div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define substitution strings</span>
 <span class="n">substitutions</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;_bold&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
@@ -2191,14 +2226,15 @@ For example, to get rid of the string 'bold' and to adapt the file ending of the
 </section>
 <section id="pydra-a-modern-dataflow-engine-developed-for-the-nipype-project">
 <h2>4. Pydra: A modern dataflow engine developed for the Nipype project<a class="headerlink" href="#pydra-a-modern-dataflow-engine-developed-for-the-nipype-project" title="Link to this heading">#</a></h2>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/nipype/pydra/master/docs/logo/pydra_logo.jpg"><img alt="https://raw.githubusercontent.com/nipype/pydra/master/docs/logo/pydra_logo.jpg" src="https://raw.githubusercontent.com/nipype/pydra/master/docs/logo/pydra_logo.jpg" style="width: 30%;" /></a>
+<a class="reference internal image-reference" href="https://github.com/nipype/pydra/blob/main/docs/source/_static/logo/pydra_logo.jpg?raw=true"><img alt="https://github.com/nipype/pydra/blob/main/docs/source/_static/logo/pydra_logo.jpg?raw=true" src="https://github.com/nipype/pydra/blob/main/docs/source/_static/logo/pydra_logo.jpg?raw=true" style="width: 30%;" />
+</a>
 <ul class="simple">
 <li><p>Pydra is a rewrite of the Nipype engine and forms the core of the Nipype 2.0 ecosystem and is meant to provide <strong>additional flexibility</strong> allowing users to define custom processing steps, interfaces and nested workflows.</p></li>
 </ul>
 <ul class="simple">
 <li><p>Is a standalone project and designed to support analytics in <strong>any scientific domain</strong> (whereas Nipype is specifically designed for neuroimaging data analysis pipelines).</p></li>
 </ul>
-<p>$\rightarrow$  Pydra aims to offer a lightweight Python (3.7+) dataflow engine for the construction, manipulation, and distributed execution of computational graphs. It serves as a tool for building reproducible, scalable, reusable, and fully automated scientific workflows.</p>
+<p><span class="math notranslate nohighlight">\(\rightarrow\)</span>  Pydra aims to offer a lightweight Python (3.7+) dataflow engine for the construction, manipulation, and distributed execution of computational graphs. It serves as a tool for building reproducible, scalable, reusable, and fully automated scientific workflows.</p>
 <p>The architecture in combination with several key features makes Pydra a customizable and powerful dataflow engine:</p>
 <ul class="simple">
 <li><p><strong>Architecture with three core components:</strong> Tasks (basic runnable components) including Workflows, Submitter (Classes for unpacking Tasks into standalone jobs) and Workers (Classes used to execute Tasks coordinate resource managment).</p></li>
@@ -2234,7 +2270,7 @@ For example, to get rid of the string 'bold' and to adapt the file ending of the
 </div><ul class="simple">
 <li><p><strong>Splitting &amp; combining semantics for creating nested loops over input sets:</strong> Versatile functionality for nested loop creation across input sets: Tasks or dataflows can iterate over input parameter sets, and their outputs can be recombined. This functionality resembles the Map-Reduce model, but Pydra extends this capability to graphs with nested dataflows.</p></li>
 </ul>
-<center><img src= https://pydra.readthedocs.io/en/latest/_images/nd_spl_3_comb1.png></center>
+<center><img src=https://nipype.github.io/pydra/_images/nd_spl_1.png></center>
 <figcaption><b>Figure 8:</b> Flexible splitting and merging in Pydra</figcaption>
 <div class="important">
   <p class="important-title" style="font-size: 1.3em; color: orange;"><i class="fas fa-search" style="color: orange;"></i> <span style="font-size: 1.3em;">Pydra-Nipype architectures</span></p>
@@ -2278,7 +2314,8 @@ For example, to get rid of the string 'bold' and to adapt the file ending of the
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>watermark
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">watermark</span>
 </pre></div>
 </div>
 </div>
@@ -2362,7 +2399,7 @@ numpy     : 1.26.4
 <ul>
 <li><p><a class="reference external" href="https://pydra.readthedocs.io/en/latest/">Pydra Documentation</a></p></li>
 <li><p><a class="reference external" href="https://github.com/nipype/pydra">Pydra Github</a></p></li>
-<li><p><a class="reference external" href="https://mybinder.org/v2/gh/nipype/pydra-tutorial/master">Pydra Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://github.com/nipype/pydra-tutorial">Pydra Tutorial</a></p></li>
 <li><p><a class="reference external" href="https://github.com/nipype/pydra-ml">Pydra-ML</a></p></li>
 </ul>
 </li>
@@ -2412,7 +2449,7 @@ numpy     : 1.26.4
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">BIDS</p>
+        <p class="prev-next-title">BIDS conversion</p>
       </div>
     </a>
     <a class="right-next"
@@ -2420,7 +2457,7 @@ numpy     : 1.26.4
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic Nipype Example</p>
+        <p class="prev-next-title">Basic Nipype</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2431,8 +2468,7 @@ numpy     : 1.26.4
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2529,8 +2565,8 @@ By Neurodesk Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

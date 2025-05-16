@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Freesurfer + DeepRetinotopy example &#8212; Neurodesk</title>
+    <title>DeepRetinotopy &#8212; Neurodesk</title>
   
   
   
@@ -16,33 +16,32 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/algolia.css?v=6923f26e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -74,15 +73,16 @@
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'functional_imaging/deepretinotopy';</script>
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3/dist/umd/index.js"></script>
+    <script src="../_static/algolia.js?v=b553005c"></script>
     <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/functional_imaging/deepretinotopy.html" />
     <link rel="icon" href="../_static/neurodesk_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="fMRIprep Example" href="fmriprep.html" />
-    <link rel="prev" title="FSL’s fMRI Data Analysis via Nipype" href="nipype_fsl_all_levels_flanker.html" />
+    <link rel="next" title="First and Second Level fMRI Analysis with SPM" href="first_and_second_level_spm.html" />
+    <link rel="prev" title="ASLprep" href="aslprep.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -98,8 +98,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -107,6 +118,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +126,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,8 +143,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -162,17 +173,21 @@
     
     
     <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home"/>
-    <img src="../_static/neurodesk_logo.svg" class="logo__image only-dark pst-js-only" alt="Neurodesk - Home"/>
+    <script>document.write(`<img src="../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -185,23 +200,22 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_full.html">Nipype on Neurodesk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_short.html">Basic Nipype Example</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="../workflows/MRIQC.html">MRIQC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow of a Jupyter Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_short.html">Basic Nipype</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../workflows/pyBIDS.html">pyBIDS - a Python API for working with BIDS datasets</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain extraction with different software packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">Freesurfer</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain extraction with different software packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
 
 
@@ -211,26 +225,35 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_CSD.html">Diffusion Analysis with MRtrix: Part 2 - Constrained Spherical Deconvolution and Tissue estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_CoReg_Streamline.html">Diffusion Analysis with MRtrix: Part 3 - Registration and Streamline Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_Preprocessing.html">Diffusion Analysis with MRtrix: Part 1 - Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aslprep.html">ASLprep Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_and_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aslprep.html">ASLprep</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">DeepRetinotopy</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
 
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Freesurfer + DeepRetinotopy example</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="fmriprep.html">fMRIprep Example</a></li>
 </ul>
 
     </div>
@@ -433,16 +456,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -456,7 +487,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Freesurfer + DeepRetinotopy example</h1>
+    <h1>DeepRetinotopy</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -466,11 +497,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Freesurfer + DeepRetinotopy example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">DeepRetinotopy</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data">Download data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#run">Run</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deepretinotopy">DeepRetinotopy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">DeepRetinotopy</a></li>
 </ul>
 </li>
 </ul>
@@ -486,8 +517,8 @@
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/functional_imaging/deepretinotopy.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg" />   </a></p>
-<section id="freesurfer-deepretinotopy-example">
-<h1>Freesurfer + DeepRetinotopy example<a class="headerlink" href="#freesurfer-deepretinotopy-example" title="Link to this heading">#</a></h1>
+<section id="deepretinotopy">
+<h1>DeepRetinotopy<a class="headerlink" href="#deepretinotopy" title="Link to this heading">#</a></h1>
 <p>Author: Fernanda Ribeiro, Thuy Dao</p>
 </section>
 <section id="setup-neurodesk">
@@ -495,7 +526,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can use lmod to load fsl in a specific version</span>
-<span class="kn">import</span> <span class="nn">lmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lmod</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;freesurfer/7.3.2&#39;</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;deepretinotopy/1.0.5&#39;</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
@@ -533,9 +564,9 @@ Saving to: ‘./mp2rage.nii’
 </div>
 </div>
 </section>
-<section id="run">
+<section class="tex2jax_ignore mathjax_ignore" id="run">
 <h1>Run<a class="headerlink" href="#run" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>./freesurfer_output
 <span class="o">!</span>recon-all<span class="w"> </span>-subject<span class="w"> </span>subjectname<span class="w"> </span>-i<span class="w"> </span>mp2rage.nii<span class="w"> </span>-all<span class="w"> </span>-sd<span class="w"> </span>./freesurfer_output
@@ -3177,7 +3208,7 @@ saving sequentially combined intensity scales to aseg.auto_noCCseg.label_intensi
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>./freesurfer_output/subjectname/mri
 </pre></div>
@@ -3208,7 +3239,7 @@ mri_nu_correct.mni.log
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>./freesurfer_output/subjectname/surf
 </pre></div>
@@ -3249,8 +3280,8 @@ lh.smoothwm.K.crv	 rh.inflated.K		  rh.white.preaparc.K
 </div>
 </div>
 </div>
-<section id="deepretinotopy">
-<h2>DeepRetinotopy<a class="headerlink" href="#deepretinotopy" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h2>DeepRetinotopy<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>This interactive notebook demonstrates how to predict retinotopic maps from anatomical data using a geometric deep learning model of retinotopy. For more details about the model, please check <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811921008971">here</a>.</p>
 <p>Requirements:</p>
 <ol class="arabic simple">
@@ -3298,7 +3329,7 @@ Thus, start by creating a “templates” (for example, ./templates/) folder and
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>./freesurfer_output/subjectname/deepRetinotopy
 </pre></div>
@@ -3339,20 +3370,20 @@ Thus, start by creating a “templates” (for example, ./templates/) folder and
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="nipype_fsl_all_levels_flanker.html"
+       href="aslprep.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">FSL’s fMRI Data Analysis via Nipype</p>
+        <p class="prev-next-title">ASLprep</p>
       </div>
     </a>
     <a class="right-next"
-       href="fmriprep.html"
+       href="first_and_second_level_spm.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">fMRIprep Example</p>
+        <p class="prev-next-title">First and Second Level fMRI Analysis with SPM</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3363,8 +3394,7 @@ Thus, start by creating a “templates” (for example, ./templates/) folder and
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -3373,11 +3403,11 @@ Thus, start by creating a “templates” (for example, ./templates/) folder and
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Freesurfer + DeepRetinotopy example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">DeepRetinotopy</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data">Download data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#run">Run</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deepretinotopy">DeepRetinotopy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">DeepRetinotopy</a></li>
 </ul>
 </li>
 </ul>
@@ -3429,8 +3459,8 @@ By Neurodesk Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

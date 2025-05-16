@@ -16,33 +16,32 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/algolia.css?v=6923f26e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -74,15 +73,15 @@
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'functional_imaging/nipype_fsl_all_levels_flanker';</script>
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3/dist/umd/index.js"></script>
+    <script src="../_static/algolia.js?v=b553005c"></script>
     <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/functional_imaging/nipype_fsl_all_levels_flanker.html" />
     <link rel="icon" href="../_static/neurodesk_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Freesurfer + DeepRetinotopy example" href="deepretinotopy.html" />
-    <link rel="prev" title="First and Second Level fMRI Analysis with SPM" href="first_and_second_level_spm.html" />
+    <link rel="prev" title="Introduction to Preprocessing" href="intro_to_preprocessing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -98,8 +97,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -107,6 +117,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +125,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,8 +142,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -162,17 +172,21 @@
     
     
     <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home"/>
-    <img src="../_static/neurodesk_logo.svg" class="logo__image only-dark pst-js-only" alt="Neurodesk - Home"/>
+    <script>document.write(`<img src="../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -185,23 +199,22 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_full.html">Nipype on Neurodesk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_short.html">Basic Nipype Example</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="../workflows/MRIQC.html">MRIQC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow of a Jupyter Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_short.html">Basic Nipype</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../workflows/pyBIDS.html">pyBIDS - a Python API for working with BIDS datasets</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain extraction with different software packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">Freesurfer</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain extraction with different software packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
 
 
@@ -211,26 +224,35 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_CSD.html">Diffusion Analysis with MRtrix: Part 2 - Constrained Spherical Deconvolution and Tissue estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_CoReg_Streamline.html">Diffusion Analysis with MRtrix: Part 3 - Registration and Streamline Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_Preprocessing.html">Diffusion Analysis with MRtrix: Part 1 - Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aslprep.html">ASLprep Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_and_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aslprep.html">ASLprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretinotopy.html">DeepRetinotopy</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">FSL’s fMRI Data Analysis via Nipype</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="deepretinotopy.html">Freesurfer + DeepRetinotopy example</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="fmriprep.html">fMRIprep Example</a></li>
 </ul>
 
     </div>
@@ -433,16 +455,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -554,16 +584,19 @@
 <section id="fsl-s-fmri-data-analysis-via-nipype">
 <h1>FSL’s fMRI Data Analysis via Nipype<a class="headerlink" href="#fsl-s-fmri-data-analysis-via-nipype" title="Link to this heading">#</a></h1>
 <p>Author: Monika Doerig</p>
-<p>Original peper: https://www.frontiersin.org/articles/10.3389/fnimg.2022.953215/full</p>
-<p>Original code: https://osf.io/prg53/?view_only=9d7974834a484cdb972bcc3989589b78</p>
+<p>Citation:</p>
+<ul class="simple">
+<li><p>Chen Y, Hopp FR, Malik M, Wang PT, Woodman K, Youk S and Weber R (2022) Reproducing FSL’s fMRI data analysis via Nipype: Relevance, challenges, and solutions. Front. Neuroimaging 1:953215. doi: <a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fnimg.2022.953215/full">10.3389/fnimg.2022.953215</a></p></li>
+<li><p><a class="reference external" href="https://osf.io/prg53/?view_only=9d7974834a484cdb972bcc3989589b78">Original code on OSF</a></p></li>
+</ul>
 </section>
 <section id="setup-neurodesk">
 <h1>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
 
 <span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
@@ -604,14 +637,14 @@ model name	: AMD EPYC 7742 64-Core Processor
 </div>
 </div>
 </section>
-<section id="first-level-glm-using-nipype-fsl">
+<section class="tex2jax_ignore mathjax_ignore" id="first-level-glm-using-nipype-fsl">
 <h1>First-level GLM using Nipype FSL<a class="headerlink" href="#first-level-glm-using-nipype-fsl" title="Link to this heading">#</a></h1>
 <p>In this notebook, we recreate the first-level GLM and the first level GLM of FSL GUI using nipype code. For each nipype node, we list the corresponding fsl command from the log file. The dataset we use is a Flanker task, which can be downloaded <a class="reference external" href="https://openneuro.org/datasets/ds000102/versions/00001">here</a>.</p>
 <p>We also borrow some helps from this <a class="reference external" href="https://nipype.readthedocs.io/en/latest/users/examples/fmri_fsl.html">document</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#load fsl module</span>
-<span class="kn">import</span> <span class="nn">lmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lmod</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">purge</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;fsl/6.0.5.1&#39;</span><span class="p">)</span> <span class="c1">#Original pipeline: FSL 6.0.4, nipype 1.6.1.</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
@@ -626,10 +659,8 @@ model name	: AMD EPYC 7742 64-Core Processor
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FSLDIR&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;/cvmfs/neurodesk.ardc.edu.au/containers/fsl_6.0.5.1_20221016/fsl_6.0.5.1_20221016.simg/opt/fsl-6.0.5.1/&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FSLOUTPUTTYPE&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;NIFTI_GZ&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SINGULARITY_BINDPATH&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;/data,/neurodesktop-storage,/tmp,/cvmfs&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -639,23 +670,23 @@ model name	: AMD EPYC 7742 64-Core Processor
 <p>Import all the relevant libraries needed for the preprocessing stage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">str</span>
-<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">builtins</span><span class="w"> </span><span class="kn">import</span> <span class="nb">str</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">builtins</span><span class="w"> </span><span class="kn">import</span> <span class="nb">range</span>
 
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
 
-<span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">Function</span>
-<span class="kn">from</span> <span class="nn">nipype.interfaces</span> <span class="kn">import</span> <span class="n">fsl</span><span class="p">,</span> <span class="n">utility</span> <span class="k">as</span> <span class="n">util</span><span class="p">,</span> <span class="n">io</span> <span class="k">as</span> <span class="n">nio</span>
-<span class="kn">import</span> <span class="nn">nipype.pipeline.engine</span> <span class="k">as</span> <span class="nn">pe</span>  <span class="c1"># pypeline engine</span>
-<span class="kn">import</span> <span class="nn">nipype.algorithms.modelgen</span> <span class="k">as</span> <span class="nn">model</span>  <span class="c1"># model generation</span>
-<span class="kn">import</span> <span class="nn">nipype.algorithms.rapidart</span> <span class="k">as</span> <span class="nn">ra</span>  <span class="c1"># artifact detection</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nipype</span><span class="w"> </span><span class="kn">import</span> <span class="n">Function</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nipype.interfaces</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsl</span><span class="p">,</span> <span class="n">utility</span> <span class="k">as</span> <span class="n">util</span><span class="p">,</span> <span class="n">io</span> <span class="k">as</span> <span class="n">nio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nipype.pipeline.engine</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pe</span>  <span class="c1"># pypeline engine</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nipype.algorithms.modelgen</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">model</span>  <span class="c1"># model generation</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nipype.algorithms.rapidart</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ra</span>  <span class="c1"># artifact detection</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">import</span> <span class="nn">nilearn</span>
-<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">surface</span>
-<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nilearn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">surface</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotting</span>
 </pre></div>
 </div>
 </div>
@@ -699,7 +730,7 @@ model name	: AMD EPYC 7742 64-Core Processor
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>datalad<span class="w"> </span>install<span class="w"> </span>https://github.com/OpenNeuroDatasets/ds000102.git
 <span class="o">!</span><span class="nb">cd</span><span class="w"> </span>ds000102<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>datalad<span class="w"> </span>get<span class="w"> </span><span class="nv">$PATTERN</span>
@@ -1267,8 +1298,8 @@ action summary:
 <span class="n">wf_first</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">img2float</span><span class="p">,</span> <span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="n">extract_ref</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)</span>
 
 <span class="c1"># Define a function to return the 1 based index of the middle volume</span>
-<span class="k">def</span> <span class="nf">getmiddlevolume</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="kn">from</span> <span class="nn">nibabel</span> <span class="kn">import</span> <span class="n">load</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getmiddlevolume</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span>
     <span class="n">funcfile</span> <span class="o">=</span> <span class="n">func</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
         <span class="n">funcfile</span> <span class="o">=</span> <span class="n">func</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1420,7 +1451,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 <span class="n">wf_first</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">maskfunc</span><span class="p">,</span> <span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)</span>
 
 <span class="c1"># Define a function to get 10% of the intensity</span>
-<span class="k">def</span> <span class="nf">getthreshop</span><span class="p">(</span><span class="n">thresh</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getthreshop</span><span class="p">(</span><span class="n">thresh</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;-thr </span><span class="si">%.10f</span><span class="s1"> -Tmin -bin&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">th</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">th</span> <span class="ow">in</span> <span class="n">thresh</span><span class="p">]</span>
 
 <span class="n">wf_first</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">getthresh</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;out_stat&#39;</span><span class="p">,</span> <span class="n">getthreshop</span><span class="p">),</span> <span class="n">threshold</span><span class="p">,</span> <span class="s1">&#39;op_string&#39;</span><span class="p">)</span>
@@ -1519,7 +1550,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 <span class="o">&lt;</span><span class="n">dt</span><span class="o">&gt;</span> <span class="ow">is</span> <span class="n">spatial</span> <span class="n">size</span> <span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="p">,</span> <span class="n">half</span><span class="o">-</span><span class="n">width</span><span class="p">)</span> <span class="n">of</span> <span class="n">smoothing</span><span class="p">,</span> <span class="ow">in</span> <span class="n">mm</span><span class="o">.</span>
 <span class="o">&lt;</span><span class="n">dim</span><span class="o">&gt;</span> <span class="ow">is</span> <span class="n">dimensionality</span> <span class="p">(</span><span class="mi">2</span> <span class="ow">or</span> <span class="mi">3</span><span class="p">),</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">whether</span> <span class="n">smoothing</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">be</span> <span class="n">within</span><span class="o">-</span><span class="n">plane</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="n">fully</span> <span class="mi">3</span><span class="n">D</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span>
 <span class="o">&lt;</span><span class="n">use_median</span><span class="o">&gt;</span> <span class="n">determines</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">use</span> <span class="n">a</span> <span class="n">local</span> <span class="n">median</span> <span class="nb">filter</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">cases</span> <span class="n">where</span> <span class="n">single</span><span class="o">-</span><span class="n">point</span> <span class="n">noise</span> <span class="ow">is</span> <span class="n">detected</span> <span class="p">(</span><span class="mi">0</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span>
-<span class="o">&lt;</span><span class="n">n_usans</span><span class="o">&gt;</span> <span class="n">determines</span> <span class="n">whether</span> <span class="n">the</span> <span class="n">smoothing</span> <span class="n">area</span> <span class="p">(</span><span class="n">USAN</span><span class="p">)</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">be</span> <span class="n">found</span> <span class="kn">from</span> <span class="nn">secondary</span> <span class="n">images</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span>
+<span class="o">&lt;</span><span class="n">n_usans</span><span class="o">&gt;</span> <span class="n">determines</span> <span class="n">whether</span> <span class="n">the</span> <span class="n">smoothing</span> <span class="n">area</span> <span class="p">(</span><span class="n">USAN</span><span class="p">)</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">be</span> <span class="n">found</span> <span class="kn">from</span><span class="w"> </span><span class="nn">secondary</span> <span class="n">images</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span>
 <span class="n">A</span> <span class="n">negative</span> <span class="n">value</span> <span class="k">for</span> <span class="nb">any</span> <span class="n">brightness</span> <span class="n">threshold</span> <span class="n">will</span> <span class="n">auto</span><span class="o">-</span><span class="nb">set</span> <span class="n">the</span> <span class="n">threshold</span> <span class="n">at</span> <span class="mi">10</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">robust</span> <span class="nb">range</span>
 </pre></div>
 </div>
@@ -1539,10 +1570,10 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
     <span class="n">iterfield</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;in_file&#39;</span><span class="p">,</span> <span class="s1">&#39;brightness_threshold&#39;</span><span class="p">,</span> <span class="s1">&#39;usans&#39;</span><span class="p">])</span>
 
 <span class="c1"># Define a function to get the brightness threshold for SUSAN</span>
-<span class="k">def</span> <span class="nf">getbtthresh</span><span class="p">(</span><span class="n">medianvals</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getbtthresh</span><span class="p">(</span><span class="n">medianvals</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">medianvals</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">getusans</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getusans</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[[</span><span class="nb">tuple</span><span class="p">([</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]])]</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
 
 <span class="n">wf_first</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">maskfunc2</span><span class="p">,</span> <span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="n">smooth</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)</span>
@@ -1585,7 +1616,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 <span class="n">wf_first</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">maskfunc3</span><span class="p">,</span> <span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="n">intnorm</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)</span>
 
 <span class="c1"># Define a function to get the scaling factor for intensity normalization</span>
-<span class="k">def</span> <span class="nf">getinormscale</span><span class="p">(</span><span class="n">medianvals</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getinormscale</span><span class="p">(</span><span class="n">medianvals</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;-mul </span><span class="si">%.10f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">10000.</span> <span class="o">/</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">medianvals</span><span class="p">]</span>
 
 <span class="n">wf_first</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">medianval</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;out_stat&#39;</span><span class="p">,</span> <span class="n">getinormscale</span><span class="p">),</span> <span class="n">intnorm</span><span class="p">,</span> <span class="s1">&#39;op_string&#39;</span><span class="p">)</span>
@@ -1627,7 +1658,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
     <span class="n">iterfield</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;in_file&#39;</span><span class="p">,</span><span class="s1">&#39;op_string&#39;</span><span class="p">])</span>
 
 <span class="c1"># 25 = (hpcutoff / 2*TR) not (hpcutoff / TR)</span>
-<span class="k">def</span> <span class="nf">gethpstring</span><span class="p">(</span><span class="n">tempMean</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gethpstring</span><span class="p">(</span><span class="n">tempMean</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;-bptf 25 -1 -add </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tm</span><span class="p">)</span> <span class="k">for</span> <span class="n">tm</span> <span class="ow">in</span> <span class="n">tempMean</span><span class="p">]</span>
 
 <span class="n">wf_first</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">intnorm</span><span class="p">,</span> <span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="n">highpass</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)</span>
@@ -1661,10 +1692,10 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 <h3>Get events<a class="headerlink" href="#get-events" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subjinfo</span><span class="p">(</span><span class="n">events</span><span class="p">):</span>
-    <span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">Bunch</span>
-    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">subjinfo</span><span class="p">(</span><span class="n">events</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">nipype.interfaces.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bunch</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
     <span class="n">subject_info</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -1840,9 +1871,9 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">warp_files</span><span class="p">(</span><span class="n">copes</span><span class="p">,</span> <span class="n">varcopes</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">warp_files</span><span class="p">(</span><span class="n">copes</span><span class="p">,</span> <span class="n">varcopes</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
     <span class="c1"># need to reimport here, otherwise errors come out</span>
-    <span class="kn">import</span> <span class="nn">nipype.interfaces.fsl</span> <span class="k">as</span> <span class="nn">fsl</span> 
+    <span class="kn">import</span><span class="w"> </span><span class="nn">nipype.interfaces.fsl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">fsl</span> 
     
     <span class="n">out_copes</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">out_varcopes</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1919,7 +1950,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 <span class="n">wf_first</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="n">graph2use</span><span class="o">=</span><span class="s1">&#39;colored&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">simple_form</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Visualize the graph</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wf_first</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">wf_first</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;graph.png&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1934,7 +1965,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;nipype.workflow&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#set to 1 if nipype output is wanted</span>
 <span class="c1"># Run Workflow</span>
 <span class="n">wf_first</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s2">&quot;MultiProc&quot;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_procs&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
@@ -1970,7 +2001,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">nipype_cope1</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">nipype_cope1</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Nipype - COPE1&#39;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1992,7 +2023,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 </div>
 </section>
 </section>
-<section id="second-level-glm-using-nipype-fsl">
+<section class="tex2jax_ignore mathjax_ignore" id="second-level-glm-using-nipype-fsl">
 <h1>Second level GLM using Nipype FSL<a class="headerlink" href="#second-level-glm-using-nipype-fsl" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2041,9 +2072,9 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 <section id="step-1-merge-registered-copes-varcopes-masks">
 <h4>Step 1: Merge registered copes &amp; varcopes &amp; masks<a class="headerlink" href="#step-1-merge-registered-copes-varcopes-masks" title="Link to this heading">#</a></h4>
 <p><strong>Corresponding FSL command:</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">mask</span> <span class="p">(</span><span class="n">masks</span> <span class="kn">from</span> <span class="nn">all</span> <span class="mi">52</span> <span class="n">inputs</span><span class="p">)</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">cope</span> <span class="p">(</span><span class="n">copes</span> <span class="kn">from</span> <span class="nn">all</span> <span class="mi">52</span> <span class="n">inputs</span><span class="p">)</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">varcop</span> <span class="p">(</span><span class="n">varcopes</span> <span class="kn">from</span> <span class="nn">all</span> <span class="mi">52</span> <span class="n">inputs</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">mask</span> <span class="p">(</span><span class="n">masks</span> <span class="kn">from</span><span class="w"> </span><span class="nn">all</span> <span class="mi">52</span> <span class="n">inputs</span><span class="p">)</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">cope</span> <span class="p">(</span><span class="n">copes</span> <span class="kn">from</span><span class="w"> </span><span class="nn">all</span> <span class="mi">52</span> <span class="n">inputs</span><span class="p">)</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">varcop</span> <span class="p">(</span><span class="n">varcopes</span> <span class="kn">from</span><span class="w"> </span><span class="nn">all</span> <span class="mi">52</span> <span class="n">inputs</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -2064,7 +2095,7 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;maskmerge_second&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">sort_copes</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sort_copes</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
     <span class="n">numelements</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">outfiles</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numelements</span><span class="p">):</span>
@@ -2135,9 +2166,9 @@ Interpolation (‘spline’ or ‘nn’ or ‘sinc’) – Interpolation method 
 <h3>Set up second-level contrasts and fixed-effects<a class="headerlink" href="#set-up-second-level-contrasts-and-fixed-effects" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_contrasts_l2</span><span class="p">(</span><span class="n">in_files</span><span class="p">):</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-    <span class="kn">import</span> <span class="nn">glob</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_contrasts_l2</span><span class="p">(</span><span class="n">in_files</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
     <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">in_files</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">in_files</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
@@ -2213,7 +2244,7 @@ Instead, we use <a class="reference external" href="https://nipype.readthedocs.i
 <span class="n">wf_second</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="n">graph2use</span><span class="o">=</span><span class="s1">&#39;colored&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">simple_form</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Visualize the graph</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wf_second</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">wf_second</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;graph.png&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -2253,7 +2284,7 @@ Instead, we use <a class="reference external" href="https://nipype.readthedocs.i
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">nipype_cope1</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">nipype_cope1</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Nipype - COPE1&#39;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">nipype_cope2</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">nipype_cope2</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Nipype - COPE2&#39;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
@@ -2273,7 +2304,7 @@ Instead, we use <a class="reference external" href="https://nipype.readthedocs.i
 </section>
 <section id="copes-from-the-second-level-glm">
 <h3>Copes from the second-level GLM<a class="headerlink" href="#copes-from-the-second-level-glm" title="Link to this heading">#</a></h3>
-<p>copes from subject-01</p>
+<p>Copes from subject-01:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nipype_cope1</span> <span class="o">=</span> <span class="s1">&#39;./output_level2/level2_results/contrast_1/stats_dir/_contr_id_1/stats/cope1.nii.gz&#39;</span>
@@ -2284,7 +2315,7 @@ Instead, we use <a class="reference external" href="https://nipype.readthedocs.i
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">nipype_cope1</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">nipype_cope1</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Nipype - COPE1&#39;</span><span class="p">)</span>
 <span class="n">plotting</span><span class="o">.</span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">nipype_cope2</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">nipype_cope2</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Nipype - COPE2&#39;</span><span class="p">)</span>
@@ -2304,7 +2335,7 @@ Instead, we use <a class="reference external" href="https://nipype.readthedocs.i
 </section>
 </section>
 </section>
-<section id="third-level-glm-using-nipype-fsl">
+<section class="tex2jax_ignore mathjax_ignore" id="third-level-glm-using-nipype-fsl">
 <h1>Third-level GLM using Nipype FSL<a class="headerlink" href="#third-level-glm-using-nipype-fsl" title="Link to this heading">#</a></h1>
 <p>Start the workflow</p>
 <div class="cell docutils container">
@@ -2360,9 +2391,9 @@ Instead, we use <a class="reference external" href="https://nipype.readthedocs.i
 <section id="id2">
 <h4>Step 1: Merge registered copes &amp; varcopes &amp; masks<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <p><strong>Corresponding FSL command:</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">mask</span> <span class="p">(</span><span class="n">masks</span> <span class="kn">from</span> <span class="nn">all</span> <span class="mi">26</span> <span class="n">inputs</span><span class="p">)</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">cope</span> <span class="p">(</span><span class="n">copes</span> <span class="kn">from</span> <span class="nn">all</span> <span class="mi">26</span> <span class="n">inputs</span><span class="p">)</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">varcop</span> <span class="p">(</span><span class="n">varcopes</span> <span class="kn">from</span> <span class="nn">all</span> <span class="mi">26</span> <span class="n">inputs</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">mask</span> <span class="p">(</span><span class="n">masks</span> <span class="kn">from</span><span class="w"> </span><span class="nn">all</span> <span class="mi">26</span> <span class="n">inputs</span><span class="p">)</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">cope</span> <span class="p">(</span><span class="n">copes</span> <span class="kn">from</span><span class="w"> </span><span class="nn">all</span> <span class="mi">26</span> <span class="n">inputs</span><span class="p">)</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fsl</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">fslmerge</span> <span class="o">-</span><span class="n">t</span> <span class="n">varcop</span> <span class="p">(</span><span class="n">varcopes</span> <span class="kn">from</span><span class="w"> </span><span class="nn">all</span> <span class="mi">26</span> <span class="n">inputs</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -2382,9 +2413,9 @@ Instead, we use <a class="reference external" href="https://nipype.readthedocs.i
     <span class="n">iterfield</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;in_files&#39;</span><span class="p">],</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;maskmerge_third&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">repeat_mask</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-    <span class="kn">import</span> <span class="nn">glob</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">repeat_mask</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
     <span class="c1"># n_sub = len(glob.glob(os.path.join(os.getcwd(), &#39;ds000102&#39;)+&quot;/sub-0*&quot;))    </span>
     <span class="n">n_sub</span> <span class="o">=</span> <span class="mi">9</span>
     <span class="n">mask_lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span><span class="p">]</span>
@@ -2456,7 +2487,7 @@ Instead, we use <a class="reference external" href="https://nipype.readthedocs.i
 If we have an ANOVA-like design, using <a class="reference external" href="https://nipype.readthedocs.io/en/latest/api/generated/nipype.interfaces.fsl.model.html#multipleregressdesign">MultipleRegressDesign</a> would be a better option.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">num_copes</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">num_copes</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
 
 <span class="n">level3model</span> <span class="o">=</span> <span class="n">pe</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">interface</span><span class="o">=</span><span class="n">fsl</span><span class="o">.</span><span class="n">L2Model</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;l3model&#39;</span><span class="p">)</span>
@@ -2588,7 +2619,7 @@ If we have an ANOVA-like design, using <a class="reference external" href="https
 <span class="n">wf_third</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="n">graph2use</span><span class="o">=</span><span class="s1">&#39;colored&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">simple_form</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Visualize the graph</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wf_third</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">wf_third</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;graph.png&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -2619,7 +2650,7 @@ If we have an ANOVA-like design, using <a class="reference external" href="https
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_nipype_cope1</span> <span class="o">=</span> <span class="n">surface</span><span class="o">.</span><span class="n">vol_to_surf</span><span class="p">(</span><span class="n">nipype_cope1</span><span class="p">,</span> <span class="n">fsaverage</span><span class="o">.</span><span class="n">pial_right</span><span class="p">)</span>
 <span class="n">plotting</span><span class="o">.</span><span class="n">plot_surf_stat_map</span><span class="p">(</span>
@@ -2673,7 +2704,7 @@ If we have an ANOVA-like design, using <a class="reference external" href="https
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_img_on_surf</span><span class="p">(</span><span class="n">nipype_cope1</span><span class="p">,</span>
                           <span class="n">views</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lateral&#39;</span><span class="p">],</span>
@@ -2753,22 +2784,13 @@ If we have an ANOVA-like design, using <a class="reference external" href="https
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="first_and_second_level_spm.html"
+       href="intro_to_preprocessing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">First and Second Level fMRI Analysis with SPM</p>
+        <p class="prev-next-title">Introduction to Preprocessing</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="deepretinotopy.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Freesurfer + DeepRetinotopy example</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -2777,8 +2799,7 @@ If we have an ANOVA-like design, using <a class="reference external" href="https
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2908,8 +2929,8 @@ By Neurodesk Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
