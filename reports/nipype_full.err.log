@@ -15,26 +15,71 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# In code cells you press Shift-Enter to evaluate your code and directly move to the next cell if it is already displayed. 
-# Or press Ctrl-Enter to run a command without direclty moving to the next cell.
+# Explore the workflow visually
+wf.write_graph("workflow_graph.dot")
 
-# Use lmod to load any software tool with a specific version
-import lmod
-await lmod.load('fsl/6.0.7.4')
-await lmod.list()
+Image(filename=opj(wf_work_dir,"smoothflow/workflow_graph.png"))
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[3], line 5[0m
-[1;32m      1[0m [38;5;66;03m# In code cells you press Shift-Enter to evaluate your code and directly move to the next cell if it is already displayed. [39;00m
-[1;32m      2[0m [38;5;66;03m# Or press Ctrl-Enter to run a command without direclty moving to the next cell.[39;00m
-[1;32m      3[0m 
-[1;32m      4[0m [38;5;66;03m# Use lmod to load any software tool with a specific version[39;00m
-[0;32m----> 5[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mlmod[39;00m
-[1;32m      6[0m [38;5;28;01mawait[39;00m lmod[38;5;241m.[39mload([38;5;124m'[39m[38;5;124mfsl/6.0.7.4[39m[38;5;124m'[39m)
-[1;32m      7[0m [38;5;28;01mawait[39;00m lmod[38;5;241m.[39mlist()
+[0;31mOSError[0m                                   Traceback (most recent call last)
+Cell [0;32mIn[20], line 2[0m
+[1;32m      1[0m [38;5;66;03m# Explore the workflow visually[39;00m
+[0;32m----> 2[0m [43mwf[49m[38;5;241;43m.[39;49m[43mwrite_graph[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mworkflow_graph.dot[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m      4[0m Image(filename[38;5;241m=[39mopj(wf_work_dir,[38;5;124m"[39m[38;5;124msmoothflow/workflow_graph.png[39m[38;5;124m"[39m))
 
-[0;31mModuleNotFoundError[0m: No module named 'lmod'
+File [0;32m~/.local/lib/python3.10/site-packages/nipype/pipeline/engine/workflows.py:456[0m, in [0;36mWorkflow.write_graph[0;34m(self, dotfilename, graph2use, format, simple_form)[0m
+[1;32m    450[0m     dotfilename [38;5;241m=[39m op[38;5;241m.[39mjoin(base_dir, dotfilename)
+[1;32m    451[0m     [38;5;28mself[39m[38;5;241m.[39mwrite_hierarchical_dotfile(
+[1;32m    452[0m         dotfilename[38;5;241m=[39mdotfilename,
+[1;32m    453[0m         colored[38;5;241m=[39mgraph2use [38;5;241m==[39m [38;5;124m"[39m[38;5;124mcolored[39m[38;5;124m"[39m,
+[1;32m    454[0m         simple_form[38;5;241m=[39msimple_form,
+[1;32m    455[0m     )
+[0;32m--> 456[0m     outfname [38;5;241m=[39m [43mformat_dot[49m[43m([49m[43mdotfilename[49m[43m,[49m[43m [49m[38;5;28;43mformat[39;49m[38;5;241;43m=[39;49m[38;5;28;43mformat[39;49m[43m)[49m
+[1;32m    457[0m [38;5;28;01melse[39;00m:
+[1;32m    458[0m     graph [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_graph
+
+File [0;32m~/.local/lib/python3.10/site-packages/nipype/pipeline/engine/utils.py:1381[0m, in [0;36mformat_dot[0;34m(dotfilename, format)[0m
+[1;32m   1379[0m         [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m([38;5;124m"[39m[38;5;124mCannot draw directed graph; executable [39m[38;5;124m'[39m[38;5;124mdot[39m[38;5;124m'[39m[38;5;124m is unavailable[39m[38;5;124m"[39m)
+[1;32m   1380[0m     [38;5;28;01melse[39;00m:
+[0;32m-> 1381[0m         [38;5;28;01mraise[39;00m ioe
+[1;32m   1382[0m [38;5;28;01mreturn[39;00m formatted_dot
+
+File [0;32m~/.local/lib/python3.10/site-packages/nipype/pipeline/engine/utils.py:1376[0m, in [0;36mformat_dot[0;34m(dotfilename, format)[0m
+[1;32m   1374[0m [38;5;250m[39m[38;5;124;03m"""Dump a directed graph (Linux only; install via `brew` on OSX)"""[39;00m
+[1;32m   1375[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 1376[0m     formatted_dot, _ [38;5;241m=[39m [43m_run_dot[49m[43m([49m[43mdotfilename[49m[43m,[49m[43m [49m[43mformat_ext[49m[38;5;241;43m=[39;49m[38;5;28;43mformat[39;49m[43m)[49m
+[1;32m   1377[0m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m ioe:
+[1;32m   1378[0m     [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mcould not be found[39m[38;5;124m"[39m [38;5;129;01min[39;00m [38;5;28mstr[39m(ioe):
+
+File [0;32m~/.local/lib/python3.10/site-packages/nipype/pipeline/engine/utils.py:1392[0m, in [0;36m_run_dot[0;34m(dotfilename, format_ext)[0m
+[1;32m   1390[0m formatted_dot [38;5;241m=[39m [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mdot_base[38;5;132;01m}[39;00m[38;5;124m.[39m[38;5;132;01m{[39;00mformat_ext[38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m   1391[0m cmd [38;5;241m=[39m [38;5;124mf[39m[38;5;124m'[39m[38;5;124mdot -T[39m[38;5;132;01m{[39;00mformat_ext[38;5;132;01m}[39;00m[38;5;124m -o[39m[38;5;124m"[39m[38;5;132;01m{[39;00mformatted_dot[38;5;132;01m}[39;00m[38;5;124m"[39m[38;5;124m [39m[38;5;124m"[39m[38;5;132;01m{[39;00mdotfilename[38;5;132;01m}[39;00m[38;5;124m"[39m[38;5;124m'[39m
+[0;32m-> 1392[0m res [38;5;241m=[39m [43mCommandLine[49m[43m([49m[43mcmd[49m[43m,[49m[43m [49m[43mterminal_output[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mallatonce[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43mresource_monitor[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m[38;5;241;43m.[39;49m[43mrun[49m[43m([49m[43m)[49m
+[1;32m   1393[0m [38;5;28;01mreturn[39;00m formatted_dot, res
+
+File [0;32m~/.local/lib/python3.10/site-packages/nipype/interfaces/base/core.py:401[0m, in [0;36mBaseInterface.run[0;34m(self, cwd, ignore_exception, **inputs)[0m
+[1;32m    399[0m [38;5;66;03m# Run interface[39;00m
+[1;32m    400[0m runtime [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_pre_run_hook(runtime)
+[0;32m--> 401[0m runtime [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_run_interface[49m[43m([49m[43mruntime[49m[43m)[49m
+[1;32m    402[0m runtime [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_post_run_hook(runtime)
+[1;32m    403[0m [38;5;66;03m# Collect outputs[39;00m
+
+File [0;32m~/.local/lib/python3.10/site-packages/nipype/interfaces/base/core.py:756[0m, in [0;36mCommandLine._run_interface[0;34m(self, runtime, correct_return_codes)[0m
+[1;32m    753[0m cmd_path [38;5;241m=[39m which(executable_name, env[38;5;241m=[39mruntime[38;5;241m.[39menviron)
+[1;32m    755[0m [38;5;28;01mif[39;00m cmd_path [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[0;32m--> 756[0m     [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m(
+[1;32m    757[0m         [38;5;124m'[39m[38;5;124mNo command [39m[38;5;124m"[39m[38;5;132;01m%s[39;00m[38;5;124m"[39m[38;5;124m found on host [39m[38;5;132;01m%s[39;00m[38;5;124m. Please check that the [39m[38;5;124m'[39m
+[1;32m    758[0m         [38;5;124m"[39m[38;5;124mcorresponding package is installed.[39m[38;5;124m"[39m
+[1;32m    759[0m         [38;5;241m%[39m (executable_name, runtime[38;5;241m.[39mhostname)
+[1;32m    760[0m     )
+[1;32m    762[0m runtime[38;5;241m.[39mcommand_path [38;5;241m=[39m cmd_path
+[1;32m    763[0m runtime[38;5;241m.[39mdependencies [38;5;241m=[39m (
+[1;32m    764[0m     get_dependencies(executable_name, runtime[38;5;241m.[39menviron)
+[1;32m    765[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_ldd
+[1;32m    766[0m     [38;5;28;01melse[39;00m [38;5;124m"[39m[38;5;124m<skipped>[39m[38;5;124m"[39m
+[1;32m    767[0m )
+
+[0;31mOSError[0m: No command "dot" found on host pkrvm1036rseh6a. Please check that the corresponding package is installed.
 
