@@ -1,14 +1,8 @@
+<!DOCTYPE html><html lang="en" data-content_root="../"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!DOCTYPE html>
-
-
-<html lang="en" data-content_root="../" >
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Diffusion Analysis with MRtrix: Part 3 - Registration and Streamline Fitting &#8212; Neurodesk</title>
+    <title>Diffusion Analysis with MRtrix: Part 3 - Registration and Streamline Fitting — Neurodesk</title>
   
   
   
@@ -18,29 +12,29 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/algolia.css?v=353b52f6" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079">
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062">
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357">
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b">
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e">
+    <link rel="stylesheet" type="text/css" href="../_static/algolia.css?v=6923f26e">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b">
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
@@ -75,14 +69,14 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'diffusion_imaging/MRtrix_CoReg_Streamline';</script>
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3/dist/umd/index.js"></script>
     <script src="../_static/algolia.js?v=b553005c"></script>
-    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/diffusion_imaging/MRtrix_CoReg_Streamline.html" />
-    <link rel="icon" href="../_static/neurodesk_logo.svg"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Diffusion Analysis with MRtrix: Part 1 - Preprocessing" href="MRtrix_Preprocessing.html" />
-    <link rel="prev" title="Diffusion Analysis with MRtrix: Part 2 - Constrained Spherical Deconvolution and Tissue estimation" href="MRtrix_CSD.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/diffusion_imaging/MRtrix_CoReg_Streamline.html">
+    <link rel="icon" href="../_static/neurodesk_logo.svg">
+    <link rel="index" title="Index" href="../genindex.html">
+    <link rel="search" title="Search" href="../search.html">
+    <link rel="next" title="Diffusion Analysis with MRtrix: Part 1 - Preprocessing" href="MRtrix_Preprocessing.html">
+    <link rel="prev" title="Diffusion Analysis with MRtrix: Part 2 - Constrained Spherical Deconvolution and Tissue estimation" href="MRtrix_CSD.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="docsearch:language" content="en">
   </head>
   
   
@@ -98,33 +92,18 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
+  <input type="checkbox" class="sidebar-toggle" id="pst-primary-sidebar-checkbox">
   <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
+  <input type="checkbox" class="sidebar-toggle" id="pst-secondary-sidebar-checkbox">
   <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
@@ -172,7 +151,7 @@
       
     
     
-    <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home"/>
+    <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home">
     <script>document.write(`<img src="../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
   
   
@@ -294,7 +273,7 @@
       
         <div class="header-article-item">
 
-<div class="article-header-buttons">
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.264522" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.264522</a>
 
 
 
@@ -308,11 +287,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/diffusion_imaging/MRtrix_CoReg_Streamline.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
+      <li><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/diffusion_imaging/MRtrix_CoReg_Streamline.ipynb" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Colab" data-bs-placement="left" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
@@ -339,11 +314,7 @@
       
       
       
-      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
+      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank" class="btn btn-sm btn-source-repository-button dropdown-item" title="Source repository" data-bs-placement="left" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
@@ -356,11 +327,7 @@
       
       
       
-      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/diffusion_imaging/MRtrix_CoReg_Streamline.ipynb" target="_blank"
-   class="btn btn-sm btn-source-edit-button dropdown-item"
-   title="Suggest edit"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/diffusion_imaging/MRtrix_CoReg_Streamline.ipynb" target="_blank" class="btn btn-sm btn-source-edit-button dropdown-item" title="Suggest edit" data-bs-placement="left" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
@@ -373,11 +340,7 @@
       
       
       
-      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Fdiffusion_imaging/MRtrix_CoReg_Streamline.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Fdiffusion_imaging/MRtrix_CoReg_Streamline.html&amp;body=Your%20issue%20content%20here." target="_blank" class="btn btn-sm btn-source-issues-button dropdown-item" title="Open an issue" data-bs-placement="left" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
@@ -403,11 +366,7 @@
       
       
       
-      <li><a href="../_sources/diffusion_imaging/MRtrix_CoReg_Streamline.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
+      <li><a href="../_sources/diffusion_imaging/MRtrix_CoReg_Streamline.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
@@ -421,11 +380,7 @@
       
       
       <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
+<button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
@@ -441,11 +396,7 @@
 
 
 
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
+<button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button" title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
@@ -533,7 +484,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/diffusion_imaging/MRtrix_CoReg_Streamline.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg" />   </a></p>
+  <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/diffusion_imaging/MRtrix_CoReg_Streamline.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg">   </a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="diffusion-analysis-with-mrtrix-part-3-registration-and-streamline-fitting">
 <h1>Diffusion Analysis with MRtrix: Part 3 - Registration and Streamline Fitting<a class="headerlink" href="#diffusion-analysis-with-mrtrix-part-3-registration-and-streamline-fitting" title="Link to this heading">#</a></h1>
 <p>This notebook is the third in a series on Diffusion Analysis using MRtrix and builds upon the data generated in <strong>Diffusion Analysis with MRtrix: Part 2 - Constrained Spherical Deconvolution and Tissue estimation</strong>. The data necessary for this example will be downloaded from OSF.</p>
@@ -571,19 +522,19 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
+<span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
 
 <span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LD_PRELOAD&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;APPTAINER_BINDPATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content,/tmp,/cvmfs&quot;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MPLCONFIGDIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/matplotlib-mpldir&quot;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LMOD_CMD&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/usr/share/lmod/lmod/libexec/lmod&quot;</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LD_PRELOAD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"APPTAINER_BINDPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content,/tmp,/cvmfs"</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MPLCONFIGDIR"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content/matplotlib-mpldir"</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LMOD_CMD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/usr/share/lmod/lmod/libexec/lmod"</span>
 
   <span class="err">!</span><span class="n">curl</span> <span class="o">-</span><span class="n">J</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">NeuroDesk</span><span class="o">/</span><span class="n">neurocommand</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
   <span class="err">!</span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
   <span class="err">!</span><span class="o">./</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
 
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MODULEPATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/&#39;</span><span class="p">),</span> <span class="n">x</span><span class="p">),</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/&#39;</span><span class="p">)))))</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MODULEPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">':'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">),</span> <span class="n">x</span><span class="p">),</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">)))))</span>
 </pre></div>
 </div>
 </div>
@@ -591,8 +542,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output CPU information:</span>
-<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;vendor&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
-<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;model name&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'vendor'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'model name'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 </pre></div>
 </div>
 </div>
@@ -640,14 +591,14 @@ model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">lmod</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;mrtrix3/3.0.4&#39;</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;fsl/6.0.7.4&#39;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'mrtrix3/3.0.4'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'fsl/6.0.7.4'</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mrtrix3/3.0.4&#39;, &#39;fsl/6.0.7.4&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['mrtrix3/3.0.4', 'fsl/6.0.7.4']
 </pre></div>
 </div>
 </div>
@@ -681,13 +632,13 @@ model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the original directory</span>
 <span class="n">original_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
 <span class="c1"># Navigate to the dowloaded data</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;MRtrix_fod&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">"MRtrix_fod"</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/jovyan/Git_repositories/MRtrix_fod&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'/home/jovyan/Git_repositories/MRtrix_fod'
 </pre></div>
 </div>
 </div>
@@ -733,7 +684,7 @@ USAGE
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dwiextract: [100%] extracting volumes[0K?7h?7l
-mrmath: [100%] preloading data for &quot;/tmp/mrtrix-tmp-hZcbyF.mif&quot;[0K?7h?7l
+mrmath: [100%] preloading data for "/tmp/mrtrix-tmp-hZcbyF.mif"[0K?7h?7l
 mrmath: [100%] computing mean along axis 3...[0K?7h?7l
 </pre></div>
 </div>
@@ -752,10 +703,10 @@ mrmath: [100%] computing mean along axis 3...[0K?7h?7l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mrconvert: [100%] copying from &quot;mean_b0.mif&quot; to &quot;mean_b0.nii.gz&quot;[0K?7h
-mrconvert: [100%] compressing image &quot;mean_b0.nii.gz&quot;[0K?7h?7l?7l
-mrconvert: [100%] copying from &quot;5tt_nocoreg.mif&quot; to &quot;5tt_nocoreg.nii.gz&quot;[0K?7h?7l?7l
-mrconvert: [100%] compressing image &quot;5tt_nocoreg.nii.gz&quot;[0K?7h?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mrconvert: [100%] copying from "mean_b0.mif" to "mean_b0.nii.gz"[0K?7h
+mrconvert: [100%] compressing image "mean_b0.nii.gz"[0K?7h?7l?7l
+mrconvert: [100%] copying from "5tt_nocoreg.mif" to "5tt_nocoreg.nii.gz"[0K?7h?7l?7l
+mrconvert: [100%] compressing image "5tt_nocoreg.nii.gz"[0K?7h?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l?7l
 </pre></div>
 </div>
 </div>
@@ -796,7 +747,7 @@ mrconvert: [100%] compressing image &quot;5tt_nocoreg.nii.gz&quot;[0K?7h?7l?7l?7
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mrtransform: [100%] copying from &quot;5tt_nocoreg.mif&quot; to &quot;5tt_coreg.mif&quot;...[0K?7h?7l?7l?7l?7l?7l?7l
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mrtransform: [100%] copying from "5tt_nocoreg.mif" to "5tt_coreg.mif"...[0K?7h?7l?7l?7l?7l?7l?7l
 </pre></div>
 </div>
 </div>
@@ -811,8 +762,8 @@ mrconvert: [100%] compressing image &quot;5tt_nocoreg.nii.gz&quot;[0K?7h?7l?7l?7
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the volumes with fixed colormaps</span>
 <span class="n">volumes</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;5tt_nocoreg.mif&quot;</span><span class="p">,</span> <span class="s2">&quot;colormap&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;visible&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;5tt_coreg.mif&quot;</span><span class="p">,</span> <span class="s2">&quot;colormap&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;visible&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"path"</span><span class="p">:</span> <span class="s2">"5tt_nocoreg.mif"</span><span class="p">,</span> <span class="s2">"colormap"</span><span class="p">:</span> <span class="s2">"gray"</span><span class="p">,</span> <span class="s2">"visible"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"opacity"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"path"</span><span class="p">:</span> <span class="s2">"5tt_coreg.mif"</span><span class="p">,</span> <span class="s2">"colormap"</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span> <span class="s2">"visible"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"opacity"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
 <span class="p">]</span>
 
 <span class="c1"># Create the AnyNiivue viewer</span>
@@ -822,48 +773,48 @@ mrconvert: [100%] compressing image &quot;5tt_nocoreg.nii.gz&quot;[0K?7h?7l?7l?7
 
 <span class="c1"># Slice type widget (Axial, Coronal, Sagittal, Multiplanar, Render)</span>
 <span class="n">widget_slice_type</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">RadioButtons</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;Axial&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Coronal&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Sagittal&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Multiplanar&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Render&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[(</span><span class="s1">'Axial'</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Coronal'</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Sagittal'</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Multiplanar'</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Render'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span>
     <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># Default to Multiplanar</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Slice Type:&#39;</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
-    <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">}</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">'Slice Type:'</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">'description_width'</span><span class="p">:</span> <span class="s1">'initial'</span><span class="p">},</span>
+    <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">'width'</span><span class="p">:</span> <span class="s1">'auto'</span><span class="p">}</span>
 <span class="p">)</span>
 
 <span class="c1"># Function to update slice type</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">update_slice_type</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
     <span class="n">nv</span><span class="o">.</span><span class="n">slice_type</span> <span class="o">=</span> <span class="n">change</span><span class="o">.</span><span class="n">new</span>
 
-<span class="n">widget_slice_type</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_slice_type</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">widget_slice_type</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_slice_type</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">'value'</span><span class="p">)</span>
 
 <span class="c1"># Unregistered image opacity widget</span>
 <span class="n">widget_unreg_opacity</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
     <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Unregistered Image Opacity:&#39;</span><span class="p">,</span>
-    <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
-    <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">}</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">'Unregistered Image Opacity:'</span><span class="p">,</span>
+    <span class="n">orientation</span><span class="o">=</span><span class="s1">'horizontal'</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">'description_width'</span><span class="p">:</span> <span class="s1">'initial'</span><span class="p">},</span>
+    <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">'width'</span><span class="p">:</span> <span class="s1">'400px'</span><span class="p">}</span>
 <span class="p">)</span>
 
 <span class="c1"># Function to update unregistered image opacity</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">update_unreg_opacity</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
     <span class="n">nv</span><span class="o">.</span><span class="n">volumes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="n">change</span><span class="o">.</span><span class="n">new</span>
 
-<span class="n">widget_unreg_opacity</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_unreg_opacity</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">widget_unreg_opacity</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_unreg_opacity</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">'value'</span><span class="p">)</span>
 
 <span class="c1"># Registered image opacity widget</span>
 <span class="n">widget_reg_opacity</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
     <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Registered Image Opacity:&#39;</span><span class="p">,</span>
-    <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
-    <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">}</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">'Registered Image Opacity:'</span><span class="p">,</span>
+    <span class="n">orientation</span><span class="o">=</span><span class="s1">'horizontal'</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">'description_width'</span><span class="p">:</span> <span class="s1">'initial'</span><span class="p">},</span>
+    <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">'width'</span><span class="p">:</span> <span class="s1">'400px'</span><span class="p">}</span>
 <span class="p">)</span>
 
 <span class="c1"># Function to update registered image opacity</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">update_reg_opacity</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
     <span class="n">nv</span><span class="o">.</span><span class="n">volumes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="n">change</span><span class="o">.</span><span class="n">new</span>
 
-<span class="n">widget_reg_opacity</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_reg_opacity</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">widget_reg_opacity</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_reg_opacity</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">'value'</span><span class="p">)</span>
 
 <span class="c1"># Arrange widgets in a vertical box for better layout</span>
 <span class="n">widgets_box</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">widget_slice_type</span><span class="p">,</span> <span class="n">widget_unreg_opacity</span><span class="p">,</span> <span class="n">widget_reg_opacity</span><span class="p">])</span>
@@ -897,7 +848,7 @@ mrconvert: [100%] compressing image &quot;5tt_nocoreg.nii.gz&quot;[0K?7h?7l?7l?7
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nv2</span> <span class="o">=</span> <span class="n">AnyNiivue</span><span class="p">()</span> 
-<span class="n">nv2</span><span class="o">.</span><span class="n">load_volumes</span><span class="p">([{</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;gmwmSeed_coreg.mif&quot;</span><span class="p">,</span> <span class="s2">&quot;colormap&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">}])</span>
+<span class="n">nv2</span><span class="o">.</span><span class="n">load_volumes</span><span class="p">([{</span> <span class="s2">"path"</span><span class="p">:</span> <span class="s2">"gmwmSeed_coreg.mif"</span><span class="p">,</span> <span class="s2">"colormap"</span><span class="p">:</span> <span class="s2">"green"</span><span class="p">}])</span>
 <span class="n">nv2</span>
 </pre></div>
 </div>
@@ -915,8 +866,7 @@ mrconvert: [100%] compressing image &quot;5tt_nocoreg.nii.gz&quot;[0K?7h?7l?7l?7
 <h3>Anatomically Constrained Tractography<a class="headerlink" href="#anatomically-constrained-tractography" title="Link to this heading">#</a></h3>
 <p>One of MRtrix’s features is Anatomically Constrained Tractography, or ACT. This method will only determine that a streamline is valid if it is biologically plausible. For example, a streamline that terminates in the cerebrospinal fluid will be discarded, since white matter tracts tend to both originate and terminate in grey matter. In other words, the streamlines will be constrained to the white matter. The effect of either including or omitting this step can be seen in the following figure:</p>
 <div style="text-align: center;">
-    <img src="https://andysbrainbook.readthedocs.io/en/latest/_images/07_ACT_With_Without.png"
-width="600">
+    <img src="https://andysbrainbook.readthedocs.io/en/latest/_images/07_ACT_With_Without.png" width="600">
 </div><p>An analysis without (left) and with (right) anatomically constrained tractography. Note how without ACT, the streamlines do tend to congregate within the white matter; however, a large number of them are found within the grey matter and cerebrospinal fluid. Using ACT (right) restricts the streamlines to the white matter tracts that we will want to analyze.</p>
 <p>Anatomically constrained tractography isn’t a separate preprocessing step, but rather an option that can be included with the command <code class="docutils literal notranslate"><span class="pre">tckgen</span></code>, which generates the actual streamlines.</p>
 </section>
@@ -965,7 +915,7 @@ width="600">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the .tck file using nibabel</span>
-<span class="n">tractogram</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">streamlines</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;smallerTracks_200k.tck&quot;</span><span class="p">)</span>
+<span class="n">tractogram</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">streamlines</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"smallerTracks_200k.tck"</span><span class="p">)</span>
 <span class="n">streamlines</span> <span class="o">=</span> <span class="n">tractogram</span><span class="o">.</span><span class="n">streamlines</span>
 <span class="n">streamlines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">streamlines</span><span class="p">)</span>  
 
@@ -977,7 +927,7 @@ width="600">
 <span class="n">subsampled_streamlines</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">streamlines</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">display_fraction</span> <span class="o">*</span> <span class="n">num_streamlines</span><span class="p">))</span>
 <span class="n">streamlines_to_display</span> <span class="o">=</span> <span class="n">subsampled_streamlines</span> <span class="c1"># to visualize the whole sample use streamlines instead of subsampled_streamlines</span>
 
-<span class="c1"># Use Fury&#39;s colormap for streamline coloring based on orientation</span>
+<span class="c1"># Use Fury's colormap for streamline coloring based on orientation</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="n">colormap</span><span class="o">.</span><span class="n">line_colors</span><span class="p">(</span><span class="n">streamlines_to_display</span><span class="p">)</span>
 
 <span class="c1"># Set up the plot with 3 subplots</span>
@@ -986,23 +936,23 @@ width="600">
 <span class="c1"># Plot Axial slice </span>
 <span class="k">for</span> <span class="n">streamline</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">streamlines_to_display</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">streamline</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">streamline</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Axial Slice&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Axial Slice"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"equal"</span><span class="p">)</span>
 
 <span class="c1"># Plot Coronal slice </span>
 <span class="k">for</span> <span class="n">streamline</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">streamlines_to_display</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">streamline</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">streamline</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Coronal Slice&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Coronal Slice"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"equal"</span><span class="p">)</span>
 
 <span class="c1"># Plot Sagittal slice </span>
 <span class="k">for</span> <span class="n">streamline</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">streamlines_to_display</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">streamline</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">streamline</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Sagittal Slice&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Sagittal Slice"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"equal"</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1010,7 +960,7 @@ width="600">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/35cc90ef3270fe4272a04cfc9b7c95808d417978448d451b35eb54f580386da6.png" src="../_images/35cc90ef3270fe4272a04cfc9b7c95808d417978448d451b35eb54f580386da6.png" />
+<img alt="../_images/35cc90ef3270fe4272a04cfc9b7c95808d417978448d451b35eb54f580386da6.png" src="../_images/35cc90ef3270fe4272a04cfc9b7c95808d417978448d451b35eb54f580386da6.png">
 </div>
 </div>
 <p>Remember to inspect this image to make sure that the streamlines end where you think they should; in other words, the streamlines should be constrained to the white matter, and they should be color-coded appropriately. For example, the corpus callosum should be mostly red, and the corona radiata should be mostly blue.</p>
@@ -1074,18 +1024,14 @@ tcksift2: [done]        45        18.772%         5.084%        9998111?7h..?7l.
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="MRtrix_CSD.html"
-       title="previous page">
+    <a class="left-prev" href="MRtrix_CSD.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Diffusion Analysis with MRtrix: Part 2 - Constrained Spherical Deconvolution and Tissue estimation</p>
       </div>
     </a>
-    <a class="right-next"
-       href="MRtrix_Preprocessing.html"
-       title="next page">
+    <a class="right-next" href="MRtrix_Preprocessing.html" title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Diffusion Analysis with MRtrix: Part 1 - Preprocessing</p>
@@ -1158,7 +1104,7 @@ By Neurodesk Team
   <p class="copyright">
     
       © Copyright 2023.
-      <br/>
+      <br>
     
   </p>
 
@@ -1186,5 +1132,5 @@ By Neurodesk Team
 
   <footer class="bd-footer">
   </footer>
-  </body>
-</html>
+  
+</body></html>
