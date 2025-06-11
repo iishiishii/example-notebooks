@@ -1,1 +1,1 @@
-https://doi.org/10.5072/zenodo.264604
+Updating metadata {'metadata': {'title': 'AFNI_preprocessing_and_glm_20250611', 'upload_type': 'software', 'description': 'AFNI_preprocessing_and_glm_20250611', 'creators': [{'name': 'Neurodesk', 'affiliation': 'University of Queensland'}], 'license': 'mit'}}
