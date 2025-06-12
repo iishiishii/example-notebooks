@@ -79,8 +79,7 @@
     <link rel="icon" href="../_static/neurodesk_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FSL’s fMRI Data Analysis via Nipype" href="nipype_fsl_all_levels_flanker.html" />
-    <link rel="prev" title="fMRIprep" href="fmriprep.html" />
+    <link rel="prev" title="Nipype-FSL fMRI Analysis" href="fsl_all_levels_flanker_nipype.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,7 +210,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Different Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">Freesurfer</a></li>
 
 
@@ -224,9 +223,7 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
-
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
@@ -238,22 +235,19 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_and_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aslprep.html">ASLprep</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deepretinotopy.html">DeepRetinotopy</a></li>
 
-
-
-<li class="toctree-l1"><a class="reference internal" href="first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
-
-
-
-
 </ul>
 
     </div>
@@ -497,7 +491,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data preparation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fsl-and-mcflirt">FSL and MCFLIRT</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nipype-interfaces">Nipype Interfaces</a></li>
@@ -514,8 +507,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/functional_imaging/intro_to_preprocessing.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg" />   </a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-preprocessing">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-preprocessing">
 <h1>Introduction to Preprocessing<a class="headerlink" href="#introduction-to-preprocessing" title="Link to this heading">#</a></h1>
 <p>Author: Marla Pinkert</p>
 <p>This notebook is geared towards people who are taking their <strong>first steps</strong> preprocessing fMRI data and want to learn more, and also towards people who are interested in <strong>teaching</strong> using Neurodesk and want to check out an example to see whether this might be a fit for them. Specifically, we will look at how to deal with <strong>motion</strong>. There will be explanations on what we are doing along the way!</p>
@@ -526,132 +518,74 @@ document.write(`
 <li><p>Understanding Nipype interfaces</p></li>
 <li><p>Learning how to do quality checks regarding motion</p></li>
 </ul>
-<section id="setup-neurodesk">
-<h2>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Link to this heading">#</a></h2>
 <p>There are many different packages and software used to preprocess MRI data. Installing them locally can be complicated and frustrating. Especially for teaching, when you have to make sure everyone is able install specific software, or as a student, when you are just starting out. We will therefore use Neurodesk to provide us with an environment which already comes with all we need - no complicated set-up.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
-
-<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LD_PRELOAD&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;APPTAINER_BINDPATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content,/tmp,/cvmfs&quot;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MPLCONFIGDIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/matplotlib-mpldir&quot;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LMOD_CMD&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/usr/share/lmod/lmod/libexec/lmod&quot;</span>
-
-  <span class="err">!</span><span class="n">curl</span> <span class="o">-</span><span class="n">J</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">NeuroDesk</span><span class="o">/</span><span class="n">neurocommand</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="o">./</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MODULEPATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/&#39;</span><span class="p">),</span> <span class="n">x</span><span class="p">),</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/&#39;</span><span class="p">)))))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="data-preparation">
 <h2>Data preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
 <div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># download data</span>
-<span class="o">!</span>mkdir<span class="w"> </span>/data
-<span class="o">%</span><span class="k">cd</span> /data
 <span class="o">!</span>datalad<span class="w"> </span>install<span class="w"> </span>https://github.com/OpenNeuroDatasets/ds000102.git
 <span class="o">!</span><span class="nb">cd</span><span class="w"> </span>ds000102<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>datalad<span class="w"> </span>get<span class="w"> </span>sub-01
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data
-It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
-Clone attempt:   0% 0.00/2.00 [00:00&lt;?, ? Candidate locations/s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cloning:   0%|                             | 0.00/2.00 [00:00&lt;?, ? candidates/s]
 Enumerating: 0.00 Objects [00:00, ? Objects/s]
                                               
-Counting:   0% 0.00/27.0 [00:00&lt;?, ? Objects/s]
-                                               
-Compressing:   0% 0.00/23.0 [00:00&lt;?, ? Objects/s]
-                                                  
-Receiving:   0% 0.00/2.15k [00:00&lt;?, ? Objects/s]
-                                                 
-Resolving:   0% 0.00/537 [00:00&lt;?, ? Deltas/s]
-[INFO   ] Author identity unknown
-| 
-| *** Please tell me who you are.
-| 
-| Run
-| 
-|   git config --global user.email &quot;you@example.com&quot;
-|   git config --global user.name &quot;Your Name&quot;
-| 
-| to set your account&#39;s default identity.
-| Omit --global to set the identity only in this repository.
-| 
-| fatal: unable to auto-detect email address (got &#39;root@9938e9644327.(none)&#39;) 
-[INFO   ] scanning for unlocked files (this may take some time) 
+Counting:   0%|                               | 0.00/27.0 [00:00&lt;?, ? Objects/s]
+                                                                                
+Compressing:   0%|                            | 0.00/23.0 [00:00&lt;?, ? Objects/s]
+                                                                                
+Receiving:   0%|                             | 0.00/2.15k [00:00&lt;?, ? Objects/s]
+                                                                                
+Resolving:   0%|                                | 0.00/537 [00:00&lt;?, ? Deltas/s]
+[INFO   ] scanning for unlocked files (this may take some time)                 
 [INFO   ] Remote origin not usable by git-annex; setting annex-ignore 
 [INFO   ] access to 1 dataset sibling s3-PRIVATE not auto-enabled, enable with:
-| 		datalad siblings -d &quot;/data/ds000102&quot; enable -s s3-PRIVATE 
-<span class=" -Color -Color-Bold">install</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): /data/ds000102 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">dataset</span>)
-It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
-Total:   0% 0.00/66.8M [00:00&lt;?, ? Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:   0% 0.00/10.6M [00:00&lt;?, ? Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:  11% 1.11M/10.6M [00:00&lt;00:01, 6.86M Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:  22% 2.34M/10.6M [00:00&lt;00:01, 8.00M Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:  32% 3.37M/10.6M [00:00&lt;00:00, 8.83M Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:  50% 5.32M/10.6M [00:00&lt;00:00, 9.27M Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:  61% 6.45M/10.6M [00:00&lt;00:00, 9.79M Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:  77% 8.18M/10.6M [00:00&lt;00:00, 9.22M Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:  87% 9.24M/10.6M [00:01&lt;00:00, 9.54M Bytes/s]
-Get sub-01/a .. 1_T1w.nii.gz:  98% 10.4M/10.6M [00:01&lt;00:00, 9.86M Bytes/s]
-Total:  16% 10.6M/66.8M [00:01&lt;00:09, 6.06M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:   0% 0.00/28.1M [00:00&lt;?, ? Bytes/s]
-Get sub-01/f .. _bold.nii.gz:   3% 960k/28.1M [00:00&lt;00:02, 9.58M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:   7% 2.06M/28.1M [00:00&lt;00:02, 10.4M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  11% 3.17M/28.1M [00:00&lt;00:02, 8.80M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  16% 4.50M/28.1M [00:00&lt;00:02, 8.74M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  20% 5.57M/28.1M [00:00&lt;00:02, 9.31M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  25% 7.05M/28.1M [00:00&lt;00:02, 8.16M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  32% 9.03M/28.1M [00:01&lt;00:02, 8.82M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  36% 10.1M/28.1M [00:01&lt;00:02, 9.00M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  43% 12.0M/28.1M [00:01&lt;00:01, 9.21M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  47% 13.2M/28.1M [00:01&lt;00:01, 9.69M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  53% 14.8M/28.1M [00:01&lt;00:01, 9.03M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  57% 16.1M/28.1M [00:01&lt;00:01, 9.82M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  61% 17.2M/28.1M [00:01&lt;00:01, 9.82M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  68% 19.1M/28.1M [00:02&lt;00:00, 9.91M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  72% 20.3M/28.1M [00:02&lt;00:00, 10.3M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  78% 21.9M/28.1M [00:02&lt;00:00, 9.47M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  83% 23.2M/28.1M [00:02&lt;00:00, 10.2M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  87% 24.4M/28.1M [00:02&lt;00:00, 10.5M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  91% 25.5M/28.1M [00:02&lt;00:00, 10.7M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  96% 27.0M/28.1M [00:02&lt;00:00, 9.33M Bytes/s]
-Total:  58% 38.6M/66.8M [00:04&lt;00:03, 7.77M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:   0% 0.00/28.1M [00:00&lt;?, ? Bytes/s]
-Get sub-01/f .. _bold.nii.gz:   7% 2.00M/28.1M [00:00&lt;00:02, 10.1M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  13% 3.53M/28.1M [00:00&lt;00:02, 9.85M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  19% 5.41M/28.1M [00:00&lt;00:02, 10.8M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  28% 7.93M/28.1M [00:00&lt;00:01, 11.6M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  32% 9.11M/28.1M [00:00&lt;00:01, 11.6M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  41% 11.5M/28.1M [00:01&lt;00:01, 11.5M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  46% 12.9M/28.1M [00:01&lt;00:01, 9.85M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  50% 14.1M/28.1M [00:01&lt;00:01, 10.2M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  54% 15.3M/28.1M [00:01&lt;00:01, 10.7M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  63% 17.7M/28.1M [00:01&lt;00:00, 11.1M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  68% 19.0M/28.1M [00:01&lt;00:00, 11.5M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  72% 20.2M/28.1M [00:01&lt;00:00, 11.6M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  80% 22.4M/28.1M [00:02&lt;00:00, 11.4M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  84% 23.6M/28.1M [00:02&lt;00:00, 7.62M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  91% 25.7M/28.1M [00:02&lt;00:00, 8.77M Bytes/s]
-Get sub-01/f .. _bold.nii.gz:  95% 26.8M/28.1M [00:02&lt;00:00, 9.19M Bytes/s]
+| 		datalad siblings -d &quot;/home/jovyan/Git_repositories/example-notebooks/books/functional_imaging/ds000102&quot; enable -s s3-PRIVATE 
+<span class=" -Color -Color-Bold">install</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): /home/jovyan/Git_repositories/example-notebooks/books/functional_imaging/ds000102 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">dataset</span>)
+Total:   0%|                                   | 0.00/66.8M [00:00&lt;?, ? Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   0%|            | 0.00/10.6M [00:00&lt;?, ? Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   0%|    | 34.4k/10.6M [00:00&lt;00:31, 335k Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   1%|     | 138k/10.6M [00:00&lt;00:20, 498k Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   4%|▏   | 434k/10.6M [00:00&lt;00:07, 1.37M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   6%|▎   | 677k/10.6M [00:00&lt;00:05, 1.73M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  13%|▍  | 1.37M/10.6M [00:00&lt;00:02, 3.43M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  26%|▊  | 2.71M/10.6M [00:00&lt;00:01, 6.57M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  50%|█▌ | 5.30M/10.6M [00:00&lt;00:00, 12.6M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  70%|██ | 7.43M/10.6M [00:00&lt;00:00, 15.2M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  93%|██▊| 9.84M/10.6M [00:00&lt;00:00, 17.9M Bytes/s]
+Total:  16%|████                      | 10.6M/66.8M [00:01&lt;00:09, 6.16M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:   0%|            | 0.00/28.1M [00:00&lt;?, ? Bytes/s]
+Get sub-01/f .. _bold.nii.gz:   5%|▏  | 1.42M/28.1M [00:00&lt;00:02, 12.7M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  16%|▍  | 4.61M/28.1M [00:00&lt;00:01, 15.2M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  25%|▊  | 7.03M/28.1M [00:00&lt;00:01, 18.1M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  34%|█  | 9.43M/28.1M [00:00&lt;00:00, 19.9M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  43%|█▎ | 12.0M/28.1M [00:00&lt;00:00, 21.9M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  60%|█▊ | 16.7M/28.1M [00:00&lt;00:00, 22.9M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  69%|██ | 19.4M/28.1M [00:00&lt;00:00, 23.5M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  78%|██▎| 22.0M/28.1M [00:01&lt;00:00, 24.1M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  87%|██▌| 24.5M/28.1M [00:01&lt;00:00, 24.4M Bytes/s]
+Total:  58%|███████████████           | 38.6M/66.8M [00:03&lt;00:02, 11.9M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:   0%|            | 0.00/28.1M [00:00&lt;?, ? Bytes/s]
+Get sub-01/f .. _bold.nii.gz:   6%|▏  | 1.67M/28.1M [00:00&lt;00:01, 15.1M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  16%|▍  | 4.61M/28.1M [00:00&lt;00:01, 16.3M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  27%|▊  | 7.60M/28.1M [00:00&lt;00:01, 19.4M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  35%|█  | 9.81M/28.1M [00:00&lt;00:00, 20.2M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  44%|█▎ | 12.3M/28.1M [00:00&lt;00:00, 21.6M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  52%|█▌ | 14.6M/28.1M [00:00&lt;00:00, 22.2M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  60%|█▊ | 16.9M/28.1M [00:00&lt;00:00, 22.3M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  69%|██ | 19.5M/28.1M [00:00&lt;00:00, 23.3M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  83%|██▍| 23.3M/28.1M [00:01&lt;00:00, 21.4M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  92%|██▊| 25.9M/28.1M [00:01&lt;00:00, 22.6M Bytes/s]
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01/anat/sub-01_T1w.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01/func/sub-01_task-flanker_run-1_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01/func/sub-01_task-flanker_run-2_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
 action summary:
   get (ok: 4)
+
 </pre></div>
 </div>
 </div>
@@ -664,10 +598,11 @@ action summary:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This enables us to access FSL using Neurodesk</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">lmod</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;fsl/6.0.4&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;fsl/6.0.4&#39;</span><span class="p">)</span>
 
 <span class="c1"># this makes it so FSL knows how we want our output files</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FSLOUTPUTTYPE&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;NIFTI_GZ&quot;</span>
 </pre></div>
 </div>
@@ -950,8 +885,8 @@ class MCFLIRT(nipype.interfaces.fsl.base.FSLCommand)
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mat_file = &lt;undefined&gt;
 mean_img = &lt;undefined&gt;
-out_file = /data/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_mfc.nii.gz
-par_file = /data/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_mfc.nii.gz.par
+out_file = /home/jovyan/Git_repositories/example-notebooks/books/functional_imaging/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_mfc.nii.gz
+par_file = /home/jovyan/Git_repositories/example-notebooks/books/functional_imaging/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_mfc.nii.gz.par
 rms_files = &lt;undefined&gt;
 std_img = &lt;undefined&gt;
 variance_img = &lt;undefined&gt;
@@ -963,6 +898,14 @@ variance_img = &lt;undefined&gt;
 <section id="plotting-motion-parameters">
 <h2>Plotting Motion Parameters<a class="headerlink" href="#plotting-motion-parameters" title="Link to this heading">#</a></h2>
 <p>Now that we calculated our motion parameters, we can get to <strong>plotting</strong> them. First, we load them into memory using numpy, and have a look at their <strong>shape</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1023,8 +966,8 @@ variance_img = &lt;undefined&gt;
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="c1"># Plot motion parameters</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">motion_parameters</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># x, y, z</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">motion_parameters</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:])</span> <span class="c1"># pitch, roll, yaw</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">motion_parameters</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:])</span> <span class="c1"># x, y, z</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">motion_parameters</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># pitch, roll, yaw</span>
 
 <span class="c1"># Add labels</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;translation (mm)&quot;</span><span class="p">)</span>
@@ -1042,7 +985,7 @@ variance_img = &lt;undefined&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8875420c5c0f4091a8fd9057eb4162a1f8056b42763a22dc9f29ccab58046512.png" src="../_images/8875420c5c0f4091a8fd9057eb4162a1f8056b42763a22dc9f29ccab58046512.png" />
+<img alt="../_images/5bfc9baabaafc9a9d66b6250642a42de472f021d0fe9ec242def95a77869917a.png" src="../_images/5bfc9baabaafc9a9d66b6250642a42de472f021d0fe9ec242def95a77869917a.png" />
 </div>
 </div>
 <p>Sometimes, we might introduce motion due to our task. If you like to check whether this is true for your data, it may make sense to check by plotting the timings of the task.</p>
@@ -1050,7 +993,7 @@ variance_img = &lt;undefined&gt;
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in events</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="n">events_path</span> <span class="o">=</span> <span class="s2">&quot;/data/ds000102/sub-01/func/sub-01_task-flanker_run-1_events.tsv&quot;</span>
+<span class="n">events_path</span> <span class="o">=</span> <span class="s2">&quot;./ds000102/sub-01/func/sub-01_task-flanker_run-1_events.tsv&quot;</span>
 <span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">events_path</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="c1"># get timings of task onset and offset</span>
@@ -1065,8 +1008,8 @@ variance_img = &lt;undefined&gt;
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="c1"># Plot motion parameters</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">motion_parameters</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># x, y, z</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">motion_parameters</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:])</span> <span class="c1"># pitch, roll, yaw</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">motion_parameters</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:])</span> <span class="c1"># x, y, z</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">motion_parameters</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># pitch, roll, yaw</span>
 
 <span class="c1"># Plot effort blocks</span>
 <span class="k">for</span> <span class="n">motion_on</span><span class="p">,</span> <span class="n">motion_off</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">task_on_tr</span><span class="p">,</span> <span class="n">task_off_tr</span><span class="p">):</span>
@@ -1093,7 +1036,7 @@ variance_img = &lt;undefined&gt;
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, &#39;Subject 1, Flanker-Task Run 1: Motion Parameters&#39;)
 </pre></div>
 </div>
-<img alt="../_images/df4d4514e788fba0c7418446edb8662843a4dbf246d48807c6cd0ab21286d4e8.png" src="../_images/df4d4514e788fba0c7418446edb8662843a4dbf246d48807c6cd0ab21286d4e8.png" />
+<img alt="../_images/b20f291b3c648639318ea408d2298ebe7e5f91aed98919ef842b9c8e8d209b01.png" src="../_images/b20f291b3c648639318ea408d2298ebe7e5f91aed98919ef842b9c8e8d209b01.png" />
 </div>
 </div>
 <p>A student in my class had the idea to plot the motion parameters in 3D space, which I thought was fun. See below:</p>
@@ -1112,7 +1055,7 @@ variance_img = &lt;undefined&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/779eefddc5f25905e2d11ac7e4c4728358cd588b5c0b516e9075d14723a11a32.png" src="../_images/779eefddc5f25905e2d11ac7e4c4728358cd588b5c0b516e9075d14723a11a32.png" />
+<img alt="../_images/2cb13e767e9dc733b7c179baa08c9ec301b9bb9ea041708c650ed0191fc09f8c.png" src="../_images/2cb13e767e9dc733b7c179baa08c9ec301b9bb9ea041708c650ed0191fc09f8c.png" />
 </div>
 </div>
 </section>
@@ -1123,10 +1066,10 @@ variance_img = &lt;undefined&gt;
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mo</span> <span class="o">=</span> <span class="n">fsl</span><span class="o">.</span><span class="n">MotionOutliers</span><span class="p">(</span>
-    <span class="n">in_file</span> <span class="o">=</span> <span class="s2">&quot;ds000102/sub-01/func/sub-01_task-flanker_run-1_bold.nii.gz&quot;</span><span class="p">,</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="s2">&quot;./ds000102/sub-01/func/sub-01_task-flanker_run-1_bold.nii.gz&quot;</span><span class="p">,</span>
     <span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;fdrms&quot;</span><span class="p">,</span>
-    <span class="n">out_metric_values</span> <span class="o">=</span> <span class="s2">&quot;ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_fdrms.par&quot;</span><span class="p">,</span>
-    <span class="n">out_file</span> <span class="o">=</span> <span class="s2">&quot;ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_outliers.txt&quot;</span>
+    <span class="n">out_metric_values</span> <span class="o">=</span> <span class="s2">&quot;./ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_fdrms.par&quot;</span><span class="p">,</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="s2">&quot;./ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_outliers.txt&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1161,9 +1104,9 @@ variance_img = &lt;undefined&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>out_file = /data/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_outliers.txt
-out_metric_plot = /data/sub-01_task-flanker_run-1_bold_metrics.png
-out_metric_values = /data/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_fdrms.par
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>out_file = /home/jovyan/Git_repositories/example-notebooks/books/functional_imaging/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_outliers.txt
+out_metric_plot = /home/jovyan/Git_repositories/example-notebooks/books/functional_imaging/sub-01_task-flanker_run-1_bold_metrics.png
+out_metric_values = /home/jovyan/Git_repositories/example-notebooks/books/functional_imaging/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold_fdrms.par
 </pre></div>
 </div>
 </div>
@@ -1222,22 +1165,13 @@ There is a mean framewise displacement of 0.05534307294520548 mm.
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="fmriprep.html"
+       href="fsl_all_levels_flanker_nipype.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">fMRIprep</p>
+        <p class="prev-next-title">Nipype-FSL fMRI Analysis</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="nipype_fsl_all_levels_flanker.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">FSL’s fMRI Data Analysis via Nipype</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -1255,7 +1189,6 @@ There is a mean framewise displacement of 0.05534307294520548 mm.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data preparation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fsl-and-mcflirt">FSL and MCFLIRT</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nipype-interfaces">Nipype Interfaces</a></li>
