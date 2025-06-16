@@ -69,11 +69,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'diffusion_imaging/mrtrix3tissue';</script>
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3/dist/umd/index.js"></script>
     <script src="../_static/algolia.js?v=b553005c"></script>
-    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/diffusion_imaging/mrtrix3tissue.html">
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/diffusion_imaging/mrtrix3tissue.html">
     <link rel="icon" href="../_static/neurodesk_logo.svg">
     <link rel="index" title="Index" href="../genindex.html">
     <link rel="search" title="Search" href="../search.html">
-    <link rel="next" title="AFNI Preprocessing and GLM" href="../functional_imaging/AFNI_preprocessing_and_glm.html">
+    <link rel="next" title="AFNI Preprocessing" href="../functional_imaging/AFNI_preprocessing_only.html">
     <link rel="prev" title="MRtrix: Part 3" href="MRtrix_3.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="docsearch:language" content="en">
@@ -190,7 +190,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Different Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">Freesurfer</a></li>
 
 
@@ -203,9 +203,7 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
-
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
@@ -217,22 +215,19 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_and_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy</a></li>
 
-
-
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
-
-
-
-
 </ul>
 
     </div>
@@ -273,7 +268,7 @@
       
         <div class="header-article-item">
 
-<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.268632" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.268632</a>
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.270721" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.270721</a>
 
 
 
@@ -488,35 +483,20 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/diffusion_imaging/mrtrix3tissue.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg">   </a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="mrtrix3tissue">
+  <section class="tex2jax_ignore mathjax_ignore" id="mrtrix3tissue">
 <h1>MRtrix3Tissue<a class="headerlink" href="#mrtrix3tissue" title="Link to this heading">#</a></h1>
-<p>Author: Thuy Dao, Monika Doerig</p>
-<p>Citation: <a class="reference external" href="https://3tissue.github.io/about.html">MRtrix3Tissue</a>, a fork of MRtrix3 (<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S1053811919307281">Tournier et al. 2019</a>).</p>
+<p><strong>Authors:</strong> Thuy Dao, Monika Doerig</p>
+<p><strong>Citation:</strong></p>
+<p><strong>Software tools</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://3tissue.github.io/about.html">MRtrix3Tissue</a>, a fork of MRtrix3 (<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S1053811919307281">Tournier et al. 2019</a>).</p></li>
+</ul>
+<p><strong>Dataset from OpenNeuro:</strong> BTC_postop</p>
+<ul class="simple">
+<li><p>Hannelore Aerts and Daniele Marinazzo (2022). BTC_postop. OpenNeuro. [Dataset] doi: <a class="reference external" href="https://openneuro.org/datasets/ds002080/versions/4.0.0">doi:10.18112/openneuro.ds002080.v4.0.0</a></p></li>
+</ul>
 <section id="setup-neurodesk">
 <h2>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
-
-<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LD_PRELOAD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"APPTAINER_BINDPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content,/tmp,/cvmfs"</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MPLCONFIGDIR"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content/matplotlib-mpldir"</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LMOD_CMD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/usr/share/lmod/lmod/libexec/lmod"</span>
-
-  <span class="err">!</span><span class="n">curl</span> <span class="o">-</span><span class="n">J</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">NeuroDesk</span><span class="o">/</span><span class="n">neurocommand</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="o">./</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MODULEPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">':'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">),</span> <span class="n">x</span><span class="p">),</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">)))))</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output CPU information:</span>
@@ -528,6 +508,14 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: AuthenticAMD
 model name	: AMD EPYC 7742 64-Core Processor
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">nibabel</span> <span class="n">numpy</span>
 </pre></div>
 </div>
 </div>
@@ -549,10 +537,10 @@ model name	: AMD EPYC 7742 64-Core Processor
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load fmriprep</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">lmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'mrtrix3tissue/5.2.8'</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'mrtrix3tissue/5.2.8'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1410,10 +1398,10 @@ T = \frac{2256.74}{\ln\left(\frac{4.39221}{D}\right)} - 273
         <p class="prev-next-title">MRtrix: Part 3</p>
       </div>
     </a>
-    <a class="right-next" href="../functional_imaging/AFNI_preprocessing_and_glm.html" title="next page">
+    <a class="right-next" href="../functional_imaging/AFNI_preprocessing_only.html" title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">AFNI Preprocessing and GLM</p>
+        <p class="prev-next-title">AFNI Preprocessing</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

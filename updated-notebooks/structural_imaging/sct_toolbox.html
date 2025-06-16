@@ -69,7 +69,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'structural_imaging/sct_toolbox';</script>
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3/dist/umd/index.js"></script>
     <script src="../_static/algolia.js?v=b553005c"></script>
-    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/structural_imaging/sct_toolbox.html">
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/structural_imaging/sct_toolbox.html">
     <link rel="icon" href="../_static/neurodesk_logo.svg">
     <link rel="index" title="Index" href="../genindex.html">
     <link rel="search" title="Search" href="../search.html">
@@ -190,7 +190,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="brain_extraction_different_tools.html">Different Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="freesurfer.html">Freesurfer</a></li>
 
 
@@ -203,9 +203,7 @@
 
 
 
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">SCT Toolbox</a></li>
-
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
@@ -217,22 +215,19 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_and_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy</a></li>
 
-
-
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
-
-
-
-
 </ul>
 
     </div>
@@ -273,7 +268,7 @@
       
         <div class="header-article-item">
 
-<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.268630" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.268630</a>
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.270717" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.270717</a>
 
 
 
@@ -448,8 +443,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SCT Toolbox</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SCT Toolbox</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-cpu-information">Output CPU information</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrating-the-spinal-cord-toolbox-sct-use-via-neurodesk">Demonstrating the Spinal Cord Toolbox (SCT) use via Neurodesk</a></li>
 </ul>
 
@@ -463,35 +460,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/structural_imaging/sct_toolbox.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg">   </a></p>
-<section id="sct-toolbox">
+  <section id="sct-toolbox">
 <h1>SCT Toolbox<a class="headerlink" href="#sct-toolbox" title="Link to this heading">#</a></h1>
-<p>Author: Steffen Bollmann</p>
-</section>
-<section id="setup-neurodesk">
-<h1>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
-
-<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LD_PRELOAD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"APPTAINER_BINDPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content,/tmp,/cvmfs"</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MPLCONFIGDIR"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content/matplotlib-mpldir"</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LMOD_CMD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/usr/share/lmod/lmod/libexec/lmod"</span>
-
-  <span class="err">!</span><span class="n">curl</span> <span class="o">-</span><span class="n">J</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">NeuroDesk</span><span class="o">/</span><span class="n">neurocommand</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="o">./</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MODULEPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">':'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">),</span> <span class="n">x</span><span class="p">),</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">)))))</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p><strong>Author:</strong> Steffen Bollmann</p>
+<p><strong>Citation:</strong></p>
+<ul class="simple">
+<li><p>Valošek, J., &amp; Cohen-Adad, J. (2024). Reproducible spinal cord quantitative MRI analysis with the Spinal Cord Toolbox. Magnetic Resonance in Medical Sciences, 23(3), 307-315. <a class="reference external" href="https://doi.org/10.2463/mrms.rev.2023-0159">https://doi.org/10.2463/mrms.rev.2023-0159</a></p></li>
+<li><p>Neurolibre <a class="reference external" href="https://mathieuboudreau.github.io/pipelines-jupyter-book/01/sct_mtsat">SCT pipeline</a></p></li>
+</ul>
+<section id="output-cpu-information">
+<h2>Output CPU information<a class="headerlink" href="#output-cpu-information" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output CPU information:</span>
@@ -508,14 +486,15 @@ model name	: AMD EPYC 7742 64-Core Processor
 </div>
 </div>
 </section>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="demonstrating-the-spinal-cord-toolbox-sct-use-via-neurodesk">
 <h1>Demonstrating the Spinal Cord Toolbox (SCT) use via Neurodesk<a class="headerlink" href="#demonstrating-the-spinal-cord-toolbox-sct-use-via-neurodesk" title="Link to this heading">#</a></h1>
-<p>In Neurodesk we can use lmod to load specific versions of tools. Here we load the spinalcordtoolbox in a specific version:</p>
+<p>In Neurodesk we can use module to load specific versions of tools. Here we load the spinalcordtoolbox in a specific version:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">lmod</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'spinalcordtoolbox/5.8'</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'spinalcordtoolbox/5.8'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -527,6 +506,14 @@ model name	: AMD EPYC 7742 64-Core Processor
 </div>
 <p>In this interactive notebook we will go through a series of processing steps specific to spinal cord MRI analysis. We first need to import the necessary tools and setup the filenames and folders in the notebook environment.</p>
 <p>The rest of this notebook is copied from the neurolibre project with minor path modifications and code adjustments to work with the <a class="reference external" href="https://mathieuboudreau.github.io/pipelines-jupyter-book/01/sct_mtsat">current version of SCT</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -1549,7 +1536,7 @@ xdg-open /home/jovyan/example-notebooks/structural_imaging/qc/index.html
 </div>
 <p>Figure 2. Quality control (QC) SCT module registration/warping results of the PAM50 template and atlas to the T1w native space. The white matter (in blue) is overlaid on the T1-weighted anatomical scan (in grayscale). Orientation is axial.Once co-registration between images and registration to the template is complete, we can venture into computing our favorite qMR metrics. Here, we compute the magnetization transfer ratio (MTR) and the magnetization transfer saturation (MTsat).</p>
 <p>Once co-registration between images and registration to the template is complete, we can venture into computing our favorite qMR metrics. Here, we compute the magnetization transfer ratio (MTR) and the magnetization transfer saturation (MTsat).</p>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute MTR</span>
 <span class="o">!</span>sct_compute_mtr<span class="w"> </span>-mt1<span class="w"> </span><span class="o">{</span>mt1+<span class="s1">'_reg'</span>+file_ext<span class="o">}</span><span class="w"> </span>-mt0<span class="w"> </span><span class="o">{</span>mt0+<span class="s1">'_reg'</span>+file_ext<span class="o">}</span>
@@ -1592,7 +1579,7 @@ Generate output files...
 </div>
 </div>
 <p>Now that our metrics are computed, we want to extract their values within specific tracts of the spinal cord. This is done with the function sct_extract_metric.</p>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract MTR, MTsat and T1 in WM between C2 and C4 vertebral levels</span>
 <span class="o">!</span>sct_extract_metric<span class="w"> </span>-i<span class="w"> </span>mtr.nii.gz<span class="w"> </span>-l<span class="w"> </span><span class="m">51</span><span class="w"> </span>-vert<span class="w"> </span><span class="m">2</span>:4<span class="w"> </span>-perlevel<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>mtr_in_wm.csv
@@ -1651,28 +1638,6 @@ xdg-open t1_in_wm.csv
 </div>
 </div>
 <p>Results are output as csv files, which we can then open and display as bar graphs.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pandas
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pandas
-  Downloading pandas-2.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">12.3/12.3 MB</span> <span class=" -Color -Color-Red">109.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:0100:01
-?25hRequirement already satisfied: python-dateutil&gt;=2.8.2 in /opt/conda/lib/python3.10/site-packages (from pandas) (2.8.2)
-Requirement already satisfied: numpy&gt;=1.21.0 in /opt/conda/lib/python3.10/site-packages (from pandas) (1.23.5)
-Requirement already satisfied: pytz&gt;=2020.1 in /opt/conda/lib/python3.10/site-packages (from pandas) (2022.6)
-Collecting tzdata&gt;=2022.1
-  Using cached tzdata-2023.3-py2.py3-none-any.whl (341 kB)
-Requirement already satisfied: six&gt;=1.5 in /opt/conda/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.16.0)
-Installing collected packages: tzdata, pandas
-Successfully installed pandas-2.0.2 tzdata-2023.3
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display plots of results</span>
@@ -1759,8 +1724,10 @@ Successfully installed pandas-2.0.2 tzdata-2023.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SCT Toolbox</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SCT Toolbox</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-cpu-information">Output CPU information</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrating-the-spinal-cord-toolbox-sct-use-via-neurodesk">Demonstrating the Spinal Cord Toolbox (SCT) use via Neurodesk</a></li>
 </ul>
 
