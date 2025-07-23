@@ -11,9 +11,11 @@ on:
   push:
     paths:
       - '**/*.ipynb'
+      - 'books/*.md'
   pull_request:
     paths:
       - '**/*.ipynb'
+      - 'books/*.md'
     # don't trigger for draft PRs
     types: [ opened, synchronize, reopened, ready_for_review ]
   # Trigger the workflow on manual dispatch
