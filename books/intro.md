@@ -1,6 +1,11 @@
 ## Neurodesk environment
 
-Each Jupyter notebook in the repository is equipped with a Google Colab button at the top. This button will allow you to interact with the notebooks in a cloud-based environment. The environment is pre-configured to support Neurodesk, so you can start experimenting with the notebooks right away without having to install any additional software or packages.
+Each Jupyter notebook in the repository is equipped with a Jupyter Hub button (the little rocket) at the top. This button will allow you to interact with the notebooks in a cloud-based environment. The environment is pre-configured to support Neurodesk, so you can start experimenting with the notebooks right away without having to install any additional software or packages.
+
+If you want to run these notebooks in another neurodesk environment, make sure to clone this repository first:
+```
+git clone https://github.com/neurodesk/example-notebooks.git
+```
 
 ## Neurodesk
 
