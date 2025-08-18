@@ -69,6 +69,10 @@ jobs:
     needs: [ select-runner, get-notebooks ]
     if: ${{ needs.get-notebooks.outputs.notebook_list != '[]' }}
     runs-on: ${{ needs.select-runner.outputs.runner }}
+    container: 
+      image: vnmd/neurodesktop:latest
+      volumes:
+        - /home/runner/:/home/
     timeout-minutes: 1500
     strategy:
       fail-fast: false
@@ -77,33 +81,25 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Test singularity and cvmfs before pushing to neurocommand
-      run: 
-        /bin/bash .github/scripts/setup-cvmfs.sh
+    # - name: Test singularity and cvmfs before pushing to neurocommand
+    #   run: 
+    #     /bin/bash .github/scripts/setup-cvmfs.sh
       
     - name: Install dependencies
       shell: bash
       run: |
-        python -m pip install --upgrade pip
-        python -m pip install jupyter-book ghp-import graphviz ipyniivue osfclient
+        mamba create -n jb_env -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import graphviz ipyniivue osfclient
 
     - name: Run ${{ matrix.notebooks }}
       shell: bash
       timeout-minutes: 1500
       working-directory: ./books
       run: |
+        mamba activate jb_env
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
         export PATH=$HOME/.local/bin:$PATH
         echo "PATH=$PATH"
-        export LD_PRELOAD=
-        echo "LD_PRELOAD=$LD_PRELOAD"
-        export APPTAINER_BINDPATH=${{ github.workspace }},/tmp,/cvmfs
-        echo "APPTAINER_BINDPATH=$APPTAINER_BINDPATH"
-        export LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod
-        export MPLCONFIGDIR=${{ github.workspace }}/matplotlib-mpldir
-        export MODULEPATH=$(find /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/ -maxdepth 1 -mindepth 1 -type d -exec realpath {} \; | tr '\n' ':')
-        echo "MODULEPATH=$MODULEPATH"
         echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})"
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})"
         echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
@@ -155,13 +151,13 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        python -m pip install --upgrade pip
-        python -m pip install jupyter-book ghp-import graphviz ipyniivue
+        mamba create -n jb_env -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import graphviz ipyniivue
 
     - name: Run all
       shell: bash
       working-directory: ./books
       run: |
+        mamba activate jb_env
         export PATH=$HOME/.local/bin:$PATH
         /bin/bash ../.github/scripts/write-toc-entry.sh
         sed -i 's/execute_notebooks: .*/execute_notebooks: off/' _config.yml
