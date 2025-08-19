@@ -85,6 +85,8 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
+        sudo apt-get update --allow-unauthenticated        
+        sudo apt-get install -y libxml2-dev libxslt-dev libcurl4-openssl-dev libssl-dev libgdal-dev libproj-dev libudunits2-dev
         mamba install -c conda-forge -y r-irkernel ipykernel -c pypi -y jupyter-book ghp-import
 
     - name: Run ${{ matrix.notebooks }}
