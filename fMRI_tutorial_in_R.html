@@ -559,6 +559,8 @@ Giulia Baracchini and Monika Doerig</p>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>also installing the dependencies ‘proxy’, ‘lattice’, ‘askpass’, ‘credentials’, ‘sys’, ‘zip’, ‘gitcreds’, ‘ini’, ‘httpuv’, ‘mime’, ‘xtable’, ‘sourcetools’, ‘later’, ‘promises’, ‘jquerylib’, ‘sass’, ‘systemfonts’, ‘textshaping’, ‘tinytex’, ‘xfun’, ‘highr’, ‘diffobj’, ‘e1071’, ‘class’, ‘KernSmooth’, ‘nlme’, ‘Matrix’, ‘farver’, ‘labeling’, ‘RColorBrewer’, ‘viridisLite’, ‘pkgconfig’, ‘stringi’, ‘clipr’, ‘curl’, ‘gert’, ‘gh’, ‘rappdirs’, ‘rprojroot’, ‘rstudioapi’, ‘whisker’, ‘yaml’, ‘cachem’, ‘shiny’, ‘callr’, ‘processx’, ‘bslib’, ‘downlit’, ‘fontawesome’, ‘httr2’, ‘openssl’, ‘ragg’, ‘rmarkdown’, ‘xml2’, ‘htmlwidgets’, ‘prettyunits’, ‘xopen’, ‘brew’, ‘commonmark’, ‘knitr’, ‘brio’, ‘praise’, ‘ps’, ‘waldo’, ‘classInt’, ‘DBI’, ‘magrittr’, ‘Rcpp’, ‘wk’, ‘gtable’, ‘isoband’, ‘MASS’, ‘mgcv’, ‘scales’, ‘tibble’, ‘withr’, ‘generics’, ‘R6’, ‘tidyselect’, ‘purrr’, ‘stringr’, ‘cpp11’, ‘usethis’, ‘desc’, ‘fs’, ‘memoise’, ‘miniUI’, ‘pkgbuild’, ‘pkgdown’, ‘pkgload’, ‘profvis’, ‘rcmdcheck’, ‘roxygen2’, ‘rversions’, ‘sessioninfo’, ‘testthat’, ‘urlchecker’, ‘plyr’, ‘ggdendro’
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘curl’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘xml2’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘rversions’ had non-zero exit status”
@@ -569,15 +571,27 @@ Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘s2’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘credentials’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘httpuv’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘httr2’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘ragg’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘gert’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘gh’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘shiny’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘pkgdown’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘rcmdcheck’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘sf’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘usethis’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘miniUI’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
@@ -599,31 +613,62 @@ Making &#39;packages.html&#39; ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using bundled GitHub PAT. Please add your own PAT using `gitcreds::gitcreds_set()`
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Cyan">R CMD build</span> <span class=" -Color -Color-Cyan">─────────────────────────────────────────────────────────────────</span>
+* checking for file ‘/tmp/RtmpKQQdI7/remotes86b148f3415/ggseg-ggseg-e2ad8b4/DESCRIPTION’ ... OK
+* preparing ‘ggseg’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building ‘ggseg_1.6.6.tar.gz’
+<span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Cyan">R CMD build</span> <span class=" -Color -Color-Cyan">─────────────────────────────────────────────────────────────────</span>
+* checking for file ‘/tmp/RtmpKQQdI7/remotes86b21a6914a/ggseg-ggsegSchaefer-91bb220/DESCRIPTION’ ... OK
+* preparing ‘ggsegSchaefer’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building ‘ggsegSchaefer_2.0.4.tar.gz’
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">Error</span>: Failed to install &#39;unknown package&#39; from GitHub:
-  <span class="n">HTTP</span> <span class="n">error</span> <span class="mf">401.</span>
-  <span class="n">Bad</span> <span class="n">credentials</span>
-
-  <span class="n">Rate</span> <span class="n">limit</span> <span class="n">remaining</span><span class="p">:</span> <span class="mi">58</span><span class="o">/</span><span class="mi">60</span>
-  <span class="n">Rate</span> <span class="n">limit</span> <span class="n">reset</span> <span class="n">at</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">19</span> <span class="mi">05</span><span class="p">:</span><span class="mi">43</span><span class="p">:</span><span class="mi">13</span> <span class="n">UTC</span>
-
-  
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">install_remotes</span><span class="p">(</span><span class="n">remotes</span><span class="p">,</span> <span class="n">auth_token</span> <span class="o">=</span> <span class="n">auth_token</span><span class="p">,</span> <span class="n">host</span> <span class="o">=</span> <span class="n">host</span><span class="p">,</span> 
- <span class="o">.</span>     <span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">upgrade</span> <span class="o">=</span> <span class="n">upgrade</span><span class="p">,</span> <span class="n">force</span> <span class="o">=</span> <span class="n">force</span><span class="p">,</span> 
- <span class="o">.</span>     <span class="n">quiet</span> <span class="o">=</span> <span class="n">quiet</span><span class="p">,</span> <span class="n">build</span> <span class="o">=</span> <span class="n">build</span><span class="p">,</span> <span class="n">build_opts</span> <span class="o">=</span> <span class="n">build_opts</span><span class="p">,</span> <span class="n">build_manual</span> <span class="o">=</span> <span class="n">build_manual</span><span class="p">,</span> 
- <span class="o">.</span>     <span class="n">build_vignettes</span> <span class="o">=</span> <span class="n">build_vignettes</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="n">repos</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">,</span> 
- <span class="o">.</span>     <span class="o">...</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">tryCatch</span><span class="p">(</span><span class="n">res</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">install_remote</span><span class="p">(</span><span class="n">remotes</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="o">...</span><span class="p">),</span> <span class="n">error</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
- <span class="o">.</span>     <span class="n">stop</span><span class="p">(</span><span class="n">remote_install_error</span><span class="p">(</span><span class="n">remotes</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="n">e</span><span class="p">))</span>
- <span class="o">.</span> <span class="p">})</span>
-<span class="mi">3</span><span class="o">.</span> <span class="n">tryCatchList</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">parentenv</span><span class="p">,</span> <span class="n">handlers</span><span class="p">)</span>
-<span class="mi">4</span><span class="o">.</span> <span class="n">tryCatchOne</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">parentenv</span><span class="p">,</span> <span class="n">handlers</span><span class="p">[[</span><span class="mi">1</span><span class="n">L</span><span class="p">]])</span>
-<span class="mi">5</span><span class="o">.</span> <span class="n">value</span><span class="p">[[</span><span class="mi">3</span><span class="n">L</span><span class="p">]](</span><span class="n">cond</span><span class="p">)</span>
-<span class="mi">6</span><span class="o">.</span> <span class="n">stop</span><span class="p">(</span><span class="n">remote_install_error</span><span class="p">(</span><span class="n">remotes</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="n">e</span><span class="p">))</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using github PAT from envvar GITHUB_PAT. Use `gitcreds::gitcreds_set()` and unset GITHUB_PAT in .Renviron (or elsewhere) if you want to use the more secure git credential store instead.
+Downloading GitHub repo ggseg/ggseg@HEAD
+Installing 3 packages: units, s2, sf
+Warning message in i.p(...):
+“installation of package ‘units’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘s2’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘sf’ had non-zero exit status”
+Updating HTML index of packages in &#39;.Library&#39;
+Making &#39;packages.html&#39; ...
+ done
+Warning message in i.p(...):
+“installation of package ‘/tmp/RtmpKQQdI7/file86b2b39cd99/ggseg_1.6.6.tar.gz’ had non-zero exit status”
+Using github PAT from envvar GITHUB_PAT. Use `gitcreds::gitcreds_set()` and unset GITHUB_PAT in .Renviron (or elsewhere) if you want to use the more secure git credential store instead.
+Downloading GitHub repo ggseg/ggsegSchaefer@HEAD
+Installing 11 packages: curl, data.table, crosstalk, lazyeval, httr, units, s2, plotly, sf, ggseg3d, ggseg
+Warning message in i.p(...):
+“installation of package ‘curl’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘data.table’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘units’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘s2’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘httr’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘sf’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘plotly’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘ggseg’ had non-zero exit status”
+Warning message in i.p(...):
+“installation of package ‘ggseg3d’ had non-zero exit status”
+Updating HTML index of packages in &#39;.Library&#39;
+Making &#39;packages.html&#39; ...
+ done
+Warning message in i.p(...):
+“installation of package ‘/tmp/RtmpKQQdI7/file86b1bca75f4/ggsegSchaefer_2.0.4.tar.gz’ had non-zero exit status”
 </pre></div>
 </div>
 </div>
@@ -644,22 +689,10 @@ Making &#39;packages.html&#39; ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linking to GEOS 3.13.0, GDAL 3.10.2, PROJ 9.5.1; sf_use_s2() is TRUE
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">library</span><span class="p">(</span><span class="n">ggseg</span><span class="p">):</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">package</span> <span class="n">called</span> <span class="err">‘</span><span class="n">ggseg</span><span class="err">’</span>
+<span class="ne">Traceback</span>:
 
-udunits database from /home/jovyan/conda-environments/r_env/share/udunits/udunits2.xml
-
-
-Attaching package: ‘dplyr’
-
-
-The following objects are masked from ‘package:stats’:
-
-    filter, lag
-
-
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal, union
+<span class="mi">1</span><span class="o">.</span> <span class="n">stop</span><span class="p">(</span><span class="n">packageNotFoundError</span><span class="p">(</span><span class="n">package</span><span class="p">,</span> <span class="n">lib</span><span class="o">.</span><span class="n">loc</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">call</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
