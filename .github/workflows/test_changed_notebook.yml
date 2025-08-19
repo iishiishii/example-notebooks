@@ -140,7 +140,11 @@ jobs:
     if: ${{ needs.test-notebooks.result != 'failure' }}
     needs: [ test-notebooks ]
     runs-on: ubuntu-22.04
-
+    container: 
+      image: vnmd/neurodesktop:latest
+      volumes:
+        - /home/runner/:/home/
+      options: --user root
     steps:
     - uses: actions/checkout@v4
 
