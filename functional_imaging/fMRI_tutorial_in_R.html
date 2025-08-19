@@ -1,0 +1,1267 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Resting-State fMRI Analysis in R &#8212; Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fMRI_tutorial_in_R';</script>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/fMRI_tutorial_in_R.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Neurodesk</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Resting-State fMRI Analysis in R
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/NeuroDesk/example-notebooks&urlpath=lab/tree/example-notebooks/books/fMRI_tutorial_in_R.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/fMRI_tutorial_in_R.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2FfMRI_tutorial_in_R.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/fMRI_tutorial_in_R.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Resting-State fMRI Analysis in R</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-preprocessed-data-to-functional-connectivity">From Preprocessed Data to Functional Connectivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflows-this-work-is-based-on">Workflows this work is based on</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-notebook-covers">What This Notebook Covers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-pipeline">Analysis Pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-and-import-r-packages">Install and import R packages</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">Data download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-and-visualize-data-from-one-subject">Load data and visualize data from one subject</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalize-time-series-data">Normalize time series data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-their-functional-connectivity-fc-matrix">Calculate their Functional Connectivity (FC) matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalise-fc-values">Normalise FC values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-fc-matrix">Visualise FC matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-nodal-strength">Calculate Nodal strength</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relate-their-nodal-strength-measures-to-measures-of-brain-organisation-and-gene-organisation">Relate their nodal strength measures to measures of brain organisation and gene organisation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="resting-state-fmri-analysis-in-r">
+<h1>Resting-State fMRI Analysis in R<a class="headerlink" href="#resting-state-fmri-analysis-in-r" title="Link to this heading">#</a></h1>
+<section id="from-preprocessed-data-to-functional-connectivity">
+<h2>From Preprocessed Data to Functional Connectivity<a class="headerlink" href="#from-preprocessed-data-to-functional-connectivity" title="Link to this heading">#</a></h2>
+<p><strong>Authors</strong>:
+Giulia Baracchini and Monika Doerig</p>
+</section>
+<section id="citation-and-resources">
+<h2>Citation and Resources:<a class="headerlink" href="#citation-and-resources" title="Link to this heading">#</a></h2>
+<section id="tools-included-in-this-workflow">
+<h3>Tools included in this workflow<a class="headerlink" href="#tools-included-in-this-workflow" title="Link to this heading">#</a></h3>
+<p><strong>R</strong>:</p>
+<ul class="simple">
+<li><p>R Core Team. (2025). R: A language and environment for statistical computing (Version 4.4.3) [Software]. R Foundation for Statistical Computing. <a class="reference external" href="https://www.R-project.org/">https://www.R-project.org/</a></p></li>
+</ul>
+</section>
+<section id="workflows-this-work-is-based-on">
+<h3>Workflows this work is based on<a class="headerlink" href="#workflows-this-work-is-based-on" title="Link to this heading">#</a></h3>
+<p>Original work from Giulia Baracchini:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/giuliabaracc/teaching_fMRI/blob/main/fMRI_restpreprocnet.html">Resting-state fMRI: From raw data to analyses</a></p></li>
+<li><p><a class="reference external" href="https://github.com/giuliabaracc/teaching_fMRI/blob/main/code/Tutorial_fMRI_complete.R">teaching_fMRI</a></p></li>
+</ul>
+</section>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<p><strong>HCP</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.humanconnectome.org/study/hcp-young-adult/data-releases">3T young adults resting-state dataset</a></p></li>
+</ul>
+<p><strong>Schefer parcellation</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal">ThomasYeoLab</a></p></li>
+</ul>
+</section>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>This notebook is adapted from Giulia Baracchini’s comprehensive fMRI preprocessing tutorial (<a class="reference external" href="https://github.com/giuliabaracc/teaching_fMRI/blob/main/fMRI_restpreprocnet.html">available on GitHub</a>), which covers the essential steps of resting-state fMRI analysis from raw data preprocessing through functional connectivity analyses.</p>
+<p>The original tutorial provides a complete pipeline covering:</p>
+<ol class="arabic simple">
+<li><p><strong>Standard fMRI preprocessing</strong> - preparing raw neuroimaging data for analysis</p></li>
+<li><p><strong>Resting-state fMRI denoising</strong> - removing artifacts and noise from the signal</p></li>
+<li><p><strong>Time-series extraction and parcellation</strong> - converting voxel-level data to meaningful brain regions</p></li>
+<li><p><strong>Functional connectivity analyses</strong> - examining statistical relationships between brain regions</p></li>
+</ol>
+</section>
+<section id="what-this-notebook-covers">
+<h2>What This Notebook Covers<a class="headerlink" href="#what-this-notebook-covers" title="Link to this heading">#</a></h2>
+<p>While the original tutorial works with multiple subjects and uses the Schaefer 200 region-7 network parcellation, this notebook focuses on a single-subject analysis using the <strong>Schaefer 200 region-17 network</strong> parcellation applied to subject 101309.</p>
+<section id="key-concepts">
+<h3>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
+<p><strong>Parcellation</strong>: The process of grouping individual voxels into meaningful brain regions or “parcels.” Instead of analyzing thousands of individual voxels, we average signals within anatomically or functionally defined regions, making our analyses more interpretable and computationally manageable.</p>
+<p><strong>Functional Connectivity (FC)</strong>: A statistical measure (typically Pearson’s correlation) that quantifies how synchronously different brain regions activate during rest. The result is a region × region matrix where each entry represents the strength of correlation between two brain areas.</p>
+</section>
+<section id="analysis-pipeline">
+<h3>Analysis Pipeline<a class="headerlink" href="#analysis-pipeline" title="Link to this heading">#</a></h3>
+<p>This notebook focuses on the <strong>analysis phase</strong> using already preprocessed and parcellated data. Starting with clean time series data from 200 brain regions, we implement:</p>
+<ol class="arabic simple">
+<li><p><strong>Data normalization</strong> - standardizing time series signals across regions</p></li>
+<li><p><strong>Functional connectivity calculation</strong> - computing correlation matrices between brain regions</p></li>
+<li><p><strong>Fisher z-transformation</strong> - normalizing correlation values for statistical analysis</p></li>
+<li><p><strong>Network visualization</strong> - creating heatmaps and brain plots to visualize connectivity patterns</p></li>
+<li><p><strong>Nodal strength analysis</strong> - quantifying each region’s overall connectivity</p></li>
+<li><p><strong>Structure-function relationships</strong> - relating connectivity patterns to brain organization gradients and gene expression patterns</p></li>
+</ol>
+<p>The Schaefer parcellation we’re using divides the brain into 200 regions across 17 functional networks, providing a good balance between spatial resolution and interpretability for resting-state connectivity analyses.sting-state connectivity analyses.</p>
+<div style="background-color:#fff3cd; border-left:4px solid #ff9800; padding:15px; margin:20px 0;">
+⚠️ <strong>Setup Requirements:</strong> Before running this notebook, please complete the following steps
+<ol class="arabic simple">
+<li><p><strong>Create an R environment</strong> (in terminal or within the notebook): Set up a Conda/Mamba environment with an R Kernel following these <a href="https://neurodesk.org/tutorials-examples/tutorials/programming/conda/" target="_blank">instructions</a></p></li>
+<li><p><strong>Select the R Kernel</strong>: In Jupyter notebook, change the kernel to R (top-right corner <code class="docutils literal notranslate"><span class="pre">Switch</span> <span class="pre">Kernel</span></code> or via Kernel menu –&gt; <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Kernel...</span></code>)</p></li>
+<li><p><strong>Install R packages</strong>: Run the package installation code cells in this notebook</p></li>
+<li><p><strong>Run the analysis</strong>: Execute the remaining cells to perform the fMRI connectivity analysis</p></li>
+</ol>
+<p><strong>Note:</strong> This notebook is automatically tested with GitHub Actions and rendered on GitHub Pages, ensuring all code examples work correctly with the specified environment setup.</p>
+</div></section>
+</section>
+<section id="install-and-import-r-packages">
+<h2>Install and import R packages<a class="headerlink" href="#install-and-import-r-packages" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;sf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;units&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;remotes&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dplyr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tidyr&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;devtools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;superheat&quot;</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>also installing the dependencies ‘proxy’, ‘lattice’, ‘askpass’, ‘credentials’, ‘sys’, ‘zip’, ‘gitcreds’, ‘ini’, ‘httpuv’, ‘mime’, ‘xtable’, ‘sourcetools’, ‘later’, ‘promises’, ‘jquerylib’, ‘sass’, ‘systemfonts’, ‘textshaping’, ‘tinytex’, ‘xfun’, ‘highr’, ‘diffobj’, ‘e1071’, ‘class’, ‘KernSmooth’, ‘nlme’, ‘Matrix’, ‘farver’, ‘labeling’, ‘RColorBrewer’, ‘viridisLite’, ‘pkgconfig’, ‘stringi’, ‘clipr’, ‘curl’, ‘gert’, ‘gh’, ‘rappdirs’, ‘rprojroot’, ‘rstudioapi’, ‘whisker’, ‘yaml’, ‘cachem’, ‘shiny’, ‘callr’, ‘processx’, ‘bslib’, ‘downlit’, ‘fontawesome’, ‘httr2’, ‘openssl’, ‘ragg’, ‘rmarkdown’, ‘xml2’, ‘htmlwidgets’, ‘prettyunits’, ‘xopen’, ‘brew’, ‘commonmark’, ‘knitr’, ‘brio’, ‘praise’, ‘ps’, ‘waldo’, ‘classInt’, ‘DBI’, ‘magrittr’, ‘Rcpp’, ‘wk’, ‘gtable’, ‘isoband’, ‘MASS’, ‘mgcv’, ‘scales’, ‘tibble’, ‘withr’, ‘generics’, ‘R6’, ‘tidyselect’, ‘purrr’, ‘stringr’, ‘cpp11’, ‘usethis’, ‘desc’, ‘fs’, ‘memoise’, ‘miniUI’, ‘pkgbuild’, ‘pkgdown’, ‘pkgload’, ‘profvis’, ‘rcmdcheck’, ‘roxygen2’, ‘rversions’, ‘sessioninfo’, ‘testthat’, ‘urlchecker’, ‘plyr’, ‘ggdendro’
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘xml2’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘rversions’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘urlchecker’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘units’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘s2’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘httpuv’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘ragg’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘shiny’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘pkgdown’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘sf’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘miniUI’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘roxygen2’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘devtools’ had non-zero exit status”
+Updating HTML index of packages in &#39;.Library&#39;
+Making &#39;packages.html&#39; ...
+ done
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;ggseg/ggseg&quot;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">upgrade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;never&quot;</span><span class="p">)</span>
+<span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;ggseg/ggsegSchaefer&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">upgrade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;never&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using bundled GitHub PAT. Please add your own PAT using `gitcreds::gitcreds_set()`
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">Error</span>: Failed to install &#39;unknown package&#39; from GitHub:
+  <span class="n">HTTP</span> <span class="n">error</span> <span class="mf">401.</span>
+  <span class="n">Bad</span> <span class="n">credentials</span>
+
+  <span class="n">Rate</span> <span class="n">limit</span> <span class="n">remaining</span><span class="p">:</span> <span class="mi">58</span><span class="o">/</span><span class="mi">60</span>
+  <span class="n">Rate</span> <span class="n">limit</span> <span class="n">reset</span> <span class="n">at</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">19</span> <span class="mi">02</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">00</span> <span class="n">UTC</span>
+
+  
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">install_remotes</span><span class="p">(</span><span class="n">remotes</span><span class="p">,</span> <span class="n">auth_token</span> <span class="o">=</span> <span class="n">auth_token</span><span class="p">,</span> <span class="n">host</span> <span class="o">=</span> <span class="n">host</span><span class="p">,</span> 
+ <span class="o">.</span>     <span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">upgrade</span> <span class="o">=</span> <span class="n">upgrade</span><span class="p">,</span> <span class="n">force</span> <span class="o">=</span> <span class="n">force</span><span class="p">,</span> 
+ <span class="o">.</span>     <span class="n">quiet</span> <span class="o">=</span> <span class="n">quiet</span><span class="p">,</span> <span class="n">build</span> <span class="o">=</span> <span class="n">build</span><span class="p">,</span> <span class="n">build_opts</span> <span class="o">=</span> <span class="n">build_opts</span><span class="p">,</span> <span class="n">build_manual</span> <span class="o">=</span> <span class="n">build_manual</span><span class="p">,</span> 
+ <span class="o">.</span>     <span class="n">build_vignettes</span> <span class="o">=</span> <span class="n">build_vignettes</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="n">repos</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">,</span> 
+ <span class="o">.</span>     <span class="o">...</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">.</span> <span class="n">tryCatch</span><span class="p">(</span><span class="n">res</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">install_remote</span><span class="p">(</span><span class="n">remotes</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="o">...</span><span class="p">),</span> <span class="n">error</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+ <span class="o">.</span>     <span class="n">stop</span><span class="p">(</span><span class="n">remote_install_error</span><span class="p">(</span><span class="n">remotes</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="n">e</span><span class="p">))</span>
+ <span class="o">.</span> <span class="p">})</span>
+<span class="mi">3</span><span class="o">.</span> <span class="n">tryCatchList</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">parentenv</span><span class="p">,</span> <span class="n">handlers</span><span class="p">)</span>
+<span class="mi">4</span><span class="o">.</span> <span class="n">tryCatchOne</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">parentenv</span><span class="p">,</span> <span class="n">handlers</span><span class="p">[[</span><span class="mi">1</span><span class="n">L</span><span class="p">]])</span>
+<span class="mi">5</span><span class="o">.</span> <span class="n">value</span><span class="p">[[</span><span class="mi">3</span><span class="n">L</span><span class="p">]](</span><span class="n">cond</span><span class="p">)</span>
+<span class="mi">6</span><span class="o">.</span> <span class="n">stop</span><span class="p">(</span><span class="n">remote_install_error</span><span class="p">(</span><span class="n">remotes</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="n">e</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load packages to confirm</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggseg</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggsegSchaefer</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">superheat</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linking to GEOS 3.13.0, GDAL 3.10.2, PROJ 9.5.1; sf_use_s2() is TRUE
+
+udunits database from /home/jovyan/conda-environments/r_env/share/udunits/udunits2.xml
+
+
+Attaching package: ‘dplyr’
+
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">installed.packages</span><span class="p">()</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 155 × 16 of type chr</caption>
+<thead>
+	<tr><th></th><th scope=col>Package</th><th scope=col>LibPath</th><th scope=col>Version</th><th scope=col>Priority</th><th scope=col>Depends</th><th scope=col>Imports</th><th scope=col>LinkingTo</th><th scope=col>Suggests</th><th scope=col>Enhances</th><th scope=col>License</th><th scope=col>License_is_FOSS</th><th scope=col>License_restricts_use</th><th scope=col>OS_type</th><th scope=col>MD5sum</th><th scope=col>NeedsCompilation</th><th scope=col>Built</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>DBI</th><td><span style=white-space:pre-wrap>DBI         </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.2.3  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>methods, R (&gt;= 3.0.0)                          </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>arrow, blob, covr, DBItest, dbplyr, downlit, dplyr, glue,
+hms, knitr, magrittr, nanoarrow (&gt;= 0.3.0.1), RMariaDB,
+rmarkdown, rprojroot, RSQLite (&gt;= 1.1-2), testthat (&gt;= 3.0.0),
+vctrs, xml2                                      </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>LGPL (&gt;= 2.1)              </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>IRdisplay</th><td><span style=white-space:pre-wrap>IRdisplay   </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.1    </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.0.1)                                   </span></td><td><span style=white-space:pre-wrap>methods,
+repr                                                                                                                                                       </span></td><td>NA</td><td><span style=white-space:pre-wrap>testthat,
+withr                                                                                                                                                                                                                     </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA </td><td>4.4.1</td></tr>
+	<tr><th scope=row>IRkernel</th><td><span style=white-space:pre-wrap>IRkernel    </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.3.2  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.2.0)                                   </span></td><td><span style=white-space:pre-wrap>repr (&gt;= 0.4.99), methods, evaluate (&gt;= 0.10), IRdisplay (&gt;=
+0.3.0.9999), pbdZMQ (&gt;= 0.2-1), crayon, jsonlite (&gt;= 0.9.6),
+uuid, digest                             </span></td><td>NA</td><td><span style=white-space:pre-wrap>testthat, roxygen2                                                                                                                                                                                                                   </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>KernSmooth</th><td><span style=white-space:pre-wrap>KernSmooth  </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>2.23-26</td><td>recommended</td><td><span style=white-space:pre-wrap>R (&gt;= 2.5.0), stats                            </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>MASS, carData                                                                                                                                                                                                                        </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>Unlimited                  </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.2</td></tr>
+	<tr><th scope=row>MASS</th><td><span style=white-space:pre-wrap>MASS        </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>7.3-64 </td><td>recommended</td><td>R (&gt;= 4.4.0), grDevices, graphics, stats, utils</td><td><span style=white-space:pre-wrap>methods                                                                                                                                                              </span></td><td>NA</td><td><span style=white-space:pre-wrap>lattice, nlme, nnet, survival                                                                                                                                                                                                        </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>GPL-2 | GPL-3              </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.2</td></tr>
+	<tr><th scope=row>Matrix</th><td><span style=white-space:pre-wrap>Matrix      </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.7-3  </span></td><td>recommended</td><td><span style=white-space:pre-wrap>R (&gt;= 4.4), methods                            </span></td><td><span style=white-space:pre-wrap>grDevices, graphics, grid, lattice, stats, utils                                                                                                                     </span></td><td>NA</td><td><span style=white-space:pre-wrap>MASS, datasets, sfsmisc, tools                                                                                                                                                                                                       </span></td><td><span style=white-space:pre-wrap>SparseM, graph    </span></td><td><span style=white-space:pre-wrap>GPL (&gt;= 2) | file LICENCE  </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>R6</th><td><span style=white-space:pre-wrap>R6          </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>2.6.1  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.6)                                     </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>lobstr, testthat (&gt;= 3.0.0)                                                                                                                                                                                                          </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.2</td></tr>
+	<tr><th scope=row>RColorBrewer</th><td>RColorBrewer</td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.1-3  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 2.0.0)                                   </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                                   </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>Apache License 2.0         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>Rcpp</th><td><span style=white-space:pre-wrap>Rcpp        </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.1.0  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>NA                                             </span></td><td><span style=white-space:pre-wrap>methods, utils                                                                                                                                                       </span></td><td>NA</td><td><span style=white-space:pre-wrap>tinytest, inline, rbenchmark, pkgKitten (&gt;= 0.1.2)                                                                                                                                                                                   </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>GPL (&gt;= 2)                 </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>askpass</th><td><span style=white-space:pre-wrap>askpass     </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.2.1  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>NA                                             </span></td><td><span style=white-space:pre-wrap>sys (&gt;= 2.1)                                                                                                                                                         </span></td><td>NA</td><td><span style=white-space:pre-wrap>testthat                                                                                                                                                                                                                             </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>assertthat</th><td>assertthat  </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.2.1  </td><td>NA         </td><td>NA                                             </td><td>tools                                                                                                                                                                </td><td>NA</td><td>testthat, covr                                                                                                                                                                                                                       </td><td>NA                </td><td>GPL-3                      </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>base</th><td>base        </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>4.4.3  </td><td>base       </td><td>NA                                             </td><td>NA                                                                                                                                                                   </td><td>NA</td><td>methods                                                                                                                                                                                                                              </td><td>chron, date, round</td><td>Part of R 4.4.3            </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA </td><td>4.4.3</td></tr>
+	<tr><th scope=row>base64enc</th><td><span style=white-space:pre-wrap>base64enc   </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>0.1-3  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 2.9.0)                                   </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                                   </span></td><td><span style=white-space:pre-wrap>png               </span></td><td><span style=white-space:pre-wrap>GPL-2 | GPL-3              </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>brew</th><td><span style=white-space:pre-wrap>brew        </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.0-10 </td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>NA                                             </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>testthat (&gt;= 3.0.0)                                                                                                                                                                                                                  </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>GPL (&gt;= 2)                 </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>brio</th><td><span style=white-space:pre-wrap>brio        </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.1.5  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.6)                                     </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>covr, testthat (&gt;= 3.0.0)                                                                                                                                                                                                            </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>bslib</th><td><span style=white-space:pre-wrap>bslib       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>0.9.0  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 2.10)                                    </span></td><td>base64enc, cachem, fastmap (&gt;= 1.1.1), grDevices, htmltools
+(&gt;= 0.5.8), jquerylib (&gt;= 0.1.3), jsonlite, lifecycle, memoise
+(&gt;= 2.0.1), mime, rlang, sass (&gt;= 0.4.9)</td><td>NA</td><td><span style=white-space:pre-wrap>bsicons, curl, fontawesome, future, ggplot2, knitr, magrittr,
+rappdirs, rmarkdown (&gt;= 2.7), shiny (&gt; 1.8.1), testthat,
+thematic, tools, utils, withr, yaml                                                                         </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.2</td></tr>
+	<tr><th scope=row>cachem</th><td><span style=white-space:pre-wrap>cachem      </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.1.0  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>NA                                             </span></td><td><span style=white-space:pre-wrap>rlang, fastmap (&gt;= 1.2.0)                                                                                                                                            </span></td><td>NA</td><td><span style=white-space:pre-wrap>testthat                                                                                                                                                                                                                             </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>callr</th><td><span style=white-space:pre-wrap>callr       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>3.7.6  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.4)                                     </span></td><td><span style=white-space:pre-wrap>processx (&gt;= 3.6.1), R6, utils                                                                                                                                       </span></td><td>NA</td><td><span style=white-space:pre-wrap>asciicast (&gt;= 2.3.1), cli (&gt;= 1.1.0), mockery, ps, rprojroot,
+spelling, testthat (&gt;= 3.2.0), withr (&gt;= 2.3.0)                                                                                                                       </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>class</th><td><span style=white-space:pre-wrap>class       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>7.3-23 </td><td>recommended</td><td><span style=white-space:pre-wrap>R (&gt;= 3.0.0), stats, utils                     </span></td><td><span style=white-space:pre-wrap>MASS                                                                                                                                                                 </span></td><td>NA</td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                                   </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>GPL-2 | GPL-3              </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.2</td></tr>
+	<tr><th scope=row>classInt</th><td><span style=white-space:pre-wrap>classInt    </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.4-11 </td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 2.2)                                     </span></td><td><span style=white-space:pre-wrap>grDevices, stats, graphics, e1071, class, KernSmooth                                                                                                                 </span></td><td>NA</td><td><span style=white-space:pre-wrap>spData (&gt;= 0.2.6.2), units, knitr, rmarkdown, tinytest                                                                                                                                                                               </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>GPL (&gt;= 2)                 </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.2</td></tr>
+	<tr><th scope=row>cli</th><td><span style=white-space:pre-wrap>cli         </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>3.6.5  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.4)                                     </span></td><td><span style=white-space:pre-wrap>utils                                                                                                                                                                </span></td><td>NA</td><td>callr, covr, crayon, digest, glue (&gt;= 1.6.0), grDevices,
+htmltools, htmlwidgets, knitr, methods, processx, ps (&gt;=
+1.3.4.9000), rlang (&gt;= 1.0.2.9003), rmarkdown, rprojroot,
+rstudioapi, testthat (&gt;= 3.2.0), tibble, whoami, withr</td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>clipr</th><td><span style=white-space:pre-wrap>clipr       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>0.8.0  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>NA                                             </span></td><td><span style=white-space:pre-wrap>utils                                                                                                                                                                </span></td><td>NA</td><td><span style=white-space:pre-wrap>covr, knitr, rmarkdown, rstudioapi (&gt;= 0.5), testthat (&gt;=
+2.0.0)                                                                                                                                                                    </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>GPL-3                      </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>colorspace</th><td><span style=white-space:pre-wrap>colorspace  </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>2.1-1  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.0.0), methods                          </span></td><td><span style=white-space:pre-wrap>graphics, grDevices, stats                                                                                                                                           </span></td><td>NA</td><td><span style=white-space:pre-wrap>datasets, utils, KernSmooth, MASS, kernlab, mvtnorm, vcd,
+tcltk, shiny, shinyjs, ggplot2, dplyr, scales, grid, png, jpeg,
+knitr, rmarkdown, RColorBrewer, rcartocolor, scico, viridis,
+wesanderson                                </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td>BSD_3_clause + file LICENSE</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>commonmark</th><td>commonmark  </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>2.0.0  </td><td>NA         </td><td>NA                                             </td><td>NA                                                                                                                                                                   </td><td>NA</td><td>curl, testthat, xml2                                                                                                                                                                                                                 </td><td>NA                </td><td>BSD_2_clause + file LICENSE</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>compiler</th><td>compiler    </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>4.4.3  </td><td>base       </td><td>NA                                             </td><td>NA                                                                                                                                                                   </td><td>NA</td><td>NA                                                                                                                                                                                                                                   </td><td>NA                </td><td>Part of R 4.4.3            </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA </td><td>4.4.3</td></tr>
+	<tr><th scope=row>cpp11</th><td><span style=white-space:pre-wrap>cpp11       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>0.5.2  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 4.0.0)                                   </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>bench, brio, callr, cli, covr, decor, desc, ggplot2, glue,
+knitr, lobstr, mockery, progress, rmarkdown, scales, Rcpp,
+testthat (&gt;= 3.2.0), tibble, utils, vctrs, withr                                                             </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.3</td></tr>
+	<tr><th scope=row>crayon</th><td>crayon      </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.5.3  </td><td>NA         </td><td>NA                                             </td><td>grDevices, methods, utils                                                                                                                                            </td><td>NA</td><td>mockery, rstudioapi, testthat, withr                                                                                                                                                                                                 </td><td>NA                </td><td>MIT + file LICENSE         </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>credentials</th><td>credentials </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>2.0.2  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>NA                                             </span></td><td><span style=white-space:pre-wrap>openssl (&gt;= 1.3), sys (&gt;= 2.1), curl, jsonlite, askpass                                                                                                              </span></td><td>NA</td><td><span style=white-space:pre-wrap>testthat, knitr, rmarkdown                                                                                                                                                                                                           </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>crosstalk</th><td><span style=white-space:pre-wrap>crosstalk   </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>1.2.1  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>NA                                             </span></td><td><span style=white-space:pre-wrap>htmltools (&gt;= 0.3.6), jsonlite, lazyeval, R6                                                                                                                         </span></td><td>NA</td><td><span style=white-space:pre-wrap>shiny, ggplot2, testthat (&gt;= 2.1.0), sass, bslib                                                                                                                                                                                     </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.3</td></tr>
+	<tr><th scope=row>curl</th><td><span style=white-space:pre-wrap>curl        </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>6.4.0  </span></td><td><span style=white-space:pre-wrap>NA         </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.0.0)                                   </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>spelling, testthat (&gt;= 1.0.0), knitr, jsonlite, later,
+rmarkdown, httpuv (&gt;= 1.4.4), webutils                                                                                                                                       </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>MIT + file LICENSE         </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>⋮</th><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><th scope=row>stringr</th><td><span style=white-space:pre-wrap>stringr    </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.5.1 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.6)   </span></td><td><span style=white-space:pre-wrap>cli, glue (&gt;= 1.6.1), lifecycle (&gt;= 1.0.3), magrittr, rlang
+(&gt;= 1.0.0), stringi (&gt;= 1.5.3), vctrs (&gt;= 0.4.0)                                                                                                                                                                                                                                     </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>covr, dplyr, gt, htmltools, htmlwidgets, knitr, rmarkdown,
+testthat (&gt;= 3.0.0), tibble                                                                                                                           </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>superheat</th><td><span style=white-space:pre-wrap>superheat  </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.1.0 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.1)   </span></td><td><span style=white-space:pre-wrap>dplyr (&gt;= 0.4.3), ggplot2 (&gt;= 2.0.0), gtable (&gt;= 0.1.2),
+magrittr (&gt;= 1.5), plyr (&gt;= 1.8.3), scales (&gt;= 0.3.0),
+ggdendro,                                                                                                                                                                                                                       </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>knitr (&gt;= 1.11), RColorBrewer, rmarkdown, testthat (&gt;=
+0.11.0),                                                                                                                                                  </span></td><td>NA</td><td><span style=white-space:pre-wrap>CC0                                   </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>sys</th><td><span style=white-space:pre-wrap>sys        </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>3.4.3 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>NA           </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                                                                                                                                                </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>unix (&gt;= 1.4), spelling, testthat                                                                                                                                                                                 </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>systemfonts</th><td>systemfonts</td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.2.3 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.2.0) </td><td><span style=white-space:pre-wrap>base64enc, grid, jsonlite, lifecycle, tools, utils                                                                                                                                                                                                                                                                                                </span></td><td><span style=white-space:pre-wrap>cpp11 (&gt;= 0.2.1)                        </span></td><td><span style=white-space:pre-wrap>covr, farver, graphics, knitr, rmarkdown, testthat (&gt;= 2.1.0)                                                                                                                                                     </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>tcltk</th><td>tcltk      </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>4.4.3 </td><td>base</td><td>NA           </td><td>utils                                                                                                                                                                                                                                                                                                                                             </td><td>NA                                      </td><td>NA                                                                                                                                                                                                                </td><td>NA</td><td>Part of R 4.4.3                       </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>testthat</th><td><span style=white-space:pre-wrap>testthat   </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>3.2.3 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.6.0) </td><td>brio (&gt;= 1.1.3), callr (&gt;= 3.7.3), cli (&gt;= 3.6.1), desc (&gt;=
+1.4.2), digest (&gt;= 0.6.33), evaluate (&gt;= 1.0.1), jsonlite (&gt;=
+1.8.7), lifecycle (&gt;= 1.0.3), magrittr (&gt;= 2.0.3), methods,
+pkgload (&gt;= 1.3.2.1), praise (&gt;= 1.0.0), processx (&gt;= 3.8.2),
+ps (&gt;= 1.7.5), R6 (&gt;= 2.5.1), rlang (&gt;= 1.1.1), utils, waldo
+(&gt;= 0.6.0), withr (&gt;= 3.0.2)</td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>covr, curl (&gt;= 0.9.5), diffviewer (&gt;= 0.1.0), knitr,
+rmarkdown, rstudioapi, S7, shiny, usethis, vctrs (&gt;= 0.1.0),
+xml2                                                                                          </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>textshaping</th><td>textshaping</td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.0.1 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.2.0) </td><td><span style=white-space:pre-wrap>lifecycle, stats, stringi, systemfonts (&gt;= 1.1.0), utils                                                                                                                                                                                                                                                                                          </span></td><td>cpp11 (&gt;= 0.2.1), systemfonts (&gt;= 1.0.0)</td><td><span style=white-space:pre-wrap>covr, grDevices, grid, knitr, rmarkdown, testthat (&gt;= 3.0.0)                                                                                                                                                      </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>tibble</th><td><span style=white-space:pre-wrap>tibble     </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>3.3.0 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.4.0) </td><td><span style=white-space:pre-wrap>cli, lifecycle (&gt;= 1.0.0), magrittr, methods, pillar (&gt;=
+1.8.1), pkgconfig, rlang (&gt;= 1.0.2), utils, vctrs (&gt;= 0.5.0)                                                                                                                                                                                                                            </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td>bench, bit64, blob, brio, callr, DiagrammeR, dplyr, evaluate,
+formattable, ggplot2, here, hms, htmltools, knitr, lubridate,
+nycflights13, pkgload, purrr, rmarkdown, stringi, testthat (&gt;=
+3.0.2), tidyr, withr</td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>tidyr</th><td><span style=white-space:pre-wrap>tidyr      </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.3.1 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.6)   </span></td><td><span style=white-space:pre-wrap>cli (&gt;= 3.4.1), dplyr (&gt;= 1.0.10), glue, lifecycle (&gt;= 1.0.3),
+magrittr, purrr (&gt;= 1.0.1), rlang (&gt;= 1.1.1), stringr (&gt;=
+1.5.0), tibble (&gt;= 2.1.1), tidyselect (&gt;= 1.2.0), utils, vctrs
+(&gt;= 0.5.2)                                                                                                                                             </span></td><td><span style=white-space:pre-wrap>cpp11 (&gt;= 0.4.0)                        </span></td><td><span style=white-space:pre-wrap>covr, data.table, knitr, readr, repurrrsive (&gt;= 1.1.0),
+rmarkdown, testthat (&gt;= 3.0.0)                                                                                                                           </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>tidyselect</th><td>tidyselect </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.2.1 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.4)   </span></td><td><span style=white-space:pre-wrap>cli (&gt;= 3.3.0), glue (&gt;= 1.3.0), lifecycle (&gt;= 1.0.3), rlang
+(&gt;= 1.0.4), vctrs (&gt;= 0.5.2), withr                                                                                                                                                                                                                                                 </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>covr, crayon, dplyr, knitr, magrittr, rmarkdown, stringr,
+testthat (&gt;= 3.1.1), tibble (&gt;= 2.1.3)                                                                                                                 </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>tinytex</th><td><span style=white-space:pre-wrap>tinytex    </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>0.57  </span></td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>NA           </span></td><td><span style=white-space:pre-wrap>xfun (&gt;= 0.48)                                                                                                                                                                                                                                                                                                                                    </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>testit, rstudioapi                                                                                                                                                                                                </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.3</td></tr>
+	<tr><th scope=row>tools</th><td>tools      </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>4.4.3 </td><td>base</td><td>NA           </td><td>NA                                                                                                                                                                                                                                                                                                                                                </td><td>NA                                      </td><td>codetools, methods, xml2, curl, commonmark, knitr, xfun, mathjaxr, V8                                                                                                                                             </td><td>NA</td><td>Part of R 4.4.3                       </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>units</th><td><span style=white-space:pre-wrap>units      </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.8-7 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.0.2) </td><td><span style=white-space:pre-wrap>Rcpp                                                                                                                                                                                                                                                                                                                                              </span></td><td><span style=white-space:pre-wrap>Rcpp (&gt;= 0.12.10)                       </span></td><td><span style=white-space:pre-wrap>NISTunits, measurements, xml2, magrittr, pillar (&gt;= 1.3.0),
+dplyr (&gt;= 1.0.0), vctrs (&gt;= 0.3.1), ggplot2 (&gt; 3.2.1), testthat
+(&gt;= 3.0.0), vdiffr, knitr, rvest, rmarkdown                                         </span></td><td>NA</td><td><span style=white-space:pre-wrap>GPL-2                                 </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>urlchecker</th><td>urlchecker </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.0.1 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.3)   </span></td><td><span style=white-space:pre-wrap>cli, curl, tools, xml2                                                                                                                                                                                                                                                                                                                            </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>covr                                                                                                                                                                                                              </span></td><td>NA</td><td><span style=white-space:pre-wrap>GPL-3                                 </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>usethis</th><td><span style=white-space:pre-wrap>usethis    </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>3.1.0 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.6)   </span></td><td><span style=white-space:pre-wrap>cli (&gt;= 3.0.1), clipr (&gt;= 0.3.0), crayon, curl (&gt;= 2.7), desc
+(&gt;= 1.4.2), fs (&gt;= 1.3.0), gert (&gt;= 1.4.1), gh (&gt;= 1.2.1), glue
+(&gt;= 1.3.0), jsonlite, lifecycle (&gt;= 1.0.0), purrr, rappdirs,
+rlang (&gt;= 1.1.0), rprojroot (&gt;= 1.2), rstudioapi, stats, tools,
+utils, whisker, withr (&gt;= 2.3.0), yaml                                             </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>covr, knitr, magick, pkgload (&gt;= 1.3.2.1), rmarkdown,
+roxygen2 (&gt;= 7.1.2), spelling (&gt;= 1.2), styler (&gt;= 1.2.0),
+testthat (&gt;= 3.1.8)                                                                            </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.2</td></tr>
+	<tr><th scope=row>utf8</th><td><span style=white-space:pre-wrap>utf8       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.2.6 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 2.10)  </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                                                                                                                                                </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>cli, covr, knitr, rlang, rmarkdown, testthat (&gt;= 3.0.0),
+withr                                                                                                                                                   </span></td><td>NA</td><td>Apache License (== 2.0) | file LICENSE</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>utils</th><td>utils      </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>4.4.3 </td><td>base</td><td>NA           </td><td>NA                                                                                                                                                                                                                                                                                                                                                </td><td>NA                                      </td><td>methods, xml2, commonmark, knitr, jsonlite                                                                                                                                                                        </td><td>NA</td><td>Part of R 4.4.3                       </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>uuid</th><td><span style=white-space:pre-wrap>uuid       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.2-1 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 2.9.0) </td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                                                                                                                                                </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>vctrs</th><td><span style=white-space:pre-wrap>vctrs      </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.6.5 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.5.0) </td><td><span style=white-space:pre-wrap>cli (&gt;= 3.4.0), glue, lifecycle (&gt;= 1.0.3), rlang (&gt;= 1.1.0)                                                                                                                                                                                                                                                                                      </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>bit64, covr, crayon, dplyr (&gt;= 0.8.5), generics, knitr,
+pillar (&gt;= 1.4.4), pkgdown (&gt;= 2.0.1), rmarkdown, testthat (&gt;=
+3.0.0), tibble (&gt;= 3.1.3), waldo (&gt;= 0.2.0), withr, xml2,
+zeallot                       </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>viridisLite</th><td>viridisLite</td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.4.2 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 2.10)  </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                                                                                                                                                </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>hexbin (&gt;= 1.27.0), ggplot2 (&gt;= 1.0.1), testthat, covr                                                                                                                                                            </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>waldo</th><td><span style=white-space:pre-wrap>waldo      </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.6.2 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 4.0)   </span></td><td><span style=white-space:pre-wrap>cli, diffobj (&gt;= 0.3.4), glue, methods, rlang (&gt;= 1.1.0)                                                                                                                                                                                                                                                                                          </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>bit64, R6, S7, testthat (&gt;= 3.0.0), withr, xml2                                                                                                                                                                   </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.3</td></tr>
+	<tr><th scope=row>whisker</th><td>whisker    </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.4.1 </td><td>NA  </td><td>NA           </td><td>NA                                                                                                                                                                                                                                                                                                                                                </td><td>NA                                      </td><td>markdown                                                                                                                                                                                                          </td><td>NA</td><td>GPL-3                                 </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>withr</th><td><span style=white-space:pre-wrap>withr      </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>3.0.2 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.6.0) </td><td><span style=white-space:pre-wrap>graphics, grDevices                                                                                                                                                                                                                                                                                                                               </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>callr, DBI, knitr, methods, rlang, rmarkdown (&gt;= 2.12),
+RSQLite, testthat (&gt;= 3.0.0)                                                                                                                             </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>wk</th><td><span style=white-space:pre-wrap>wk         </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>0.9.4 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 2.10)  </span></td><td><span style=white-space:pre-wrap>NA                                                                                                                                                                                                                                                                                                                                                </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>testthat (&gt;= 3.0.0), vctrs (&gt;= 0.3.0), sf, tibble, readr                                                                                                                                                          </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>xfun</th><td><span style=white-space:pre-wrap>xfun       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td><span style=white-space:pre-wrap>0.52  </span></td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.2.0) </td><td><span style=white-space:pre-wrap>grDevices, stats, tools                                                                                                                                                                                                                                                                                                                           </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>testit, parallel, codetools, methods, rstudioapi, tinytex (&gt;=
+0.30), mime, litedown (&gt;= 0.4), commonmark, knitr (&gt;= 1.50),
+remotes, pak, curl, xml2, jsonlite, magick, yaml, qs                                 </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>xml2</th><td><span style=white-space:pre-wrap>xml2       </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.3.8 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 3.6.0) </td><td><span style=white-space:pre-wrap>cli, methods, rlang (&gt;= 1.1.0)                                                                                                                                                                                                                                                                                                                    </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>covr, curl, httr, knitr, magrittr, mockery, rmarkdown,
+testthat (&gt;= 3.2.0), xslt                                                                                                                                 </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+	<tr><th scope=row>xopen</th><td><span style=white-space:pre-wrap>xopen      </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.0.1 </td><td><span style=white-space:pre-wrap>NA  </span></td><td><span style=white-space:pre-wrap>R (&gt;= 3.1)   </span></td><td><span style=white-space:pre-wrap>processx                                                                                                                                                                                                                                                                                                                                          </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>ps, testthat (&gt;= 3.0.0)                                                                                                                                                                                           </span></td><td>NA</td><td><span style=white-space:pre-wrap>MIT + file LICENSE                    </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>xtable</th><td><span style=white-space:pre-wrap>xtable     </span></td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>1.8-4 </td><td><span style=white-space:pre-wrap>NA  </span></td><td>R (&gt;= 2.10.0)</td><td><span style=white-space:pre-wrap>stats, utils                                                                                                                                                                                                                                                                                                                                      </span></td><td><span style=white-space:pre-wrap>NA                                      </span></td><td><span style=white-space:pre-wrap>knitr, plm, zoo, survival                                                                                                                                                                                         </span></td><td>NA</td><td><span style=white-space:pre-wrap>GPL (&gt;= 2)                            </span></td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>no </td><td>4.4.1</td></tr>
+	<tr><th scope=row>yaml</th><td>yaml       </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>2.3.10</td><td>NA  </td><td>NA           </td><td>NA                                                                                                                                                                                                                                                                                                                                                </td><td>NA                                      </td><td>RUnit                                                                                                                                                                                                             </td><td>NA</td><td>BSD_3_clause + file LICENSE           </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.1</td></tr>
+	<tr><th scope=row>zip</th><td>zip        </td><td>/home/jovyan/conda-environments/r_env/lib/R/library</td><td>2.3.3 </td><td>NA  </td><td>NA           </td><td>NA                                                                                                                                                                                                                                                                                                                                                </td><td>NA                                      </td><td>covr, pillar, processx, R6, testthat, withr                                                                                                                                                                       </td><td>NA</td><td>MIT + file LICENSE                    </td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>yes</td><td>4.4.3</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="data-download">
+<h3>Data download<a class="headerlink" href="#data-download" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create data directory</span>
+<span class="nf">dir.create</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">showWarnings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+
+<span class="c1"># Download files into data folder</span>
+<span class="nf">download.file</span><span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/giuliabaracc/teaching_fMRI/main/data/margulies2016_fcgradient01_20017Schaefer.csv&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="n">destfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data/margulies2016_fcgradient01_20017Schaefer.csv&quot;</span><span class="p">)</span>
+
+<span class="nf">download.file</span><span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/giuliabaracc/teaching_fMRI/main/data/gene_pc1_20017Schaefer.csv&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="n">destfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data/gene_pc1_20017Schaefer.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Don&#39;t forget the main data file too</span>
+<span class="nf">download.file</span><span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/giuliabaracc/teaching_fMRI/main/data/sub-101309_Schaefer20017.txt&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="n">destfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data/sub-101309_Schaefer20017.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-data-and-visualize-data-from-one-subject">
+<h3>Load data and visualize data from one subject<a class="headerlink" href="#load-data-and-visualize-data-from-one-subject" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###We are going to use data from subject 101309 in Scahefer 200-17 space</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;./data/sub-101309_Schaefer20017.txt&quot;</span><span class="p">)</span><span class="w"> </span>
+<span class="n">atlas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;./data/margulies2016_fcgradient01_20017Schaefer.csv&quot;</span><span class="p">)</span><span class="o">$</span><span class="n">region</span><span class="w"> </span><span class="c1">#our 200-17 regions important for plotting later</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a Time column so we can create a nice labelled plot</span>
+<span class="n">df2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span>
+<span class="n">df2</span><span class="o">$</span><span class="n">Time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+
+<span class="c1"># Reshape data frame to long format</span>
+<span class="n">df_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">Time</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Region&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Signal&quot;</span><span class="p">)</span>
+<span class="c1"># Plot</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">df_long</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Time</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Signal</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Region</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ROI Time Series&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Time (TRs)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fMRI BOLD Signal&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/4c337cc7ba60fedc4e1eca544553e3bb47dc1eb2b91b8922c52001c1a767ca3c.png"><img alt="_images/4c337cc7ba60fedc4e1eca544553e3bb47dc1eb2b91b8922c52001c1a767ca3c.png" src="_images/4c337cc7ba60fedc4e1eca544553e3bb47dc1eb2b91b8922c52001c1a767ca3c.png" style="width: 480px; height: 720px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="normalize-time-series-data">
+<h3>Normalize time series data<a class="headerlink" href="#normalize-time-series-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###First step: normalise their time series data</span>
+<span class="n">df_z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span>
+<span class="n">df_z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">df_z</span><span class="p">)</span><span class="w"> </span><span class="c1">#make data frame</span>
+<span class="w">  </span>
+<span class="c1">#Plot df_z</span>
+<span class="c1"># Add a Time column so we can create a nice labelled plot</span>
+<span class="n">df_z</span><span class="o">$</span><span class="n">Time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_z</span><span class="p">)</span>
+
+<span class="c1">#Reshape data frame to long format</span>
+<span class="n">df_z_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">df_z</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">Time</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Region&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Signal&quot;</span><span class="p">)</span>
+<span class="c1">#Plot</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">df_z_long</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Time</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Signal</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Region</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ROI Time Series&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Time (TRs)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fMRI BOLD Signal&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/d4c97200d586de72fd7a59e72f096e16ec750023b1ad0d4d5d0eaaaeee6cb8f2.png"><img alt="_images/d4c97200d586de72fd7a59e72f096e16ec750023b1ad0d4d5d0eaaaeee6cb8f2.png" src="_images/d4c97200d586de72fd7a59e72f096e16ec750023b1ad0d4d5d0eaaaeee6cb8f2.png" style="width: 480px; height: 720px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="calculate-their-functional-connectivity-fc-matrix">
+<h3>Calculate their Functional Connectivity (FC) matrix<a class="headerlink" href="#calculate-their-functional-connectivity-fc-matrix" title="Link to this heading">#</a></h3>
+<p>Let’s do some analyses on these data now! First thing, let’s calculate functional connectivity (FC). As a refresher, FC is a statistical construct derived (typically) as the Pearson’s correlation between pairs of brain regions. The output is therefore a region x region matrix where each entry indicates how strong the correlation is between two regions. In our case, our FC matrix will be 200x200.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###Second step: calculate their FC matrix</span>
+<span class="n">matrix_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="c1">#convert to matrix format to do calculations</span>
+
+<span class="c1"># Pearson&#39;s correlation</span>
+<span class="n">cor_mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">matrix_df</span><span class="p">)</span><span class="w"> </span><span class="c1">#compute FC on matrix format variable</span>
+
+<span class="c1">#Look at distribution of FC values</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">cor_mat</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/2278756fa6b34a09a0ba646a0d2539e06da6098d1821e61d0f89d76a449641a5.png"><img alt="_images/2278756fa6b34a09a0ba646a0d2539e06da6098d1821e61d0f89d76a449641a5.png" src="_images/2278756fa6b34a09a0ba646a0d2539e06da6098d1821e61d0f89d76a449641a5.png" style="width: 480px; height: 720px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="normalise-fc-values">
+<h3>Normalise FC values<a class="headerlink" href="#normalise-fc-values" title="Link to this heading">#</a></h3>
+<p>For group analyses, we need to normalise these FC values: Fisher-z transformation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###Third step: normalise their FC values</span>
+<span class="n">z_mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">atanh</span><span class="p">(</span><span class="n">cor_mat</span><span class="p">)</span><span class="w"> </span>
+<span class="c1"># Clean matrix: replace Inf values that come from Fisher z-transform</span>
+<span class="n">z_mat</span><span class="p">[</span><span class="o">!</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">z_mat</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">z_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/3578a27a80285d041604f5358661660e8e8f6488cf6955febfb1c688115c20fe.png"><img alt="_images/3578a27a80285d041604f5358661660e8e8f6488cf6955febfb1c688115c20fe.png" src="_images/3578a27a80285d041604f5358661660e8e8f6488cf6955febfb1c688115c20fe.png" style="width: 480px; height: 720px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check which rows/columns have any NA values</span>
+<span class="n">na_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">cor_mat</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">any</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+<span class="n">na_cols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">cor_mat</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">any</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+
+<span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">na_rows</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">na_cols</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Rows with NA:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na_rows</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Cols with NA:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na_cols</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Optionally: remove them before z-transform</span>
+<span class="n">cor_mat_clean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cor_mat</span><span class="p">[</span><span class="o">-</span><span class="n">na_rows</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">na_cols</span><span class="p">]</span>
+
+<span class="c1"># Now safe to apply Fisher z-transform</span>
+<span class="n">z_mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">atanh</span><span class="p">(</span><span class="n">cor_mat_clean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualise-fc-matrix">
+<h3>Visualise FC matrix<a class="headerlink" href="#visualise-fc-matrix" title="Link to this heading">#</a></h3>
+<p>You can play with the value limits, but in generally you want to make sure you see boxes in your matrix reflecting the brain’s functional network organisation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###Fourth step: roughly visualise their FC matrix</span>
+
+<span class="c1"># Use these names to label your FC matrix</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">z_mat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">z_mat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span>
+
+<span class="c1"># Example: &quot;17Networks_LH_VisCent_ExStr_1&quot; → &quot;VisCent&quot;</span>
+<span class="n">networks</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="s">&quot;17Networks_.._([^_]+).*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\\1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">atlas</span><span class="p">)</span>
+<span class="n">networks</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">networks</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unique</span><span class="p">(</span><span class="n">networks</span><span class="p">))</span>
+
+<span class="n">reds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#fee5d9&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#fcae91&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#fb6a4a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#de2d26&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#a50f15&quot;</span><span class="p">))(</span><span class="m">100</span><span class="p">)</span>
+<span class="nf">superheat</span><span class="p">(</span><span class="n">z_mat</span><span class="p">,</span>
+<span class="w">          </span><span class="n">membership.rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">networks</span><span class="p">,</span>
+<span class="w">          </span><span class="n">membership.cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">networks</span><span class="p">,</span>
+<span class="w">          </span><span class="n">left.label.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span>
+<span class="w">          </span><span class="n">bottom.label.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">          </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span>
+<span class="w">          </span><span class="n">heat.pal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reds</span><span class="p">,</span>
+<span class="w">          </span><span class="c1"># make the legend bigger</span>
+<span class="w">          </span><span class="n">legend.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span>
+<span class="w">          </span><span class="n">legend.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">          </span><span class="n">legend.text.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e609835b95fdbae00d87440deefa1f4b8e3f302b6fe0fd79123583b6fdd7d84e.png"><img alt="_images/e609835b95fdbae00d87440deefa1f4b8e3f302b6fe0fd79123583b6fdd7d84e.png" src="_images/e609835b95fdbae00d87440deefa1f4b8e3f302b6fe0fd79123583b6fdd7d84e.png" style="width: 480px; height: 720px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="calculate-nodal-strength">
+<h3>Calculate Nodal strength<a class="headerlink" href="#calculate-nodal-strength" title="Link to this heading">#</a></h3>
+<p>Let’s take this a step further. Let’s calculate how much each region is connected to the rest of the brain, a measure that is called node strength. <a class="reference external" href="https://sites.google.com/site/bctnet/list-of-measures">Node strength</a>, or region strength, is “the sum of weights of links connected to the node”. This will allow us to obtain a 1x200 vector that we can relate to a bunch of other measures of brain organisation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###Fifth step: calculate nodal strength</span>
+
+<span class="n">node_strength</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">z_mat</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">node_strength</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">node_strength</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">node_strength</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">200</span><span class="p">)</span>
+
+<span class="n">node_strength</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">atlas</span>
+
+<span class="nf">colnames</span><span class="p">(</span><span class="n">node_strength</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Value&quot;</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">node_strength</span><span class="p">)[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;region&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Visualize</span>
+<span class="n">node_strength</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_brain</span><span class="p">(</span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">schaefer17_200</span><span class="p">,</span>
+<span class="w">             </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">position_brain</span><span class="p">(</span><span class="n">hemi</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">side</span><span class="p">),</span>
+<span class="w">             </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="n">geometry</span><span class="o">=</span><span class="n">geometry</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_viridis_c</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span><span class="w"> </span><span class="n">oob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scales</span><span class="o">::</span><span class="n">squish</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>merging atlas and data by &#39;region&#39;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/802bb7a41fb1fb56cc94bb0522835ad9239b61a031ebfe9a3e2487cef32f02af.png"><img alt="_images/802bb7a41fb1fb56cc94bb0522835ad9239b61a031ebfe9a3e2487cef32f02af.png" src="_images/802bb7a41fb1fb56cc94bb0522835ad9239b61a031ebfe9a3e2487cef32f02af.png" style="width: 480px; height: 720px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">top_n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">15</span><span class="w">  </span>
+
+<span class="n">node_strength</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">slice_max</span><span class="p">(</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">top_n</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">reorder</span><span class="p">(</span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">Value</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Value</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_col</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steelblue&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Top&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">top_n</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Node Strengths&quot;</span><span class="p">),</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Brain Region&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Node Strength&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/cbe057486bec783db64531036f114e698a93abf9fb699df42e7e928054a90576.png"><img alt="_images/cbe057486bec783db64531036f114e698a93abf9fb699df42e7e928054a90576.png" src="_images/cbe057486bec783db64531036f114e698a93abf9fb699df42e7e928054a90576.png" style="width: 480px; height: 720px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="relate-their-nodal-strength-measures-to-measures-of-brain-organisation-and-gene-organisation">
+<h3>Relate their nodal strength measures to measures of brain organisation and gene organisation<a class="headerlink" href="#relate-their-nodal-strength-measures-to-measures-of-brain-organisation-and-gene-organisation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###Sixth step: relate their nodal strength measures to measures of brain organisation and gene organisation</span>
+<span class="n">brain_organisation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;./data/margulies2016_fcgradient01_20017Schaefer.csv&quot;</span><span class="p">)</span>
+<span class="n">gene_organisation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;./data/gene_pc1_20017Schaefer.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#visualise them both following node_strength plot above</span>
+<span class="n">brain_organisation</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_brain</span><span class="p">(</span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">schaefer17_200</span><span class="p">,</span>
+<span class="w">             </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">position_brain</span><span class="p">(</span><span class="n">hemi</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">side</span><span class="p">),</span>
+<span class="w">             </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="n">geometry</span><span class="o">=</span><span class="n">geometry</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_viridis_c</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-6</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">),</span><span class="w"> </span><span class="n">oob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scales</span><span class="o">::</span><span class="n">squish</span><span class="p">)</span>
+
+<span class="n">gene_organisation</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_brain</span><span class="p">(</span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">schaefer17_200</span><span class="p">,</span>
+<span class="w">             </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">position_brain</span><span class="p">(</span><span class="n">hemi</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">side</span><span class="p">),</span>
+<span class="w">             </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="n">geometry</span><span class="o">=</span><span class="n">geometry</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_viridis_c</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"> </span><span class="n">oob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scales</span><span class="o">::</span><span class="n">squish</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>merging atlas and data by &#39;region&#39;
+
+merging atlas and data by &#39;region&#39;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/06ba19020a7d079c2a4e359dc10052dcc765d888df19f2167f6e5101786908fe.png"><img alt="_images/06ba19020a7d079c2a4e359dc10052dcc765d888df19f2167f6e5101786908fe.png" src="_images/06ba19020a7d079c2a4e359dc10052dcc765d888df19f2167f6e5101786908fe.png" style="width: 480px; height: 720px;" />
+</a>
+<a class="reference internal image-reference" href="_images/cfe44611eca107adbfbf70d7a889e946a87c59dc46f1328248f0fe01118af86f.png"><img alt="_images/cfe44611eca107adbfbf70d7a889e946a87c59dc46f1328248f0fe01118af86f.png" src="_images/cfe44611eca107adbfbf70d7a889e946a87c59dc46f1328248f0fe01118af86f.png" style="width: 480px; height: 720px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Compute correlation amongst these vectors: nodal strength, brain organisation and gene organisation</span>
+<span class="n">corr_node_brainorg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">node_strength</span><span class="o">$</span><span class="n">Value</span><span class="p">,</span><span class="n">brain_organisation</span><span class="o">$</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;spearman&#39;</span><span class="p">)</span><span class="w"> </span>
+<span class="n">corr_node_geneorg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">node_strength</span><span class="o">$</span><span class="n">Value</span><span class="p">,</span><span class="n">gene_organisation</span><span class="o">$</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;spearman&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put results into a data frame</span>
+<span class="n">cor_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Comparison</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Nodal Strength vs Brain Organisation&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;Nodal Strength vs Gene Organisation&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Spearman_rho</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">corr_node_brainorg</span><span class="p">,</span><span class="w"> </span><span class="n">corr_node_geneorg</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">knitr</span><span class="p">)</span>
+<span class="nf">kable</span><span class="p">(</span><span class="n">cor_results</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Spearman correlations for Nodal Strength&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Table: Spearman correlations for Nodal Strength
+
+|Comparison                           | Spearman_rho|
+|:------------------------------------|------------:|
+|Nodal Strength vs Brain Organisation |       -0.359|
+|Nodal Strength vs Gene Organisation  |        0.459|
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-preprocessed-data-to-functional-connectivity">From Preprocessed Data to Functional Connectivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflows-this-work-is-based-on">Workflows this work is based on</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-notebook-covers">What This Notebook Covers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-pipeline">Analysis Pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-and-import-r-packages">Install and import R packages</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">Data download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-and-visualize-data-from-one-subject">Load data and visualize data from one subject</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalize-time-series-data">Normalize time series data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-their-functional-connectivity-fc-matrix">Calculate their Functional Connectivity (FC) matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalise-fc-values">Normalise FC values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-fc-matrix">Visualise FC matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-nodal-strength">Calculate Nodal strength</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relate-their-nodal-strength-measures-to-measures-of-brain-organisation-and-gene-organisation">Relate their nodal strength measures to measures of brain organisation and gene organisation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
