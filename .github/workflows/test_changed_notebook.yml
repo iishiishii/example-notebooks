@@ -89,7 +89,7 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        mamba install -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import
+        mamba install -c conda-forge -y r-irkernel ipykernel -c pypi -y jupyter-book ghp-import
 
     - name: Run ${{ matrix.notebooks }}
       shell: bash
@@ -148,10 +148,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # - name: Install dependencies
-    #   shell: bash
-    #   run: |
-    #     mamba install -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import
+    - name: Install dependencies
+      shell: bash
+      run: |
+        mamba install -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import
 
     - name: Run all
       shell: bash
