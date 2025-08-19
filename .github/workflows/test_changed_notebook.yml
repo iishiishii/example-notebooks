@@ -73,6 +73,7 @@ jobs:
       image: vnmd/neurodesktop:latest
       volumes:
         - /home/runner/:/home/
+      options: --user root
     timeout-minutes: 1500
     strategy:
       fail-fast: false
