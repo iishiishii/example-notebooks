@@ -82,10 +82,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # - name: Test singularity and cvmfs before pushing to neurocommand
-    #   run: 
-    #     /bin/bash .github/scripts/setup-cvmfs.sh
-      
     - name: Install dependencies
       shell: bash
       run: |
