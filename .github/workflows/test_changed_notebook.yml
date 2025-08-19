@@ -89,14 +89,13 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        mamba create -n jb_env -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import graphviz ipyniivue osfclient
+        mamba install -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import
 
     - name: Run ${{ matrix.notebooks }}
       shell: bash
       timeout-minutes: 1500
       working-directory: ./books
       run: |
-        mamba activate jb_env
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
         export PATH=$HOME/.local/bin:$PATH
@@ -149,16 +148,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install dependencies
-      shell: bash
-      run: |
-        mamba create -n jb_env -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import graphviz ipyniivue
+    # - name: Install dependencies
+    #   shell: bash
+    #   run: |
+    #     mamba install -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import
 
     - name: Run all
       shell: bash
       working-directory: ./books
       run: |
-        mamba activate jb_env
         export PATH=$HOME/.local/bin:$PATH
         /bin/bash ../.github/scripts/write-toc-entry.sh
         sed -i 's/execute_notebooks: .*/execute_notebooks: off/' _config.yml
