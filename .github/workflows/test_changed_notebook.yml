@@ -91,6 +91,8 @@ jobs:
       shell: bash
       timeout-minutes: 1500
       working-directory: ./books
+      env: 
+        GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       run: |
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
@@ -156,6 +158,8 @@ jobs:
     - name: Run all
       shell: bash
       working-directory: ./books
+      env: 
+        GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       run: |
         export PATH=$HOME/.local/bin:$PATH
         /bin/bash ../.github/scripts/write-toc-entry.sh
