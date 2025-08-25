@@ -93,6 +93,8 @@ jobs:
       shell: bash
       timeout-minutes: 1500
       working-directory: ./books
+      env: 
+        GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       run: |
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
@@ -142,7 +144,11 @@ jobs:
     if: ${{ needs.test-notebooks.result != 'failure' }}
     needs: [ test-notebooks ]
     runs-on: ubuntu-22.04
-
+    container: 
+      image: vnmd/neurodesktop:latest
+      volumes:
+        - /home/runner/:/home/
+      options: --user root
     steps:
     - uses: actions/checkout@v4
 
@@ -154,6 +160,8 @@ jobs:
     - name: Run all
       shell: bash
       working-directory: ./books
+      env: 
+        GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       run: |
         export PATH=$HOME/.local/bin:$PATH
         /bin/bash ../.github/scripts/write-toc-entry.sh
