@@ -548,8 +548,7 @@ Giulia Baracchini and Monika Doerig</p>
 <h2>Install and import R packages<a class="headerlink" href="#install-and-import-r-packages" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;renv&quot;</span><span class="p">)</span>
-<span class="nf">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
 <span class="w">  </span><span class="s">&quot;sf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;units&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;remotes&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dplyr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tidyr&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="s">&quot;devtools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;superheat&quot;</span>
@@ -558,10 +557,9 @@ Giulia Baracchini and Monika Doerig</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating HTML index of packages in &#39;.Library&#39;
-Making &#39;packages.html&#39; ...
- done
-also installing the dependencies ‘proxy’, ‘lattice’, ‘askpass’, ‘credentials’, ‘sys’, ‘zip’, ‘gitcreds’, ‘ini’, ‘httpuv’, ‘mime’, ‘xtable’, ‘sourcetools’, ‘later’, ‘promises’, ‘jquerylib’, ‘sass’, ‘systemfonts’, ‘textshaping’, ‘tinytex’, ‘xfun’, ‘highr’, ‘diffobj’, ‘e1071’, ‘class’, ‘KernSmooth’, ‘nlme’, ‘Matrix’, ‘farver’, ‘labeling’, ‘RColorBrewer’, ‘viridisLite’, ‘pkgconfig’, ‘stringi’, ‘clipr’, ‘curl’, ‘gert’, ‘gh’, ‘rappdirs’, ‘rprojroot’, ‘rstudioapi’, ‘whisker’, ‘yaml’, ‘cachem’, ‘shiny’, ‘callr’, ‘processx’, ‘bslib’, ‘downlit’, ‘fontawesome’, ‘httr2’, ‘openssl’, ‘ragg’, ‘rmarkdown’, ‘xml2’, ‘htmlwidgets’, ‘prettyunits’, ‘xopen’, ‘brew’, ‘commonmark’, ‘knitr’, ‘brio’, ‘praise’, ‘ps’, ‘waldo’, ‘classInt’, ‘DBI’, ‘magrittr’, ‘Rcpp’, ‘wk’, ‘gtable’, ‘isoband’, ‘MASS’, ‘mgcv’, ‘scales’, ‘tibble’, ‘withr’, ‘generics’, ‘R6’, ‘tidyselect’, ‘purrr’, ‘stringr’, ‘cpp11’, ‘usethis’, ‘desc’, ‘fs’, ‘memoise’, ‘miniUI’, ‘pkgbuild’, ‘pkgdown’, ‘pkgload’, ‘profvis’, ‘rcmdcheck’, ‘roxygen2’, ‘rversions’, ‘sessioninfo’, ‘testthat’, ‘urlchecker’, ‘plyr’, ‘ggdendro’
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>also installing the dependencies ‘proxy’, ‘lattice’, ‘askpass’, ‘credentials’, ‘sys’, ‘zip’, ‘gitcreds’, ‘ini’, ‘httpuv’, ‘mime’, ‘xtable’, ‘sourcetools’, ‘later’, ‘promises’, ‘jquerylib’, ‘sass’, ‘systemfonts’, ‘textshaping’, ‘tinytex’, ‘xfun’, ‘highr’, ‘diffobj’, ‘e1071’, ‘class’, ‘KernSmooth’, ‘nlme’, ‘Matrix’, ‘farver’, ‘labeling’, ‘RColorBrewer’, ‘viridisLite’, ‘pkgconfig’, ‘stringi’, ‘clipr’, ‘curl’, ‘gert’, ‘gh’, ‘rappdirs’, ‘rprojroot’, ‘rstudioapi’, ‘whisker’, ‘yaml’, ‘cachem’, ‘shiny’, ‘callr’, ‘processx’, ‘bslib’, ‘downlit’, ‘fontawesome’, ‘httr2’, ‘openssl’, ‘ragg’, ‘rmarkdown’, ‘xml2’, ‘htmlwidgets’, ‘prettyunits’, ‘xopen’, ‘brew’, ‘commonmark’, ‘knitr’, ‘brio’, ‘praise’, ‘ps’, ‘waldo’, ‘classInt’, ‘DBI’, ‘magrittr’, ‘Rcpp’, ‘wk’, ‘gtable’, ‘isoband’, ‘MASS’, ‘mgcv’, ‘scales’, ‘tibble’, ‘withr’, ‘generics’, ‘R6’, ‘tidyselect’, ‘purrr’, ‘stringr’, ‘cpp11’, ‘usethis’, ‘desc’, ‘fs’, ‘memoise’, ‘miniUI’, ‘pkgbuild’, ‘pkgdown’, ‘pkgload’, ‘profvis’, ‘rcmdcheck’, ‘roxygen2’, ‘rversions’, ‘sessioninfo’, ‘testthat’, ‘urlchecker’, ‘plyr’, ‘ggdendro’
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘curl’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘xml2’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
@@ -571,17 +569,27 @@ Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘units’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
-“installation of package ‘s2’ had non-zero exit status”
+“installation of package ‘credentials’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘httpuv’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘httr2’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘ragg’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘gert’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘gh’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘shiny’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘pkgdown’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘rcmdcheck’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘sf’ had non-zero exit status”
+Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
+“installation of package ‘usethis’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
 “installation of package ‘miniUI’ had non-zero exit status”
 Warning message in install.packages(c(&quot;sf&quot;, &quot;units&quot;, &quot;s2&quot;, &quot;remotes&quot;, &quot;ggplot2&quot;, :
@@ -604,14 +612,14 @@ Making &#39;packages.html&#39; ...
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Cyan">R CMD build</span> <span class=" -Color -Color-Cyan">─────────────────────────────────────────────────────────────────</span>
-* checking for file ‘/tmp/RtmpKF8tDJ/remotes232747b0ef9/ggseg-ggseg-e2ad8b4/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmptP30i6/remotesb2d7dd9b79d/ggseg-ggseg-e2ad8b4/DESCRIPTION’ ... OK
 * preparing ‘ggseg’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘ggseg_1.6.6.tar.gz’
 <span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Cyan">R CMD build</span> <span class=" -Color -Color-Cyan">─────────────────────────────────────────────────────────────────</span>
-* checking for file ‘/tmp/RtmpKF8tDJ/remotes2322ab30ecf/ggseg-ggsegSchaefer-91bb220/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmptP30i6/remotesb2d4ea9cbe9/ggseg-ggsegSchaefer-91bb220/DESCRIPTION’ ... OK
 * preparing ‘ggsegSchaefer’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
@@ -621,27 +629,27 @@ Making &#39;packages.html&#39; ...
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using github PAT from envvar GITHUB_PAT. Use `gitcreds::gitcreds_set()` and unset GITHUB_PAT in .Renviron (or elsewhere) if you want to use the more secure git credential store instead.
 Downloading GitHub repo ggseg/ggseg@HEAD
-Installing 3 packages: units, s2, sf
+Installing 2 packages: units, sf
 Warning message in i.p(...):
 “installation of package ‘units’ had non-zero exit status”
-Warning message in i.p(...):
-“installation of package ‘s2’ had non-zero exit status”
 Warning message in i.p(...):
 “installation of package ‘sf’ had non-zero exit status”
 Updating HTML index of packages in &#39;.Library&#39;
 Making &#39;packages.html&#39; ...
  done
 Warning message in i.p(...):
-“installation of package ‘/tmp/RtmpKF8tDJ/file2327d5c5c49/ggseg_1.6.6.tar.gz’ had non-zero exit status”
+“installation of package ‘/tmp/RtmptP30i6/fileb2d6f83f68d/ggseg_1.6.6.tar.gz’ had non-zero exit status”
 Using github PAT from envvar GITHUB_PAT. Use `gitcreds::gitcreds_set()` and unset GITHUB_PAT in .Renviron (or elsewhere) if you want to use the more secure git credential store instead.
 Downloading GitHub repo ggseg/ggsegSchaefer@HEAD
-Installing 10 packages: data.table, crosstalk, lazyeval, httr, units, s2, plotly, sf, ggseg3d, ggseg
+Installing 10 packages: curl, data.table, crosstalk, lazyeval, httr, units, plotly, sf, ggseg3d, ggseg
+Warning message in i.p(...):
+“installation of package ‘curl’ had non-zero exit status”
 Warning message in i.p(...):
 “installation of package ‘data.table’ had non-zero exit status”
 Warning message in i.p(...):
 “installation of package ‘units’ had non-zero exit status”
 Warning message in i.p(...):
-“installation of package ‘s2’ had non-zero exit status”
+“installation of package ‘httr’ had non-zero exit status”
 Warning message in i.p(...):
 “installation of package ‘sf’ had non-zero exit status”
 Warning message in i.p(...):
@@ -654,7 +662,7 @@ Updating HTML index of packages in &#39;.Library&#39;
 Making &#39;packages.html&#39; ...
  done
 Warning message in i.p(...):
-“installation of package ‘/tmp/RtmpKF8tDJ/file232625663f2/ggsegSchaefer_2.0.4.tar.gz’ had non-zero exit status”
+“installation of package ‘/tmp/RtmptP30i6/fileb2d2abb7655/ggsegSchaefer_2.0.4.tar.gz’ had non-zero exit status”
 </pre></div>
 </div>
 </div>
