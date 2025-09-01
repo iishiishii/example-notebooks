@@ -26,11 +26,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062">
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357">
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b">
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css">
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css">
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6">
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e">
-    <link rel="stylesheet" type="text/css" href="../_static/algolia.css?v=353b52f6">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b">
@@ -67,14 +65,12 @@
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'functional_imaging/fmriprep';</script>
-    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3/dist/umd/index.js"></script>
-    <script src="../_static/algolia.js?v=b553005c"></script>
-    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/functional_imaging/fmriprep.html">
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/functional_imaging/fmriprep.html">
     <link rel="icon" href="../_static/neurodesk_logo.svg">
     <link rel="index" title="Index" href="../genindex.html">
     <link rel="search" title="Search" href="../search.html">
-    <link rel="next" title="Introduction to Preprocessing" href="intro_to_preprocessing.html">
-    <link rel="prev" title="First and Second Level fMRI Analysis with SPM" href="first_and_second_level_spm.html">
+    <link rel="next" title="Nipype-FSL fMRI Analysis" href="fsl_all_levels_flanker_nipype.html">
+    <link rel="prev" title="Nipype-SPM fMRI Analysis" href="first_and_second_level_spm.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="docsearch:language" content="en">
   </head>
@@ -179,6 +175,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/MRIQC.html">MRIQC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/PyBIDS.html">PyBIDS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow</a></li>
@@ -190,9 +187,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Different Brain Extraction Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">Freesurfer</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
@@ -203,9 +200,7 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
-
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
@@ -217,22 +212,20 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_and_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aslprep.html">ASLprep</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deepretinotopy.html">DeepRetinotopy</a></li>
 
-
-
-<li class="toctree-l1"><a class="reference internal" href="first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fMRI_tutorial_in_R.html">Resting-State fMRI Analysis in R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
-
-
-
-
 </ul>
 
     </div>
@@ -273,7 +266,7 @@
       
         <div class="header-article-item">
 
-<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.268614" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.268614</a>
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.321567" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.321567</a>
 
 
 
@@ -287,14 +280,14 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/functional_imaging/fmriprep.ipynb" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Colab" data-bs-placement="left" data-bs-toggle="tooltip">
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/NeuroDesk/example-notebooks&amp;urlpath=lab/tree/example-notebooks/books/functional_imaging/fmriprep.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on JupyterHub" data-bs-placement="left" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
   
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
   </span>
-<span class="btn__text-container">Colab</span>
+<span class="btn__text-container">JupyterHub</span>
 </a>
 </li>
       
@@ -448,7 +441,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-cpu-information">Output CPU information</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-fmriprep">Run fMRIprep</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fmriprep-results">fMRIprep Results</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t1-and-brain-mask">T1 and brain mask</a></li>
@@ -471,38 +464,24 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/functional_imaging/fmriprep.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg">  </a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="fmriprep">
+  <section class="tex2jax_ignore mathjax_ignore" id="fmriprep">
 <h1>fMRIprep<a class="headerlink" href="#fmriprep" title="Link to this heading">#</a></h1>
-<p>Author: Steffen Bollmann</p>
-<section id="setup-neurodesk">
-<h2>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Link to this heading">#</a></h2>
+<p><strong>Author:</strong> Steffen Bollmann</p>
+<p><strong>Citation:</strong></p>
+<p><strong>fMRIPrep</strong>:</p>
+<ul class="simple">
+<li><p>Esteban, O., Markiewicz, C.J., Blair, R.W. et al. fMRIPrep: a robust preprocessing pipeline for functional MRI. Nat Methods 16, 111–116 (2019). <a class="reference external" href="https://doi.org/10.1038/s41592-018-0235-4">https://doi.org/10.1038/s41592-018-0235-4</a></p></li>
+</ul>
+<p><strong>Opensource Data from OpenNeuro:</strong></p>
+<ul class="simple">
+<li><p>Kelly AMC and Uddin LQ and Biswal BB and Castellanos FX and Milham MP (2018). Flanker task (event-related). <a class="reference external" href="https://openneuro.org/datasets/ds000102/versions/00001">OpenNeuro Dataset ds000102</a></p></li>
+<li><p>Kelly, A.M., Uddin, L.Q., Biswal, B.B., Castellanos, F.X., Milham, M.P. (2008). Competition between functional brain networks mediates behavioral variability. Neuroimage, 39(1):527-37</p></li>
+</ul>
+<section id="output-cpu-information">
+<h2>Output CPU information<a class="headerlink" href="#output-cpu-information" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
-
-<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LD_PRELOAD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"APPTAINER_BINDPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content,/tmp,/cvmfs"</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MPLCONFIGDIR"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content/matplotlib-mpldir"</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LMOD_CMD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/usr/share/lmod/lmod/libexec/lmod"</span>
-
-  <span class="err">!</span><span class="n">curl</span> <span class="o">-</span><span class="n">J</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">NeuroDesk</span><span class="o">/</span><span class="n">neurocommand</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="o">./</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MODULEPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">':'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">),</span> <span class="n">x</span><span class="p">),</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">)))))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output CPU information:</span>
-<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'vendor'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'vendor'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 <span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'model name'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 </pre></div>
 </div>
@@ -520,10 +499,10 @@ model name	: AMD EPYC-Rome Processor
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load fmriprep</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">lmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'fmriprep/24.1.0'</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">lmod</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'fmriprep/24.1.0'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -561,10 +540,16 @@ model name	: AMD EPYC-Rome Processor
 <div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+# set up environment variables
 export SUBJECTS_DIR=$PWD/fmriprep-freesurfer-dir
+export APPTAINERENV_SUBJECTS_DIR=$SUBJECTS_DIR
 export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=2 
 export MPLCONFIGDIR=~/matplotlib-mpldir 
 
+# create subjects directory
+mkdir -p $SUBJECTS_DIR
+
+# run fmriprep
 fmriprep ds000102/ fmriprep-output participant \
 --fs-license-file ~/.license \
 --output-spaces T1w MNI152NLin2009cAsym fsaverage fsnative \
@@ -3712,13 +3697,13 @@ A carpet plot shows the time series for all voxels within the brain mask, or if 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">First and Second Level fMRI Analysis with SPM</p>
+        <p class="prev-next-title">Nipype-SPM fMRI Analysis</p>
       </div>
     </a>
-    <a class="right-next" href="intro_to_preprocessing.html" title="next page">
+    <a class="right-next" href="fsl_all_levels_flanker_nipype.html" title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to Preprocessing</p>
+        <p class="prev-next-title">Nipype-FSL fMRI Analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3738,7 +3723,7 @@ A carpet plot shows the time series for all voxels within the brain mask, or if 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-cpu-information">Output CPU information</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-fmriprep">Run fMRIprep</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fmriprep-results">fMRIprep Results</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t1-and-brain-mask">T1 and brain mask</a></li>

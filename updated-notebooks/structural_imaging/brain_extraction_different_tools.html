@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Different Brain Extraction Tools — Neurodesk</title>
+    <title>Brain Extraction Tools — Neurodesk</title>
   
   
   
@@ -26,11 +26,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062">
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357">
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b">
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css">
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css">
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6">
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e">
-    <link rel="stylesheet" type="text/css" href="../_static/algolia.css?v=353b52f6">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b">
@@ -67,14 +65,12 @@
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'structural_imaging/brain_extraction_different_tools';</script>
-    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3/dist/umd/index.js"></script>
-    <script src="../_static/algolia.js?v=b553005c"></script>
-    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/intro.html/structural_imaging/brain_extraction_different_tools.html">
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/structural_imaging/brain_extraction_different_tools.html">
     <link rel="icon" href="../_static/neurodesk_logo.svg">
     <link rel="index" title="Index" href="../genindex.html">
     <link rel="search" title="Search" href="../search.html">
-    <link rel="next" title="Freesurfer" href="freesurfer.html">
-    <link rel="prev" title="Basic Nipype" href="../workflows/nipype_short.html">
+    <link rel="next" title="FreeSurfer" href="freesurfer.html">
+    <link rel="prev" title="FSL course - BET" href="FSL_course_bet.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="docsearch:language" content="en">
   </head>
@@ -179,6 +175,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/MRIQC.html">MRIQC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/PyBIDS.html">PyBIDS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow</a></li>
@@ -190,9 +187,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Different Brain Extraction Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="freesurfer.html">Freesurfer</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freesurfer.html">FreeSurfer</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="qsmxt.html">QSMxT</a></li>
@@ -203,9 +200,7 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="sct_toolbox.html">SCT Toolbox</a></li>
-
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
@@ -217,22 +212,20 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_and_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy</a></li>
 
-
-
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">First and Second Level fMRI Analysis with SPM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fMRI_tutorial_in_R.html">Resting-State fMRI Analysis in R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/nipype_fsl_all_levels_flanker.html">FSL’s fMRI Data Analysis via Nipype</a></li>
-
-
-
-
 </ul>
 
     </div>
@@ -273,7 +266,7 @@
       
         <div class="header-article-item">
 
-<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.268642" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.268642</a>
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.321573" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.321573</a>
 
 
 
@@ -287,14 +280,14 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/structural_imaging/brain_extraction_different_tools.ipynb" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Colab" data-bs-placement="left" data-bs-toggle="tooltip">
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/NeuroDesk/example-notebooks&amp;urlpath=lab/tree/example-notebooks/books/structural_imaging/brain_extraction_different_tools.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on JupyterHub" data-bs-placement="left" data-bs-toggle="tooltip">
   
 
 <span class="btn__icon-container">
   
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
   </span>
-<span class="btn__text-container">Colab</span>
+<span class="btn__text-container">JupyterHub</span>
 </a>
 </li>
       
@@ -438,7 +431,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Different Brain Extraction Tools</h1>
+    <h1>Brain Extraction Tools</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -449,7 +442,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-cpu-information">Output CPU information</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-normalization-tools-ants">Advanced Normalization Tools (ANTs)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-functional-neuroimages-afni">Analysis of Functional NeuroImages (AFNI)</a></li>
@@ -484,9 +477,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/NeuroDesk/example-notebooks/blob/main/books/structural_imaging/brain_extraction_different_tools.ipynb" target="_parent"><img alt="Open In Google Colab" src="https://colab.research.google.com/assets/colab-badge.svg">   </a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="different-brain-extraction-tools">
-<h1>Different Brain Extraction Tools<a class="headerlink" href="#different-brain-extraction-tools" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="brain-extraction-tools">
+<h1>Brain Extraction Tools<a class="headerlink" href="#brain-extraction-tools" title="Link to this heading">#</a></h1>
 <p>Author: Monika Doerig</p>
 <section id="citation">
 <h2>Citation:<a class="headerlink" href="#citation" title="Link to this heading">#</a></h2>
@@ -510,34 +502,11 @@ document.write(`
 <li><p>Avants, Brian; Tustison, Nick (2018). ANTs/ANTsR Brain Templates. figshare. Dataset. https://doi.org/10.6084/m9.figshare.915436.v2</p></li>
 </ul>
 </section>
-<section id="setup-neurodesk">
-<h2>Setup Neurodesk<a class="headerlink" href="#setup-neurodesk" title="Link to this heading">#</a></h2>
+<section id="output-cpu-information">
+<h2>Output CPU information<a class="headerlink" href="#output-cpu-information" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
-
-<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LD_PRELOAD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"APPTAINER_BINDPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content,/tmp,/cvmfs"</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MPLCONFIGDIR"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/content/matplotlib-mpldir"</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LMOD_CMD"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"/usr/share/lmod/lmod/libexec/lmod"</span>
-
-  <span class="err">!</span><span class="n">curl</span> <span class="o">-</span><span class="n">J</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">NeuroDesk</span><span class="o">/</span><span class="n">neurocommand</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-  <span class="err">!</span><span class="o">./</span><span class="n">googlecolab_setup</span><span class="o">.</span><span class="n">sh</span>
-
-  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MODULEPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">':'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">),</span> <span class="n">x</span><span class="p">),</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/'</span><span class="p">)))))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output CPU information:</span>
-<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'vendor'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'vendor'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 <span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'model name'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 </pre></div>
 </div>
@@ -3822,7 +3791,7 @@ Miscellaneous options:
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">create_combined_plot</span><span class="p">(</span><span class="n">edge_imgs</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">bg_img</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Combined plot with better visibility"""</span>
+<span class="w">    </span><span class="sd">"""Combined plot """</span>
     <span class="c1"># Initialize combined data</span>
     <span class="n">combined_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">edge_imgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">())</span>
     
@@ -3834,7 +3803,7 @@ Miscellaneous options:
     
     <span class="c1"># Create the combined image</span>
     <span class="n">combined_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">combined_data</span><span class="p">,</span> <span class="n">edge_imgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">affine</span><span class="p">)</span>
-    <span class="n">custom_cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>  <span class="c1"># Just use your edge colors directly</span>
+    <span class="n">custom_cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span> 
     
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
     <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">combined_img</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">bg_img</span><span class="p">,</span>
@@ -3932,17 +3901,17 @@ Miscellaneous options:
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev" href="../workflows/nipype_short.html" title="previous page">
+    <a class="left-prev" href="FSL_course_bet.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic Nipype</p>
+        <p class="prev-next-title">FSL course - BET</p>
       </div>
     </a>
     <a class="right-next" href="freesurfer.html" title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Freesurfer</p>
+        <p class="prev-next-title">FreeSurfer</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3963,7 +3932,7 @@ Miscellaneous options:
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-neurodesk">Setup Neurodesk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-cpu-information">Output CPU information</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-normalization-tools-ants">Advanced Normalization Tools (ANTs)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-functional-neuroimages-afni">Analysis of Functional NeuroImages (AFNI)</a></li>
