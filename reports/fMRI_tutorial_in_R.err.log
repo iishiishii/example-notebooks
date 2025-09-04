@@ -25,21 +25,43 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Load packages to confirm
-library(ggseg)
-library(ggsegSchaefer)
-library(sf)
-library(units)
-library(s2)
-library(superheat)
-library(ggplot2)
-library(dplyr)
-library(tidyr)
+###Fourth step: roughly visualise their FC matrix
+
+# Use these names to label your FC matrix
+colnames(z_mat) <- atlas 
+rownames(z_mat) <- atlas 
+
+# Example: "17Networks_LH_VisCent_ExStr_1" → "VisCent"
+networks <- sub("17Networks_.._([^_]+).*", "\\1", atlas)
+networks <- factor(networks, levels = unique(networks))
+
+reds <- colorRampPalette(c("#fee5d9", "#fcae91", "#fb6a4a", "#de2d26", "#a50f15"))(100)
+superheat(z_mat,
+          membership.rows = networks,
+          membership.cols = networks,
+          left.label.size = 0.4,
+          bottom.label.size = 0,
+          scale = FALSE,
+          heat.pal = reds,
+          # make the legend bigger
+          legend.height = 0.25,
+          legend.width = 2,
+          legend.text.size = 10)
+
+
+
 ------------------
 
 
-Error in library(ggseg): there is no package called ‘ggseg’
+Error in dimnames(x) <- dn: length of 'dimnames' [2] not equal to array extent
 Traceback:
 
-1. stop(packageNotFoundError(package, lib.loc, sys.call()))
+1. .handleSimpleError(function (cnd) 
+ . {
+ .     watcher$capture_plot_and_output()
+ .     cnd <- sanitize_call(cnd)
+ .     watcher$push(cnd)
+ .     switch(on_error, continue = invokeRestart("eval_continue"), 
+ .         stop = invokeRestart("eval_stop"), error = NULL)
+ . }, "length of 'dimnames' [2] not equal to array extent", base::quote(dimnames(x) <- dn))
 
