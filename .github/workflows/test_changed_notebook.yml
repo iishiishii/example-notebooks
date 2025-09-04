@@ -116,10 +116,20 @@ jobs:
           pkg-config \
           build-essential
 
+    - name: Install R kernel
+      run: |
+        sudo R -e "install.packages('IRkernel', repos='https://cran.rstudio.com/')"
+        R -e "IRkernel::installspec()"
+
+    - name: Verify kernel installation
+      run: |
+        jupyter kernelspec list
+
     - name: Install dependencies
       shell: bash
       run: |
-        mamba install -c conda-forge -y r-irkernel ipykernel -c pypi -y jupyter-book ghp-import
+        mamba info --envs
+        mamba install -c pypi -y jupyter-book ghp-import
 
     - name: Run ${{ matrix.notebooks }}
       shell: bash
