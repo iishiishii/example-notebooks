@@ -76,58 +76,16 @@ jobs:
       options: --user root
     timeout-minutes: 1500
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         notebooks: ${{ fromJson(needs.get-notebooks.outputs.notebook_list) }}
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y \
-          r-base-dev \
-          cmake \
-          libabsl-dev \
-          libudunits2-dev \
-          libgdal-dev \
-          gdal-bin \
-          libgeos-dev \
-          libproj-dev \
-          libssl-dev \
-          libcurl4-openssl-dev \
-          libxml2-dev \
-          libjson-c-dev \
-          libgit2-dev \
-          libfontconfig1-dev \
-          libcairo2-dev \
-          libpango1.0-dev \
-          libharfbuzz-dev \
-          libfribidi-dev \
-          libfreetype6-dev \
-          libpng-dev \
-          libtiff5-dev \
-          libjpeg-dev \
-          libicu-dev \
-          libgsl-dev \
-          libopenblas-dev \
-          liblapack-dev \
-          zlib1g-dev \
-          pkg-config \
-          build-essential
-
-    - name: Install R kernel
-      run: |
-        sudo R -e "install.packages('IRkernel', repos='https://cran.rstudio.com/')"
-        R -e "IRkernel::installspec()"
-
-    - name: Verify kernel installation
-      run: |
-        jupyter kernelspec list
-
     - name: Install dependencies
       shell: bash
       run: |
+        ml avail
         mamba info --envs
         mamba install -c pypi -y jupyter-book ghp-import
 
@@ -146,7 +104,7 @@ jobs:
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})"
         echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
-        jb build ${{ matrix.notebooks }}
+        jb build ${{ matrix.notebooks }} || exit 1
 
     - name: Restructure
       shell: bash
@@ -197,7 +155,7 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        mamba install -c conda-forge -y r-irkernel ipykernel -c pypi jupyter-book ghp-import
+        mamba install -c pypi jupyter-book ghp-import
 
     - name: Run all
       shell: bash
