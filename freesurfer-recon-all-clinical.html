@@ -1,0 +1,1293 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FreeSurfer: recon-all-clinical &#8212; Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'freesurfer-recon-all-clinical';</script>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/freesurfer-recon-all-clinical.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Neurodesk</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    FreeSurfer: recon-all-clinical
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/NeuroDesk/example-notebooks&urlpath=lab/tree/example-notebooks/books/freesurfer-recon-all-clinical.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/freesurfer-recon-all-clinical.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Ffreesurfer-recon-all-clinical.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/freesurfer-recon-all-clinical.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>FreeSurfer: recon-all-clinical</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">FreeSurfer: recon-all-clinical</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#general-instructions">General Instructions:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-module-for-this-workbook">Load the module for this workbook</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-try-running-the-command-with-the-help-flag">Let’s try running the command with the –help flag!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#run">Run</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="freesurfer-recon-all-clinical">
+<h1>FreeSurfer: recon-all-clinical<a class="headerlink" href="#freesurfer-recon-all-clinical" title="Link to this heading">#</a></h1>
+<p>This notebook was prepared for an audience of clinicians at the 2025 <a class="reference external" href="https://www.pactalscongress.com/programme">PACTALS conference</a> (Pan-Asian consortium of Treatment and Research in ALS) in Melbourne.</p>
+<p><strong>Author:</strong> Thomas Shaw, 1 Sept 2025</p>
+<p><a class="reference external" href="https://github.com/thomshaw92"><img alt="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" style="width: 20px;" /> thomshaw92</a></p>
+<p><a class="reference external" href="https://orcid.org/0000-0003-2490-0532"><img alt="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" style="width: 20px;" /> 0000-0003-2490-0532</a></p>
+<p><strong>Citations:</strong></p>
+<p><strong>Dataset</strong>: T1 weighted MP2RAGE at 7T (healthy control)</p>
+<ul class="simple">
+<li><p>Shaw TB, York A, Barth M, Bollmann S. Towards Optimising MRI Characterisation of Tissue (TOMCAT) Dataset including all Longitudinal Automatic Segmentation of Hippocampal Subfields (LASHiS) data. Data Brief. 2020 Jul 20;32:106043. doi: <a class="reference external" href="https://doi.org/10.1016/j.dib.2020.106043">https://doi.org/10.1016/j.dib.2020.106043</a> PMID: 32793772; PMCID: PMC7415822.</p></li>
+</ul>
+<p><strong>recon-all-clinical</strong>:</p>
+<ul class="simple">
+<li><p>Karthik Gopinath, Douglas N. Greve, Colin Magdamo, Steve Arnold, Sudeshna Das, Oula Puonti, Juan Eugenio Iglesias,
+“Recon-all-clinical”: Cortical surface reconstruction and analysis of heterogeneous clinical brain MRI, Medical Image Analysis, Volume 103, 2025, 103608, ISSN 1361-8415, <a class="reference external" href="https://doi.org/10.1016/j.media.2025.103608">https://doi.org/10.1016/j.media.2025.103608</a>.</p></li>
+</ul>
+</section>
+<section id="general-instructions">
+<h1>General Instructions:<a class="headerlink" href="#general-instructions" title="Link to this heading">#</a></h1>
+<div style="border:2px solid #1976D2; border-radius:10px; padding:15px; background-color:#F0F8FF;">
+<h2 style="color:#0D47A1;">📘 How to Use This Notebook</h2>
+<p>
+This notebook is an <b style="color:#1565C0;">interactive document</b>.  
+It mixes short explanations (like this box) with computer code that runs automatically.
+</p>
+<h3 style="color:#1565C0;">⚡ The basics</h3>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>👆 <b>Click on a cell</b> (the boxes with text or code)</li>
+  <li>▶️ <b>Run it</b> by pressing <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux)</li>
+  <li>⏭️ Or use the <b>play button</b> in the toolbar above</li>
+  <li>⬇️ Move to the next cell and repeat</li>
+</ul>
+<h3 style="color:#1565C0;">🧩 What happens when you run a cell?</h3>
+<p>
+The computer will either:
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>✏️ Show you some text or figures</li>
+  <li>🖥️ Run an analysis step in the background</li>
+  <li>📂 Save results into a folder</li>
+</ul>
+<hr style="border:1px dashed #BDBDBD;">
+<p style="color:#0D47A1; font-weight:bold; font-size:16px;">
+💡 Tip: Always <b>read the explanation</b above each code cell first – it tells you in plain words what the computer will do.
+</p>
+</div><p>There are a few <strong>dataformats</strong> that are used in this tutorial: <br></p>
+<ul class="simple">
+<li><p>Files that end in <strong>‘.mgz’ and ‘nii.gz’</strong> are <strong>volumetric images</strong> (either showing the brain or a specific region of the brain).  <br></p></li>
+<li><p>Files that end in <strong>‘.stat’</strong> are <strong>statistics files</strong>.  <br></p></li>
+<li><p>Files that end in <strong>.txt</strong> are just <strong>text-files</strong>.  <br></p></li>
+<li><p>Files that end in <strong>‘.csv’</strong> are <strong>datasheets</strong>.  <br></p></li>
+<li><p>Files that end in <strong>‘.pial, .surf etc’</strong> are <strong>surface files</strong>.  <br></p></li>
+</ul>
+</section>
+<section id="load-the-module-for-this-workbook">
+<h1>Load the module for this workbook<a class="headerlink" href="#load-the-module-for-this-workbook" title="Link to this heading">#</a></h1>
+<div style="border:2px solid #9C27B0; border-radius:10px; padding:15px; background-color:#FAF5FF;">
+<h2 style="color:#6A1B9A;">📦 What is a "Module"?</h2>
+<p>
+A <b style="color:#6A1B9A;">module</b> is just a way of telling the computer:  
+<i>“Please make this special software ready to use.”</i>
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>🎛️ We only load the ones we need, when we need them</li>
+  <li>🔑 Loading a module is like unlocking the tool so we can use it</li>
+</ul>
+<hr style="border:1px dashed #BDBDBD;">
+<h3 style="color:#6A1B9A;">🚀 In this notebook</h3>
+<p>
+We will load <b>FreeSurfer 8</b> – the software that analyses our scans.  
+Once loaded, the commands will be available for us to run.
+</p>
+<pre style="background-color:#EEE; padding:10px; border-radius:5px;">
+module load freesurfer/8.0.0
+</pre>
+<p style="color:#6A1B9A; font-weight:bold; font-size:16px;">
+➡️ Just like before: click the cell, then press <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux) to load it.
+</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can use module to load freesurfer in a specific version</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;freesurfer/8.0.0&#39;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lmod Warning: MODULEPATH is undefined.
+
+
+
+Lmod has detected the following error: The following module(s) are unknown:
+&quot;freesurfer/8.0.0&quot;
+
+Please check the spelling or version number. Also try &quot;module spider ...&quot;
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load &quot;freesurfer/8.0.0&quot;
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">nibabel</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="let-s-try-running-the-command-with-the-help-flag">
+<h1>Let’s try running the command with the –help flag!<a class="headerlink" href="#let-s-try-running-the-command-with-the-help-flag" title="Link to this heading">#</a></h1>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>recon-all-clinical.sh<span class="w"> </span>--help
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/bin/bash: line 1: recon-all-clinical.sh: command not found
+</pre></div>
+</div>
+</div>
+</div>
+<div style="border:2px solid #0288D1; border-radius:10px; padding:15px; background-color:#F0F9FF;">
+<h2 style="color:#01579B;">📥 Downloading the data</h2>
+<p>
+We will now <b style="color:#0277BD;">download a sample brain scan</b> (called <code>mp2rage.nii.gz</code>)  
+from the <b>Open Science Framework</b>.  
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>🌐 This file comes from an <b>open research resource</b></li>
+  <li>🧠 It is a standard type of MRI scan used for brain structure</li>
+  <li>📂 We will use it today as our <b>example dataset</b></li>
+</ul>
+<hr style="border:1px dashed #BDBDBD;">
+<p style="color:#01579B; font-weight:bold; font-size:16px;">
+➡️ Click the cell below, then press <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux)  
+to start the download.
+</p>
+</div><div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Downloading File&quot;</span><span class="p">;</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>./data/structural<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>osf<span class="w"> </span>-p<span class="w"> </span>bt4ez<span class="w"> </span>fetch<span class="w"> </span>osfstorage/TOMCAT_DIB/sub-01/ses-01_7T/anat/sub-01_ses-01_7T_T1w_defaced.nii.gz<span class="w"> </span>./data/structural/mp2rage.nii.gz
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading File
+  0%|                                           | 0.00/72.7M [00:00&lt;?, ?bytes/s]
+  0%|                                   | 49.2k/72.7M [00:00&lt;05:53, 205kbytes/s]
+  0%|                                   | 81.9k/72.7M [00:00&lt;06:50, 177kbytes/s]
+  0%|                                    | 147k/72.7M [00:00&lt;04:03, 298kbytes/s]
+  0%|                                    | 197k/72.7M [00:00&lt;03:38, 332kbytes/s]
+  0%|▏                                   | 279k/72.7M [00:00&lt;02:42, 444kbytes/s]
+  1%|▏                                   | 410k/72.7M [00:00&lt;01:48, 664kbytes/s]
+  1%|▎                                   | 557k/72.7M [00:01&lt;01:22, 875kbytes/s]
+  1%|▍                                  | 786k/72.7M [00:01&lt;00:56, 1.27Mbytes/s]
+  2%|▌                                 | 1.11M/72.7M [00:01&lt;00:39, 1.82Mbytes/s]
+  2%|▋                                 | 1.56M/72.7M [00:01&lt;00:27, 2.55Mbytes/s]
+  3%|█                                 | 2.23M/72.7M [00:01&lt;00:18, 3.74Mbytes/s]
+  4%|█▍                                | 3.16M/72.7M [00:01&lt;00:12, 5.37Mbytes/s]
+  6%|██                                | 4.44M/72.7M [00:01&lt;00:09, 7.54Mbytes/s]
+  9%|██▉                               | 6.32M/72.7M [00:01&lt;00:06, 10.9Mbytes/s]
+ 12%|███▉                              | 8.49M/72.7M [00:01&lt;00:04, 13.8Mbytes/s]
+ 15%|████▉                             | 10.6M/72.7M [00:01&lt;00:03, 15.7Mbytes/s]
+ 18%|█████▉                            | 12.7M/72.7M [00:02&lt;00:03, 16.7Mbytes/s]
+ 21%|███████                           | 15.0M/72.7M [00:02&lt;00:03, 18.3Mbytes/s]
+ 23%|███████▉                          | 17.0M/72.7M [00:02&lt;00:03, 18.2Mbytes/s]
+ 27%|█████████▏                        | 19.6M/72.7M [00:02&lt;00:02, 19.3Mbytes/s]
+ 30%|██████████▏                       | 21.7M/72.7M [00:02&lt;00:02, 19.8Mbytes/s]
+ 33%|███████████▏                      | 24.0M/72.7M [00:02&lt;00:02, 19.4Mbytes/s]
+ 36%|████████████▏                     | 26.1M/72.7M [00:02&lt;00:02, 19.8Mbytes/s]
+ 39%|█████████████▏                    | 28.3M/72.7M [00:02&lt;00:02, 19.6Mbytes/s]
+ 42%|██████████████▏                   | 30.5M/72.7M [00:02&lt;00:02, 19.9Mbytes/s]
+ 45%|███████████████▎                  | 32.6M/72.7M [00:03&lt;00:02, 19.8Mbytes/s]
+ 48%|████████████████▍                 | 35.2M/72.7M [00:03&lt;00:01, 20.3Mbytes/s]
+ 51%|█████████████████▍                | 37.4M/72.7M [00:03&lt;00:01, 19.9Mbytes/s]
+ 54%|██████████████████▍               | 39.5M/72.7M [00:03&lt;00:01, 20.1Mbytes/s]
+ 57%|███████████████████▍              | 41.6M/72.7M [00:03&lt;00:01, 20.0Mbytes/s]
+ 60%|████████████████████▍             | 43.8M/72.7M [00:03&lt;00:01, 19.9Mbytes/s]
+ 63%|█████████████████████▍            | 45.9M/72.7M [00:03&lt;00:01, 20.2Mbytes/s]
+ 66%|██████████████████████▍           | 48.1M/72.7M [00:03&lt;00:01, 19.9Mbytes/s]
+ 70%|███████████████████████▋          | 50.6M/72.7M [00:03&lt;00:01, 21.5Mbytes/s]
+ 73%|████████████████████████▋         | 52.8M/72.7M [00:04&lt;00:00, 20.3Mbytes/s]
+ 75%|█████████████████████████▋        | 54.9M/72.7M [00:04&lt;00:00, 20.3Mbytes/s]
+ 78%|██████████████████████████▋       | 56.9M/72.7M [00:04&lt;00:00, 19.7Mbytes/s]
+ 81%|███████████████████████████▌      | 59.0M/72.7M [00:04&lt;00:00, 19.9Mbytes/s]
+ 84%|████████████████████████████▌     | 61.0M/72.7M [00:04&lt;00:00, 19.6Mbytes/s]
+ 87%|█████████████████████████████▍    | 63.0M/72.7M [00:04&lt;00:00, 19.5Mbytes/s]
+ 90%|██████████████████████████████▍   | 65.2M/72.7M [00:04&lt;00:00, 19.9Mbytes/s]
+ 93%|███████████████████████████████▍  | 67.3M/72.7M [00:04&lt;00:00, 19.6Mbytes/s]
+ 96%|████████████████████████████████▋ | 69.8M/72.7M [00:04&lt;00:00, 21.2Mbytes/s]
+ 99%|█████████████████████████████████▋| 72.0M/72.7M [00:04&lt;00:00, 20.1Mbytes/s]
+100%|██████████████████████████████████| 72.7M/72.7M [00:05&lt;00:00, 14.5Mbytes/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>./data/structural/mp*
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./data/structural/mp2rage.nii.gz
+</pre></div>
+</div>
+</div>
+</div>
+<div style="border:2px solid #455A64; border-radius:10px; padding:15px; background-color:#F7F9FA;">
+<h2 style="color:#263238;">🖼️ Viewing <code>mp2rage.nii.gz</code></h2>
+<p>
+We will now open the <b style="color:#37474F;">mp2rage.nii.gz</b> file.  
+This is the <b>patient’s T1-weighted MRI scan</b> that FreeSurfer will change into its own format.  
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>🎛️ We display it in <b>grayscale</b> so brain tissue boundaries are clear</li>
+  <li>📐 Brightness/contrast is automatically adjusted (ignores empty space and extreme values)</li>
+  <li>➕ Crosshairs help you line up the same point across axial, coronal, and sagittal slices</li>
+  <li>🧭 The viewer lets you scroll through slices and explore the brain interactively</li>
+</ul>
+<hr style="border:1px dashed #BDBDBD;">
+<p style="color:#263238; font-weight:bold; font-size:16px;">
+➡️ Click the cell below, then press <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux).  
+This will open <code>mp2rage.nii.gz</code> in the interactive viewer.
+</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display original file in grayscale</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ipyniivue</span><span class="w"> </span><span class="kn">import</span> <span class="n">NiiVue</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">T1_PATH</span> <span class="o">=</span> <span class="s2">&quot;./data/structural/mp2rage.nii.gz&quot;</span> 
+
+<span class="c1"># Robust intensity window (ignore zeros and outliers)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">T1_PATH</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">t1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">99.5</span><span class="p">])</span> <span class="k">if</span> <span class="n">vals</span><span class="o">.</span><span class="n">size</span> <span class="k">else</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="n">nv</span> <span class="o">=</span> <span class="n">NiiVue</span><span class="p">(</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">multiplanar_layout</span><span class="o">=</span><span class="s2">&quot;GRID&quot;</span><span class="p">,</span>
+    <span class="n">multiplanar_show_render</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_ruler</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">is_colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_orient_cube</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_radiological_convention</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">back_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">nv</span><span class="o">.</span><span class="n">add_volume</span><span class="p">({</span>
+    <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">T1_PATH</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;native&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;colormap&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cal_min&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">vmin</span><span class="p">)</span> <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;cal_max&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">vmax</span><span class="p">)</span> <span class="k">if</span> <span class="n">vmax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;ignore_zero_voxels&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="n">nv</span><span class="o">.</span><span class="n">set_crosshair_color</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">nv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 1, "model_id": "b17fc6e4dfe8472d915a77a41fbd842c"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_t1w.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_t1w.png"/></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="run">
+<h1>Run<a class="headerlink" href="#run" title="Link to this heading">#</a></h1>
+<div style="border:2px solid #4CAF50; border-radius:10px; padding:15px; background-color:#F9FFF9;">
+<h2 style="color:#2E7D32;">🧠 Automated Brain Scan Processing using recon-all clinical</h2>
+<p>
+This step <b style="color:#1565C0;">prepares our MRI data</b> so it can be processed automatically.  
+Think of it like <i>setting up the folders and tools</i> before we start the real analysis.
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>✔️ <span style="color:#6A1B9A;">Creates a folder</span> where results will be saved</li>
+  <li>✔️ <span style="color:#D84315;">Checks everything is ready</span> before running</li>
+  <li>✔️  <b style="color:#E65100;">Run the command "recon-all-clinical.sh"</b> </li>
+</ul>
+<p>
+<b>In plain words:</b> we are telling the computer:<br>
+<i>"Here’s the scan. Put the results in this folder. Run the pipeline."  </i>
+</p>
+<p style="color:#555;">
+<p>⚠️ Don’t worry about the code details – they’re just making sure the computer behaves!</p>
+</p>
+<hr style="border:1px dashed #BDBDBD;">
+<p style="color:#E65100; font-weight:bold; font-size:16px;">
+➡️ When you are ready, hit <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux),  
+or press the ▶️ play button after clicking on the cell below.
+</p>
+</div><div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+#--------------------------------------------
+# FreeSurfer recon-all-clinical pipeline
+#--------------------------------------------
+
+set -euo pipefail  # Stop on unset variables or errors
+
+#----------------------------
+# Config
+#----------------------------
+INPUT_SCAN=./data/structural/mp2rage.nii.gz
+SUBJECT_ID=TestSubject
+THREADS=2 #adapt if more resources are available
+SUBJECT_DIR=./data/structural/recon-all-clinical
+
+# Ensure output folder exists
+mkdir -p &quot;$SUBJECT_DIR&quot;
+echo &quot;SUBJECT_DIR=$SUBJECT_DIR&quot;
+echo &quot;SUBJECT_ID=$SUBJECT_ID&quot;
+echo &quot;INPUT_SCAN=$INPUT_SCAN&quot;
+echo
+
+#----------------------------
+# Allow deeper folder structures in some FreeSurfer builds
+#----------------------------
+export FS_ALLOW_DEEP=1
+export SINGULARITYENV_FS_ALLOW_DEEP=1
+export APPTAINERENV_FS_ALLOW_DEEP=1
+
+#----------------------------
+# Start pipeline
+#----------------------------
+# Remove previous &quot;is-running&quot; file if it exists
+rm -f &quot;$SUBJECT_DIR/$SUBJECT_ID/scripts/IsRunning.lh+rh&quot;
+
+# Run the actual recon-all-clinical pipeline
+recon-all-clinical.sh &quot;$INPUT_SCAN&quot; &quot;$SUBJECT_ID&quot; &quot;$THREADS&quot; &quot;$SUBJECT_DIR&quot;
+
+#----------------------------
+# End message
+#----------------------------
+echo &quot;----- recon-all-clinical.sh completed -----&quot;
+echo &quot;Results saved to: $SUBJECT_DIR/$SUBJECT_ID&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SUBJECT_DIR=./data/structural/recon-all-clinical
+SUBJECT_ID=TestSubject
+INPUT_SCAN=./data/structural/mp2rage.nii.gz
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bash: line 36: recon-all-clinical.sh: command not found
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;#--------------------------------------------</span><span class="se">\n</span><span class="s1"># FreeSurfer recon-all-clinical pipeline</span><span class="se">\n</span><span class="s1">#--------------------------------------------</span><span class="se">\n\n</span><span class="s1">set -euo pipefail  # Stop on unset variables or errors</span><span class="se">\n\n</span><span class="s1">#----------------------------</span><span class="se">\n</span><span class="s1"># Config</span><span class="se">\n</span><span class="s1">#----------------------------</span><span class="se">\n</span><span class="s1">INPUT_SCAN=./data/structural/mp2rage.nii.gz</span><span class="se">\n</span><span class="s1">SUBJECT_ID=TestSubject</span><span class="se">\n</span><span class="s1">THREADS=2 #adapt if more resources are available</span><span class="se">\n</span><span class="s1">SUBJECT_DIR=./data/structural/recon-all-clinical</span><span class="se">\n\n</span><span class="s1"># Ensure output folder exists</span><span class="se">\n</span><span class="s1">mkdir -p &quot;$SUBJECT_DIR&quot;</span><span class="se">\n</span><span class="s1">echo &quot;SUBJECT_DIR=$SUBJECT_DIR&quot;</span><span class="se">\n</span><span class="s1">echo &quot;SUBJECT_ID=$SUBJECT_ID&quot;</span><span class="se">\n</span><span class="s1">echo &quot;INPUT_SCAN=$INPUT_SCAN&quot;</span><span class="se">\n</span><span class="s1">echo</span><span class="se">\n\n</span><span class="s1">#----------------------------</span><span class="se">\n</span><span class="s1"># Allow deeper folder structures in some FreeSurfer builds</span><span class="se">\n</span><span class="s1">#----------------------------</span><span class="se">\n</span><span class="s1">export FS_ALLOW_DEEP=1</span><span class="se">\n</span><span class="s1">export SINGULARITYENV_FS_ALLOW_DEEP=1</span><span class="se">\n</span><span class="s1">export APPTAINERENV_FS_ALLOW_DEEP=1</span><span class="se">\n\n</span><span class="s1">#----------------------------</span><span class="se">\n</span><span class="s1"># Start pipeline</span><span class="se">\n</span><span class="s1">#----------------------------</span><span class="se">\n</span><span class="s1"># Remove previous &quot;is-running&quot; file if it exists</span><span class="se">\n</span><span class="s1">rm -f &quot;$SUBJECT_DIR/$SUBJECT_ID/scripts/IsRunning.lh+rh&quot;</span><span class="se">\n\n</span><span class="s1"># Run the actual recon-all-clinical pipeline</span><span class="se">\n</span><span class="s1">recon-all-clinical.sh &quot;$INPUT_SCAN&quot; &quot;$SUBJECT_ID&quot; &quot;$THREADS&quot; &quot;$SUBJECT_DIR&quot;</span><span class="se">\n\n</span><span class="s1">#----------------------------</span><span class="se">\n</span><span class="s1"># End message</span><span class="se">\n</span><span class="s1">#----------------------------</span><span class="se">\n</span><span class="s1">echo &quot;----- recon-all-clinical.sh completed -----&quot;</span><span class="se">\n</span><span class="s1">echo &quot;Results saved to: $SUBJECT_DIR/$SUBJECT_ID&quot;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/conda/lib/python3.12/site-packages/IPython/core/interactiveshell.py:2549,</span> in <span class="ni">InteractiveShell.run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2547</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2548</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2549</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2551</span> <span class="c1"># The code below prevents the output from being displayed</span>
+<span class="g g-Whitespace">   </span><span class="mi">2552</span> <span class="c1"># when using magics with decorator @output_can_be_silenced</span>
+<span class="g g-Whitespace">   </span><span class="mi">2553</span> <span class="c1"># when the last Python token in the expression is a &#39;;&#39;.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2554</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">magic</span><span class="o">.</span><span class="n">MAGIC_OUTPUT_CAN_BE_SILENCED</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+
+<span class="nn">File /opt/conda/lib/python3.12/site-packages/IPython/core/magics/script.py:159,</span> in <span class="ni">ScriptMagics._make_script_magic.&lt;locals&gt;.named_script_magic</span><span class="nt">(line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>     <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
+<span class="ne">--&gt; </span><span class="mi">159</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+<span class="nn">File /opt/conda/lib/python3.12/site-packages/IPython/core/magics/script.py:336,</span> in <span class="ni">ScriptMagics.shebang</span><span class="nt">(self, line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span>     <span class="c1"># If we get here and p.returncode is still None, we must have</span>
+<span class="g g-Whitespace">    </span><span class="mi">333</span>     <span class="c1"># killed it but not yet seen its return code. We don&#39;t wait for it,</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="c1"># in case it&#39;s stuck in uninterruptible sleep. -9 = SIGKILL</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span>     <span class="n">rc</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">9</span>
+<span class="ne">--&gt; </span><span class="mi">336</span>     <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+<span class="ne">CalledProcessError</span>: Command &#39;b&#39;#--------------------------------------------\n# FreeSurfer recon-all-clinical pipeline\n#--------------------------------------------\n\nset -euo pipefail  # Stop on unset variables or errors\n\n#----------------------------\n# Config\n#----------------------------\nINPUT_SCAN=./data/structural/mp2rage.nii.gz\nSUBJECT_ID=TestSubject\nTHREADS=2 #adapt if more resources are available\nSUBJECT_DIR=./data/structural/recon-all-clinical\n\n# Ensure output folder exists\nmkdir -p &quot;$SUBJECT_DIR&quot;\necho &quot;SUBJECT_DIR=$SUBJECT_DIR&quot;\necho &quot;SUBJECT_ID=$SUBJECT_ID&quot;\necho &quot;INPUT_SCAN=$INPUT_SCAN&quot;\necho\n\n#----------------------------\n# Allow deeper folder structures in some FreeSurfer builds\n#----------------------------\nexport FS_ALLOW_DEEP=1\nexport SINGULARITYENV_FS_ALLOW_DEEP=1\nexport APPTAINERENV_FS_ALLOW_DEEP=1\n\n#----------------------------\n# Start pipeline\n#----------------------------\n# Remove previous &quot;is-running&quot; file if it exists\nrm -f &quot;$SUBJECT_DIR/$SUBJECT_ID/scripts/IsRunning.lh+rh&quot;\n\n# Run the actual recon-all-clinical pipeline\nrecon-all-clinical.sh &quot;$INPUT_SCAN&quot; &quot;$SUBJECT_ID&quot; &quot;$THREADS&quot; &quot;$SUBJECT_DIR&quot;\n\n#----------------------------\n# End message\n#----------------------------\necho &quot;----- recon-all-clinical.sh completed -----&quot;\necho &quot;Results saved to: $SUBJECT_DIR/$SUBJECT_ID&quot;\n&#39;&#39; returned non-zero exit status 127.
+</pre></div>
+</div>
+</div>
+</div>
+<div style="border:2px solid #6A1B9A; border-radius:10px; padding:15px; background-color:#FAF5FF;">
+<h2 style="color:#4A148C;">🎨 Viewing <code>aseg.mgz</code></h2>
+<p>
+Now we will open the <b style="color:#6A1B9A;">aseg.mgz</b> file.  
+This is FreeSurfer’s <b>automatic brain segmentation</b>, where different brain structures are given unique numbers and colors.  
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>📂 <code>aseg.mgz</code> = FreeSurfer’s anatomical segmentation file</li>
+  <li>🎨 Each color = a different brain structure (e.g. hippocampus, ventricles, cortex)</li>
+  <li>🧩 Helps us check if FreeSurfer labelled the brain correctly</li>
+  <li>➕ Crosshairs again line up the same spot across all views</li>
+</ul>
+<hr style="border:1px dashed #BDBDBD;">
+<p style="color:#4A148C; font-weight:bold; font-size:16px;">
+➡️ Click the cell below, then press <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux).  
+This will open <code>aseg.mgz</code> in the viewer with FreeSurfer colors.
+</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display aseg.mgz in FreeSurfer colors, labels 0–100</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">ASEG_PATH</span> <span class="o">=</span> <span class="s2">&quot;./data/structural/recon-all-clinical/TestSubject/mri/aseg.mgz&quot;</span>
+<span class="k">assert</span> <span class="n">Path</span><span class="p">(</span><span class="n">ASEG_PATH</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;Missing aseg: </span><span class="si">{</span><span class="n">ASEG_PATH</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">aseg_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ASEG_PATH</span><span class="p">)</span>
+<span class="n">aseg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">aseg_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+<span class="c1"># Keep only labels 0–100, everything else to 0</span>
+<span class="n">aseg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">aseg</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">aseg</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">),</span> <span class="n">aseg</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Save temporary integer NIfTI</span>
+<span class="n">tmp_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="s2">&quot;aseg_fs_0to100.nii.gz&quot;</span><span class="p">)</span>
+<span class="n">nib</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">nib</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">aseg</span><span class="p">,</span> <span class="n">aseg_img</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">aseg_img</span><span class="o">.</span><span class="n">header</span><span class="p">),</span> <span class="n">tmp_path</span><span class="p">)</span>
+
+<span class="c1"># Viewer</span>
+<span class="n">nv</span> <span class="o">=</span> <span class="n">NiiVue</span><span class="p">(</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">multiplanar_layout</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">,</span>
+    <span class="n">multiplanar_show_render</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_orient_cube</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_radiological_convention</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">back_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Use FreeSurfer colormap</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">add_volume</span><span class="p">({</span>
+    <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">tmp_path</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;aseg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;is_label&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;colormap&quot;</span><span class="p">:</span> <span class="s2">&quot;freesurfer&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="n">nv</span><span class="o">.</span><span class="n">set_crosshair_color</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">nv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "701dfe2a576240f299dbfc97a2c3dd0d", "version_major": 2, "version_minor": 1}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_aseg.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_aseg.png"/></div></div>
+</div>
+<div style="border:2px solid #1976D2; border-radius:10px; padding:15px; background-color:#F0F8FF;">
+<h2 style="color:#0D47A1;">Viewing the Pial Surfaces</h2>
+<p>
+Now we will look at the <b style="color:#1565C0;">pial surfaces</b>.  
+These are '3D' models of the <b>outer surface of the brain</b> (the grey matter boundary).  
+FreeSurfer creates one for each hemisphere.
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>📂 <code>lh.pial</code> = left hemisphere surface</li>
+  <li>📂 <code>rh.pial</code> = right hemisphere surface</li>
+  <li>🔴 Left hemisphere is shown in <b>red</b></li>
+  <li>🔵 Right hemisphere is shown in <b>blue</b></li>
+  <li> Displayed in a fully interactive 3D view (you can rotate and zoom)</li>
+</ul>
+<hr style="border:1px dashed #BDBDBD;">
+<p style="color:#0D47A1; font-weight:bold; font-size:16px;">
+➡️ Click the cell below, then press <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux).  
+You’ll see a 3D model of the brain surface – red for left, blue for right.
+</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pial surfaces with explicit per-mesh color + shader (ipyniivue)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ipyniivue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+
+<span class="n">SUBJECTS_DIR</span> <span class="o">=</span> <span class="s2">&quot;./data/structural/recon-all-clinical&quot;</span>
+<span class="n">SUBJECT</span> <span class="o">=</span> <span class="s2">&quot;TestSubject&quot;</span>
+<span class="n">surf_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">SUBJECTS_DIR</span><span class="p">)</span> <span class="o">/</span> <span class="n">SUBJECT</span> <span class="o">/</span> <span class="s2">&quot;surf&quot;</span>
+
+<span class="n">lh</span> <span class="o">=</span> <span class="n">surf_dir</span> <span class="o">/</span> <span class="s2">&quot;lh.pial&quot;</span>
+<span class="n">rh</span> <span class="o">=</span> <span class="n">surf_dir</span> <span class="o">/</span> <span class="s2">&quot;rh.pial&quot;</span>
+<span class="k">assert</span> <span class="n">lh</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">rh</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="s2">&quot;Missing pial surfaces&quot;</span>
+
+<span class="n">nv</span> <span class="o">=</span> <span class="n">NiiVue</span><span class="p">(</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">multiplanar_layout</span><span class="o">=</span><span class="s2">&quot;render&quot;</span><span class="p">,</span>   <span class="c1"># pure 3D</span>
+    <span class="n">multiplanar_show_render</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">is_orient_cube</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_radiological_convention</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">back_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Use rgba255 (0..255 ints) — more reliable across builds than 0..1 floats</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">Mesh</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">lh</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lh.pial&quot;</span><span class="p">,</span> <span class="n">rgba255</span><span class="o">=</span><span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">Mesh</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">rh</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rh.pial&quot;</span><span class="p">,</span> <span class="n">rgba255</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+
+
+<span class="n">display</span><span class="p">(</span><span class="n">nv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0b4e3b8656a342338da931c084c618ed", "version_major": 2, "version_minor": 1}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_pial_surface.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_pial_surface.png"/></div></div>
+</div>
+<div style="border:2px solid #00897B; border-radius:10px; padding:15px; background-color:#F0FFFC;">
+<h2 style="color:#00695C;">⚪ Viewing the White Matter Surfaces</h2>
+<p>
+Now we will open the <b style="color:#00796B;">white matter surfaces</b>.  
+These are 3D models of the <b>inner boundary of the cortex</b>, where the grey matter meets the white matter.  
+They are used by FreeSurfer to measure cortical thickness.
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>📂 <code>lh.white</code> = left hemisphere white surface</li>
+  <li>📂 <code>rh.white</code> = right hemisphere white surface</li>
+  <li>🟠 Left hemisphere is shown in <b>orange</b></li>
+  <li>🔵 Right hemisphere is shown in <b>light blue</b></li>
+  <li>🌐 Fully interactive 3D display – rotate and zoom to explore</li>
+</ul>
+<hr style="border:1px dashed #BDBDBD;">
+<p style="color:#00695C; font-weight:bold; font-size:16px;">
+➡️ Click the cell below, then press <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux).  
+You’ll see the <b>white matter surfaces</b> in 3D (orange = left, blue = right).
+</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># White surfaces (lh/rh) with solid colors</span>
+
+<span class="n">lh</span> <span class="o">=</span> <span class="n">surf</span><span class="o">/</span><span class="s2">&quot;lh.white&quot;</span><span class="p">;</span> <span class="n">rh</span> <span class="o">=</span> <span class="n">surf</span><span class="o">/</span><span class="s2">&quot;rh.white&quot;</span>
+<span class="k">assert</span> <span class="n">lh</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">rh</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="s2">&quot;Missing white surfaces&quot;</span>
+
+<span class="n">nv</span> <span class="o">=</span> <span class="n">NiiVue</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">multiplanar_layout</span><span class="o">=</span><span class="s2">&quot;render&quot;</span><span class="p">,</span> <span class="n">multiplanar_show_render</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">is_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_orient_cube</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">is_radiological_convention</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">back_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
+
+<span class="n">nv</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">Mesh</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">lh</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lh.white&quot;</span><span class="p">,</span> <span class="n">rgba255</span><span class="o">=</span><span class="p">[</span><span class="mi">255</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">255</span><span class="p">],</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">Mesh</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">rh</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rh.white&quot;</span><span class="p">,</span> <span class="n">rgba255</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">],</span>  <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">nv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "29b8e2bb68624df5a57b33e4e45aa4bf", "version_major": 2, "version_minor": 1}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_white_matter.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_white_matter.png"/></div></div>
+</div>
+<div style="border:2px solid #FF7043; border-radius:10px; padding:15px; background-color:#FFF8F5;">
+<h2 style="color:#E64A19;">🌐 Viewing the Inflated Surface</h2>
+<p>
+Now we will look at the <b style="color:#D84315;">inflated brain surface</b>.  
+This is a special 3D model where the folds (sulci and gyri) are <b>“smoothed out”</b> so the entire cortex can be seen more clearly.  
+It is very useful for visualising activity maps or large-scale anatomy without folds hiding important areas.
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>📂 <code>lh.inflated</code> = inflated left hemisphere surface</li>
+  <li>🔴 Left hemisphere is shown here in <b>light red</b></li>
+  <li>👁️ The sulci (valleys) are expanded so you can see regions that are normally hidden inside folds</li>
+  <li>🌐 Fully interactive 3D view – rotate and zoom to explore the cortical sheet</li>
+</ul>
+<hr style="border:1px dashed #BDBDBD;">
+<p style="color:#E64A19; font-weight:bold; font-size:16px;">
+➡️ Click the cell below, then press <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux).  
+You’ll see the <b>inflated left hemisphere</b> in 3D.
+</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inflated surfaces (lh/rh) with solid colors</span>
+
+<span class="n">lh</span> <span class="o">=</span> <span class="n">surf</span><span class="o">/</span><span class="s2">&quot;lh.inflated&quot;</span><span class="p">;</span> <span class="n">rh</span> <span class="o">=</span> <span class="n">surf</span><span class="o">/</span><span class="s2">&quot;rh.inflated&quot;</span>
+<span class="k">assert</span> <span class="n">lh</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">rh</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="s2">&quot;Missing inflated surfaces&quot;</span>
+
+<span class="n">nv</span> <span class="o">=</span> <span class="n">NiiVue</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">multiplanar_layout</span><span class="o">=</span><span class="s2">&quot;render&quot;</span><span class="p">,</span> <span class="n">multiplanar_show_render</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">is_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_orient_cube</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">is_radiological_convention</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">back_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
+
+<span class="n">nv</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">Mesh</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">lh</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lh.inflated&quot;</span><span class="p">,</span> <span class="n">rgba255</span><span class="o">=</span><span class="p">[</span><span class="mi">255</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">255</span><span class="p">],</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="c1">#nv.add_mesh(Mesh(path=str(rh), name=&quot;rh.inflated&quot;, rgba255=[140,140,255,255], opacity=1.0))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">nv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "30726039931c4759a151db9d94e6757a", "version_major": 2, "version_minor": 1}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_inflated.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/recon_all_clinical_inflated.png"/></div></div>
+</div>
+<div style="border:2px solid #5C6BC0; border-radius:12px; padding:16px; background:#F7F9FF;">
+<h2 style="color:#3949AB; margin-top:0;">🗂️ Inspecting the Subject Folder & Logs</h2>
+<p>
+This step shows the <b>top-level contents</b> of the subject’s FreeSurfer folder and the <b>run logs</b>.  
+Use it to confirm that key outputs exist and to find logs if something went wrong.
+</p>
+<div style="margin:10px 0 14px 0; padding:10px; background:#EEF1FF; border:1px solid #C5CAE9; border-radius:8px;">
+  <code style="font-size:14px;">
+    SUBJECTS_DIR = <span style="color:#1B5E20;">./data/structural/recon-all-clinical</span><br>
+    SUBJECT&nbsp;&nbsp;&nbsp;&nbsp;= <span style="color:#1B5E20;">TestSubject</span><br>
+    Path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span style="color:#1B5E20;">./data/structural/recon-all-clinical/TestSubject</span>
+  </code>
+</div>
+<h3 style="color:#3949AB; margin-bottom:8px;">📁 What the main folders mean</h3>
+<table style="border-collapse:collapse; width:100%; font-size:15px;">
+  <thead>
+    <tr>
+      <th style="text-align:left; border-bottom:2px solid #C5CAE9; padding:6px;">Folder</th>
+      <th style="text-align:left; border-bottom:2px solid #C5CAE9; padding:6px;">Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;"><code>mri/</code></td>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;">All volumetric outputs (<code>.mgz</code>), e.g. <code>native.mgz</code>, <code>aseg.mgz</code></td>
+    </tr>
+    <tr>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;"><code>surf/</code></td>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;">Cortical meshes (<code>.white</code>, <code>.pial</code>, <code>.inflated</code>) and annotations (<code>.annot</code>)</td>
+    </tr>
+    <tr>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;"><code>label/</code></td>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;">Region labels and color tables (<code>.ctab</code>)</td>
+    </tr>
+    <tr>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;"><code>stats/</code></td>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;">Per-region thickness/surface area stats (for group analysis)</td>
+    </tr>
+    <tr>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;"><code>scripts/</code></td>
+      <td style="padding:6px; border-bottom:1px solid #E8EAF6;">Run logs, <code>IsRunning</code> flags, and command histories</td>
+    </tr>
+  </tbody>
+</table>
+<div style="margin-top:14px; padding:10px; background:#FFF8E1; border:1px solid #FFE082; border-radius:8px;">
+  <b style="color:#E65100;">Tip:</b> If a run crashes or stalls, check <code>scripts/</code> for recent log files and any <code>IsRunning*</code> flags.
+</div>
+<hr style="border:none; border-top:1px dashed #C5CAE9; margin:16px 0;">
+<p style="color:#3949AB; font-weight:600;">
+➡️ Click the cell below, then press <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux) to list the directory tree and show log files.
+</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show directory layout and recon logs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">textwrap</span>
+
+<span class="n">SUBJECTS_DIR</span> <span class="o">=</span> <span class="s2">&quot;./data/structural/recon-all-clinical&quot;</span>
+<span class="n">SUBJECT</span> <span class="o">=</span> <span class="s2">&quot;TestSubject&quot;</span>
+<span class="n">base</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">SUBJECTS_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">SUBJECT</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Subject directory tree (top) ===&quot;</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;bash&quot;</span><span class="p">,</span><span class="s2">&quot;-lc&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;ls -lh </span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Logs/scripts ===&quot;</span><span class="p">)</span>
+<span class="n">scripts</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">/scripts&quot;</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;bash&quot;</span><span class="p">,</span><span class="s2">&quot;-lc&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;ls -lh </span><span class="si">{</span><span class="n">scripts</span><span class="si">}</span><span class="s1"> 2&gt;/dev/null || true&#39;</span><span class="p">])</span>
+
+<span class="n">notes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;mri/&quot;</span><span class="p">,</span> <span class="s2">&quot;All volumetric outputs (.mgz).&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;surf/&quot;</span><span class="p">,</span> <span class="s2">&quot;Cortical meshes and annotation files (.white, .pial, .inflated, .annot).&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;label/&quot;</span><span class="p">,</span> <span class="s2">&quot;Labels, annotation tables (.ctab), region lists.&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;stats/&quot;</span><span class="p">,</span> <span class="s2">&quot;Cortex thickness/surface area stats per region (for group analysis).&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;scripts/&quot;</span><span class="p">,</span> <span class="s2">&quot;Run logs, IsRunning flags, and command histories.&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">notes</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="si">:</span><span class="s2">12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Subject directory tree (top) ===
+total 32K
+drwxr-sr-x 2 jovyan users 4.0K Sep 24 02:37 label
+drwxr-sr-x 3 jovyan users 4.0K Sep 24 02:28 mri
+drwxr-sr-x 2 jovyan users 4.0K Sep 24 02:38 scripts
+drwxr-sr-x 2 jovyan users 4.0K Sep 24 02:38 stats
+drwxr-sr-x 2 jovyan users 4.0K Sep 24 02:16 surf
+drwxr-sr-x 2 jovyan users 4.0K Sep 24 00:54 tmp
+drwxr-sr-x 2 jovyan users 4.0K Sep 24 00:54 touch
+drwxr-sr-x 2 jovyan users 4.0K Sep 24 00:54 trash
+
+=== Logs/scripts ===
+total 356K
+-rw-r--r-- 1 jovyan users 349K Sep 24 02:38 recon-all-clinical.log
+mri/         All volumetric outputs (.mgz).
+surf/        Cortical meshes and annotation files (.white, .pial, .inflated, .annot).
+label/       Labels, annotation tables (.ctab), region lists.
+stats/       Cortex thickness/surface area stats per region (for group analysis).
+scripts/     Run logs, IsRunning flags, and command histories.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">FreeSurfer: recon-all-clinical</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#general-instructions">General Instructions:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-module-for-this-workbook">Load the module for this workbook</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-try-running-the-command-with-the-help-flag">Let’s try running the command with the –help flag!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#run">Run</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
