@@ -73,7 +73,11 @@ jobs:
       image: vnmd/neurodesktop:latest
       volumes:
         - /home/runner/:/home/
-      options: --user root
+        - neurodesk-home:/home/jovyan
+      options: --user root --privileged --shm-size=1gb
+      env:
+        NB_UID: 1001
+        NB_GID: 1001
     timeout-minutes: 1500
     strategy:
       fail-fast: true
@@ -85,7 +89,6 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        ml avail
         mamba info --envs
         mamba install -c pypi -y jupyter-book ghp-import
 
@@ -104,7 +107,7 @@ jobs:
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})"
         echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
-        jb build ${{ matrix.notebooks }} || exit 1
+        jupyter execute ${{ matrix.notebooks }} || exit 1
 
     - name: Restructure
       shell: bash
@@ -148,7 +151,11 @@ jobs:
       image: vnmd/neurodesktop:latest
       volumes:
         - /home/runner/:/home/
-      options: --user root
+        - neurodesk-home:/home/jovyan
+      options: --user root --privileged --shm-size=1gb
+      env:
+        NB_UID: 1001
+        NB_GID: 1001
     steps:
     - uses: actions/checkout@v4
 
