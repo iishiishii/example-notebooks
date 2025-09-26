@@ -181,15 +181,15 @@ jobs:
         
         # Create Notebook in the JupyterHub instance
 
-        NOTEBOOK_JSON=$(jq -n \
+        jq -n \
             --arg type "notebook" \
             --slurpfile content "${{ matrix.notebooks }}" \
-            '{type: $type, content: $content[0]}')
+            '{type: $type, content: $content[0]}' > payload.json
 
         CREATE_RESPONSE=$(curl -k -s -X PUT \
             -H "Authorization: token $USER_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "$NOTEBOOK_JSON" \
+            --data-binary @payload.json \
             "$API_URL/user/$USER/api/contents/$NOTEBOOK_NAME")
         
         if echo "$CREATE_RESPONSE" | grep -q '"name"'; then
