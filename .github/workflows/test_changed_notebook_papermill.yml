@@ -98,8 +98,8 @@ jobs:
         echo "User: $USER"
         echo "API URL: $API_URL"
         echo "Notebook: ${{ matrix.notebooks }}"
-        echo "NOTEBOOK=$(basename ${{ matrix.notebooks }})" >> $GITHUB_ENV
-        echo "Output: $NOTEBOOK_output.ipynb"
+        echo "NOTEBOOK_NAME=$(basename ${{ matrix.notebooks }})" >> $GITHUB_ENV
+        echo "Output: $NOTEBOOK_NAME_output.ipynb"
         echo "OUTPUT_NAME=$(basename -s .ipynb ${{ matrix.notebooks }})_output.ipynb" >> $GITHUB_ENV
 
     - name: Start JupyterHub Server
@@ -172,12 +172,12 @@ jobs:
         echo "Waiting for server to fully initialize..."
         sleep 15
 
-    - name: Create and Execute $NOTEBOOK Notebook
+    - name: Create and Execute $NOTEBOOK_NAME Notebook
       working-directory: ./books
       run: |
         set +e  # Don't exit on errors, we want to capture them
 
-        echo "=== Creating and Executing $NOTEBOOK Notebook ==="
+        echo "=== Creating and Executing $NOTEBOOK_NAME Notebook ==="
         
         # Create Notebook in the JupyterHub instance
 
@@ -185,6 +185,9 @@ jobs:
             --arg type "notebook" \
             --slurpfile content "${{ matrix.notebooks }}" \
             '{type: $type, content: $content[0]}' > payload.json
+
+        echo "Payload for creating notebook:"
+        cat payload.json
 
         CREATE_RESPONSE=$(curl -k -s -X PUT \
             -H "Authorization: token $USER_TOKEN" \
