@@ -74,7 +74,7 @@ jobs:
       matrix:
         notebooks: ${{ fromJson(needs.get-notebooks.outputs.notebook_list) }}
     env:
-      USER_TOKEN: ${{ secrets["JUPYTER_PLAY_AUS_TOKEN"] }}
+      USER_TOKEN: ${{ secrets.JUPYTER_PLAY_AUS_TOKEN }}
       USER: "aaf__70rrujda5-_yveeucjlhxjz0rqohejq14uzf6hro04"
       API_URL: "https://play.neurodesk.cloud.edu.au"
       SERVER_NAME: "play-aus"
