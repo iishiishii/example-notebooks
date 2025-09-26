@@ -1,6 +1,6 @@
 # This workflows executes new or modified example notebooks.
 
-name: test_changed_notebooks
+name: test_changed_notebooks_papermill
 
 defaults:
   run:
@@ -75,13 +75,10 @@ jobs:
         notebooks: ${{ fromJson(needs.get-notebooks.outputs.notebook_list) }}
     env:
       USER_TOKEN: "JUPYTER_PLAY_AUS_TOKEN"
-      USER: ${{ vars[USER_VAR] || matrix.default_user }}
-      API_URL: ${{ vars[URL_VAR] || matrix.default_url }}
+      USER: "aaf__70rrujda5-_yveeucjlhxjz0rqohejq14uzf6hro04"
+      API_URL: "https://play.neurodesk.cloud.edu.au"
       SERVER_NAME: "play-aus"
-      URL_VAR: "JUPYTER_API_URL_PLAY_AUS"
-      DEFAULT_URL: "https://play.neurodesk.cloud.edu.au"
       USER_VAR: "JUPYTER_TEST_USER_AUS"
-      DEFAULT_USER: "aaf__70rrujda5-_yveeucjlhxjz0rqohejq14uzf6hro04"
 
     steps:
     - uses: actions/checkout@v4
