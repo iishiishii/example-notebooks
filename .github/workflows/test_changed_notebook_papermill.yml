@@ -198,7 +198,7 @@ jobs:
             "$API_URL/user/$USER/api/contents/$NOTEBOOK_NAME")
         
         if echo "$CREATE_RESPONSE" | grep -q '"name"'; then
-            echo "✅ FSL Notebook created successfully"
+            echo "✅ $NOTEBOOK_NAME Notebook created successfully"
         else
             echo "❌ Failed to create notebook"
             echo "Response: $CREATE_RESPONSE"
@@ -450,7 +450,7 @@ jobs:
         
         echo ""
         echo "Notebook Test Details:"
-        echo "- FSL Module Loading: $([ $PATTERNS_FOUND -ge 2 ] && echo "✅" || echo "❌")"
+        echo "- $NOTEBOOK_NAME Module Loading: $([ $PATTERNS_FOUND -ge 2 ] && echo "✅" || echo "❌")"
         echo "- Course Data Download: $([ $PATTERNS_FOUND -ge 3 ] && echo "✅" || echo "❌")"
         echo "- BET Execution: $([ $PATTERNS_FOUND -ge 4 ] && echo "✅" || echo "❌")"
         echo "- Completion Markers: $([ $PATTERNS_FOUND -ge 5 ] && echo "✅" || echo "❌")"
