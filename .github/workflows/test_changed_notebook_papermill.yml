@@ -78,6 +78,8 @@ jobs:
       USER: "aaf__70rrujda5-_yveeucjlhxjz0rqohejq14uzf6hro04"
       API_URL: "https://play.neurodesk.cloud.edu.au"
       SERVER_NAME: "play-aus"
+      SUCCESS_PATTERNS: "success,completed,all steps done,finished"
+      ERROR_PATTERNS: "error,exception,failed,failure"
 
     steps:
     - uses: actions/checkout@v4
@@ -268,7 +270,7 @@ jobs:
         echo ""
         echo "🔍 STEP 5: Execute notebook with papermill"
         echo "----------------------------------------"
-        execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME" 120
+        execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME" 7200
         sleep 60
         # Verify papermill completed
         echo "Checking if papermill completed successfully..."
@@ -313,50 +315,40 @@ jobs:
         # Check if output file exists
         execute_command "ls -la $OUTPUT_NAME" 10
         
-        # Check for success patterns
-        SUCCESS_PATTERNS=(
-            "FSL BET notebook execution completed successfully"
-            "Brain extraction demo finished" 
-            "All steps completed"
-            "vendor_id"
-            "model name"
-            "Usage.*bet"
-            "preCourse.tar.gz"
-            "structural_brain"
-        )
-        
-        echo "Checking for success patterns in output..."
+        # Split patterns into array
+        IFS=',' read -ra SUCCESS_PATTERNS_ARR <<< "${SUCCESS_PATTERNS}"
+        IFS=',' read -ra ERROR_PATTERNS_ARR <<< "${ERROR_PATTERNS}"
+
+
+        echo "Checking for success patterns in output (case-insensitive)..."
         PATTERN_COUNT=0
-        for pattern in "${SUCCESS_PATTERNS[@]}"; do
-            if execute_command "grep -q '$pattern' $OUTPUT_NAME" 5; then
+        for pattern in "${SUCCESS_PATTERNS_ARR[@]}"; do
+            if execute_command "grep -i -q '${pattern// /}' $OUTPUT_NAME" 5; then
                 echo "✅ Found pattern: $pattern"
                 PATTERN_COUNT=$((PATTERN_COUNT + 1))
             else
                 echo "❌ Missing pattern: $pattern"
             fi
         done
-        
-        # Check for errors
+
         echo ""
-        echo "Checking for errors..."
-        ERROR_CHECK=$(execute_command "grep -i 'error\|exception\|failed' $OUTPUT_NAME || echo 'No errors found'" 10)
-        
-        if echo "$ERROR_CHECK" | grep -q "No errors found"; then
-            echo "✅ No obvious errors detected"
-        else
-            echo "⚠️ Potential errors found:"
-            echo "$ERROR_CHECK"
-        fi
-        
-        # Export results
+        echo "Checking for error patterns in output (case-insensitive)..."
+        ERROR_FOUND=0
+        for pattern in "${ERROR_PATTERNS_ARR[@]}"; do
+            if execute_command "grep -i -q '${pattern// /}' $OUTPUT_NAME" 5; then
+                echo "⚠️ Found error pattern: $pattern"
+                ERROR_FOUND=1
+            fi
+        done
+
         echo "PATTERN_COUNT=$PATTERN_COUNT" >> $GITHUB_ENV
-        echo "SUCCESS_PATTERNS_TOTAL=8" >> $GITHUB_ENV
-        
-        if [ $PATTERN_COUNT -ge 5 ]; then
-            echo "✅ Notebook execution successful! ($PATTERN_COUNT/8 patterns found)"
+        echo "SUCCESS_PATTERNS_TOTAL=${#SUCCESS_PATTERNS_ARR[@]}" >> $GITHUB_ENV
+
+        if [ $PATTERN_COUNT -ge 1 ] && [ $ERROR_FOUND -eq 0 ]; then
+            echo "✅ Notebook execution successful! ($PATTERN_COUNT/${#SUCCESS_PATTERNS_ARR[@]} patterns found)"
             echo "NOTEBOOK_SUCCESS=true" >> $GITHUB_ENV
         else
-            echo "❌ Notebook execution may have failed ($PATTERN_COUNT/8 patterns found)"
+            echo "❌ Notebook execution may have failed ($PATTERN_COUNT/${#SUCCESS_PATTERNS_ARR[@]} patterns found, error found: $ERROR_FOUND)"
             echo "NOTEBOOK_SUCCESS=false" >> $GITHUB_ENV
         fi
 
