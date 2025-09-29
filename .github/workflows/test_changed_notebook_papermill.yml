@@ -188,9 +188,6 @@ jobs:
             --slurpfile content "${{ matrix.notebooks }}" \
             '{type: $type, content: $content[0]}' > payload.json
 
-        echo "Payload for creating notebook:"
-        cat payload.json
-
         CREATE_RESPONSE=$(curl -k -s -X PUT \
             -H "Authorization: token $USER_TOKEN" \
             -H "Content-Type: application/json" \
@@ -239,7 +236,6 @@ jobs:
                 timeout $timeout websocat --text "$WS_URL" \
                 -H "Authorization: token $USER_TOKEN" 2>/dev/null | \
                 grep '^\["stdout"' | \
-                head -20 | \
                 sed 's/^\["stdout", *"//; s/"\]$//; s/\\r\\n/\n/g; s/\\n/\n/g' | \
                 tr -d '\000-\037' || echo "")
             
@@ -258,19 +254,12 @@ jobs:
         echo "🔍 STEP 3: Install papermill"
         echo "----------------------------------------"
         execute_command "pip install papermill"
-        
-        # Update kernel specification
-        echo ""
-        echo "🔍 STEP 4: Update kernel specification"
-        echo "----------------------------------------"
-        KERNEL_CMD="python -c \"import nbformat; f = '$NOTEBOOK_NAME'; nb = nbformat.read(open(f), as_version=4); nb['metadata']['kernelspec']['name'] = 'python3'; nbformat.write(nb, open(f, 'w'))\""
-        execute_command "$KERNEL_CMD"
-        sleep 30
+
         # Execute notebook with papermill
         echo ""
         echo "🔍 STEP 5: Execute notebook with papermill"
         echo "----------------------------------------"
-        execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME" 7200
+        execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME --kernel python3; echo EXITCODE:\$?" 7200
         sleep 60
         # Verify papermill completed
         echo "Checking if papermill completed successfully..."
@@ -298,7 +287,6 @@ jobs:
                 timeout $timeout websocat --text "$WS_URL" \
                 -H "Authorization: token $USER_TOKEN" 2>/dev/null | \
                 grep '^\["stdout"' | \
-                head -20 | \
                 sed 's/^\["stdout", *"//; s/"\]$//; s/\\r\\n/\n/g; s/\\n/\n/g' | \
                 tr -d '\000-\037' || echo "")
             
@@ -371,7 +359,6 @@ jobs:
                 timeout $timeout websocat --text "$WS_URL" \
                 -H "Authorization: token $USER_TOKEN" 2>/dev/null | \
                 grep '^\["stdout"' | \
-                head -20 | \
                 sed 's/^\["stdout", *"//; s/"\]$//; s/\\r\\n/\n/g; s/\\n/\n/g' | \
                 tr -d '\000-\037' || echo "")
             
@@ -387,6 +374,7 @@ jobs:
         
         # List files before cleanup
         echo "Files before cleanup:"
+        execute_command "pwd" 5
         execute_command "ls -la *.ipynb" 10
         
         # Remove notebook files via terminal
