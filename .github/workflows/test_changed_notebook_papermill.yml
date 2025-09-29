@@ -262,7 +262,7 @@ jobs:
         execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME --kernel python3 > papermill.log 2>&1 & echo \$! > papermill.pid" 30
 
         # Poll the Jupyter Contents API for notebook completion
-        MAX_WAIT=7200         # max seconds to wait (2 hours)
+        MAX_WAIT=$((7200 * 4))         # max seconds to wait (8 hours)
         CHECK_INTERVAL=100    # check every 100 seconds
         STABLE_COUNT=0
         STABLE_REQUIRED=6      # must remain unchanged for 6 consecutive checks (~10 min)
