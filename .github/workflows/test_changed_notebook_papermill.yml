@@ -259,15 +259,67 @@ jobs:
         echo ""
         echo "🔍 STEP 5: Execute notebook with papermill"
         echo "----------------------------------------"
-        execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME --kernel python3; echo EXITCODE:\$?" 7200
-        for i in {1..7200}; do
-          resp=$(curl -sk -H "Authorization: token $USER_TOKEN" \
+        execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME --kernel python3 > papermill.log 2>&1 & echo \$! > papermill.pid" 30
+
+        # Poll the Jupyter Contents API for notebook completion
+        MAX_WAIT=7200         # max seconds to wait (2 hours)
+        CHECK_INTERVAL=60     # check every 1 min
+        STABLE_COUNT=0
+        STABLE_REQUIRED=3     # must remain unchanged for 3 consecutive checks (~3 min)
+        LAST_MODIFIED=""
+
+        echo "⏳ Waiting for notebook execution to complete (timeout: $((MAX_WAIT/60)) min)..."
+
+        for (( elapsed=0; elapsed<$MAX_WAIT; elapsed+=$CHECK_INTERVAL )); do
+            # Query the notebook's metadata
+            resp=$(curl -sk -H "Authorization: token $USER_TOKEN" \
                 "$API_URL/user/$USER/api/contents/$OUTPUT_NAME")
-          if echo "$resp" | grep -q '"name"'; then
-            echo "Notebook exists, waiting for updates..."
-          fi
-          sleep 60
+
+            # Check if notebook file exists
+            notebook_name=$(echo "$resp" | jq -r '.name // empty')
+            if [[ -z "$notebook_name" ]]; then
+                echo "📄 Notebook output not found yet, still waiting..."
+                STABLE_COUNT=0
+                sleep $CHECK_INTERVAL
+                continue
+            fi
+
+            # 1️⃣ Check papermill metadata to see if the run has finished
+            end_time=$(echo "$resp" | jq -r '.content.metadata.papermill.end_time // empty')
+            if [[ -n "$end_time" ]]; then
+                echo "✅ Papermill metadata indicates notebook finished at $end_time"
+                break
+            fi
+
+            # 2️⃣ Fallback: check last_modified stability
+            current_modified=$(echo "$resp" | jq -r '.last_modified // empty')
+            if [[ -n "$current_modified" ]]; then
+                if [[ "$current_modified" == "$LAST_MODIFIED" ]]; then
+                    ((STABLE_COUNT++))
+                    echo "📝 Notebook unchanged for $((STABLE_COUNT*CHECK_INTERVAL))s..."
+                else
+                    STABLE_COUNT=0
+                    LAST_MODIFIED="$current_modified"
+                    echo "✍️ Notebook updated at $LAST_MODIFIED"
+                fi
+            else
+                STABLE_COUNT=0
+            fi
+
+            if (( STABLE_COUNT >= STABLE_REQUIRED )); then
+                echo "✅ Notebook appears finished (no changes for $((STABLE_REQUIRED*CHECK_INTERVAL))s)"
+                break
+            fi
+
+            sleep $CHECK_INTERVAL
         done
+
+        # Final check after loop
+        if (( elapsed >= MAX_WAIT )); then
+            echo "❌ Timeout waiting for notebook to finish after $((MAX_WAIT/60)) minutes"
+            exit 1
+        fi
+
         # Verify papermill completed
         echo "Checking if papermill completed successfully..."
         execute_command "echo 'Papermill exit code:' && echo $?" 5
@@ -339,6 +391,8 @@ jobs:
 
         echo "PATTERN_COUNT=$PATTERN_COUNT" >> $GITHUB_ENV
         echo "SUCCESS_PATTERNS_TOTAL=${#SUCCESS_PATTERNS_ARR[@]}" >> $GITHUB_ENV
+        echo "ERROR_FOUND=$ERROR_FOUND" >> $GITHUB_ENV
+        echo "ERROR_PATTERNS_TOTAL=${#ERROR_PATTERNS_ARR[@]}" >> $GITHUB_ENV
 
         if [ $PATTERN_COUNT -ge 1 ] && [ $ERROR_FOUND -eq 0 ]; then
             echo "✅ Notebook execution successful! ($PATTERN_COUNT/${#SUCCESS_PATTERNS_ARR[@]} patterns found)"
@@ -434,6 +488,8 @@ jobs:
         
         PATTERNS_FOUND=${PATTERN_COUNT:-0}
         PATTERNS_TOTAL=${SUCCESS_PATTERNS_TOTAL:-8}
+        ERROR_FOUND=${ERROR_FOUND:-1}
+        ERROR_TOTAL=${ERROR_PATTERNS_TOTAL:-4}
         NOTEBOOK_STATUS=${NOTEBOOK_SUCCESS:-false}
         
         echo "Test Results Summary:"
@@ -441,15 +497,9 @@ jobs:
         echo "- Notebook Creation: ✅"
         echo "- Notebook Execution: $([ "$NOTEBOOK_STATUS" = "true" ] && echo "✅" || echo "❌")"
         echo "- Success Patterns: $PATTERNS_FOUND/$PATTERNS_TOTAL $([ $PATTERNS_FOUND -ge 5 ] && echo "✅" || echo "❌")"
+        echo " - Error Patterns: $ERROR_FOUND/$ERROR_TOTAL $([ $ERROR_FOUND -eq 0 ] && echo "✅" || echo "❌")"
         echo "- File Cleanup: ✅"
         echo "- Server Cleanup: ✅"
-        
-        echo ""
-        echo "Notebook Test Details:"
-        echo "- $NOTEBOOK_NAME Module Loading: $([ $PATTERNS_FOUND -ge 2 ] && echo "✅" || echo "❌")"
-        echo "- Course Data Download: $([ $PATTERNS_FOUND -ge 3 ] && echo "✅" || echo "❌")"
-        echo "- BET Execution: $([ $PATTERNS_FOUND -ge 4 ] && echo "✅" || echo "❌")"
-        echo "- Completion Markers: $([ $PATTERNS_FOUND -ge 5 ] && echo "✅" || echo "❌")"
         
         if [ "$NOTEBOOK_STATUS" = "true" ] && [ $PATTERNS_FOUND -ge 5 ]; then
           echo ""

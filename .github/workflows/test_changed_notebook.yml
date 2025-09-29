@@ -92,10 +92,6 @@ jobs:
         mamba info --envs
         mamba install -c pypi -y papermill ghp-import
 
-    - name: Check container
-      run: |
-        docker container ps -a
-
     - name: Run ${{ matrix.notebooks }}
       shell: bash
       timeout-minutes: 1500
