@@ -72,7 +72,7 @@ jobs:
     container: 
       image: vnmd/neurodesktop:latest
       volumes:
-        - /home/runner/:/home/
+        - ${{ github.workspace }}:/home/
         - neurodesk-home:/home/jovyan
       options: --user root --privileged --shm-size=1gb
       env:
@@ -90,7 +90,11 @@ jobs:
       shell: bash
       run: |
         mamba info --envs
-        mamba install -c pypi -y jupyter-book ghp-import
+        mamba install -c pypi -y papermill ghp-import
+
+    - name: Check container
+      run: |
+        docker container ps -a
 
     - name: Run ${{ matrix.notebooks }}
       shell: bash
@@ -107,37 +111,8 @@ jobs:
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})"
         echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
-        jupyter execute ${{ matrix.notebooks }} || exit 1
-
-    - name: Restructure
-      shell: bash
-      run: |
-        tree ./books/_build/**/**/html
-        mkdir -p ./books/_build/**/**/html/$DIRNAME
-        if [ "$NOTEBOOK" == "intro.md" ]; then
-          echo "The directories are the same. Skipping the next step."
-        else
-          cp -R ./books/_build/**/**/html/_static ./books/_build/**/**/html/$DIRNAME
-        fi
-        if [ -d ./books/_build/**/**/html/_images && "$NOTEBOOK" != "intro.md" ]; then
-          cp -R ./books/_build/**/**/html/_images ./books/_build/**/**/html/$DIRNAME
-        fi
-        if [ "$NOTEBOOK" == "intro.md" ]; then
-          echo "The files are the same. Skipping the next step."
-        else
-          cp ./books/_build/**/**/html/$NOTEBOOK.html ./books/_build/**/**/html/$DIRNAME
-        fi
-    - name: Increase git post buffer size
-      run: git config --global http.postBuffer 524288000
-      
-    - name: Push to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4.0.0
-      if: github.event_name != 'pull_request'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./books/_build/**/**/html
-        keep_files: true
-        cname: www.neurodesk.org
+        echo "NOTEBOOK_OUTPUT=$(basename -s .ipynb ${{ matrix.notebooks }})_out.ipynb" >> $GITHUB_ENV
+        papermill $NOTEBOOK $NOTEBOOK_OUTPUT || exit 1
 
     - name: Clean build dir
       run: |

@@ -174,7 +174,7 @@ jobs:
         echo "Waiting for server to fully initialize..."
         sleep 15
 
-    - name: Create and Execute $NOTEBOOK_NAME Notebook
+    - name: Create and Execute ${{ env.NOTEBOOK_NAME }} Notebook
       working-directory: ./books
       run: |
         set +e  # Don't exit on errors, we want to capture them
@@ -323,8 +323,9 @@ jobs:
         echo "Checking for error patterns in output (case-insensitive)..."
         ERROR_FOUND=0
         for pattern in "${ERROR_PATTERNS_ARR[@]}"; do
-            if execute_command "grep -i -q '${pattern// /}' $OUTPUT_NAME" 5; then
+            if error_lines=$(execute_command "grep -i '${pattern// /}' $OUTPUT_NAME" 5) && [ -n "$error_lines" ]; then
                 echo "⚠️ Found error pattern: $pattern"
+                echo "Error lines: $error_lines"
                 ERROR_FOUND=1
             fi
         done
