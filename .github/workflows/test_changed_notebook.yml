@@ -108,7 +108,7 @@ jobs:
         echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
         echo "NOTEBOOK_OUTPUT=$(basename -s .ipynb ${{ matrix.notebooks }})_out.ipynb" >> $GITHUB_ENV
-        papermill $NOTEBOOK $NOTEBOOK_OUTPUT || exit 1
+        papermill ${{ matrix.notebooks }} $NOTEBOOK_OUTPUT  --kernel python3 || exit 1
 
     - name: Clean build dir
       run: |

@@ -263,9 +263,9 @@ jobs:
 
         # Poll the Jupyter Contents API for notebook completion
         MAX_WAIT=7200         # max seconds to wait (2 hours)
-        CHECK_INTERVAL=60     # check every 1 min
+        CHECK_INTERVAL=100    # check every 100 seconds
         STABLE_COUNT=0
-        STABLE_REQUIRED=3     # must remain unchanged for 3 consecutive checks (~3 min)
+        STABLE_REQUIRED=6      # must remain unchanged for 6 consecutive checks (~10 min)
         LAST_MODIFIED=""
 
         echo "⏳ Waiting for notebook execution to complete (timeout: $((MAX_WAIT/60)) min)..."
