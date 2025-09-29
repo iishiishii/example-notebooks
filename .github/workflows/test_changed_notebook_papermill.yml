@@ -260,7 +260,14 @@ jobs:
         echo "🔍 STEP 5: Execute notebook with papermill"
         echo "----------------------------------------"
         execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME --kernel python3; echo EXITCODE:\$?" 7200
-        sleep 60
+        for i in {1..7200}; do
+          resp=$(curl -sk -H "Authorization: token $USER_TOKEN" \
+                "$API_URL/user/$USER/api/contents/$OUTPUT_NAME")
+          if echo "$resp" | grep -q '"name"'; then
+            echo "Notebook exists, waiting for updates..."
+          fi
+          sleep 60
+        done
         # Verify papermill completed
         echo "Checking if papermill completed successfully..."
         execute_command "echo 'Papermill exit code:' && echo $?" 5

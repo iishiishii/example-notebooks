@@ -72,7 +72,7 @@ jobs:
     container: 
       image: vnmd/neurodesktop:latest
       volumes:
-        - ${{ github.workspace }}:/home/
+        - /home/runner/:/home/
         - neurodesk-home:/home/jovyan
       options: --user root --privileged --shm-size=1gb
       env:
