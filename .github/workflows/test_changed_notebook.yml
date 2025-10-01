@@ -107,11 +107,53 @@ jobs:
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})"
         echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
+        DIRNAME=$(dirname ${{ matrix.notebooks }})
         echo "NOTEBOOK_OUTPUT=$DIRNAME/$(basename -s .ipynb ${{ matrix.notebooks }})_out.ipynb" >> $GITHUB_ENV
-        echo "NOTEBOOK_OUTPUT=${NOTEBOOK_OUTPUT}"
+        NOTEBOOK_OUTPUT=$DIRNAME/$(basename -s .ipynb ${{ matrix.notebooks }})_out.ipynb
+        echo "NOTEBOOK_OUTPUT=$NOTEBOOK_OUTPUT"
         ls -la "${{ matrix.notebooks }}"
         pwd
         papermill ${{ matrix.notebooks }} $NOTEBOOK_OUTPUT  --kernel python3 || exit 1
+
+    - name: Check Notebook Execution Result
+      if: always()
+      env:
+        ERROR_PATTERNS: "SyntaxError,Traceback,EOFError,NameError,Exception,ModuleNotFoundError,ImportError,OSError,FileNotFoundError,IndentationError,ValueError,TypeError,AttributeError,KeyError,ZeroDivisionError,RuntimeError,MemoryError,TimeoutError,IndexError,PermissionError,Cell execution timed out,Killed,FAILED,Failing,Aborted,Segmentation fault,Kernel Restarting,EnvironmentError,ConnectionError,HTTPError,NotJSONError"
+      run: |
+        # Check if output file exists
+        execute_command "ls -la $NOTEBOOK_OUTPUT" 10
+        
+        # Split patterns into array
+        IFS=',' read -ra ERROR_PATTERNS_ARR <<< "${ERROR_PATTERNS}"
+
+        echo ""
+        echo "Checking for error patterns in output (case-insensitive)..."
+        ERROR_FOUND=0
+        for pattern in "${ERROR_PATTERNS_ARR[@]}"; do
+            if error_lines=$(execute_command "grep -i '${pattern// /}' $OUTPUT_NAME" 5) && [ -n "$error_lines" ]; then
+                echo "⚠️ Found error pattern: $pattern"
+                echo "Error lines: $error_lines"
+                ERROR_FOUND=$((ERROR_FOUND + 1))
+            fi
+        done
+        
+        # Check papermill metadata for exceptions
+        exception=$(echo "$resp" | jq -r '.content.metadata.papermill.exception // empty')
+        if [[ -n "$exception" ]]; then
+            echo "⚠️ Found papermill exception: $exception"
+            ERROR_FOUND=$((ERROR_FOUND + 1))
+        fi
+
+        echo "ERROR_FOUND=$ERROR_FOUND" >> $GITHUB_ENV
+        echo "ERROR_PATTERNS_TOTAL=${#ERROR_PATTERNS_ARR[@]}" >> $GITHUB_ENV
+
+        if [ $ERROR_FOUND -eq 0 ]; then
+            echo "✅ Notebook execution successful! ($ERROR_FOUND/${#ERROR_PATTERNS_ARR[@]} error patterns found)"
+            echo "NOTEBOOK_SUCCESS=true" >> $GITHUB_ENV
+        else
+            echo "❌ Notebook execution may have failed ($ERROR_FOUND/${#ERROR_PATTERNS_ARR[@]} error patterns found)"
+            echo "NOTEBOOK_SUCCESS=false" >> $GITHUB_ENV
+        fi
 
     - name: Clean build dir
       run: |

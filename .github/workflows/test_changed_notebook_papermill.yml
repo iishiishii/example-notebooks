@@ -78,8 +78,7 @@ jobs:
       USER: "aaf__70rrujda5-_yveeucjlhxjz0rqohejq14uzf6hro04"
       API_URL: "https://play.neurodesk.cloud.edu.au"
       SERVER_NAME: "play-aus"
-      SUCCESS_PATTERNS: "success,completed,all steps done,finished"
-      ERROR_PATTERNS: "error,exception,failed,failure"
+      ERROR_PATTERNS: "SyntaxError,Traceback,EOFError,NameError,Exception,ModuleNotFoundError,ImportError,OSError,FileNotFoundError,IndentationError,ValueError,TypeError,AttributeError,KeyError,ZeroDivisionError,RuntimeError,MemoryError,TimeoutError,IndexError,PermissionError,Cell execution timed out,Killed,FAILED,Failing,Aborted,Segmentation fault,Kernel Restarting,EnvironmentError,ConnectionError,HTTPError,NotJSONError"
 
     steps:
     - uses: actions/checkout@v4
@@ -363,20 +362,7 @@ jobs:
         execute_command "ls -la $OUTPUT_NAME" 10
         
         # Split patterns into array
-        IFS=',' read -ra SUCCESS_PATTERNS_ARR <<< "${SUCCESS_PATTERNS}"
         IFS=',' read -ra ERROR_PATTERNS_ARR <<< "${ERROR_PATTERNS}"
-
-
-        echo "Checking for success patterns in output (case-insensitive)..."
-        PATTERN_COUNT=0
-        for pattern in "${SUCCESS_PATTERNS_ARR[@]}"; do
-            if execute_command "grep -i -q '${pattern// /}' $OUTPUT_NAME" 5; then
-                echo "✅ Found pattern: $pattern"
-                PATTERN_COUNT=$((PATTERN_COUNT + 1))
-            else
-                echo "❌ Missing pattern: $pattern"
-            fi
-        done
 
         echo ""
         echo "Checking for error patterns in output (case-insensitive)..."
@@ -385,20 +371,25 @@ jobs:
             if error_lines=$(execute_command "grep -i '${pattern// /}' $OUTPUT_NAME" 5) && [ -n "$error_lines" ]; then
                 echo "⚠️ Found error pattern: $pattern"
                 echo "Error lines: $error_lines"
-                ERROR_FOUND=1
+                ERROR_FOUND=$((ERROR_FOUND + 1))
             fi
         done
+        
+        # Check papermill metadata for exceptions
+        exception=$(echo "$resp" | jq -r '.content.metadata.papermill.exception // empty')
+        if [[ -n "$exception" ]]; then
+            echo "⚠️ Found papermill exception: $exception"
+            ERROR_FOUND=$((ERROR_FOUND + 1))
+        fi
 
-        echo "PATTERN_COUNT=$PATTERN_COUNT" >> $GITHUB_ENV
-        echo "SUCCESS_PATTERNS_TOTAL=${#SUCCESS_PATTERNS_ARR[@]}" >> $GITHUB_ENV
         echo "ERROR_FOUND=$ERROR_FOUND" >> $GITHUB_ENV
         echo "ERROR_PATTERNS_TOTAL=${#ERROR_PATTERNS_ARR[@]}" >> $GITHUB_ENV
 
-        if [ $PATTERN_COUNT -ge 1 ] && [ $ERROR_FOUND -eq 0 ]; then
-            echo "✅ Notebook execution successful! ($PATTERN_COUNT/${#SUCCESS_PATTERNS_ARR[@]} patterns found)"
+        if [ $ERROR_FOUND -eq 0 ]; then
+            echo "✅ Notebook execution successful! ($ERROR_FOUND/${#ERROR_PATTERNS_ARR[@]} error patterns found)"
             echo "NOTEBOOK_SUCCESS=true" >> $GITHUB_ENV
         else
-            echo "❌ Notebook execution may have failed ($PATTERN_COUNT/${#SUCCESS_PATTERNS_ARR[@]} patterns found, error found: $ERROR_FOUND)"
+            echo "❌ Notebook execution may have failed ($ERROR_FOUND/${#ERROR_PATTERNS_ARR[@]} error patterns found)"
             echo "NOTEBOOK_SUCCESS=false" >> $GITHUB_ENV
         fi
 
@@ -406,7 +397,8 @@ jobs:
       if: always()
       run: |
         echo "=== Cleaning up Notebook Files ==="
-        
+        CLEANUP_SUCCESS=✅
+
         # Setup WebSocket connection function
         clean_api_url=${API_URL#*//}
         WS_URL="ws://$clean_api_url/user/$USER/terminals/websocket/$TERMINAL_NAME"
@@ -436,38 +428,55 @@ jobs:
         
         # List files before cleanup
         echo "Files before cleanup:"
-        execute_command "pwd" 5
-        execute_command "ls -la *.ipynb" 10
+        if ! execute_command "ls -la *.ipynb" 10; then
+          echo "Warning: Could not list files"
+          CLEANUP_SUCCESS=❌
+        fi
         
         # Remove notebook files via terminal
         echo ""
         echo "Removing notebook files..."
-        execute_command "rm -f $NOTEBOOK_NAME $OUTPUT_NAME" 10
+        if ! execute_command "rm -f $NOTEBOOK_NAME $OUTPUT_NAME" 10; then
+          echo "Error: Failed to remove files"
+          CLEANUP_SUCCESS=❌
+        fi
         
         # Verify files are removed
         echo ""
         echo "Verifying files are removed:"
-        execute_command "ls -la *.ipynb || echo 'No notebook files found'" 10
-        
+        if ! execute_command "ls -la *.ipynb || echo 'No notebook files found'" 10; then
+          echo "Warning: Could not verify file removal"
+          CLEANUP_SUCCESS=❌
+        fi
         
         # Delete terminal session
         echo ""
         echo "Deleting terminal session..."
-        curl -k -s -X DELETE \
+        if ! curl -k -s -X DELETE \
             -H "Authorization: token $USER_TOKEN" \
             "$API_URL/user/$USER/api/terminals/$TERMINAL_NAME" || true
-        
+          echo "Warning: Failed to delete terminal session"
+          CLEANUP_SUCCESS=❌
+        fi
+
+        # Set environment variable for next step
+        echo "CLEANUP_SUCCESS=$CLEANUP_SUCCESS" >> $GITHUB_ENV
+
         echo "✅ Cleanup completed"
 
     - name: Stop JupyterHub Server
       if: always()
       run: |
         echo "=== Stopping JupyterHub Server ==="
-        
+        SERVER_STOP_SUCCESS=✅
+
         # Stop the server
         echo "Stopping server..."
-        curl -s -k -X DELETE -H "Authorization: token $USER_TOKEN" $API_URL/hub/api/users/$USER/server || true
-        
+        if ! curl -s -k -X DELETE -H "Authorization: token $USER_TOKEN" $API_URL/hub/api/users/$USER/server; then
+          echo "Warning: Failed to stop server"
+          SERVER_STOP_SUCCESS=❌
+        fi
+
         echo "Waiting for server to stop..."
         for i in {1..12}; do
           sleep 10
@@ -486,8 +495,6 @@ jobs:
       run: |
         echo "=== Final Notebook Test Report ==="
         
-        PATTERNS_FOUND=${PATTERN_COUNT:-0}
-        PATTERNS_TOTAL=${SUCCESS_PATTERNS_TOTAL:-8}
         ERROR_FOUND=${ERROR_FOUND:-1}
         ERROR_TOTAL=${ERROR_PATTERNS_TOTAL:-4}
         NOTEBOOK_STATUS=${NOTEBOOK_SUCCESS:-false}
@@ -496,28 +503,27 @@ jobs:
         echo "- Server Management: ✅"
         echo "- Notebook Creation: ✅"
         echo "- Notebook Execution: $([ "$NOTEBOOK_STATUS" = "true" ] && echo "✅" || echo "❌")"
-        echo "- Success Patterns: $PATTERNS_FOUND/$PATTERNS_TOTAL $([ $PATTERNS_FOUND -ge 5 ] && echo "✅" || echo "❌")"
-        echo " - Error Patterns: $ERROR_FOUND/$ERROR_TOTAL $([ $ERROR_FOUND -eq 0 ] && echo "✅" || echo "❌")"
-        echo "- File Cleanup: ✅"
-        echo "- Server Cleanup: ✅"
-        
-        if [ "$NOTEBOOK_STATUS" = "true" ] && [ $PATTERNS_FOUND -ge 5 ]; then
+        echo "- Error Patterns: $ERROR_FOUND/$ERROR_TOTAL $([ $ERROR_FOUND -eq 0 ] && echo "✅" || echo "❌")"
+        echo "- File Cleanup: $CLEANUP_SUCCESS"
+        echo "- Server Cleanup: $SERVER_STOP_SUCCESS"
+
+        if [ "$NOTEBOOK_STATUS" = "true" ] && [ $ERROR_FOUND -eq 0 ]; then
           echo ""
           echo "🎉 NOTEBOOK TEST PASSED!"
-          echo "Server: ${{ matrix.server_name }}"
+          echo "Server: ${{ env.SERVER_NAME }}"
           echo "All critical components working correctly."
           exit 0
         else
           echo ""
           echo "❌ NOTEBOOK TEST FAILED!"
-          echo "Server: ${{ matrix.server_name }}"
+          echo "Server: ${{ env.SERVER_NAME }}"
           echo "Check logs above for details."
           exit 1
         fi
 
     # Create issue only for play servers when they fail
     - name: Generate issue on job failure
-      if: always() && failure() && contains(fromJSON('[ "play-aus"]'), matrix.server_name)
+      if: always() && failure() && contains(fromJSON('[ "play-aus"]'), env.SERVER_NAME)
       uses: JasonEtco/create-an-issue@1b14a70e4d8dc185e5cc76d3bec9eab20257b2c5
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -525,9 +531,9 @@ jobs:
         GITHUB_SERVER_URL: ${{ github.server_url }}
         GITHUB_REPOSITORY: ${{ github.repository }}
         GITHUB_RUN_ID: ${{ github.run_id }}
-        SERVER_NAME: ${{ matrix.server_name }}
-        SERVER_URL: ${{ matrix.default_url }}
-        PATTERNS_FOUND: ${{ env.PATTERN_COUNT }}
+        SERVER_NAME: ${{ env.SERVER_NAME }}
+        SERVER_URL: ${{ env.SERVER_URL }}
+        ERROR_FOUND: ${{ env.ERROR_FOUND }}
         NOTEBOOK_SUCCESS: ${{ env.NOTEBOOK_SUCCESS }}
       with:
         filename: .github/notebook_failure_issue_template.md
