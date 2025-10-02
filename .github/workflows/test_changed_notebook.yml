@@ -155,6 +155,12 @@ jobs:
             echo "NOTEBOOK_SUCCESS=false" >> $GITHUB_ENV
         fi
 
+    - name: Upload output notebook as artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.NOTEBOOK_OUTPUT }}
+
     - name: Clean build dir
       run: |
         rm -rf /home/ubuntu/actions_github_pages_*

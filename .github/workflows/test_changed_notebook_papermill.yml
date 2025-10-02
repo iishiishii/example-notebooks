@@ -39,6 +39,9 @@ jobs:
     runs-on: ubuntu-22.04
     outputs:
       notebook_list: ${{ steps.list_changed_notebooks.outputs.notebook_list }}
+    env:
+      TIMEOUT: 1500
+    timeout-minutes: ${{ env.TIMEOUT }}
     steps:
     - uses: actions/checkout@v4
     - name: Find all notebooks with changes
@@ -261,11 +264,8 @@ jobs:
         execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME --kernel python3 > papermill.log 2>&1 & echo \$! > papermill.pid" 30
 
         # Poll the Jupyter Contents API for notebook completion
-        MAX_WAIT=$((7200 * 4))         # max seconds to wait (8 hours)
-        CHECK_INTERVAL=100    # check every 100 seconds
-        STABLE_COUNT=0
-        STABLE_REQUIRED=6      # must remain unchanged for 6 consecutive checks (~10 min)
-        LAST_MODIFIED=""
+        MAX_WAIT=$(( ${{ env.TIMEOUT }} * 60 ))   # max seconds to wait (25 hours)
+        CHECK_INTERVAL=100       # check every 100 seconds
 
         echo "⏳ Waiting for notebook execution to complete (timeout: $((MAX_WAIT/60)) min)..."
 
@@ -278,42 +278,22 @@ jobs:
             notebook_name=$(echo "$resp" | jq -r '.name // empty')
             if [[ -z "$notebook_name" ]]; then
                 echo "📄 Notebook output not found yet, still waiting..."
-                STABLE_COUNT=0
                 sleep $CHECK_INTERVAL
                 continue
             fi
 
-            # 1️⃣ Check papermill metadata to see if the run has finished
+            # Check for papermill end_time to detect completion
             end_time=$(echo "$resp" | jq -r '.content.metadata.papermill.end_time // empty')
             if [[ -n "$end_time" ]]; then
-                echo "✅ Papermill metadata indicates notebook finished at $end_time"
+                echo "✅ Notebook execution completed at $end_time"
                 break
             fi
 
-            # 2️⃣ Fallback: check last_modified stability
-            current_modified=$(echo "$resp" | jq -r '.last_modified // empty')
-            if [[ -n "$current_modified" ]]; then
-                if [[ "$current_modified" == "$LAST_MODIFIED" ]]; then
-                    ((STABLE_COUNT++))
-                    echo "📝 Notebook unchanged for $((STABLE_COUNT*CHECK_INTERVAL))s..."
-                else
-                    STABLE_COUNT=0
-                    LAST_MODIFIED="$current_modified"
-                    echo "✍️ Notebook updated at $LAST_MODIFIED"
-                fi
-            else
-                STABLE_COUNT=0
-            fi
-
-            if (( STABLE_COUNT >= STABLE_REQUIRED )); then
-                echo "✅ Notebook appears finished (no changes for $((STABLE_REQUIRED*CHECK_INTERVAL))s)"
-                break
-            fi
-
+            echo "⌛ Notebook still running... (elapsed: ${elapsed}s)"
             sleep $CHECK_INTERVAL
         done
 
-        # Final check after loop
+        # Final timeout check
         if (( elapsed >= MAX_WAIT )); then
             echo "❌ Timeout waiting for notebook to finish after $((MAX_WAIT/60)) minutes"
             exit 1
