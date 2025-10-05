@@ -113,7 +113,7 @@ jobs:
         echo "NOTEBOOK_OUTPUT=$NOTEBOOK_OUTPUT"
         ls -la "${{ matrix.notebooks }}"
         pwd
-        papermill ${{ matrix.notebooks }} $NOTEBOOK_OUTPUT  --kernel python3 || exit 1
+        papermill ${{ matrix.notebooks }} $NOTEBOOK_OUTPUT  --kernel python3
 
     - name: Check Notebook Execution Result
       if: always()
@@ -121,7 +121,7 @@ jobs:
         ERROR_PATTERNS: "SyntaxError,Traceback,EOFError,NameError,Exception,ModuleNotFoundError,ImportError,OSError,FileNotFoundError,IndentationError,ValueError,TypeError,AttributeError,KeyError,ZeroDivisionError,RuntimeError,MemoryError,TimeoutError,IndexError,PermissionError,Cell execution timed out,Killed,FAILED,Failing,Aborted,Segmentation fault,Kernel Restarting,EnvironmentError,ConnectionError,HTTPError,NotJSONError"
       run: |
         # Check if output file exists
-        execute_command "ls -la $NOTEBOOK_OUTPUT" 10
+        ls -la $NOTEBOOK_OUTPUT
         
         # Split patterns into array
         IFS=',' read -ra ERROR_PATTERNS_ARR <<< "${ERROR_PATTERNS}"
@@ -130,7 +130,7 @@ jobs:
         echo "Checking for error patterns in output (case-insensitive)..."
         ERROR_FOUND=0
         for pattern in "${ERROR_PATTERNS_ARR[@]}"; do
-            if error_lines=$(execute_command "grep -i '${pattern// /}' $OUTPUT_NAME" 5) && [ -n "$error_lines" ]; then
+            if error_lines=$(grep -i '${pattern// /}' $OUTPUT_NAME) && [ -n "$error_lines" ]; then
                 echo "⚠️ Found error pattern: $pattern"
                 echo "Error lines: $error_lines"
                 ERROR_FOUND=$((ERROR_FOUND + 1))
@@ -160,6 +160,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.NOTEBOOK_OUTPUT }}
+        path: ${{ env.NOTEBOOK_OUTPUT }}
 
     - name: Clean build dir
       run: |

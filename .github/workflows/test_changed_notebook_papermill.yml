@@ -39,9 +39,6 @@ jobs:
     runs-on: ubuntu-22.04
     outputs:
       notebook_list: ${{ steps.list_changed_notebooks.outputs.notebook_list }}
-    env:
-      TIMEOUT: 1500
-    timeout-minutes: ${{ env.TIMEOUT }}
     steps:
     - uses: actions/checkout@v4
     - name: Find all notebooks with changes
@@ -72,6 +69,9 @@ jobs:
     needs: [ select-runner, get-notebooks ]
     if: ${{ needs.get-notebooks.outputs.notebook_list != '[]' }}
     runs-on: ${{ needs.select-runner.outputs.runner }}
+    env:
+      TIMEOUT: 1500
+    timeout-minutes: ${{ fromJSON(env.TIMEOUT) }}
     strategy:
       fail-fast: false
       matrix:
