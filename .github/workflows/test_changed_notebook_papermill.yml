@@ -19,6 +19,9 @@ on:
   # Trigger the workflow on manual dispatch
   workflow_dispatch:
 
+vars:
+  TIMEOUT: 1500
+
 jobs:
   select-runner:
     runs-on: ubuntu-22.04
@@ -69,9 +72,8 @@ jobs:
     needs: [ select-runner, get-notebooks ]
     if: ${{ needs.get-notebooks.outputs.notebook_list != '[]' }}
     runs-on: ${{ needs.select-runner.outputs.runner }}
-    env:
-      TIMEOUT: 1500
-    timeout-minutes: ${{ fromJSON(env.TIMEOUT) }}
+
+    timeout-minutes: ${{ vars.TIMEOUT }}
     strategy:
       fail-fast: false
       matrix:
@@ -264,7 +266,7 @@ jobs:
         execute_command "papermill $NOTEBOOK_NAME $OUTPUT_NAME --kernel python3 > papermill.log 2>&1 & echo \$! > papermill.pid" 30
 
         # Poll the Jupyter Contents API for notebook completion
-        MAX_WAIT=$(( ${{ env.TIMEOUT }} * 60 ))   # max seconds to wait (25 hours)
+        MAX_WAIT=$(( ${{ vars.TIMEOUT }} * 60 ))   # max seconds to wait (25 hours)
         CHECK_INTERVAL=100       # check every 100 seconds
 
         echo "⏳ Waiting for notebook execution to complete (timeout: $((MAX_WAIT/60)) min)..."

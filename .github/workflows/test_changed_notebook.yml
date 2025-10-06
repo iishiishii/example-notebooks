@@ -117,6 +117,7 @@ jobs:
 
     - name: Check Notebook Execution Result
       if: always()
+      working-directory: ./books
       env:
         ERROR_PATTERNS: "SyntaxError,Traceback,EOFError,NameError,Exception,ModuleNotFoundError,ImportError,OSError,FileNotFoundError,IndentationError,ValueError,TypeError,AttributeError,KeyError,ZeroDivisionError,RuntimeError,MemoryError,TimeoutError,IndexError,PermissionError,Cell execution timed out,Killed,FAILED,Failing,Aborted,Segmentation fault,Kernel Restarting,EnvironmentError,ConnectionError,HTTPError,NotJSONError"
       run: |
@@ -158,6 +159,7 @@ jobs:
     - name: Upload output notebook as artifact
       if: always()
       uses: actions/upload-artifact@v4
+      working-directory: ./books
       with:
         name: ${{ env.NOTEBOOK_OUTPUT }}
         path: ${{ env.NOTEBOOK_OUTPUT }}
