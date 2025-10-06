@@ -69,9 +69,6 @@ jobs:
     needs: [ select-runner, get-notebooks ]
     if: ${{ needs.get-notebooks.outputs.notebook_list != '[]' }}
     runs-on: ${{ needs.select-runner.outputs.runner }}
-    env:
-      TIMEOUT: 1500
-    timeout-minutes: 1500
     strategy:
       fail-fast: false
       matrix:
@@ -82,6 +79,8 @@ jobs:
       API_URL: "https://play.neurodesk.cloud.edu.au"
       SERVER_NAME: "play-aus"
       ERROR_PATTERNS: "SyntaxError,Traceback,EOFError,NameError,Exception,ModuleNotFoundError,ImportError,OSError,FileNotFoundError,IndentationError,ValueError,TypeError,AttributeError,KeyError,ZeroDivisionError,RuntimeError,MemoryError,TimeoutError,IndexError,PermissionError,Cell execution timed out,Killed,FAILED,Failing,Aborted,Segmentation fault,Kernel Restarting,EnvironmentError,ConnectionError,HTTPError,NotJSONError"
+      TIMEOUT: 1500
+    timeout-minutes: 1500 # Set a maximum timeout for the job (in minutes) here and in the env variable above
 
     steps:
     - uses: actions/checkout@v4

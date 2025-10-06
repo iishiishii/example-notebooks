@@ -99,21 +99,28 @@ jobs:
       env: 
         GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        set -e
+        set -o pipefail
+
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
         export PATH=$HOME/.local/bin:$PATH
         echo "PATH=$PATH"
-        echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})"
-        echo "DIRNAME=$(dirname ${{ matrix.notebooks }})"
-        echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
-        echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
-        DIRNAME=$(dirname ${{ matrix.notebooks }})
-        echo "NOTEBOOK_OUTPUT=$DIRNAME/$(basename -s .ipynb ${{ matrix.notebooks }})_out.ipynb" >> $GITHUB_ENV
-        NOTEBOOK_OUTPUT=$DIRNAME/$(basename -s .ipynb ${{ matrix.notebooks }})_out.ipynb
-        echo "NOTEBOOK_OUTPUT=$NOTEBOOK_OUTPUT"
-        ls -la "${{ matrix.notebooks }}"
+
+        NOTEBOOK_PATH="${{ matrix.notebooks }}"
+        NOTEBOOK_BASE="$(basename -s .ipynb "$NOTEBOOK_PATH")"
+        NOTEBOOK_DIR="$(dirname "$NOTEBOOK_PATH")"
+        NOTEBOOK_OUTPUT="${NOTEBOOK_DIR}/${NOTEBOOK_BASE}_out.ipynb"
+        NOTEBOOK_ARTIFACT="${NOTEBOOK_BASE}_out"   # Safe artifact name (no slashes)
+
+        echo "NOTEBOOK_PATH=$NOTEBOOK_PATH" >> $GITHUB_ENV
+        echo "NOTEBOOK_BASE=$NOTEBOOK_BASE" >> $GITHUB_ENV
+        echo "NOTEBOOK_DIR=$NOTEBOOK_DIR" >> $GITHUB_ENV
+        echo "NOTEBOOK_OUTPUT=$NOTEBOOK_OUTPUT" >> $GITHUB_ENV
+        echo "NOTEBOOK_ARTIFACT=$NOTEBOOK_ARTIFACT" >> $GITHUB_ENV
         echo "CURRENT_DIR=$(pwd)" >> $GITHUB_ENV
-        papermill ${{ matrix.notebooks }} $NOTEBOOK_OUTPUT  --kernel python3
+
+        papermill "$NOTEBOOK_PATH" "$NOTEBOOK_OUTPUT"  --kernel python3
 
     - name: Check Notebook Execution Result
       if: always()
@@ -121,6 +128,8 @@ jobs:
       env:
         ERROR_PATTERNS: "SyntaxError,Traceback,EOFError,NameError,Exception,ModuleNotFoundError,ImportError,OSError,FileNotFoundError,IndentationError,ValueError,TypeError,AttributeError,KeyError,ZeroDivisionError,RuntimeError,MemoryError,TimeoutError,IndexError,PermissionError,Cell execution timed out,Killed,FAILED,Failing,Aborted,Segmentation fault,Kernel Restarting,EnvironmentError,ConnectionError,HTTPError,NotJSONError"
       run: |
+        set -e
+
         # Check if output file exists
         ls -la $NOTEBOOK_OUTPUT
         
@@ -160,7 +169,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.NOTEBOOK_OUTPUT }}
+        name: ${{ env.NOTEBOOK_ARTIFACT }}
         path: ${{ env.CURRENT_DIR }}/${{ env.NOTEBOOK_OUTPUT }}
 
     - name: Clean build dir
