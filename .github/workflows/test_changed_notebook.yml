@@ -112,7 +112,7 @@ jobs:
         NOTEBOOK_OUTPUT=$DIRNAME/$(basename -s .ipynb ${{ matrix.notebooks }})_out.ipynb
         echo "NOTEBOOK_OUTPUT=$NOTEBOOK_OUTPUT"
         ls -la "${{ matrix.notebooks }}"
-        pwd
+        echo "CURRENT_DIR=$(pwd)" >> $GITHUB_ENV
         papermill ${{ matrix.notebooks }} $NOTEBOOK_OUTPUT  --kernel python3
 
     - name: Check Notebook Execution Result
@@ -159,10 +159,9 @@ jobs:
     - name: Upload output notebook as artifact
       if: always()
       uses: actions/upload-artifact@v4
-      working-directory: ./books
       with:
         name: ${{ env.NOTEBOOK_OUTPUT }}
-        path: ${{ env.NOTEBOOK_OUTPUT }}
+        path: ${{ env.CURRENT_DIR }}/${{ env.NOTEBOOK_OUTPUT }}
 
     - name: Clean build dir
       run: |
