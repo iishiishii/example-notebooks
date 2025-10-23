@@ -189,7 +189,8 @@ jobs:
             --slurpfile content "${{ matrix.notebooks }}" \
             '{type: $type, content: $content[0]}' > payload.json
 
-        CREATE_RESPONSE=$(curl -k -s -X PUT \
+        CREATE_RESPONSE=$(curl -k --max-time 300 \
+            --connect-timeout 30 --retry 3 -X PUT \
             -H "Authorization: token $USER_TOKEN" \
             -H "Content-Type: application/json" \
             --data-binary @payload.json \
