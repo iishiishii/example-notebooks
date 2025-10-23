@@ -1,6 +1,7 @@
 ---
 title: "Notebook Test Job failure - {{ env.GITHUB_WORKFLOW }}"
 assignees:
+  - iishiishii
 labels:
   - bug
 ---
