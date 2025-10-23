@@ -318,7 +318,6 @@ jobs:
             local cmd="$1"
             local timeout="${2:-30}"
             
-            echo "Executing: $cmd"
             
             local output=$(echo "[\"stdin\", \"$cmd\\r\\n\"]" | \
                 timeout $timeout websocat --text "$WS_URL" \
@@ -329,7 +328,6 @@ jobs:
             
             if [ -n "$output" ]; then
                 echo "✅ Command executed successfully"
-                echo "Output: $output"
                 return 0
             else
                 echo "❌ Command failed or no output"
@@ -433,7 +431,7 @@ jobs:
         echo "Deleting terminal session..."
         if ! curl -k -s -X DELETE \
             -H "Authorization: token $USER_TOKEN" \
-            "$API_URL/user/$USER/api/terminals/$TERMINAL_NAME" || true
+            "$API_URL/user/$USER/api/terminals/$TERMINAL_NAME" || true; then
           echo "Warning: Failed to delete terminal session"
           CLEANUP_SUCCESS=❌
         fi
@@ -514,6 +512,7 @@ jobs:
         SERVER_URL: ${{ env.SERVER_URL }}
         ERROR_FOUND: ${{ env.ERROR_FOUND }}
         NOTEBOOK_SUCCESS: ${{ env.NOTEBOOK_SUCCESS }}
+        NOTEBOOK_NAME: ${{ env.NOTEBOOK_NAME }}
       with:
         filename: .github/notebook_failure_issue_template.md
 
