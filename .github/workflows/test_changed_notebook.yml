@@ -25,6 +25,11 @@ on:
         description: 'Override the Docker image (e.g. vnmd/neurodesktop:2024-01-01)'
         required: false
         type: string
+      force_rebuild:
+        description: 'Force execution of all notebooks and deploy to GitHub Pages'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   select-runner:
@@ -71,8 +76,13 @@ jobs:
     - name: Filter down to changed notebooks
       id: list_changed_notebooks
       run: |
-        echo ${{ steps.find_changed_notebooks.outputs.all_changed_files }}
-        changed_notebooks=$(echo "${{ steps.find_changed_notebooks.outputs.all_changed_files }}")
+        if [ "${{ inputs.force_rebuild }}" == "true" ]; then
+          echo "Forcing execution of all notebooks"
+          changed_notebooks=$(find . -name "*.ipynb" | sed 's|^\./||')
+        else
+          echo ${{ steps.find_changed_notebooks.outputs.all_changed_files }}
+          changed_notebooks=$(echo "${{ steps.find_changed_notebooks.outputs.all_changed_files }}")
+        fi
         
         notebook_list='['
         for NOTEBOOK in $(echo "${changed_notebooks}"); do
@@ -145,7 +155,7 @@ jobs:
       
     - name: Push to GitHub Pages
       uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
-      if: github.event_name != 'pull_request'
+      if: github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.force_rebuild == true)
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./books/_build/**/**/html
@@ -188,7 +198,7 @@ jobs:
 
     - name: Push to GitHub Pages
       uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
-      if: github.event_name != 'pull_request'
+      if: github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.force_rebuild == true)
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./books/_build/html
