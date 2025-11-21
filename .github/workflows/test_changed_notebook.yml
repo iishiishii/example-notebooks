@@ -49,7 +49,7 @@ jobs:
             echo "neurodesk_image=${{ inputs.image_override }}" >> $GITHUB_OUTPUT
           else
             curl -s https://raw.githubusercontent.com/neurodesk/neurodesk.github.io/main/data/neurodesktop.toml -o neurodesktop.toml
-            VERSION=$(grep 'jupyter_neurodesk_version' neurodesktop.toml | cut -d '"' -f 2)
+            VERSION=$(grep 'jupyter_neurodesk_version = ' neurodesktop.toml | cut -d '"' -f 2)
             echo "neurodesk_image=vnmd/neurodesktop:$VERSION" >> $GITHUB_OUTPUT
           fi
           
