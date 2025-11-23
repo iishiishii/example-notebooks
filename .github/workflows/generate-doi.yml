@@ -2,7 +2,7 @@ name: generate-doi
 
 on:
     schedule:
-        - cron: '0 0 1 * *' # Every Sunday at midnight
+        - cron: '0 0 1 * *' # Every month on the first day at midnight
     workflow_dispatch:
 
 jobs:
@@ -56,7 +56,7 @@ jobs:
               NOTEBOOK_NAME=$(echo "${{ matrix.notebooks }}" | cut -d'/' -f3 | cut -d'.' -f1)
               echo "NOTEBOOK_NAME=$NOTEBOOK_NAME" >> $GITHUB_ENV
               NOTEBOOK_BUILDDATE="${NOTEBOOK_NAME}_${BUILDDATE}"
-              sed -i "s/^[[:space:]]*license = get_license(args.container_name, args.gh_token)/    license = 'mit'/" .github/scripts/publish-doi.py
+              sed -E -i "s#^[[:space:]]*license = get_license\(args\.container_name, args\.gh_token\)#    license = 'mit'#" .github/scripts/publish-doi.py
               if DOI_URL=$(python3 .github/scripts/publish-doi.py --container_filepath="https://raw.githubusercontent.com/Neurodesk/example-notebooks/refs/heads/main/${{ matrix.notebooks }}" --container_name=${NOTEBOOK_BUILDDATE} --zenodo_token=${{ secrets.ZENODO_TOKEN }} --gh_token=${{ secrets.GITHUB_TOKEN }} | tail -n 1)
                 echo "DOI_URL: $DOI_URL"
               else
