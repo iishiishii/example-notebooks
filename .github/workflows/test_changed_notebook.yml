@@ -120,7 +120,7 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        mamba install -c conda-forge -y r-irkernel ipykernel jupyter-book ghp-import
+        mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
 
     - name: Run ${{ matrix.notebooks }}
       shell: bash
@@ -143,7 +143,7 @@ jobs:
         which jupyter-book || echo "jupyter-book not found in PATH"
         ls -l /opt/conda/bin/jupyter-book || echo "/opt/conda/bin/jupyter-book not found"
         
-        jupyter-book build ${{ matrix.notebooks }} --html --strict
+        jupyter-book build ${{ matrix.notebooks }}
 
     - name: Restructure
       shell: bash
@@ -194,7 +194,7 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        mamba install -c conda-forge -y r-irkernel ipykernel jupyter-book ghp-import
+        mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
 
     - name: Run all
       shell: bash
