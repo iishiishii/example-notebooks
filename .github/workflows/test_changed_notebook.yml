@@ -30,6 +30,10 @@ on:
         required: false
         type: boolean
         default: false
+      notebook_selector:
+        description: 'Select a specific notebook to run (e.g. books/functional_imaging/fmriprep.ipynb)'
+        required: false
+        type: string
 
 jobs:
   select-runner:
@@ -79,6 +83,9 @@ jobs:
         if [ "${{ inputs.force_rebuild }}" == "true" ]; then
           echo "Forcing execution of all notebooks"
           changed_notebooks=$(find . -name "*.ipynb" | sed 's|^\./||')
+        elif [ -n "${{ inputs.notebook_selector }}" ]; then
+          echo "Selecting specific notebook: ${{ inputs.notebook_selector }}"
+          changed_notebooks="${{ inputs.notebook_selector }}"
         else
           echo ${{ steps.find_changed_notebooks.outputs.all_changed_files }}
           changed_notebooks=$(echo "${{ steps.find_changed_notebooks.outputs.all_changed_files }}")
