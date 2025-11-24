@@ -143,7 +143,7 @@ jobs:
         which jupyter-book || echo "jupyter-book not found in PATH"
         ls -l /opt/conda/bin/jupyter-book || echo "/opt/conda/bin/jupyter-book not found"
         
-        jupyter book build ${{ matrix.notebooks }}
+        jupyter book build ${{ matrix.notebooks }} --html --strict
 
     - name: Restructure
       shell: bash
