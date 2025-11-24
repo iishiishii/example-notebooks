@@ -31,7 +31,7 @@ on:
         type: boolean
         default: false
       notebook_selector:
-        description: 'Select a specific notebook to run (e.g. books/functional_imaging/fmriprep.ipynb)'
+        description: 'Select a specific notebook to run (e.g. books/workflows/nipype_short.ipynb)'
         required: false
         type: string
 
