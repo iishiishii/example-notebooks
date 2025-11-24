@@ -125,7 +125,7 @@ jobs:
       run: |
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
-        export PATH=$HOME/.local/bin:$PATH
+        export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
         echo "PATH=$PATH"
         echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})"
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})"
@@ -191,7 +191,7 @@ jobs:
       env: 
         GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        export PATH=$HOME/.local/bin:$PATH
+        export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
         /bin/bash ../.github/scripts/write-toc-entry.sh
         sed -i 's/execute_notebooks: .*/execute_notebooks: off/' _config.yml
         cat _config.yml
