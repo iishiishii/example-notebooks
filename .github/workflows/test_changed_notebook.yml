@@ -22,7 +22,7 @@ on:
   workflow_dispatch:
     inputs:
       image_override:
-        description: 'Override the Docker image (e.g. vnmd/neurodesktop:2024-01-01)'
+        description: 'Override the Docker image (e.g. ghcr.io/neurodesk/neurodesktop/neurodesktop:2024-01-01)'
         required: false
         type: string
       force_rebuild:
@@ -59,7 +59,7 @@ jobs:
           else
             curl -s https://raw.githubusercontent.com/neurodesk/neurodesk.github.io/main/data/neurodesktop.toml -o neurodesktop.toml
             VERSION=$(grep 'jupyter_neurodesk_version = ' neurodesktop.toml | cut -d '"' -f 2)
-            echo "neurodesk_image=vnmd/neurodesktop:$VERSION" >> $GITHUB_OUTPUT
+            echo "neurodesk_image=ghcr.io/neurodesk/neurodesktop/neurodesktop:$VERSION" >> $GITHUB_OUTPUT
           fi
           
   get-notebooks:
