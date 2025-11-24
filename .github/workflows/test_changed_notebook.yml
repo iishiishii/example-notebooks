@@ -143,7 +143,7 @@ jobs:
         which jupyter-book || echo "jupyter-book not found in PATH"
         ls -l /opt/conda/bin/jupyter-book || echo "/opt/conda/bin/jupyter-book not found"
         
-        jupyter book build ${{ matrix.notebooks }} --html --strict
+        jupyter-book build ${{ matrix.notebooks }} --html --strict
 
     - name: Restructure
       shell: bash
@@ -206,7 +206,7 @@ jobs:
         /bin/bash ../.github/scripts/write-toc-entry.sh
         sed -i 's/execute_notebooks: .*/execute_notebooks: off/' _config.yml
         cat _config.yml
-        jupyter book build .
+        jupyter-book build .
 
 
     - name: Push to GitHub Pages
