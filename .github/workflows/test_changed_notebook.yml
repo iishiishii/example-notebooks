@@ -87,7 +87,8 @@ jobs:
       run: |
         if [ "${{ inputs.force_execution }}" == "true" ]; then
           echo "Forcing execution of all notebooks"
-          changed_notebooks=$(find . -name "*.ipynb" | sed 's|^\./||')
+          # Find all notebooks and remove the leading ./books/ prefix if present, or just ./
+          changed_notebooks=$(find books -name "*.ipynb" | sed 's|^books/||')
         elif [ -n "${{ inputs.notebook_selector }}" ]; then
           echo "Selecting specific notebook: ${{ inputs.notebook_selector }}"
           changed_notebooks="${{ inputs.notebook_selector }}"
