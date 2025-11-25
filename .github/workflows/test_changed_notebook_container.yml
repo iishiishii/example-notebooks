@@ -1,6 +1,6 @@
 # This workflows executes new or modified example notebooks.
 
-name: test_changed_notebooks
+name: test_changed_notebooks_container
 
 defaults:
   run:
