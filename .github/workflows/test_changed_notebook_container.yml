@@ -236,7 +236,7 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        mamba install -c pypi jupyter-book ghp-import
+        mamba install -c pypi "jupyter-book<2.0.0" ghp-import
 
     - name: Run all
       shell: bash
