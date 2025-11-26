@@ -131,6 +131,7 @@ jobs:
       shell: bash
       run: |
         mamba info --envs
+        mamba install -c conda-forge -y fsl jq
         mamba install -c pypi -y papermill ghp-import
 
     - name: Run ${{ matrix.notebooks }}
@@ -181,7 +182,7 @@ jobs:
         echo "Checking for error patterns in output (case-insensitive)..."
         ERROR_FOUND=0
         for pattern in "${ERROR_PATTERNS_ARR[@]}"; do
-            if error_lines=$(grep -i '${pattern// /}' $OUTPUT_NAME) && [ -n "$error_lines" ]; then
+            if error_lines=$(grep -i "${pattern// /}" "$NOTEBOOK_OUTPUT") && [ -n "$error_lines" ]; then
                 echo "⚠️ Found error pattern: $pattern"
                 echo "Error lines: $error_lines"
                 ERROR_FOUND=$((ERROR_FOUND + 1))
@@ -189,7 +190,8 @@ jobs:
         done
         
         # Check papermill metadata for exceptions
-        exception=$(echo "$resp" | jq -r '.content.metadata.papermill.exception // empty')
+        resp=$(cat "$NOTEBOOK_OUTPUT")
+        exception=$(echo "$resp" | jq -r '.metadata.papermill.exception // empty')
         if [[ -n "$exception" ]]; then
             echo "⚠️ Found papermill exception: $exception"
             ERROR_FOUND=$((ERROR_FOUND + 1))
