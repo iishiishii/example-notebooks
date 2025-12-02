@@ -110,15 +110,6 @@ jobs:
     needs: [ select-runner, get-notebooks ]
     if: ${{ needs.get-notebooks.outputs.notebook_list != '[]' }}
     runs-on: ${{ needs.select-runner.outputs.runner }}
-    container: 
-      image: ${{ needs.select-runner.outputs.neurodesk_image }}
-      volumes:
-        - /home/runner/:/home/
-        - neurodesk-home:/home/jovyan
-      options: --user root --privileged --shm-size=1gb
-      env:
-        NB_UID: 1001
-        NB_GID: 1001
     timeout-minutes: 1500
     strategy:
       fail-fast: true
@@ -126,12 +117,21 @@ jobs:
         notebooks: ${{ fromJson(needs.get-notebooks.outputs.notebook_list) }}
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+    - name: Start Neurodesk Container
+      run: |
+        docker run -d --name nb-runner \
+          --user root --privileged --shm-size=1gb \
+          -e NB_UID=1001 -e NB_GID=1001 \
+          -v /home/runner/:/home/ \
+          -v neurodesk-home:/home/jovyan \
+          -v ${{ github.workspace }}:${{ github.workspace }} \
+          ${{ needs.select-runner.outputs.neurodesk_image }} \
+          tail -f /dev/null
 
     - name: Install dependencies
       shell: bash
       run: |
-        mamba info --envs
-        mamba install -c pypi -y papermill ghp-import
+        docker exec nb-runner bash -c "mamba info --envs && mamba install -c pypi -y papermill ghp-import"
 
     - name: Run ${{ matrix.notebooks }}
       shell: bash
@@ -145,9 +145,7 @@ jobs:
 
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
-        export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
-        echo "PATH=$PATH"
-
+        
         NOTEBOOK_PATH="${{ matrix.notebooks }}"
         NOTEBOOK_BASE="$(basename -s .ipynb "$NOTEBOOK_PATH")"
         NOTEBOOK_DIR="$(dirname "$NOTEBOOK_PATH")"
@@ -161,7 +159,9 @@ jobs:
         echo "NOTEBOOK_ARTIFACT=$NOTEBOOK_ARTIFACT" >> $GITHUB_ENV
         echo "CURRENT_DIR=$(pwd)" >> $GITHUB_ENV
 
-        papermill "$NOTEBOOK_PATH" "$NOTEBOOK_OUTPUT"  --kernel python3
+        docker exec -e GITHUB_PAT=$GITHUB_PAT \
+          -w ${{ github.workspace }}/books \
+          nb-runner bash -c "export PATH=/opt/conda/bin:\$HOME/.local/bin:\$PATH && papermill \"$NOTEBOOK_PATH\" \"$NOTEBOOK_OUTPUT\" --kernel python3"
 
     - name: Check Notebook Execution Result
       if: always()
@@ -181,7 +181,7 @@ jobs:
         echo "Checking for error patterns in output (case-insensitive)..."
         ERROR_FOUND=0
         for pattern in "${ERROR_PATTERNS_ARR[@]}"; do
-            if error_lines=$(grep -i '${pattern// /}' $OUTPUT_NAME) && [ -n "$error_lines" ]; then
+                        if error_lines=$(grep -i '${pattern// /}' $OUTPUT_NAME) && [ -n "$error_lines" ]; then
                 echo "⚠️ Found error pattern: $pattern"
                 echo "Error lines: $error_lines"
                 ERROR_FOUND=$((ERROR_FOUND + 1))
@@ -221,22 +221,23 @@ jobs:
     if: ${{ needs.test-notebooks.result != 'failure' }}
     needs: [ test-notebooks, select-runner ]
     runs-on: ubuntu-22.04
-    container: 
-      image: ${{ needs.select-runner.outputs.neurodesk_image }}
-      volumes:
-        - /home/runner/:/home/
-        - neurodesk-home:/home/jovyan
-      options: --user root --privileged --shm-size=1gb
-      env:
-        NB_UID: 1001
-        NB_GID: 1001
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+    - name: Start Neurodesk Container
+      run: |
+        docker run -d --name nb-runner \
+          --user root --privileged --shm-size=1gb \
+          -e NB_UID=1001 -e NB_GID=1001 \
+          -v /home/runner/:/home/ \
+          -v neurodesk-home:/home/jovyan \
+          -v ${{ github.workspace }}:${{ github.workspace }} \
+          ${{ needs.select-runner.outputs.neurodesk_image }} \
+          tail -f /dev/null
 
     - name: Install dependencies
       shell: bash
       run: |
-        mamba install -c pypi "jupyter-book<2.0.0" ghp-import
+        docker exec nb-runner bash -c "mamba install -c pypi 'jupyter-book<2.0.0' ghp-import"
 
     - name: Run all
       shell: bash
@@ -244,11 +245,9 @@ jobs:
       env: 
         GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
-        /bin/bash ../.github/scripts/write-toc-entry.sh
-        sed -i 's/execute_notebooks: .*/execute_notebooks: off/' _config.yml
-        cat _config.yml
-        jupyter-book build .
+        docker exec -e GITHUB_PAT=$GITHUB_PAT \
+          -w ${{ github.workspace }}/books \
+          nb-runner bash -c "export PATH=/opt/conda/bin:\$HOME/.local/bin:\$PATH && /bin/bash ../.github/scripts/write-toc-entry.sh && sed -i 's/execute_notebooks: .*/execute_notebooks: off/' _config.yml && cat _config.yml && jupyter-book build ."
 
 
     - name: Push to GitHub Pages
