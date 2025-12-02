@@ -131,7 +131,7 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        docker exec nb-runner bash -c "pip install -y papermill ghp-import"
+        docker exec nb-runner bash -c "pip install papermill ghp-import"
 
     - name: Run ${{ matrix.notebooks }}
       shell: bash
@@ -238,7 +238,7 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: |
-        docker exec nb-runner bash -c "mamba install -c pypi 'jupyter-book<2.0.0' ghp-import"
+        docker exec nb-runner bash -c "pip install 'jupyter-book<2.0.0' ghp-import"
 
     - name: Run all
       shell: bash
